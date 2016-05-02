@@ -1,0 +1,236 @@
+	/* sm */
+ @media (min-width: 768px) and (max-width: 991px) {
+	.banner h3 {
+	  font-size: 13px;
+	  margin-top: 120px;
+	}
+	.banner h1 {
+	  font-size: 30px;
+	}
+	.banner p {
+	  font-size: 15px;
+	  margin-top: 20px;
+	}
+	.pricing-slide p {
+	  font-size: 20px;
+	  margin-top: 50px;
+	}
+	.item img {
+	  margin-bottom: 120px;
+	}
+	.download p {
+	  font-size: 25px;
+	  padding: 30px 0;
+	}
+	.download button{
+		margin-top: 13px;
+		margin-bottom: 0;
+		margin-left: 16px;
+	}
+	.contact {
+	  height: 950px;
+	}
+}
+/* xs */
+@media (min-width: 480px) and (max-width: 767px) {
+	.banner h3 {
+	  font-size: 11px;
+	  margin-top: 105px;
+	}
+	.banner h1 {
+	  font-size: 25px;
+	}
+	.banner p {
+	  font-size: 14px;
+	  margin-top: 17px;
+	}
+	.download-btn {
+	  width: 130px;
+	  height: 40px;
+	  font-size: 12px;
+	  margin-top: 30px;
+	}
+	.features-btn {
+	  width: 130px;
+	  height: 40px;
+	  font-size: 12px;
+	  margin-top: 30px;
+	}
+	h2 {
+	  font-size: 25px;
+	  margin-bottom: 20px;
+	}
+	.contact {
+	  height: 900px;
+	}
+	h4 {
+	  font-size: 12px;
+	  margin-top: 40px;
+	}
+	.features p {
+	  font-size: 15px;
+	  margin-bottom: 40px;
+	}
+	.features h3 {
+	  font-size: 20px;
+	}
+	.details p {
+	  font-size: 14px;
+	  margin: 20px 0;
+	}
+		.details ul li {
+	  font-size: 14px;
+	}
+	.feature-detail h4 {
+	  margin-top: 50px;
+	}
+	.feature-detail p {
+	  font-size: 13px;
+	  margin-top: 10px;
+	}
+	.pricing-slide p {
+	  font-size: 16px;
+	  margin-top: 35px;
+	  margin-bottom: 20px;
+	}
+	.item h6 {
+	  font-size: 13px;
+	}
+	.item h5 {
+	  font-size: 12px;
+	}
+	.item img {
+	  margin-bottom: 95px;
+	}
+	.download p {
+	  font-size: 24px;
+	  padding: 30px 0;
+	}
+	.download button{
+		margin-top: 0;
+		margin-bottom: 20px;
+	}
+	.contact p {
+	  font-size: 14px;
+	}
+	.contact-heading img {
+	  margin-bottom: 25px;
+	}
+}
+/* XS Portrait */
+@media (max-width: 479px) {
+	.banner h3 {
+	  font-size: 11px;
+	  margin-top: 100px;
+	}
+	.banner h1 {
+	  font-size: 24px;
+	  margin-top: 0;
+	}
+	.banner p {
+	  font-size: 12px;
+	  margin-top: 12px;
+	  line-height: 1;
+	}
+	.download-btn {
+	  width: 80px;
+	  height: 29px;
+	  font-size: 8px;
+	  margin-top: 10px;
+	  margin-right: 0px;
+	  font-weight: 400;
+	}
+	.features-btn{
+		width: 80px;
+	  height: 29px;
+	  font-size: 8px;
+	  margin-top: 10px;
+	  margin-right: 0px;
+	  font-weight: 400;
+	  margin-bottom: 25px;
+	}
+	h4 {
+	  font-size: 10px;
+	  margin-top: 30px;
+	  font-weight: 600;
+	}
+	h2 {
+	  font-size: 25px;
+	  margin-bottom: 15px;
+	}
+	.features img {
+	  margin-bottom: 35px;
+	}
+	.features i.fa {
+	  font-size: 20px;
+	  width: 80px;
+	  height: 80px;
+	}
+	.features h3 {
+  		font-size: 18px;
+  	}
+  	.features p {
+	  font-size: 14px;
+	  margin-bottom: 30px;
+	}
+	.details p {
+	  font-size: 14px;
+	  margin: 8px 0;
+	}
+	.details ul li {
+  		font-size: 9px;
+  	}
+  	.details ul li i.fa {
+		  font-size: 16px;
+		  height: 20px;
+		  width: 20px;
+	}
+	.feature-detail h4 {
+  		margin-top: 40px;
+  	}
+  	.feature-detail p {
+	  font-size: 12px;
+	  margin-top: 10px;
+	}
+	.pricing-slide p {
+	  font-size: 14px;
+	  margin-top: 25px;
+	  margin-bottom: 15px;
+	}
+	.item h5 {
+  		font-size: 10px;
+  	}
+	.item h6 {
+  		font-size: 12px;
+  	}
+  	.item img {
+	  margin-right: 10px;
+	  margin-bottom: 21px;
+	}
+	.download p {
+	  font-size: 20px;
+	  padding: 25px 0;
+	}
+	.download button {
+	  margin-bottom: 35px;
+	  margin-top: 0;
+	}
+	.price-plan img {
+	  margin-bottom: 25px;
+	}
+	.contact-heading img {
+	  margin-bottom: 5px;
+	}
+	.contact p {
+  		font-size: 10px;
+  	}
+  	.contact-form{
+  		margin-top: 10px;
+  	}
+  	.footer i.fa{
+  		padding: 15px;
+  	}
+  	.footer p{
+  		font-size: 12px;
+  	}
+}
