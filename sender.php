@@ -7,8 +7,8 @@
  **************************************
  */
 
-$to = 'YOUR_EMAIL_ADDRESS';
-$siteName = "YOUR_SITE_NAME";
+$to = 'pcutler@silversaucer.com';
+$siteName = "Silver Saucer Opportunity";
 
 /*
  *************************************************************
@@ -24,7 +24,7 @@ $subject = $_POST['subj'];
 $message = $_POST['mssg'];
 
 if (isset($name) && isset($mail) && isset($message)) {
-	
+
 
 	$mailSub = '[Contact] [' . $siteName . '] '.$subject;
 
