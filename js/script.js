@@ -110,7 +110,7 @@ $(function () {
     ////// mailchimp //////
     $(".subscribe-form").ajaxChimp({
         callback: mcCallback,
-        url: "http://silversaucer.us13.list-manage.com/subscribe/post?u=bc255df6583b3d45f097f4812&amp;id=79c231fc0f" // Replace your mailchimp post url inside double quote "".
+        url: "https://silversaucer.us13.list-manage.com/subscribe/post?u=bc255df6583b3d45f097f4812&amp;id=79c231fc0f" // Replace your mailchimp post url inside double quote "".
     });
 
     function mcCallback (res) {
