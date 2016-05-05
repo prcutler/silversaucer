@@ -110,7 +110,7 @@ $(function () {
     ////// mailchimp //////
     $(".subscribe-form").ajaxChimp({
         callback: mcCallback,
-        url: "http://cantothemes.us8.list-manage2.com/subscribe/post?u=37a0cb83e98c8633253ad0acd&id=03d8ef0996" // Replace your mailchimp post url inside double quote "".
+        url: "http://silversaucer.us13.list-manage.com/subscribe/post?u=bc255df6583b3d45f097f4812&amp;id=79c231fc0f" // Replace your mailchimp post url inside double quote "".
     });
 
     function mcCallback (res) {
