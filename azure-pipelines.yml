@@ -6,6 +6,15 @@
 trigger:
 - master
 
+# Install SSH Key
+# Install an SSH key prior to a build or release
+- task: InstallSSHKey@0
+  inputs:
+    hostName: AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
+    sshPublicKey: AAAAB3NzaC1yc2EAAAADAQABAAABAQCrl7geyWSzFhiIegvime78eFbnzcjv1pKNTNhbdKvWoAxpgEJWxvgzKLgtkqxeORZHLjgk+MBT6vlIAVVQfvMk0kzxw3zlt1aLBOwmk/HUUC7OeiIAHEVevYrgp9B5XnCueOInzhldYTo1voMJgbYSB4EjafJHl5F+//rwmEjbl1ZoAlXtM4iihi3S3wSCcNjLaMU9j3wgkPH7gzV9r74ajJJjFYaDiF92o0HI6HzipcYGFOvnqJ+90s35gsIBVFdMWWn3VgMuC58DieB0lJpZWPl+s8ElPTYl/hrEV9ZoTcogl1TeWeZYtnKRSvitzbTH0/sXNpD54oiakKB+QrRV pcutler@github.com
+    #sshPassphrase: # Optional
+    sshKeySecureFile: github_rsa
+
 pool:
   vmImage: 'ubuntu-latest'
 strategy:
