@@ -22,6 +22,33 @@ steps:
       versionSpec: '$(python.version)'
     displayName: 'Use Python $(python.version)'
 
+# Download Secure File
+# Download a secure file to a temporary location on the build or release agent
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: id_rsa
+    secureFile: known_hosts
+
+# Copy Files
+# Copy files from source folder to target folder using match patterns (The match patterns will only match file paths, not folder paths)
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: $(Agent.TempDirectory)
+    contents: 'id_rsa'
+    targetFolder: '~/.ssh/'
+    #cleanTargetFolder: false # Optional
+    #overWrite: false # Optional
+    #flattenFolders: false # Optional
+
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: $(Agent.TempDirectory)
+    contents: 'known_hosts'
+    targetFolder: '~/.ssh/'
+    #cleanTargetFolder: false # Optional
+    #overWrite: false # Optional
+    #flattenFolders: false # Optional
+
 # Install SSH Key
 # Install an SSH key prior to a build or release
   - task: InstallSSHKey@0
