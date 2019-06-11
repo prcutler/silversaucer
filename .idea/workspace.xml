@@ -21,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/azure-pipelines.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
+            <state relative-caret-position="-66">
+              <caret line="47" column="2" selection-start-line="47" selection-start-column="2" selection-end-line="54" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -50,8 +50,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="370" />
-    <option name="y" value="202" />
+    <option name="x" value="653" />
+    <option name="y" value="71" />
     <option name="width" value="1419" />
     <option name="height" value="797" />
   </component>
@@ -143,7 +143,7 @@
       <updated>1559906424004</updated>
       <workItem from="1559906425358" duration="2755000" />
       <workItem from="1560212416589" duration="2709000" />
-      <workItem from="1560263426057" duration="1045000" />
+      <workItem from="1560263426057" duration="1329000" />
     </task>
     <task id="LOCAL-00001" summary="Add requirements.txt to repo">
       <created>1559910083304</created>
@@ -236,17 +236,31 @@
       <option name="project" value="LOCAL" />
       <updated>1560264762896</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Add SSH setup to Azure Pipelines using CopyFiles task - take 2">
+      <created>1560264860047</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1560264860047</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Add SSH setup to Azure Pipelines using CopyFiles task - take 3">
+      <created>1560265023691</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1560265023691</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6903000" />
+    <option name="totallyTimeSpent" value="7187000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="370" y="202" width="1419" height="797" extended-state="0" />
+    <frame x="653" y="71" width="1419" height="797" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2570806" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2570806" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -279,7 +293,9 @@
     <MESSAGE value="Update Azure pipelines&#10;&#10;Update public key to 112 IP" />
     <MESSAGE value="Add SSH setup to Azure Pipelines" />
     <MESSAGE value="Add SSH setup to Azure Pipelines using CopyFiles task" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add SSH setup to Azure Pipelines using CopyFiles task" />
+    <MESSAGE value="Add SSH setup to Azure Pipelines using CopyFiles task - take 2" />
+    <MESSAGE value="Add SSH setup to Azure Pipelines using CopyFiles task - take 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add SSH setup to Azure Pipelines using CopyFiles task - take 3" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/requirements.txt">
@@ -287,8 +303,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/azure-pipelines.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
+        <state relative-caret-position="-66">
+          <caret line="47" column="2" selection-start-line="47" selection-start-column="2" selection-end-line="54" selection-end-column="39" />
         </state>
       </provider>
     </entry>
