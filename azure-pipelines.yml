@@ -16,8 +16,16 @@ strategy:
       python.version: '3.7'
 
 steps:
+# Install SSH Key
+# Install an SSH key prior to a build or release
+  - task: InstallSSHKey@0
+    inputs:
+      hostName: github.com,192.30.253.113 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
+      sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCzcmdCc20AbkuGrx+q9SEnlB0dyXMDuBPxZ4MekkaJCBWGBtjtT4au3TstHURgjEiDKn4Ug48TaFHE/2UX4snqqMElcRFv4DUR8bS1OeC6z58boDK48ChOwBlVJxIzq+b+ejr/FsRB0aVgB0sPd0Y4PQD5wjYx9cHzeJbe5+TonwhCbE2rWpl+hbNahG3qZUieICR6Aa3feP1RPB/HrAZ9UbQ4U6Eeel9n446IAzT3Nd3Ognouqn96GkPRjS/DL+qqocQUV3pO5mqH0mY7vn490C7m1GALRDlW/Tizrg59flBPzQsVfEuF94NRTzqByRsBB+Wsmir0L6bC1Q/KLv9aoR7tdYod4alWn9Y7IAVP4ynrkDmawj/FbBoIFe8aHFclGosajPkDtPfGIM+SIM+85pLuLKC3iZK1nfMIkH1F9RTPLJrobCq4oE0D94YoOYJi+NXHYYtNE6w527quCXIyzySG9XiPA65u9RpeWyt7qKWeC5ajHSSpb7VPOHxwv4OVVRmAIFTUIlFz2gPQFgNNCd0u7GY7U0WV8j5hxAPe0J2TJC3zMN2vYYOiyT1qCVRG0EX8RI7ll6CFaeXuSfy/NwcN6+XH90MTdyGx3ROpfS4RdZOp4EDqfbOCoeB7m3/VVkQSd06jIYmC9kFYMHBai47nTYnJisvf+qOP/9QV4Q== pcutler@surfacedetail
+      #sshPassphrase: # Optional
+      sshKeySecureFile: id_rsa
 
-- task: UsePythonVersion@0
+  - task: UsePythonVersion@0
   inputs:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
