@@ -21,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/azure-pipelines.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+            <state relative-caret-position="92">
+              <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -39,9 +39,19 @@
       </list>
     </option>
   </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/silversaucer.iml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="21" />
-    <option name="y" value="23" />
+    <option name="x" value="370" />
+    <option name="y" value="202" />
     <option name="width" value="1419" />
     <option name="height" value="797" />
   </component>
@@ -66,6 +76,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -132,6 +143,7 @@
       <updated>1559906424004</updated>
       <workItem from="1559906425358" duration="2755000" />
       <workItem from="1560212416589" duration="2709000" />
+      <workItem from="1560263426057" duration="1045000" />
     </task>
     <task id="LOCAL-00001" summary="Add requirements.txt to repo">
       <created>1559910083304</created>
@@ -210,17 +222,31 @@
       <option name="project" value="LOCAL" />
       <updated>1560214556863</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add SSH setup to Azure Pipelines">
+      <created>1560264244517</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1560264244517</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Add SSH setup to Azure Pipelines using CopyFiles task">
+      <created>1560264762896</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1560264762896</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5464000" />
+    <option name="totallyTimeSpent" value="6903000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="21" y="23" width="1419" height="797" extended-state="0" />
+    <frame x="370" y="202" width="1419" height="797" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25344953" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2570806" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -234,7 +260,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32907802" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32907802" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -251,7 +277,9 @@
     <MESSAGE value="Update Azure pipelines" />
     <MESSAGE value="Update Azure pipelines&#10;&#10;Update public key" />
     <MESSAGE value="Update Azure pipelines&#10;&#10;Update public key to 112 IP" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Azure pipelines&#10;&#10;Update public key to 112 IP" />
+    <MESSAGE value="Add SSH setup to Azure Pipelines" />
+    <MESSAGE value="Add SSH setup to Azure Pipelines using CopyFiles task" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add SSH setup to Azure Pipelines using CopyFiles task" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/requirements.txt">
@@ -259,8 +287,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/azure-pipelines.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+        <state relative-caret-position="92">
+          <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
         </state>
       </provider>
     </entry>
