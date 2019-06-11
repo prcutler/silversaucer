@@ -21,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/azure-pipelines.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
+            <state relative-caret-position="180">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -143,7 +143,7 @@
       <updated>1559906424004</updated>
       <workItem from="1559906425358" duration="2755000" />
       <workItem from="1560212416589" duration="2709000" />
-      <workItem from="1560263426057" duration="2853000" />
+      <workItem from="1560263426057" duration="3237000" />
     </task>
     <task id="LOCAL-00001" summary="Add requirements.txt to repo">
       <created>1559910083304</created>
@@ -306,11 +306,32 @@
       <option name="project" value="LOCAL" />
       <updated>1560272326891</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Try reformatting YAML">
+      <created>1560272491377</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1560272491377</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Update SSH key for Azure Pipelines">
+      <created>1560272938214</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1560272938214</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Update SSH key for Azure Pipelines">
+      <created>1560272966955</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1560272966955</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8711000" />
+    <option name="totallyTimeSpent" value="9095000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="653" y="71" width="1419" height="797" extended-state="0" />
@@ -359,7 +380,9 @@
     <MESSAGE value="Add SSH to Azure Pipelines with new SSH key / remove old copy" />
     <MESSAGE value="Add Pyramid test installation requirements to Azure Pipelines" />
     <MESSAGE value="Remove pytest for troubleshooting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove pytest for troubleshooting" />
+    <MESSAGE value="Try reformatting YAML" />
+    <MESSAGE value="Update SSH key for Azure Pipelines" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update SSH key for Azure Pipelines" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/requirements.txt">
@@ -367,8 +390,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/azure-pipelines.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
+        <state relative-caret-position="180">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
