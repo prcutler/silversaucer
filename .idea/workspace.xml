@@ -21,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/azure-pipelines.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="32" column="2" selection-start-line="32" selection-start-column="2" selection-end-line="40" selection-end-column="25" />
+            <state relative-caret-position="69">
+              <caret line="22" column="422" selection-start-line="22" selection-start-column="422" selection-end-line="22" selection-end-column="422" />
             </state>
           </provider>
         </entry>
@@ -131,7 +131,7 @@
       <option name="presentableId" value="Default" />
       <updated>1559906424004</updated>
       <workItem from="1559906425358" duration="2755000" />
-      <workItem from="1560212416589" duration="894000" />
+      <workItem from="1560212416589" duration="1750000" />
     </task>
     <task id="LOCAL-00001" summary="Add requirements.txt to repo">
       <created>1559910083304</created>
@@ -175,17 +175,38 @@
       <option name="project" value="LOCAL" />
       <updated>1560213252615</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Update Azure pipelines">
+      <created>1560213317718</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1560213317718</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Update Azure pipelines">
+      <created>1560213402888</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1560213402888</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Update Azure pipelines&#10;&#10;Update public key">
+      <created>1560213969195</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1560213969195</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3649000" />
+    <option name="totallyTimeSpent" value="4505000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="21" y="23" width="1419" height="797" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25344953" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25344953" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -199,7 +220,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32907802" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32907802" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -214,7 +235,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add requirements.txt to repo" />
     <MESSAGE value="Update Azure pipelines" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Azure pipelines" />
+    <MESSAGE value="Update Azure pipelines&#10;&#10;Update public key" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Azure pipelines&#10;&#10;Update public key" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/requirements.txt">
@@ -222,8 +244,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/azure-pipelines.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="32" column="2" selection-start-line="32" selection-start-column="2" selection-end-line="40" selection-end-column="25" />
+        <state relative-caret-position="69">
+          <caret line="22" column="422" selection-start-line="22" selection-start-column="422" selection-end-line="22" selection-end-column="422" />
         </state>
       </provider>
     </entry>
