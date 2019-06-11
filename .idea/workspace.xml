@@ -21,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/azure-pipelines.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="40" column="4" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="25" />
+            <state relative-caret-position="201">
+              <caret line="32" column="2" selection-start-line="32" selection-start-column="2" selection-end-line="40" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -131,7 +131,7 @@
       <option name="presentableId" value="Default" />
       <updated>1559906424004</updated>
       <workItem from="1559906425358" duration="2755000" />
-      <workItem from="1560212416589" duration="753000" />
+      <workItem from="1560212416589" duration="894000" />
     </task>
     <task id="LOCAL-00001" summary="Add requirements.txt to repo">
       <created>1559910083304</created>
@@ -161,11 +161,25 @@
       <option name="project" value="LOCAL" />
       <updated>1560213107469</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Update Azure pipelines">
+      <created>1560213189883</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1560213189883</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Update Azure pipelines">
+      <created>1560213252615</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1560213252615</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3508000" />
+    <option name="totallyTimeSpent" value="3649000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="21" y="23" width="1419" height="797" extended-state="0" />
@@ -208,8 +222,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/azure-pipelines.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="40" column="4" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="25" />
+        <state relative-caret-position="201">
+          <caret line="32" column="2" selection-start-line="32" selection-start-column="2" selection-end-line="40" selection-end-column="25" />
         </state>
       </provider>
     </entry>
