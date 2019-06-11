@@ -40,7 +40,7 @@ steps:
       pip install -e ".[testing]"
       displayName: 'Install Pyramid testing requirements'
 
-  - script: |
-      pip install pytest pytest-azurepipelines
-      pytest
-      displayName: 'pytest'
+#  - script: |
+#      pip install pytest pytest-azurepipelines
+#      pytest
+#      displayName: 'pytest'
