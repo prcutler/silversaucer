@@ -28,12 +28,6 @@ steps:
   inputs:
     secureFile: id_rsa
 
-# Download Secure File
-# Download a secure file to a temporary location on the build or release agent
-- task: DownloadSecureFile@2
-  inputs:
-    secureFile: known_hosts
-
 # Copy Files
 # Copy files from source folder to target folder using match patterns (The match patterns will only match file paths, not folder paths)
 - task: CopyFiles@1
@@ -44,6 +38,12 @@ steps:
     #cleanTargetFolder: false # Optional
     #overWrite: false # Optional
     #flattenFolders: false # Optional
+
+# Download Secure File
+# Download a secure file to a temporary location on the build or release agent
+- task: DownloadSecureFile@2
+  inputs:
+    secureFile: known_hosts
 
 - task: CopyFiles@2
   inputs:
