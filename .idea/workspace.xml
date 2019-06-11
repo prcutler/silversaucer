@@ -22,7 +22,7 @@
         <entry file="file://$PROJECT_DIR$/azure-pipelines.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="321">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
+              <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -143,7 +143,7 @@
       <updated>1559906424004</updated>
       <workItem from="1559906425358" duration="2755000" />
       <workItem from="1560212416589" duration="2709000" />
-      <workItem from="1560263426057" duration="2304000" />
+      <workItem from="1560263426057" duration="2853000" />
     </task>
     <task id="LOCAL-00001" summary="Add requirements.txt to repo">
       <created>1559910083304</created>
@@ -292,11 +292,25 @@
       <option name="project" value="LOCAL" />
       <updated>1560266800517</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Add Pyramid test installation requirements to Azure Pipelines">
+      <created>1560271664052</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1560271664052</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Remove pytest for troubleshooting">
+      <created>1560272326891</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1560272326891</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8162000" />
+    <option name="totallyTimeSpent" value="8711000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="653" y="71" width="1419" height="797" extended-state="0" />
@@ -343,7 +357,9 @@
     <MESSAGE value="Add SSH setup to Azure Pipelines using CopyFiles task - take 7" />
     <MESSAGE value="Add SSH setup to Azure Pipelines with new SSH key" />
     <MESSAGE value="Add SSH to Azure Pipelines with new SSH key / remove old copy" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add SSH to Azure Pipelines with new SSH key / remove old copy" />
+    <MESSAGE value="Add Pyramid test installation requirements to Azure Pipelines" />
+    <MESSAGE value="Remove pytest for troubleshooting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove pytest for troubleshooting" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/requirements.txt">
@@ -352,7 +368,7 @@
     <entry file="file://$PROJECT_DIR$/azure-pipelines.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
+          <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
         </state>
       </provider>
     </entry>
