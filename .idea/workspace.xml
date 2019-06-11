@@ -21,7 +21,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/azure-pipelines.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
+            <state relative-caret-position="321">
               <caret line="41" selection-start-line="41" selection-end-line="41" />
             </state>
           </provider>
@@ -143,7 +143,7 @@
       <updated>1559906424004</updated>
       <workItem from="1559906425358" duration="2755000" />
       <workItem from="1560212416589" duration="2709000" />
-      <workItem from="1560263426057" duration="1969000" />
+      <workItem from="1560263426057" duration="2304000" />
     </task>
     <task id="LOCAL-00001" summary="Add requirements.txt to repo">
       <created>1559910083304</created>
@@ -278,11 +278,25 @@
       <option name="project" value="LOCAL" />
       <updated>1560265387749</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Add SSH setup to Azure Pipelines with new SSH key">
+      <created>1560266739511</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1560266739511</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Add SSH to Azure Pipelines with new SSH key / remove old copy">
+      <created>1560266800517</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1560266800517</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7827000" />
+    <option name="totallyTimeSpent" value="8162000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="653" y="71" width="1419" height="797" extended-state="0" />
@@ -327,7 +341,9 @@
     <MESSAGE value="Add SSH setup to Azure Pipelines using CopyFiles task - take 5" />
     <MESSAGE value="Add SSH setup to Azure Pipelines using CopyFiles task - take 6" />
     <MESSAGE value="Add SSH setup to Azure Pipelines using CopyFiles task - take 7" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add SSH setup to Azure Pipelines using CopyFiles task - take 7" />
+    <MESSAGE value="Add SSH setup to Azure Pipelines with new SSH key" />
+    <MESSAGE value="Add SSH to Azure Pipelines with new SSH key / remove old copy" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add SSH to Azure Pipelines with new SSH key / remove old copy" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/requirements.txt">
@@ -335,7 +351,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/azure-pipelines.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
+        <state relative-caret-position="321">
           <caret line="41" selection-start-line="41" selection-end-line="41" />
         </state>
       </provider>
