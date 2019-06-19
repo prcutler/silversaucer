@@ -2,4 +2,10 @@
 
 # SilverSaucer.com 
 
-*Coming Soon*
+One of my many online playgrounds.
+
+Silver Saucer will be used to:
+
+* Learn `pytest` and testing
+* Learn the Pyramid web Framework
+* A couple secret projects still brewing in my head...
