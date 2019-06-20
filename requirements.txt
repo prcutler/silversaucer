@@ -8,7 +8,7 @@ configparser==3.7.4
 contextlib2==0.5.5
 coverage==4.5.3
 funcsigs==1.0.2
-hupper==1.7
+hupper==1.8.1
 importlib-metadata==0.17
 ipaddress==1.0.22
 Mako==1.0.12
