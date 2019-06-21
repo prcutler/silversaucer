@@ -42,10 +42,6 @@ steps:
     displayName: 'Install Pyramid testing requirements'
 
   - script: |
-      python setup.py develop
-    displayName: 'Update Pyramid'
-
-  - script: |
       pip install pytest pytest-azurepipelines
       pytest
     displayName: 'pytest'
