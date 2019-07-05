@@ -33,7 +33,6 @@ steps:
 
   - script: |
       python -m pip install --upgrade pip
-      pip install pysqlite3
       pip install -r requirements.txt
     displayName: 'Install dependencies'
 
@@ -41,7 +40,30 @@ steps:
       pip install -e ".[testing]"
     displayName: 'Install Pyramid testing requirements'
 
+  # Create a variable
+  # Note that this does _not_ update the environment of the current script.
   - script: |
-      pip install pytest pytest-azurepipelines
-      pytest
+      echo '##vso[task.setvariable variable=codecov]CODECOV'
+
+  - script: |
+      pip install pytest pytest-azurepipelines pytest-cov
+      pytest tests --doctest-modules --junitxml=junit/test-results.xml --cov=tests/ --cov-report=xml --cov-report=html
     displayName: 'pytest'
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFiles: '**/test-results.xml'
+      testRunTitle: 'Python $(python.version)'
+    condition: succeededOrFailed()
+
+  - script: |
+      pip install codecov
+      codecov --token=codecov_token
+      bash <(curl https://codecov.io/bash) -t codecov_token -f coverage.xml -F adder -F subtractor
+    displayName: 'codecov'
+
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.xml'
+      reportDirectory: '$(System.DefaultWorkingDirectory)/**/htmlcov'
