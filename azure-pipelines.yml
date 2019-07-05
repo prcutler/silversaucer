@@ -45,6 +45,12 @@ steps:
   - script: |
       echo '##vso[task.setvariable variable=codecov]CODECOV'
 
+  # An environment variable called `CODECOV` has been added to all downstream steps
+  - bash: |
+      echo my environment variable is CODECOV
+  - pwsh: |
+      Write-Host "my environment variable is $env:CODECOV"
+
   - script: |
       pip install pytest pytest-azurepipelines pytest-cov
       pytest tests --doctest-modules --junitxml=junit/test-results.xml --cov=tests/ --cov-report=xml --cov-report=html
