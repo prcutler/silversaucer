@@ -9,7 +9,7 @@ contextlib2==0.5.5
 coverage==4.5.3
 funcsigs==1.0.2
 hupper==1.8.1
-importlib-metadata==0.18
+importlib-metadata==0.19
 ipaddress==1.0.22
 Mako==1.0.14
 MarkupSafe==1.1.1
