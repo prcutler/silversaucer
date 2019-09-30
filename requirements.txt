@@ -27,7 +27,7 @@ pyramid==1.10.4
 pyramid-chameleon==0.3
 pyramid-debugtoolbar==4.5
 pyramid-mako==1.1.0
-pyramid-retry==2.0
+pyramid-retry==2.1
 pyramid-tm==2.3
 pysqlite3==0.4.1
 pytest==5.2.0
