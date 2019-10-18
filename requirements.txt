@@ -10,7 +10,7 @@ coverage==4.5.4
 funcsigs==1.0.2
 hupper==1.8.1
 importlib-metadata==0.23
-ipaddress==1.0.22
+ipaddress==1.0.23
 Mako==1.1.0
 MarkupSafe==1.1.1
 more-itertools==7.2.0
