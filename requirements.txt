@@ -48,5 +48,5 @@ WebOb==1.8.5
 WebTest==2.0.33
 zipp==0.6.0
 zope.deprecation==4.4.0
-zope.interface==4.6.0
+zope.interface==4.7.1
 zope.sqlalchemy==1.2
