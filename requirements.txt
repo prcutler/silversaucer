@@ -13,7 +13,7 @@ importlib-metadata==0.23
 ipaddress==1.0.23
 Mako==1.1.0
 MarkupSafe==1.1.1
-more-itertools==7.2.0
+more-itertools==8.0.0
 packaging==19.2
 PasteDeploy==2.0.1
 pathlib2==2.3.5
