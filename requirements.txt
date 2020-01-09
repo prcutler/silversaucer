@@ -28,7 +28,7 @@ pyramid-chameleon==0.3
 pyramid-debugtoolbar==4.5.2
 pyramid-mako==1.1.0
 pyramid-retry==2.1
-pyramid-tm==2.3
+pyramid-tm==2.4
 pysqlite3==0.4.1
 pytest==5.3.2
 pytest-cov==2.8.1
