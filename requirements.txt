@@ -44,7 +44,7 @@ translationstring==1.3
 venusian==3.0.0
 waitress==1.4.2
 wcwidth==0.1.8
-WebOb==1.8.5
+WebOb==1.8.6
 WebTest==2.0.33
 zipp==2.0.0
 zope.deprecation==4.4.0
