@@ -22,7 +22,7 @@ plaster-pastedeploy==0.7
 pluggy==0.13.1
 py==1.8.1
 Pygments==2.6.1
-pyparsing==2.4.6
+pyparsing==2.4.7
 pyramid==1.10.4
 pyramid-chameleon==0.3
 pyramid-debugtoolbar==4.6.1
