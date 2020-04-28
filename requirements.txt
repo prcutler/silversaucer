@@ -45,7 +45,7 @@ venusian==3.0.0
 waitress==1.4.3
 wcwidth==0.1.9
 WebOb==1.8.6
-WebTest==2.0.34
+WebTest==2.0.35
 zipp==3.1.0
 zope.deprecation==4.4.0
 zope.interface==5.1.0
