@@ -2,7 +2,7 @@ alembic==1.4.2
 atomicwrites==1.4.0
 attrs==19.3.0
 backports.functools-lru-cache==1.6.1
-beautifulsoup4==4.9.0
+beautifulsoup4==4.9.1
 Chameleon==3.7.1
 configparser==5.0.0
 contextlib2==0.6.0.post1
