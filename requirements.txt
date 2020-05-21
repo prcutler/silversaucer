@@ -29,7 +29,7 @@ pyramid-debugtoolbar==4.6.1
 pyramid-mako==1.1.0
 pyramid-retry==2.1.1
 pyramid-tm==2.4
-pysqlite3==0.4.2
+pysqlite3==0.4.3
 pytest==5.4.2
 pytest-cov==2.8.1
 python-dateutil==2.8.1
