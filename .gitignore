@@ -19,5 +19,5 @@ Data.fs*
 .DS_Store
 coverage
 test
-.idea/
-.idea
+development.ini
+production.ini
