@@ -10,12 +10,22 @@ def get_test_packages():
 
 
 @view_config(route_name='home', renderer='silversaucer:templates/home/index.pt')
-def home_index(_):
+def index(_):
     return {
         'packages': get_test_packages()
     }
 
 
 @view_config(route_name='about', renderer='silversaucer:templates/home/about.pt')
-def home_about(_):
+def about(_):
+    return {}
+
+
+@view_config(route_name='play', renderer='silversaucer:templates/play/play.pt')
+def play(_):
+    return {}
+
+
+@view_config(route_name='today', renderer='silversaucer:templates/today/today.pt')
+def today(_):
     return {}
