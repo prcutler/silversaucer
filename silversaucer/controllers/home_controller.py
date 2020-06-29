@@ -19,13 +19,3 @@ def index(_):
 @view_config(route_name='about', renderer='silversaucer:templates/home/about.pt')
 def about(_):
     return {}
-
-
-@view_config(route_name='play', renderer='silversaucer:templates/play/play.pt')
-def play(_):
-    return {}
-
-
-@view_config(route_name='today', renderer='silversaucer:templates/today/today.pt')
-def today(_):
-    return {}
