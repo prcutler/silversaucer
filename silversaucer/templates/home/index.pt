@@ -2,12 +2,8 @@
     <div metal:fill-slot="content">
 
         <div class="content">
-            <h1>Some packages</h1>
-            <div class="package" tal:repeat="p packages">
-                <span class="title">${p.name}</span>
-                <span class="version" tal:condition="p.version">${p.version}</span>
-                <span class="version" tal:condition="not p.version">0.0.0</span>
-            </div>
+            <h1>Silver Saucer</h1>
+
         </div>
 
     </div>
