@@ -157,9 +157,9 @@ sub {
 sup {
   top: -0.5em;
 }
-
+/*! Change text color to white for the fa icons on the home page */
 a {
-  color: #1abc9c;
+  color: #fff;
   text-decoration: none;
   background-color: transparent;
 }
