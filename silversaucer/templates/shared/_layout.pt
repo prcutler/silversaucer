@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Silver Saucer">
     <meta name="author" content="Paul Cutler">
 
@@ -39,11 +39,48 @@
 
   <body>
 
-      <div class="col-md-10">
+      <div class="container-fluid bg-primary">
         <div metal:define-slot="content">No content</div>
       </div>
 
+    <body id="page-top">
 
+                <!-- Footer-->
+        <footer class="footer text-center bg-primary">
+            <div class="container bg-primary">
+                <div class="row">
+                    <!-- Footer Location-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4"></h4>
+                        <p class="lead mb-0">
+
+                        </p>
+                    </div>
+                    <!-- Footer Social Icons-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4"></h4>
+                        <a class="btn btn-outline-light btn-social mx-1" <a href="https://www.paulcutler.org"><i class="fas fa-fw fa-home"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" <a href="https://twitter.com/prcutler"><i class="fab fa-fw fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" <a href="https://github.com/prcutler/silversaucer"><i class="fab fa-fw fa-github"></i></a>
+                    </div>
+                    <!-- Footer About Text-->
+                    <div class="col-lg-4">
+
+
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Copyright Section-->
+        <div class="copyright py-4 text-center text-white bg-primary">
+            <p class="made-with-love text-muted small">Made with <i class="fa fa-heart"></i> in Minnesota, USA
+                        using <a href="https://www.python.org/">Python</a>
+                        and <a href="http://www.trypyramid.com">Pyramid</a></p>
+        </div>
+        <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
+        <div class="scroll-to-top d-lg-none position-fixed">
+            <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a>
+        </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
