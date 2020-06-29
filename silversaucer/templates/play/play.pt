@@ -1,0 +1,16 @@
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content">
+
+        <div class="content">
+            <h1>Your Random Record Pick Is:</h1>
+            <div>
+                Integration with Discogs coming soon.
+            </div>
+        </div>
+
+    </div>
+
+    <div metal:fill-slot="additional-css" tal:omit-tag>
+        <!-- additional css from the page -->
+    </div>
+</div>
