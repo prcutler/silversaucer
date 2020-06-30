@@ -10,7 +10,7 @@ cookiecutter==1.7.2
 coverage==5.1
 discogs-api==0.1.0
 hupper==1.10.2
-idna==2.9
+idna==2.10
 importlib-metadata==1.7.0
 Jinja2==2.11.2
 jinja2-time==0.2.0
