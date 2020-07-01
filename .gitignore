@@ -21,4 +21,6 @@ coverage
 test
 development.ini
 production.ini
+.venv
+.idea
 apisecrets.py

@@ -7,17 +7,7 @@
                 <!-- Masthead Heading
                 <h1 class="masthead-heading text-uppercase mb-0">Silver Saucer</h1>
                 -->
-                <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-icon"><a href="/play-single"><i class="fas fa-record-vinyl fa-1x"></i></a></div>
-                </div>
-                <div>
-                    <div class="divider-custom-icon"><a href="/play"><i class="fas fa-record-vinyl fa-3x"></i></a></div>
-                </div>
 
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-icon"><a href="/today"><i class="far fa-calendar fa-2x"></i></a></div>
-                </div>
                 <!-- Masthead Subheading-->
                 </div>
 
