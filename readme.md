@@ -11,4 +11,5 @@ Silver Saucer will be used to:
 
 * Learn `pytest` and testing
 * Learn the Pyramid web Framework
-* A couple secret projects still brewing in my head...
+* Practice API integration with [Discogs](https://www.discogs.com)
+* Learn Bootstrap and CSS
