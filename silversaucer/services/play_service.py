@@ -9,7 +9,7 @@ discogs_url = config.discogs_url + "/users/" + config.discogs_user + "/collectio
 # If you have not put your records into folders, use all_discogs or enter the folder ID for your folders below
 # (I have created folders for each type in my collection)
 
-all_discogs = 0
+all_discogs = "/0/"
 lp_folder = "/2162484/"
 twelve_inch_folder = "/2198941/"
 ten_inch_folder = "/2162486/"
@@ -17,6 +17,17 @@ seven_inch_folder = "/2162483/"
 cd_folder = "/2162488/"
 tape_folder = "/2162487/"
 digital_folder = "/2198943/"
+
+
+# If you have not put your records into folders, use this method
+def get_all_collection():
+    response = requests.get(discogs_url + all_discogs)
+
+    record_json = response.json()
+    all_count = int(record_json["count"])
+    random_record = random.randint(1, all_count)
+
+    return random_record
 
 
 # Get just full length vinyl records in my LP folder in my collection - replace your folder # in the response method
