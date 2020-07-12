@@ -19,62 +19,66 @@ tape_folder = "/2162487/"
 digital_folder = "/2198943/"
 
 
-# If you have not put your records into folders, use this method
-def get_all_collection():
-    response = requests.get(discogs_url + all_discogs)
+class RandomRecordService:
 
-    record_json = response.json()
-    all_count = int(record_json["count"])
-    random_record = random.randint(1, all_count)
-
-    return random_record
-
-
-# Get just full length vinyl records in my LP folder in my collection - replace your folder # in the response method
-def get_lp_collection():
-    response = requests.get(discogs_url + lp_folder)
-
-    record_json = response.json()
-    lp_count = int(record_json["count"])
-    random_lp = random.randint(0, lp_count)
-
-    return random_lp
-
-
-# Includes 7", 12 and EP folders
-def get_ep_collection():
-
-    random_folder = random.randint(0, 2)
-
-    if random_folder == 0:
-        response = requests.get(discogs_url + twelve_inch_folder)
+    # If you have not put your records into folders, use this method
+    # Get just full length vinyl records in my LP folder in my collection - replace your folder # in the response method
+    @staticmethod
+    def get_all_collection():
+        response = requests.get(discogs_url + all_discogs)
 
         record_json = response.json()
-        ep_count = int(record_json["count"])
-        random_ep = random.randint(1, ep_count)
+        all_count = int(record_json["count"])
+        random_record = random.randint(1, all_count)
 
-    elif random_folder == 1:
-        response = requests.get(discogs_url + ten_inch_folder)
+        return random_record
 
-        record_json = response.json()
-        ep_count = int(record_json["count"])
-        random_ep = random.randint(1, ep_count)
-
-    else:
-        response = requests.get(discogs_url + seven_inch_folder)
+    @staticmethod
+    def get_lp_collection():
+        response = requests.get(discogs_url + lp_folder)
 
         record_json = response.json()
-        ep_count = int(record_json["count"])
-        random_ep = random.randint(1, ep_count)
+        lp_count = int(record_json["count"])
+        random_lp = random.randint(0, lp_count)
 
-    return random_ep
+        return random_lp
 
+    # Includes 7", 12 and EP folders
+    @staticmethod
+    def get_ep_collection():
 
-def get_cd_collection():
-    pass
+        random_folder = random.randint(0, 2)
 
+        if random_folder == 0:
+            response = requests.get(discogs_url + twelve_inch_folder)
 
-def get_tape_collection():
-    pass
+            record_json = response.json()
+            ep_count = int(record_json["count"])
+            random_ep = random.randint(1, ep_count)
+
+        elif random_folder == 1:
+            response = requests.get(discogs_url + ten_inch_folder)
+
+            record_json = response.json()
+            ep_count = int(record_json["count"])
+            random_ep = random.randint(1, ep_count)
+
+        else:
+            response = requests.get(discogs_url + seven_inch_folder)
+
+            record_json = response.json()
+            ep_count = int(record_json["count"])
+            random_ep = random.randint(1, ep_count)
+
+        return random_ep
+
+    @staticmethod
+    def get_cd_collection():
+        pass
+
+    @staticmethod
+    def get_tape_collection():
+        pass
+
 
 
