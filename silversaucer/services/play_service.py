@@ -80,5 +80,20 @@ class RandomRecordService:
     def get_tape_collection():
         pass
 
+    @staticmethod
+    def get_album_data(album_release_id):
+        response = requests.get(discogs_url + "/releases/" + album_release_id)
+
+        release_json = response.json()
+
+        release_title = ""
+        artist_name = release_json["artists"]["name"]
+        release_date = release_json["released"]
+        discogs_master_id = release_json["master_id"]
+        master_release_date = ""
+        release_image_uri = release_json["images"]["uri"]
+
+
+
 
 
