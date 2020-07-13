@@ -27,7 +27,7 @@ more-itertools==8.4.0
 packaging==20.4
 PasteDeploy==2.1.0
 pathlib2==2.3.5
-pendulum==2.1.0
+pendulum==2.1.1
 plaster==1.0
 plaster-pastedeploy==0.7
 pluggy==0.13.1
