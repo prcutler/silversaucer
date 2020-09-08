@@ -1,7 +1,7 @@
 alembic==1.4.2
 arrow==0.16.0
 atomicwrites==1.4.0
-attrs==20.1.0
+attrs==20.2.0
 backports.functools-lru-cache==1.6.1
 beautifulsoup4==4.9.1
 binaryornot==0.4.4
