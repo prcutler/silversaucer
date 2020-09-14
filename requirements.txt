@@ -1,4 +1,4 @@
-alembic==1.4.2
+alembic==1.4.3
 arrow==0.16.0
 atomicwrites==1.4.0
 attrs==20.2.0
