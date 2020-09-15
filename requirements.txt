@@ -32,7 +32,7 @@ plaster-pastedeploy==0.7
 pluggy==0.13.1
 poyo==0.5.0
 py==1.9.0
-Pygments==2.6.1
+Pygments==2.7.0
 pyparsing==2.4.7
 pyramid==1.10.4
 pyramid-chameleon==0.3
