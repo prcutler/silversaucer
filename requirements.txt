@@ -41,7 +41,7 @@ pyramid-mako==1.1.0
 pyramid-retry==2.1.1
 pyramid-tm==2.4
 pysqlite3==0.4.3
-pytest==6.1.0
+pytest==6.1.1
 pytest-azurepipelines==0.8.0
 pytest-cov==2.10.1
 python-dateutil==2.8.1
