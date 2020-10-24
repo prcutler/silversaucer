@@ -36,7 +36,7 @@ Pygments==2.7.1
 pyparsing==2.4.7
 pyramid==1.10.4
 pyramid-chameleon==0.3
-pyramid-debugtoolbar==4.7
+pyramid-debugtoolbar==4.8
 pyramid-mako==1.1.0
 pyramid-retry==2.1.1
 pyramid-tm==2.4
