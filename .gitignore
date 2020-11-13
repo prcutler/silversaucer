@@ -19,3 +19,8 @@ Data.fs*
 .DS_Store
 coverage
 test
+development.ini
+production.ini
+.venv
+.idea
+apisecrets.py

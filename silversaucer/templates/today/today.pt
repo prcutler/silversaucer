@@ -1,0 +1,22 @@
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content">
+
+            <div class="container-fluid bg-primary pt-3 d-flex align-items-center flex-column">
+                <!-- Masthead Avatar Image-->
+                <img class="mb-5" src="/static/img/silver-saucer-400-logo.png" alt="" />
+                <!-- Masthead Heading
+                <h1 class="masthead-heading text-uppercase mb-0">Silver Saucer</h1>
+                -->
+
+                <!-- Masthead Subheading-->
+                </div>
+
+    </div>
+
+
+
+    <div metal:fill-slot="additional-css" tal:omit-tag>
+        <!-- additional css from the page -->
+    </div>
+</div>
+

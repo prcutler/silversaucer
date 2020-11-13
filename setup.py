@@ -14,12 +14,6 @@ requires = [
     'pyramid_chameleon',
     'pyramid_debugtoolbar',
     'waitress',
-    'alembic',
-    'pyramid_retry',
-    'pyramid_tm',
-    'SQLAlchemy',
-    'transaction',
-    'zope.sqlalchemy',
 ]
 
 tests_require = [
@@ -53,9 +47,6 @@ setup(
     entry_points={
         'paste.app_factory': [
             'main = silversaucer:main',
-        ],
-        'console_scripts': [
-            'initialize_silversaucer_db=silversaucer.scripts.initialize_db:main',
         ],
     },
 )
