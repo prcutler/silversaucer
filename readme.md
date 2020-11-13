@@ -4,7 +4,6 @@
 
 # Overview
 
-=======
 Silver Saucer originally started as an idea for a business name ten years ago when I considered going into business for myself.  I quickly decided consulting wasn't for me, but I've kept the domain name all these years.  The logo is inspired from both a poem by Neil Gaiman, *The Day the Saucers Came* and *The X-Files*.
 
 I have five current goals of thing I want to learn by building Silver Saucer:
@@ -18,7 +17,7 @@ It’s my third project using the [Pyramid web framework](https://www.trypyramid
 ## Bootstrap and CSS
 I know a little of HTML, enough to get by.  But CSS and Bootstrap, not so much.  I’ve already integrated a Bootstrap theme and tweaked it where it’s almost working, but I’m just hacking at it - I don’t really know what I’m doing and it’s something I want to get better at.  I should probably find some good HTML / CSS tutorials and go through those.
 
-*Status: 90%*
+*Status: 10%*
 
 ## Discogs API Integration
 The goal for Silversaucer.com is to integrate with the [Discogs API](https://www.discogs.com/developers/)).  Discogs.com is a website that lets you catalog your record collection and also includes community features and a marketplace where you can buy and sell records (or CDs or almost any kind of media).  There are two things I want to build using the Discogs API:
