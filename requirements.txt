@@ -17,7 +17,7 @@ discogs-api==0.1.0
 funcsigs==1.0.2
 hupper==1.10.2
 idna==2.10
-importlib-metadata==2.0.0
+importlib-metadata==3.0.0
 ipaddress==1.0.23
 Jinja2==2.11.2
 jinja2-time==0.2.0
