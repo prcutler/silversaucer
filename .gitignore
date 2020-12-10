@@ -24,3 +24,4 @@ production.ini
 .venv
 .idea
 apisecrets.py
+/silversaucer/data/config.py
