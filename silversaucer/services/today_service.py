@@ -1,22 +1,25 @@
-def album_release():
-    pass
+import requests
+import silversaucer.data.config as config
 
 
-def album_parent_release():
-    pass
+class AlbumInfo:
+
+    def album_release():
+        pass
+
+    def album_parent_release():
+        pass
+
+    def first_release():
+        pass
+
+    def album_anniversary():
+        pass
 
 
-def first_release():
-    pass
+class ArtistInfo:
+    def artist_birthday():
+        pass
 
-
-def album_anniversary():
-    pass
-
-
-def artist_birthday():
-    pass
-
-
-def artist_death():
-    pass
+    def artist_death():
+        pass
