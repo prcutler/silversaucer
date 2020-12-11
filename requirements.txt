@@ -7,7 +7,7 @@ beautifulsoup4==4.9.3
 binaryornot==0.4.4
 certifi==2020.12.5
 Chameleon==3.8.1
-chardet==3.0.4
+chardet==4.0.0
 click==7.1.2
 configparser==5.0.1
 contextlib2==0.6.0.post1
