@@ -5,6 +5,7 @@ attrs==20.3.0
 backports.functools-lru-cache==1.6.1
 beautifulsoup4==4.9.3
 binaryornot==0.4.4
+black==20.8b1
 certifi==2020.12.5
 Chameleon==3.8.1
 chardet==4.0.0
