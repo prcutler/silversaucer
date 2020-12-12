@@ -1,7 +1,9 @@
-import requests
 import os
-import silversaucer.data.config as config
 import random
+
+import requests
+
+import silversaucer.data.config as config
 
 # Discogs API Url for different folders in a collection
 discogs_url = (

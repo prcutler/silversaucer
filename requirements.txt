@@ -63,7 +63,6 @@ regex==2020.11.13
 repoze.lru==0.7
 requests==2.25.0
 scandir==1.10.0
--e git+git@github.com:prcutler/silversaucer.git@239752247602d52490adcb619396f99889961e05#egg=silversaucer
 six==1.15.0
 soupsieve==2.1
 SQLAlchemy==1.3.20
