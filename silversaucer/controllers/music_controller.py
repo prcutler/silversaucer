@@ -2,7 +2,7 @@ from pyramid.view import view_config
 from silversaucer.services.play_service import RandomRecordService
 
 
-@view_config(route_name='play', renderer='silversaucer:templates/play/play.pt')
+@view_config(route_name="play", renderer="silversaucer:templates/play/play.pt")
 def play(_):
 
     album_release_id = RandomRecordService.get_lp_collection()
@@ -11,11 +11,13 @@ def play(_):
     return {}
 
 
-@view_config(route_name='play-single', renderer='silversaucer:templates/play/play-single.pt')
+@view_config(
+    route_name="play-single", renderer="silversaucer:templates/play/play-single.pt"
+)
 def play(_):
     return {}
 
 
-@view_config(route_name='today', renderer='silversaucer:templates/today/today.pt')
+@view_config(route_name="today", renderer="silversaucer:templates/today/today.pt")
 def today(_):
     return {}

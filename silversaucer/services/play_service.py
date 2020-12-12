@@ -4,7 +4,9 @@ import silversaucer.data.config as config
 import random
 
 # Discogs API Url for different folders in a collection
-discogs_url = config.discogs_url + "/users/" + config.discogs_user + "/collection/folders/"
+discogs_url = (
+    config.discogs_url + "/users/" + config.discogs_user + "/collection/folders/"
+)
 
 # If you have not put your records into folders, use all_discogs or enter the folder ID for your folders below
 # (I have created folders for each type in my collection)
@@ -92,8 +94,3 @@ class RandomRecordService:
         discogs_master_id = release_json["master_id"]
         master_release_date = ""
         release_image_uri = release_json["images"]["uri"]
-
-
-
-
-

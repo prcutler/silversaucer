@@ -3,7 +3,6 @@ import silversaucer.data.config as config
 
 
 class AlbumInfo:
-
     def album_release():
         pass
 
