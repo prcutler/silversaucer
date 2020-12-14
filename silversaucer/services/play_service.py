@@ -90,9 +90,24 @@ class RandomRecordService:
 
         release_json = response.json()
 
-        release_title = ""
+        release_title = "[title]"
         artist_name = release_json["artists"]["name"]
+        artist_url = release_title["artists"]["resource_url"]
         release_date = release_json["released"]
-        discogs_master_id = release_json["master_id"]
-        master_release_date = ""
+        discogs_main_id = release_json["master_id"]
+        discogs_main_url = release_json["master_url"]
+        main_release_date = ["released_date"]
         release_image_uri = release_json["images"]["uri"]
+        genres = release_json["genres"]
+
+        return (
+            release_title,
+            artist_name,
+            artist_url,
+            release_date,
+            discogs_main_id,
+            discogs_main_url,
+            main_release_date,
+            release_image_uri,
+            genres,
+        )
