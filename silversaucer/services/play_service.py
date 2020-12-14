@@ -6,8 +6,10 @@ import requests
 import silversaucer.data.config as config
 
 # Discogs API Url for different folders in a collection
+
+# TODO Fix this URL call below - it's not requesting all the folders, needs authentication (only returns 0)
 discogs_url = (
-    config.discogs_url + "/users/" + config.discogs_user + "/collection/folders/"
+    config.discogs_url + "/users/" + config.discogs_user + "/collection/folders?="
 )
 
 # If you have not put your records into folders, use all_discogs or enter the folder ID for your folders below
@@ -39,10 +41,13 @@ class RandomRecordService:
 
     @staticmethod
     def get_lp_collection():
-        response = requests.get(discogs_url + lp_folder)
+        discogs_api = discogs_url + "LP"
+        response = requests.get(discogs_api)
+        print(response)
 
         record_json = response.json()
-        lp_count = int(record_json["count"])
+        lp_count = int(record_json["folders"][0]["count"])
+        print(lp_count)
         random_lp = random.randint(0, lp_count)
 
         return random_lp
@@ -84,30 +89,31 @@ class RandomRecordService:
     def get_tape_collection():
         pass
 
-    @staticmethod
-    def get_album_data(album_release_id):
-        response = requests.get(discogs_url + "/releases/" + album_release_id)
 
-        release_json = response.json()
+#    @staticmethod
+#    def get_album_data(album_release_id):
+#        response = requests.get(discogs_url + "/releases/" + album_release_id)
+#
+#        release_json = response.json()
+#
+#        release_title = release_json["title"]
+#        artist_name = release_json["artists"]["name"]
+#        artist_url = release_title["artists"]["resource_url"]
+#        release_date = release_json["released"]
+#        discogs_main_id = release_json["master_id"]
+#        discogs_main_url = release_json["master_url"]
+#        main_release_date = release_json["released_date"]
+#        release_image_uri = release_json["images"]["uri"]
+#        genres = release_json["genres"]
 
-        release_title = release_json["title"]
-        artist_name = release_json["artists"]["name"]
-        artist_url = release_title["artists"]["resource_url"]
-        release_date = release_json["released"]
-        discogs_main_id = release_json["master_id"]
-        discogs_main_url = release_json["master_url"]
-        main_release_date = release_json["released_date"]
-        release_image_uri = release_json["images"]["uri"]
-        genres = release_json["genres"]
-
-        return (
-            release_title,
-            artist_name,
-            artist_url,
-            release_date,
-            discogs_main_id,
-            discogs_main_url,
-            main_release_date,
-            release_image_uri,
-            genres,
-        )
+#        return (
+#            release_title,
+#            artist_name,
+#            artist_url,
+#            release_date,
+#            discogs_main_id,
+#            discogs_main_url,
+#            main_release_date,
+#            release_image_uri,
+#            genres,
+#        )

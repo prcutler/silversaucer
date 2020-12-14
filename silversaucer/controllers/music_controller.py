@@ -4,10 +4,11 @@ from silversaucer.services.play_service import RandomRecordService
 
 
 @view_config(route_name="play", renderer="silversaucer:templates/play/play.pt")
-def play(_):
+def play_album(_):
 
     album_release_id = RandomRecordService.get_lp_collection()
-    release_data = RandomRecordService.get_album_data(album_release_id)
+    print(album_release_id)
+    # release_data = RandomRecordService.get_album_data(album_release_id)
 
     return {}
 
@@ -15,7 +16,7 @@ def play(_):
 @view_config(
     route_name="play-single", renderer="silversaucer:templates/play/play-single.pt"
 )
-def play(_):
+def play_single(_):
     return {}
 
 
