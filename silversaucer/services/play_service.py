@@ -9,14 +9,17 @@ import silversaucer.data.config as config
 
 # TODO Fix this URL call below - it's not requesting all the folders, needs authentication (only returns 0)
 discogs_url = (
-    config.discogs_url + "/users/" + config.discogs_user + "/collection/folders?="
+    config.discogs_url + "users/" + config.discogs_user + "/collection/folders?="
 )
+api_token = config.discogs_user_token
 
+print(discogs_url)
 # If you have not put your records into folders, use all_discogs or enter the folder ID for your folders below
 # (I have created folders for each type in my collection)
 
+# TODO This needs to be refactored based on the JSON response for folder number
 all_discogs = "/0/"
-lp_folder = "/2162484/"
+lp_folder = "2162484"
 twelve_inch_folder = "/2198941/"
 ten_inch_folder = "/2162486/"
 seven_inch_folder = "/2162483/"
@@ -36,19 +39,22 @@ class RandomRecordService:
         record_json = response.json()
         all_count = int(record_json["count"])
         random_record = random.randint(1, all_count)
+        print(random_record)
 
         return random_record
 
     @staticmethod
     def get_lp_collection():
-        discogs_api = discogs_url + "LP"
+        discogs_api = discogs_url + api_token
+        print(discogs_api)
         response = requests.get(discogs_api)
         print(response)
 
         record_json = response.json()
-        lp_count = int(record_json["folders"][0]["count"])
+        lp_count = int(record_json["folders"][8]["count"])
         print(lp_count)
         random_lp = random.randint(0, lp_count)
+        print(random_lp)
 
         return random_lp
 
