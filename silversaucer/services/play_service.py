@@ -9,7 +9,7 @@ import silversaucer.data.config as config
 
 # TODO Fix this URL call below - it's not requesting all the folders, needs authentication (only returns 0)
 discogs_url = (
-    config.discogs_url + "users/" + config.discogs_user + "/collection/folders?="
+    config.discogs_url + "users/" + config.discogs_user + "/collection/folders"
 )
 api_token = config.discogs_user_token
 
@@ -19,7 +19,7 @@ print(discogs_url)
 
 # TODO This needs to be refactored based on the JSON response for folder number
 all_discogs = "/0/"
-lp_folder = "2162484"
+lp_folder = 2162484
 twelve_inch_folder = "/2198941/"
 ten_inch_folder = "/2162486/"
 seven_inch_folder = "/2162483/"
@@ -29,6 +29,8 @@ digital_folder = "/2198943/"
 
 
 class RandomRecordService:
+
+    # TODO This could maybe be refactored into a method that passes it
 
     # If you have not put your records into folders, use this method
     # Get just full length vinyl records in my LP folder in my collection - replace your folder # in the response method
@@ -45,7 +47,7 @@ class RandomRecordService:
 
     @staticmethod
     def get_lp_collection():
-        discogs_api = discogs_url + api_token
+        discogs_api = discogs_url + "?=" + api_token
         print(discogs_api)
         response = requests.get(discogs_api)
         print(response)
@@ -56,7 +58,20 @@ class RandomRecordService:
         random_lp = random.randint(0, lp_count)
         print(random_lp)
 
-        return random_lp
+        random_album_api_call = (
+            discogs_url + "/" + str(lp_folder) + "/releases?" + api_token
+        )
+        print(random_album_api_call)
+        response = requests.get(random_album_api_call)
+        print(response)
+
+        # Fix the pagination problem (sorting?)
+        random_album_json = response.json()
+        print(random_album_json)
+        random_album_data = random_album_json["releases"][35]["id"]
+        print(random_album_data)
+
+        return random_album_data
 
     # Includes 7", 12 and EP folders
     @staticmethod
