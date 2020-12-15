@@ -7,7 +7,6 @@ from silversaucer.services.play_service import RandomRecordService
 def play_album(_):
 
     album_release_id = RandomRecordService.get_lp_collection()
-    print(album_release_id)
     # release_data = RandomRecordService.get_album_data(album_release_id)
 
     return {}
