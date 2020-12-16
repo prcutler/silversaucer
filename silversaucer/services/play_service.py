@@ -41,14 +41,12 @@ class RandomRecordService:
         record_json = response.json()
         all_count = int(record_json["count"])
         random_record = random.randint(1, all_count)
-        print(random_record)
 
         return random_record
 
     @staticmethod
     def get_lp_collection():
         discogs_api = discogs_url + "?=" + api_token
-        print(discogs_api)
 
         # TODO Add an if statement to check for a 200 or 404 response code and redirect on 404 to error page
 
@@ -57,9 +55,7 @@ class RandomRecordService:
 
         record_json = response.json()
         lp_count = int(record_json["folders"][8]["count"])
-        print(lp_count)
         random_lp = random.randint(0, lp_count)
-        print(random_lp)
 
         if 0 < random_lp <= 99:
             page = "?page=1&per_page=100"
@@ -67,25 +63,25 @@ class RandomRecordService:
         elif 100 < random_lp <= 199:
             page = "?page=2&per_page=100"
 
-        elif 100 < random_lp <= 299:
+        elif 200 < random_lp <= 299:
             page = "?page=3&per_page=100"
 
-        elif 100 < random_lp <= 399:
+        elif 300 < random_lp <= 399:
             page = "?page=4&per_page=100"
 
-        elif 100 < random_lp <= 499:
+        elif 400 < random_lp <= 499:
             page = "?page=5&per_page=100"
 
-        elif 100 < random_lp <= 599:
+        elif 500 < random_lp <= 599:
             page = "?page=6&per_page=100"
 
-        elif 100 < random_lp <= 699:
+        elif 600 < random_lp <= 699:
             page = "?page=7&per_page=100"
 
-        elif 100 < random_lp <= 799:
+        elif 700 < random_lp <= 799:
             page = "?page=8&per_page=100"
 
-        elif 100 < random_lp <= 899:
+        elif 800 < random_lp <= 899:
             page = "?page=0&per_page=100"
 
         else:
@@ -98,18 +94,11 @@ class RandomRecordService:
         random_album_api_call = (
             discogs_url + "/" + str(lp_folder) + "/releases?" + page + api_token
         )
-        print(random_album_api_call)
         response = requests.get(random_album_api_call)
-        print(response)
 
         # Fix the pagination problem (sorting?)
         random_album_json = response.json()
         random_album_release_id = random_album_json["releases"][position]["id"]
-        print(
-            type(random_album_release_id),
-            "The album release id is:",
-            random_album_release_id,
-        )
 
         return random_album_release_id
 
