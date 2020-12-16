@@ -46,7 +46,7 @@ pre-commit==2.9.3
 py==1.9.0
 Pygments==2.7.3
 pyparsing==2.4.7
-pyramid==2.0a0
+pyramid==2.0b0
 pyramid-chameleon==0.3
 pyramid-debugtoolbar==4.9
 pyramid-mako==1.1.0
