@@ -18,14 +18,14 @@ print(discogs_url)
 # (I have created folders for each type in my collection)
 
 # TODO This needs to be refactored based on the JSON response for folder number
-all_discogs = "/0/"
+all_discogs = 0
 lp_folder = 2162484
-twelve_inch_folder = "/2198941/"
-ten_inch_folder = "/2162486/"
-seven_inch_folder = "/2162483/"
-cd_folder = "/2162488/"
-tape_folder = "/2162487/"
-digital_folder = "/2198943/"
+twelve_inch_folder = 2198941
+ten_inch_folder = 2162486
+seven_inch_folder = 2162483
+cd_folder = 2162488
+tape_folder = 2162487
+digital_folder = 2198943
 
 
 class RandomRecordService:
