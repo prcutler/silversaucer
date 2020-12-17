@@ -8,12 +8,15 @@ import silversaucer.data.config as config
 # Discogs API Url for different folders in a collection
 
 # TODO Fix this URL call below - it's not requesting all the folders, needs authentication (only returns 0)
-discogs_url = (
+folder_url = config.discogs_url + "users/" + config.discogs_user + "/collection/folders"
+
+release_url = (
     config.discogs_url + "users/" + config.discogs_user + "/collection/folders"
 )
+
 api_token = config.discogs_user_token
 
-print(discogs_url)
+print(folder_url)
 # If you have not put your records into folders, use all_discogs or enter the folder ID for your folders below
 # (I have created folders for each type in my collection)
 
@@ -36,7 +39,7 @@ class RandomRecordService:
     # Get just full length vinyl records in my LP folder in my collection - replace your folder # in the response method
     @staticmethod
     def get_all_collection():
-        response = requests.get(discogs_url + all_discogs)
+        response = requests.get(folder_url + all_discogs)
 
         record_json = response.json()
         all_count = int(record_json["count"])
@@ -46,7 +49,7 @@ class RandomRecordService:
 
     @staticmethod
     def get_lp_collection():
-        discogs_api = discogs_url + "?=" + api_token
+        discogs_api = folder_url + "?=" + api_token
 
         # TODO Add an if statement to check for a 200 or 404 response code and redirect on 404 to error page
 
@@ -93,7 +96,7 @@ class RandomRecordService:
         print(position)
 
         random_album_api_call = (
-            discogs_url + "/" + str(lp_folder) + "/releases?" + page + api_token
+            folder_url + "/" + str(lp_folder) + "/releases?" + page + api_token
         )
         response = requests.get(random_album_api_call)
 
@@ -110,21 +113,21 @@ class RandomRecordService:
         random_folder = random.randint(0, 2)
 
         if random_folder == 0:
-            response = requests.get(discogs_url + twelve_inch_folder)
+            response = requests.get(folder_url + twelve_inch_folder)
 
             record_json = response.json()
             ep_count = int(record_json["count"])
             random_ep = random.randint(1, ep_count)
 
         elif random_folder == 1:
-            response = requests.get(discogs_url + ten_inch_folder)
+            response = requests.get(folder_url + ten_inch_folder)
 
             record_json = response.json()
             ep_count = int(record_json["count"])
             random_ep = random.randint(1, ep_count)
 
         else:
-            response = requests.get(discogs_url + seven_inch_folder)
+            response = requests.get(folder_url + seven_inch_folder)
 
             record_json = response.json()
             ep_count = int(record_json["count"])
@@ -140,31 +143,45 @@ class RandomRecordService:
     def get_tape_collection():
         pass
 
+    @staticmethod
+    def get_album_data(album_release_id):
+        release_api = (
+            config.discogs_url
+            + "releases/"
+            + str(album_release_id)
+            + "?"
+            + config.discogs_user_token
+        )
+        print(release_api)
+        response = requests.get(release_api)
+        print(response)
 
-#    @staticmethod
-#    def get_album_data(album_release_id):
-#        response = requests.get(discogs_url + "/releases/" + album_release_id)
-#
-#        release_json = response.json()
-#
-#        release_title = release_json["title"]
-#        artist_name = release_json["artists"]["name"]
-#        artist_url = release_title["artists"]["resource_url"]
-#        release_date = release_json["released"]
-#        discogs_main_id = release_json["master_id"]
-#        discogs_main_url = release_json["master_url"]
-#        main_release_date = release_json["released_date"]
-#        release_image_uri = release_json["images"]["uri"]
-#        genres = release_json["genres"]
+        release_json = response.json()
 
-#        return (
-#            release_title,
-#            artist_name,
-#            artist_url,
-#            release_date,
-#            discogs_main_id,
-#            discogs_main_url,
-#            main_release_date,
-#            release_image_uri,
-#            genres,
-#        )
+        # Get the main release
+
+        # Pass the main release
+
+        # Get the release date of the first album in the main release's list
+
+        release_title = release_json["title"]
+        artist_name = release_json["artists"]["name"]
+        artist_url = release_title["artists"]["resource_url"]
+        release_date = release_json["released"]
+        discogs_main_id = release_json["master_id"]
+        discogs_main_url = release_json["master_url"]
+        main_release_date = release_json["released_date"]
+        release_image_uri = release_json["images"]["uri"]
+        genres = release_json["genres"]
+
+        return (
+            release_title,
+            artist_name,
+            artist_url,
+            release_date,
+            discogs_main_id,
+            discogs_main_url,
+            main_release_date,
+            release_image_uri,
+            genres,
+        )
