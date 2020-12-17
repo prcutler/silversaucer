@@ -53,6 +53,7 @@ class RandomRecordService:
         response = requests.get(discogs_api)
         print(response)
 
+        # TODO The folder is hardcoded below (8) - could loop through the JSON to match and make it a variable
         record_json = response.json()
         lp_count = int(record_json["folders"][8]["count"])
         random_lp = random.randint(0, lp_count)
