@@ -165,14 +165,30 @@ class RandomRecordService:
         # Get the release date of the first album in the main release's list
 
         release_title = release_json["title"]
-        artist_name = release_json["artists"]["name"]
-        artist_url = release_title["artists"]["resource_url"]
+        release_uri = release_json["uri"]
+        artist_name = release_json["artists"][0]["name"]
+        artist_url = release_json["artists"][0]["resource_url"]
+        artist_id = release_json["artists"][0]["id"]
         release_date = release_json["released"]
         discogs_main_id = release_json["master_id"]
         discogs_main_url = release_json["master_url"]
-        main_release_date = release_json["released_date"]
-        release_image_uri = release_json["images"]["uri"]
+        main_release_date = release_json["year"]
+        release_image_uri = release_json["images"][0]["uri"]
         genres = release_json["genres"]
+
+        print(
+            release_title,
+            release_uri,
+            artist_name,
+            artist_id,
+            artist_url,
+            release_date,
+            discogs_main_id,
+            discogs_main_url,
+            main_release_date,
+            release_image_uri,
+            genres,
+        )
 
         return (
             release_title,
@@ -185,3 +201,7 @@ class RandomRecordService:
             release_image_uri,
             genres,
         )
+
+
+class GetMainReleaseDate:
+    pass
