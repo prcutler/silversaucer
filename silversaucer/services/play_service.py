@@ -63,6 +63,9 @@ class RandomRecordService:
             print(json_folders)
             print(len(json_folders))
             for index in range(len(json_folders)):
+
+                # TODO Fix this loop - needs to get the dict out of the list
+
                 if folder == json_folders[index]:
                     # print("Folder passed = ", folder, "Folder ID =", folder_id)
                     # folder_test = 2162484
