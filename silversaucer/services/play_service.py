@@ -21,7 +21,7 @@ print(folder_url)
 # (I have created folders for each type in my collection)
 
 # TODO This needs to be refactored based on the JSON response for folder number
-all_discogs = 0
+all_folder = 0
 lp_folder = 2162484
 twelve_inch_folder = 2198941
 ten_inch_folder = 2162486
@@ -39,7 +39,7 @@ class RandomRecordService:
     # Get just full length vinyl records in my LP folder in my collection - replace your folder # in the response method
     @staticmethod
     def get_all_collection():
-        response = requests.get(folder_url + all_discogs)
+        response = requests.get(folder_url + all_folder)
 
         record_json = response.json()
         all_count = int(record_json["count"])
