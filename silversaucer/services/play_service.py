@@ -20,16 +20,6 @@ print(folder_url)
 # If you have not put your records into folders, use all_discogs or enter the folder ID for your folders below
 # (I have created folders for each type in my collection)
 
-# TODO This needs to be refactored based on the JSON response for folder number
-all_folder = 0
-lp_folder = 2162484
-twelve_inch_folder = 2198941
-ten_inch_folder = 2162486
-seven_inch_folder = 2162483
-cd_folder = 2162488
-tape_folder = 2162487
-digital_folder = 2198943
-
 
 class RandomRecordService:
 
@@ -37,76 +27,106 @@ class RandomRecordService:
 
     # If you have not put your records into folders, use this method
     # Get just full length vinyl records in my LP folder in my collection - replace your folder # in the response method
-    @staticmethod
-    def get_all_collection():
-        response = requests.get(folder_url + all_folder)
-
-        record_json = response.json()
-        all_count = int(record_json["count"])
-        random_record = random.randint(1, all_count)
-
-        return random_record
 
     @staticmethod
-    def get_lp_collection():
+    def get_folder_count(folder):
+
         discogs_api = folder_url + "?=" + api_token
 
         # TODO Add an if statement to check for a 200 or 404 response code and redirect on 404 to error page
 
         response = requests.get(discogs_api)
+        print(folder)
         print(response)
+
+        all_folder = 0
+        lp_folder = 2162484
+        twelve_inch_folder = 2198941
+        ten_inch_folder = 2162486
+        seven_inch_folder = 2162483
+        cd_folder = 2162488
+        tape_folder = 2162487
+        digital_folder = 2198943
 
         # TODO The folder is hardcoded below (8) - could loop through the JSON to match and make it a variable
         record_json = response.json()
-        lp_count = int(record_json["folders"][8]["count"])
-        random_lp = random.randint(1, lp_count)
 
-        if 0 < random_lp <= 99:
-            page = "?page=1&per_page=100"
+        json_data = record_json
+        json_folders = json_data["folders"]
 
-        elif 100 < random_lp <= 199:
-            page = "?page=2&per_page=100"
+        print(type(json_folders))
+        print(type(json_folders)["folders"])
+        #        print(type(json_folders.keys), json_folders.keys())
+        #        print(type(json_folders.values), json_folders.values())
 
-        elif 200 < random_lp <= 299:
-            page = "?page=3&per_page=100"
+        for get_folder_id in json_folders:
+            print(json_folders)
+            print(len(json_folders))
+            for index in range(len(json_folders)):
+                if folder == json_folders[index]:
+                    # print("Folder passed = ", folder, "Folder ID =", folder_id)
+                    # folder_test = 2162484
+                    print(folder)
+                    lp_count = get_folder_id.values()
+                    # lp_count = int(record_json["folders"][folder_id]["count"])
+                    print(lp_count)
+                    random_lp = random.randint(1, lp_count)
 
-        elif 300 < random_lp <= 399:
-            page = "?page=4&per_page=100"
+                    if 0 < random_lp <= 99:
+                        page = "?page=1&per_page=100"
 
-        elif 400 < random_lp <= 499:
-            page = "?page=5&per_page=100"
+                    elif 100 < random_lp <= 199:
+                        page = "?page=2&per_page=100"
 
-        elif 500 < random_lp <= 599:
-            page = "?page=6&per_page=100"
+                    elif 200 < random_lp <= 299:
+                        page = "?page=3&per_page=100"
 
-        elif 600 < random_lp <= 699:
-            page = "?page=7&per_page=100"
+                    elif 300 < random_lp <= 399:
+                        page = "?page=4&per_page=100"
 
-        elif 700 < random_lp <= 799:
-            page = "?page=8&per_page=100"
+                    elif 400 < random_lp <= 499:
+                        page = "?page=5&per_page=100"
 
-        elif 800 < random_lp <= 899:
-            page = "?page=0&per_page=100"
+                    elif 500 < random_lp <= 599:
+                        page = "?page=6&per_page=100"
 
-        else:
-            page = "?page=10&per_page=100"
+                    elif 600 < random_lp <= 699:
+                        page = "?page=7&per_page=100"
 
-        position_string = str(random_lp)[1:]
-        position = int(position_string) - 1
-        print(position)
+                    elif 700 < random_lp <= 799:
+                        page = "?page=8&per_page=100"
 
-        random_album_api_call = (
-            folder_url + "/" + str(lp_folder) + "/releases?" + page + api_token
-        )
-        response = requests.get(random_album_api_call)
+                    elif 800 < random_lp <= 899:
+                        page = "?page=0&per_page=100"
 
-        # Fix the pagination problem (sorting?)
-        random_album_json = response.json()
-        random_album_release_id = random_album_json["releases"][position]["id"]
+                    else:
+                        page = "?page=10&per_page=100"
 
-        return random_album_release_id
+                    position_string = str(random_lp)[1:]
+                    position = int(position_string) - 1
+                    print(position)
 
-    # Includes 7", 12 and EP folders
+                    random_album_api_call = (
+                        folder_url
+                        + "/"
+                        + str(lp_folder)
+                        + "/releases?"
+                        + page
+                        + api_token
+                    )
+                    response = requests.get(random_album_api_call)
+
+                    # Fix the pagination problem (sorting?)
+                    random_album_json = response.json()
+                    random_album_release_id = random_album_json["releases"][position][
+                        "id"
+                    ]
+                    print(random_album_release_id)
+
+                    return random_album_release_id
+                else:
+                    print("You screwed up")
+
     @staticmethod
     def get_ep_collection():
 
@@ -164,7 +184,6 @@ class RandomRecordService:
 
         # Get the release date of the first album in the main release's list
 
-        release_title = release_json["title"]
         release_uri = release_json["uri"]
         artist_name = release_json["artists"][0]["name"]
         artist_url = release_json["artists"][0]["resource_url"]
@@ -172,6 +191,7 @@ class RandomRecordService:
         release_date = release_json["released"]
         discogs_main_id = release_json["master_id"]
         discogs_main_url = release_json["master_url"]
+        release_title = release_json["title"]
         main_release_date = release_json["year"]
         release_image_uri = release_json["images"][0]["uri"]
         genres = release_json["genres"]

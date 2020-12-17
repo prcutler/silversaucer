@@ -6,8 +6,9 @@ from silversaucer.services.play_service import RandomRecordService
 @view_config(route_name="play", renderer="silversaucer:templates/play/play.pt")
 def play_album(_):
 
-    album_release_id = RandomRecordService.get_lp_collection()
-    release_data = RandomRecordService.get_album_data(album_release_id)
+    album_release_id = RandomRecordService.get_folder_count(2162484)
+    print(album_release_id)
+    # release_data = RandomRecordService.get_album_data(album_release_id)
 
     return {}
 
