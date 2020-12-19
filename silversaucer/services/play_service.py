@@ -148,14 +148,6 @@ class RandomRecordService:
         return random_ep
 
     @staticmethod
-    def get_cd_collection():
-        pass
-
-    @staticmethod
-    def get_tape_collection():
-        pass
-
-    @staticmethod
     def get_album_data(album_release_id):
         release_api = (
             config.discogs_url
