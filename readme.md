@@ -1,6 +1,7 @@
 [![Build Status](https://dev.azure.com/prcutler/Silver%20Saucer/_apis/build/status/prcutler.silversaucer?branchName=main)](https://dev.azure.com/prcutler/Silver%20Saucer/_build/latest?definitionId=8&branchName=main)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=prcutler/silversaucer)](https://dependabot.com)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 # Overview
 
