@@ -48,7 +48,6 @@ class RandomRecordService:
         tape_folder = 2162487
         digital_folder = 2198943
 
-        # TODO The folder is hardcoded below (8) - could loop through the JSON to match and make it a variable
         record_json = response.json()
 
         json_data = record_json
@@ -56,16 +55,10 @@ class RandomRecordService:
 
         print(type(json_folders))
         print(type(json_folders)["folders"])
-        #        print(type(json_folders.keys), json_folders.keys())
-        #        print(type(json_folders.values), json_folders.values())
 
         for get_folder_id in json_folders:
             print(json_folders)
             print(len(json_folders))
-
-            # TODO Fix this loop - needs to get the dict out of the list
-
-            # for f_key, f_value in get_folder_id.items():
 
             if get_folder_id["id"] == folder:
 
@@ -113,7 +106,7 @@ class RandomRecordService:
                 print("Position: ", position)
 
                 random_album_api_call = (
-                    folder_url + "/" + str(lp_folder) + "/releases?" + page + api_token
+                    folder_url + "/" + str(folder) + "/releases?" + page + api_token
                 )
                 response = requests.get(random_album_api_call)
 
