@@ -36,7 +36,7 @@ class RandomRecordService:
         # TODO Add an if statement to check for a 200 or 404 response code and redirect on 404 to error page
 
         response = requests.get(discogs_api)
-        print(folder)
+        print(type(folder), "Folder:", folder)
         print(response)
 
         all_folder = 0
@@ -62,73 +62,69 @@ class RandomRecordService:
         for get_folder_id in json_folders:
             print(json_folders)
             print(len(json_folders))
-            for index in range(len(json_folders)):
 
-                # TODO Fix this loop - needs to get the dict out of the list
+            # TODO Fix this loop - needs to get the dict out of the list
 
-                if folder == json_folders[index]:
-                    # print("Folder passed = ", folder, "Folder ID =", folder_id)
-                    # folder_test = 2162484
-                    print(folder)
-                    lp_count = get_folder_id.values()
-                    # lp_count = int(record_json["folders"][folder_id]["count"])
-                    print(lp_count)
-                    random_lp = random.randint(1, lp_count)
+            # for f_key, f_value in get_folder_id.items():
 
-                    if 0 < random_lp <= 99:
-                        page = "?page=1&per_page=100"
+            if get_folder_id["id"] == folder:
 
-                    elif 100 < random_lp <= 199:
-                        page = "?page=2&per_page=100"
+                lp_count = get_folder_id["count"]
+                print("Folder passed = ", folder, "LP Count is :", lp_count)
+                # folder_test = 2162484
+                print(folder, lp_count)
 
-                    elif 200 < random_lp <= 299:
-                        page = "?page=3&per_page=100"
+                # lp_count = int(record_json["folders"][folder_id]["count"])
+                random_lp = random.randint(1, lp_count)
+                print("Random Number IS: ", random_lp)
 
-                    elif 300 < random_lp <= 399:
-                        page = "?page=4&per_page=100"
+                if 0 < random_lp <= 99:
+                    page = "?page=1&per_page=100"
 
-                    elif 400 < random_lp <= 499:
-                        page = "?page=5&per_page=100"
+                elif 100 < random_lp <= 199:
+                    page = "?page=2&per_page=100"
 
-                    elif 500 < random_lp <= 599:
-                        page = "?page=6&per_page=100"
+                elif 200 < random_lp <= 299:
+                    page = "?page=3&per_page=100"
 
-                    elif 600 < random_lp <= 699:
-                        page = "?page=7&per_page=100"
+                elif 300 < random_lp <= 399:
+                    page = "?page=4&per_page=100"
 
-                    elif 700 < random_lp <= 799:
-                        page = "?page=8&per_page=100"
+                elif 400 < random_lp <= 499:
+                    page = "?page=5&per_page=100"
 
-                    elif 800 < random_lp <= 899:
-                        page = "?page=0&per_page=100"
+                elif 500 < random_lp <= 599:
+                    page = "?page=6&per_page=100"
 
-                    else:
-                        page = "?page=10&per_page=100"
+                elif 600 < random_lp <= 699:
+                    page = "?page=7&per_page=100"
 
-                    position_string = str(random_lp)[1:]
-                    position = int(position_string) - 1
-                    print(position)
+                elif 700 < random_lp <= 799:
+                    page = "?page=8&per_page=100"
 
-                    random_album_api_call = (
-                        folder_url
-                        + "/"
-                        + str(lp_folder)
-                        + "/releases?"
-                        + page
-                        + api_token
-                    )
-                    response = requests.get(random_album_api_call)
+                elif 800 < random_lp <= 899:
+                    page = "?page=0&per_page=100"
 
-                    # Fix the pagination problem (sorting?)
-                    random_album_json = response.json()
-                    random_album_release_id = random_album_json["releases"][position][
-                        "id"
-                    ]
-                    print(random_album_release_id)
-
-                    return random_album_release_id
                 else:
-                    print("You screwed up")
+                    page = "?page=10&per_page=100"
+
+                position_string = str(random_lp)[1:]
+                position = int(position_string) - 1
+                print("Position: ", position)
+
+                random_album_api_call = (
+                    folder_url + "/" + str(lp_folder) + "/releases?" + page + api_token
+                )
+                response = requests.get(random_album_api_call)
+
+                # Fix the pagination problem (sorting?)
+                random_album_json = response.json()
+                random_album_release_id = random_album_json["releases"][position]["id"]
+                print(random_album_release_id)
+
+                return random_album_release_id
+            else:
+                print("You screwed up")
 
     @staticmethod
     def get_ep_collection():
