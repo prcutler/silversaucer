@@ -20,6 +20,12 @@ def play_single(_):
     return {}
 
 
+@view_config(route_name="results", renderer="silversaucer:templates/play/results.pt")
+def today(_):
+    # TODO:  Add dictionary that passes the data from the random choice to return below
+    return {}
+
+
 @view_config(route_name="today", renderer="silversaucer:templates/today/today.pt")
 def today(_):
     return {}

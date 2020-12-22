@@ -14,7 +14,7 @@ def init_routing(config):
     config.add_route("home", "/")
     config.add_route("play", "/play")
     config.add_route("play-single", "/play-single")
-    config.add_route("result", "/result")
+    config.add_route("result", "/results")
     config.add_route("today", "/today")
     config.add_route("about", "/about")
     config.scan()
