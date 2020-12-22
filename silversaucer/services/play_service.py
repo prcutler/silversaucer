@@ -120,6 +120,10 @@ class RandomRecordService:
     @staticmethod
     def get_ep_collection():
 
+        twelve_inch_folder = 2198941
+        ten_inch_folder = 2162486
+        seven_inch_folder = 2162483
+
         random_folder = random.randint(0, 2)
 
         if random_folder == 0:
@@ -178,31 +182,32 @@ class RandomRecordService:
         release_image_uri = release_json["images"][0]["uri"]
         genres = release_json["genres"]
 
-        print(
-            release_title,
-            release_uri,
-            artist_name,
-            artist_id,
-            artist_url,
-            release_date,
-            discogs_main_id,
-            discogs_main_url,
-            main_release_date,
-            release_image_uri,
-            genres,
-        )
+        #        print(
+        #            release_title,
+        #            release_uri,
+        #            artist_name,
+        #            artist_id,
+        #            artist_url,
+        #            release_date,
+        #            discogs_main_id,
+        #            discogs_main_url,
+        #            main_release_date,
+        #            release_image_uri,
+        #            genres,
+        #        )
 
-        return (
-            release_title,
-            artist_name,
-            artist_url,
-            release_date,
-            discogs_main_id,
-            discogs_main_url,
-            main_release_date,
-            release_image_uri,
-            genres,
-        )
+        return {
+            "release_title": release_title,
+            "release_uri": release_uri,
+            "artist_name": artist_name,
+            "artist_url": artist_url,
+            "release_date": release_date,
+            "discogs_main_id": discogs_main_id,
+            "discogs_main_url": discogs_main_url,
+            "main_release_date": main_release_date,
+            "release_image_uri": release_image_uri,
+            "genres": genres,
+        }
 
 
 class GetMainReleaseDate:
