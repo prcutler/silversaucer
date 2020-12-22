@@ -10,10 +10,11 @@ def main(global_config, **settings):
 
 
 def init_routing(config):
-    config.add_static_view("static", "static", cache_max_age=3600)
+    config.add_static_view("static", "static", cache_max_age=60 * 60 * 24 * 31)
     config.add_route("home", "/")
     config.add_route("play", "/play")
     config.add_route("play-single", "/play-single")
+    config.add_route("result", "/result")
     config.add_route("today", "/today")
     config.add_route("about", "/about")
     config.scan()
