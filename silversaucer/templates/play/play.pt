@@ -1,15 +1,24 @@
 <div metal:use-macro="load: ../shared/_layout.pt">
     <div metal:fill-slot="content">
 
-            <div class="container-fluid bg-primary pt-3 d-flex align-items-center flex-column">
+            <div class="container-fluid bg-primary pt-3 d-flex align-items-center flex-column text-white">
                 <!-- Masthead Avatar Image-->
                 <img class="mb-5" src="/static/img/silver-saucer-400-logo.png" alt="" />
                 <!-- Masthead Heading
                 <h1 class="masthead-heading text-uppercase mb-0">Silver Saucer</h1>
                 -->
+                <img class="mb-5" src="${release_info.release_image_uri}" alt="${release_info.release_title}" />
 
-                <!-- Masthead Subheading-->
+
+                <p>Artist: ${release_info.artist_name}</p>
+                <p>Album: ${release_info.release_title}</p>
+                <p>Released: ${release_info.release_date}</p>
+                <span>
+                  <p><li tal:repeat="item release_info.genres" tal:content=item/>
+                  </span>
                 </div>
+                <!-- Masthead Subheading-->
+
 
     </div>
 
