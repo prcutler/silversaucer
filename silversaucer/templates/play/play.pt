@@ -7,7 +7,7 @@
                 <!-- Masthead Heading
                 <h1 class="masthead-heading text-uppercase mb-0">Silver Saucer</h1>
                 -->
-                <img class="mb-5" src="${release_info.release_image_uri}" alt="${release_info.release_title}" />
+                <img class="mb-5" src="${release_info.release_image_uri}" alt="${release_info.release_title}" width="300" height = "300"/>
 
 
                 <p>Artist: ${release_info.artist_name}</p>
