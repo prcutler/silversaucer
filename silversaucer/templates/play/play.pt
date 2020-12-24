@@ -13,9 +13,7 @@
                 <p>Artist: ${release_info.artist_name}</p>
                 <p>Album: ${release_info.release_title}</p>
                 <p>Released: ${release_info.release_date}</p>
-                <span>
                   <p><li tal:repeat="item release_info.genres" tal:content=item/>
-                  </span>
                 </div>
                 <!-- Masthead Subheading-->
 
