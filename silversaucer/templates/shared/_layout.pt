@@ -73,9 +73,9 @@
         </footer>
         <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white bg-primary">
-            <p class="made-with-love text-muted small">Made with <i class="fa fa-heart"></i> in Minnesota, USA
-                        using <a href="https://www.python.org/">Python</a>
-                        and <a href="http://www.trypyramid.com">Pyramid</a></p>
+            <p class="made-with-love text-muted small">Made with <i class="fa fa-heart"></i> in Minnesota, USA.
+                        Built with <a href="https://www.python.org/">Python</a>
+                        and <a href="http://www.trypyramid.com">Pyramid</a>.</p>
         </div>
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">
