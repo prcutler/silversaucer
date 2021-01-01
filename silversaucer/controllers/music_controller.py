@@ -10,10 +10,7 @@ from silversaucer.services.play_service import RandomRecordService
 def play(_):
 
     album_release_id = RandomRecordService.get_folder_count(2162484)
-    print(album_release_id)
     release_data = RandomRecordService.get_album_data(album_release_id)
-    print(release_data)
-
     return {"release_info": release_data}
 
 
@@ -33,6 +30,7 @@ def play_single(_):
     album_release_id = RandomRecordService.get_folder_count(single)
     print(album_release_id)
     release_data = RandomRecordService.get_album_data(album_release_id)
+    print(release_data)
 
     return {"release_info": release_data}
 
