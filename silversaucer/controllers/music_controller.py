@@ -1,3 +1,5 @@
+from random import *
+
 from pyramid.request import Request
 from pyramid.view import view_config
 
@@ -20,11 +22,19 @@ def play(_):
 )
 def play_single(_):
 
-    album_release_id = RandomRecordService.get_folder_count(2162484)
-    print(album_release_id)
-    # release_data = RandomRecordService.get_album_data(album_release_id)
+    random_folder = randint(0, 2)
+    if random_folder == 0:
+        single = 2162483
+    elif random_folder == 1:
+        single = 2162486
+    else:
+        single = 2198941
 
-    return {}
+    album_release_id = RandomRecordService.get_folder_count(single)
+    print(album_release_id)
+    release_data = RandomRecordService.get_album_data(album_release_id)
+
+    return {"release_info": release_data}
 
 
 @view_config(route_name="today", renderer="silversaucer:templates/today/today.pt")
