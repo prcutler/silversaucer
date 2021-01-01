@@ -10,7 +10,7 @@ Silver Saucer originally started as an idea for a business name ten years ago wh
 myself. I quickly decided consulting wasn't for me, but I've kept the domain name all these years. The logo is inspired
 from both a poem by Neil Gaiman, *The Day the Saucers Came* and *The X-Files*.
 
-I have five current goals of thing I want to learn by building Silver Saucer:
+I have a number of different goals of thing I want to learn by building Silver Saucer:
 
 ## Pyramid
 
@@ -21,7 +21,7 @@ and helpful. My first two Pyramid projects were based on the first training Talk
 a package called `pyramid_handlers` which is no longer the recommend way to build a web app in Pyramid. I’m doing it the
 recommended way this time, using a class based approach.
 
-*Status: 75%*
+*Status: 55%*
 
 ## Bootstrap and CSS
 
@@ -44,12 +44,14 @@ I know that Discogs already has a feature on their website where you can have it
 collection and if you shake the mobile app it will also show you a random item in your collection. I want to take that
 to the next level and sort by type (record, 45, CD, etc.).
 
+*Progress: 75%*
+
 ### On this day
 
 The second things I want to build is a page that shows all records released for today’s date. This one is going to be
-more complicated and I’ll share more in a separate blog post.
+more complicated, and I’ll share more in a separate blog post.
 
-*Status: 30%*
+*Status: 10%*
 
 ## Testing
 
@@ -64,6 +66,6 @@ I’ve already hooked up Silver Saucer to Azure Pipelines to automatically do co
 integrate `pytest` and code coverage next. After that I may look into continuous delivery, but there’s is a lot about
 Azure that I don’t know.
 
-*Status: 25%*
+*Status: 20%*
 
 You can view my [blog posts about Silver Saucer and my progress here](https://paulcutler.org/tags/silver-saucer/).
