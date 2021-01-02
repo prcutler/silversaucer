@@ -35,17 +35,6 @@ class RandomRecordService:
         # TODO Add an if statement to check for a 200 or 404 response code and redirect on 404 to error page
 
         response = requests.get(discogs_api)
-        # print(type(folder), "Folder:", folder)
-        # print(response)
-
-        all_folder = 0
-        lp_folder = 2162484
-        twelve_inch_folder = 2198941
-        ten_inch_folder = 2162486
-        seven_inch_folder = 2162483
-        cd_folder = 2162488
-        tape_folder = 2162487
-        digital_folder = 2198943
 
         record_json = response.json()
 
@@ -56,17 +45,12 @@ class RandomRecordService:
         # print(type(json_folders)["folders"])
 
         for get_folder_id in json_folders:
-            # print(json_folders)
-            # print(len(json_folders))
 
             if get_folder_id["id"] == folder:
 
                 lp_count = get_folder_id["count"]
-                # print("Folder passed = ", folder, "LP Count is :", lp_count)
-                # print(folder, lp_count)
 
                 random_lp = random.randint(1, lp_count)
-                # print("Random Number IS: ", random_lp)
 
                 if 0 < random_lp <= 99:
                     page = "?page=1&per_page=100"
@@ -100,7 +84,6 @@ class RandomRecordService:
 
                 position_string = str(random_lp)[1:]
                 position = int(position_string) - 1
-                # print("Position: ", position)
 
                 random_album_api_call = (
                     folder_url + "/" + str(folder) + "/releases?" + page + api_token
@@ -110,7 +93,6 @@ class RandomRecordService:
                 # Fix the pagination problem (sorting?)
                 random_album_json = response.json()
                 random_album_release_id = random_album_json["releases"][position]["id"]
-                # print(random_album_release_id)
 
                 return random_album_release_id
             else:
