@@ -9,8 +9,9 @@ from silversaucer.services.play_service import RandomRecordService
 @view_config(route_name="play", renderer="silversaucer:templates/play/play.pt")
 def play(_):
 
-    album_release_id = RandomRecordService.get_folder_count(2162484)
-    release_data = RandomRecordService.get_album_data(album_release_id)
+    folder = 2162484
+    album_release_id = RandomRecordService.get_folder_count(folder)
+    release_data = RandomRecordService.get_album_data(folder, album_release_id)
     return {"release_info": release_data}
 
 
@@ -27,10 +28,10 @@ def play_single(_):
     else:
         single = 2198941
 
+    folder = single
+
     album_release_id = RandomRecordService.get_folder_count(single)
-    print(album_release_id)
-    release_data = RandomRecordService.get_album_data(album_release_id)
-    print(release_data)
+    release_data = RandomRecordService.get_album_data(folder, album_release_id)
 
     return {"release_info": release_data}
 
