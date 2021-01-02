@@ -96,9 +96,8 @@ class RandomRecordService:
     @staticmethod
     def get_album_data(folder, album_release_id):
 
-        print(
-            "Folder ID = ", folder, "Album = ", album_release_id, type(album_release_id)
-        )
+        # TODO Change the If statement below to also include tapes and CDs if / when they're cataloged with an
+        #  OR  statement
 
         if folder == 2162484:
 
