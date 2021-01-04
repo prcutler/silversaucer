@@ -13,7 +13,7 @@ from both a poem by Neil Gaiman, *The Day the Saucers Came* and *The X-Files*.
 You can view my [blog posts about Silver Saucer and my progress here](https://paulcutler.org/tags/silver-saucer/).
 
 
-I have a number of different goals of thing I want to learn by building Silver Saucer:
+I have a number of different goals of things I want to learn by building Silver Saucer:
 
 ## Pyramid
 
