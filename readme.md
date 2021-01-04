@@ -10,6 +10,9 @@ Silver Saucer originally started as an idea for a business name ten years ago wh
 myself. I quickly decided consulting wasn't for me, but I've kept the domain name all these years. The logo is inspired
 from both a poem by Neil Gaiman, *The Day the Saucers Came* and *The X-Files*.
 
+You can view my [blog posts about Silver Saucer and my progress here](https://paulcutler.org/tags/silver-saucer/).
+
+
 I have a number of different goals of thing I want to learn by building Silver Saucer:
 
 ## Pyramid
@@ -67,5 +70,3 @@ integrate `pytest` and code coverage next. After that I may look into continuous
 Azure that I don’t know.
 
 *Status: 20%*
-
-You can view my [blog posts about Silver Saucer and my progress here](https://paulcutler.org/tags/silver-saucer/).
