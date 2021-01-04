@@ -108,9 +108,7 @@ class RandomRecordService:
                 + "?"
                 + config.discogs_user_token
             )
-            print(release_api)
             response = requests.get(release_api)
-            print(response)
 
             release_json = response.json()
 
@@ -147,9 +145,7 @@ class RandomRecordService:
                 + "?"
                 + config.discogs_user_token
             )
-            print(release_api)
             response = requests.get(release_api)
-            print(response)
             release_json = response.json()
 
             release_uri = release_json["uri"]
