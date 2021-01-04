@@ -11,9 +11,6 @@ api_token = config.discogs_user_token
 
 
 class RandomRecordService:
-    # If you have not put your records into folders, use this method
-    # Get just full length vinyl records in my LP folder in my collection - replace your folder # in the response method
-
     @staticmethod
     def get_folder_count(folder):
 
@@ -27,9 +24,6 @@ class RandomRecordService:
 
         json_data = record_json
         json_folders = json_data["folders"]
-
-        # print(type(json_folders))
-        # print(type(json_folders)["folders"])
 
         for get_folder_id in json_folders:
 
