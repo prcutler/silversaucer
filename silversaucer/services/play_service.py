@@ -1,4 +1,3 @@
-import os
 import random
 
 import requests
@@ -6,13 +5,7 @@ import requests
 import silversaucer.data.config as config
 
 # Discogs API Url for different folders in a collection
-
-# TODO Fix this URL call below - it's not requesting all the folders, needs authentication (only returns 0)
 folder_url = config.discogs_url + "users/" + config.discogs_user + "/collection/folders"
-
-release_url = (
-    config.discogs_url + "users/" + config.discogs_user + "/collection/folders"
-)
 
 api_token = config.discogs_user_token
 
@@ -96,21 +89,19 @@ class RandomRecordService:
     @staticmethod
     def get_album_data(folder, album_release_id):
 
-        # TODO Change the If statement below to also include tapes and CDs if / when they're cataloged with an
-        #  OR  statement
+        release_api = (
+            config.discogs_url
+            + "releases/"
+            + str(album_release_id[0])
+            + "?"
+            + config.discogs_user_token
+        )
 
+        response = requests.get(release_api)
+        release_json = response.json()
+
+        # If the folder is equal to the "full albums folder":
         if folder == 2162484:
-
-            release_api = (
-                config.discogs_url
-                + "releases/"
-                + str(album_release_id[0])
-                + "?"
-                + config.discogs_user_token
-            )
-            response = requests.get(release_api)
-
-            release_json = response.json()
 
             release_uri = release_json["uri"]
             artist_name = release_json["artists"][0]["name"]
@@ -138,15 +129,7 @@ class RandomRecordService:
             }
 
         else:
-            release_api = (
-                config.discogs_url
-                + "releases/"
-                + str(album_release_id[0])
-                + "?"
-                + config.discogs_user_token
-            )
-            response = requests.get(release_api)
-            release_json = response.json()
+            # For all other folders:
 
             release_uri = release_json["uri"]
             artist_name = release_json["artists"][0]["name"]
