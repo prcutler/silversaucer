@@ -1,26 +1,25 @@
 <div metal:use-macro="load: ../shared/_layout.pt">
     <div metal:fill-slot="content">
 
-            <div class="container bg-primary d-flex align-items-center flex-column">
-                <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="/static/img/silver-saucer-400-logo.png" alt="" />
-                <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0">Silver Saucer</h1>
-                <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
+        <div class="container-fluid bg-primary pt-3 d-flex align-items-center flex-column text-white">
 
-                    <div class="divider-custom-icon"><i class="fas fa-record-vinyl fa-3x"></i></div>
+                    <h2>Hi, I'm Paul</h2>
+                    <br>
+        </div>
+    <div>
 
-                </div>
+        <div class="container-fluid bg-primary pt-3 d-flex align-items-center flex-column text-white">
+            <p>You can learn more about Silver Saucer or me by visiting my
+                <a href="https://www.paulcutler.org">home page</a> on the icon below, or click the icons to
+                follow me on Twitter or Github.</p>
 
-                <div class="divider-custom divider-light">
+            <p>Silver Saucer is built using Python, the Pyramid web framework, and the Discogs API.</p>
 
-                    <div class="divider-custom-icon"><i class="far fa-calendar fa-3x"></i></div>
-                </div>
-                <!-- Masthead Subheading-->
-                </div>
+        </div>
 
     </div>
+</div>
+
 
     <div metal:fill-slot="additional-css" tal:omit-tag>
         <!-- additional css from the page -->
