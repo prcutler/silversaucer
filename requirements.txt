@@ -54,7 +54,7 @@ pyramid-retry==2.1.1
 pyramid-tm==2.4
 pytest==6.1.2
 pytest-azurepipelines==0.8.0
-pytest-cov==2.10.1
+pytest-cov==2.11.1
 python-dateutil==2.8.1
 python-editor==1.0.4
 python-slugify==4.0.1
