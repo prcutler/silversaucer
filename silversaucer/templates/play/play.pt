@@ -3,14 +3,15 @@
 
             <div class="container-fluid bg-primary pt-3 d-flex align-items-center flex-column text-white">
                 <!-- Masthead Avatar Image-->
-                <img class="mb-5" src="/static/img/silver-saucer-400-logo.png" alt="" />
+                <a href="https://www.silversaucer.com" > <img class="mb-5" src="/static/img/silver-saucer-400-logo.png" alt="" /></a>
                 <!-- Masthead Heading
                 <h1 class="masthead-heading text-uppercase mb-0">Silver Saucer</h1>
                 -->
 
 
 
-                <img class="mb-5" src="${release_info.release_image_uri}" alt="${release_info.release_title}" width="300" height = "300"/>
+                <a href="${release_info.release_uri}">
+                    <img class="mb-5" src="${release_info.release_image_uri}" alt="${release_info.release_title}" width="300" height = "300"/> </a>
 
                 <p>Artist: <a href="${release_info.artist_url}">${release_info.artist_name}</a></p>
                 <p>Album: <a href="${release_info.release_uri}">${release_info.release_title}</a></p>
