@@ -42,7 +42,7 @@ plaster==1.0
 plaster-pastedeploy==0.7
 pluggy==0.13.1
 poyo==0.5.0
-pre-commit==2.9.3
+pre-commit==2.10.1
 py==1.9.0
 Pygments==2.7.3
 pyparsing==2.4.7
