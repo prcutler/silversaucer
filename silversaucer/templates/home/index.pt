@@ -1,12 +1,8 @@
 <div metal:use-macro="load: ../shared/_layout.pt">
     <div metal:fill-slot="content">
 
-            <div class="container-fluid bg-primary pt-3 d-flex align-items-center flex-column">
-                <!-- Masthead Avatar Image-->
-                <img class="mb-5" src="/static/img/silver-saucer-400-logo.png" alt="" />
-                <!-- Masthead Heading
-                <h1 class="masthead-heading text-uppercase mb-0">Silver Saucer</h1>
-                -->
+
+    <div class="container-fluid bg-primary pt-3 d-flex align-items-center flex-column text-white">
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-icon"><a href="/play-single"><i class="fas fa-record-vinyl fa-1x" title="Play a single or EP"></i></a></div>
@@ -20,7 +16,6 @@
                 </div>
                 <!-- Masthead Subheading-->
                 </div>
-
     </div>
 
 
