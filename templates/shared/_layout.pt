@@ -2,16 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Silver Saucer</title>
-    <link rel="stylesheet" href="/static/css/bootstrap-dark.css">
-    <link rel="stylesheet" href="/static/css/bootstrap-dark.min.css">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/3.0.0/css/ionicons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/monotony/theme.min.css">
+    <link rel="stylesheet" href="/static/monotony/theme.css">
+    <link rel="stylesheet" href="/static/monotony/template.css">
+
 </head>
 
 <body>
 
+<div class="bg-primary">
+
 <h1>Silver Saucer</h1>
 
-<div class="main-content">
+<div class="text-center m-0 vh-100 d-flex flex-column justify-content-center text-light">
     <div metal:define-slot="content" tal:omit-tag="True">No content</div>
 </div>
 
@@ -21,6 +31,8 @@
     </div>
 </footer>
 
-<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/monotony/scripts.js"></script>
+
+</div>
 
 </body>
