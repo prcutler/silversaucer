@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Silver Saucer</title>
+    <link rel="stylesheet" href="/static/css/bootstrap-dark.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-dark.min.css">
 </head>
 
 <body>
@@ -16,5 +18,7 @@
 <footer>
     Made with love in MN
 </footer>
+
+<script src="/static/js/bootstrap.min.js"></script>
 
 </body>
