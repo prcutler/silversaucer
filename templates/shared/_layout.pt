@@ -16,7 +16,9 @@
 </div>
 
 <footer>
-    Made with love in MN
+    <div class="copyright">
+        Made with love in MN with FastAPI
+    </div>
 </footer>
 
 <script src="/static/js/bootstrap.min.js"></script>
