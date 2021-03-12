@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Silver Saucer</title>
-</head>
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content" tal:omit-tag="True">
 
-<body>
+        <div>This is the home page.</div>
+    </div>
+</div>
 
-    <h1>Silver Saucer</h1>
-        <div></div>
 
-</body>
-</html>
+
+

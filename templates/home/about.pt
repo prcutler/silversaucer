@@ -1,0 +1,20 @@
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content" tal:omit-tag="True">
+
+        <div>
+            <h2>About Silver Saucer</h2>
+            <p>
+                You can learn more about Silver Saucer or me by visiting my home page on the icon below,
+                or click the icons to follow me on Twitter or Github.
+            </p>
+            <p>
+                Silver Saucer is built using Python, the FastAPI web framework, and the Discogs API.
+            </p>
+
+        </div>
+    </div>
+</div>
+
+
+
+

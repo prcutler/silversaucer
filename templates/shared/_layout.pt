@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Silver Saucer</title>
+</head>
+
+<body>
+
+<h1>Silver Saucer</h1>
+
+<div class="main-content">
+    <div metal:define-slot="content" tal:omit-tag="True">No content</div>
+</div>
+
+<footer>
+    Made with love in MN
+</footer>
+
+</body>
