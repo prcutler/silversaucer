@@ -6,6 +6,9 @@
 
     <title>Silver Saucer</title>
 
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" crossorigin="anonymous"></script>
+
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/3.0.0/css/ionicons.css" rel="stylesheet">
 
@@ -17,19 +20,22 @@
 
 <body>
 
-<div class="bg-primary">
+<div class="container-fluid bg-primary pt-3 d-flex align-items-center flex-column text-white">
 
-<h1>Silver Saucer</h1>
+<a href="/"> <img class="mb-5" src="/static/img/silver-saucer-400-logo.png"
+                                                       alt=""/></a>
 
-<div class="text-center m-0 vh-100 d-flex flex-column justify-content-center text-light">
+<div class="text-center m-0 vh-100 d-flex flex-column justify-content-center text-white">
     <div metal:define-slot="content" tal:omit-tag="True">No content</div>
 </div>
 
-<footer>
-    <div class="copyright">
-        Made with love in MN with FastAPI
-    </div>
-</footer>
+    <footer id="footer" class="bg-dark text-light py-5">
+        <div class="container py-5">
+                <div class="col-6 col-md-6 col-lg-3 mb-2 justify-content-center">
+                    <p class="text-white">Made with love in MN with FastAPI and Python</p>
+                </div>
+        </div>
+    </footer>
 
 <script src="/static/monotony/scripts.js"></script>
 
