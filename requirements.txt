@@ -23,7 +23,7 @@ funcsigs==1.0.2
 hupper==1.10.2
 identify==2.1.2
 idna==2.10
-importlib-metadata==3.7.2
+importlib-metadata==3.7.3
 iniconfig==1.1.1
 ipaddress==1.0.23
 isort==5.7.0
