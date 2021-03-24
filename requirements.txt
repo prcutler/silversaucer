@@ -3,7 +3,7 @@ appdirs==1.4.4
 arrow==1.0.3
 atomicwrites==1.4.0
 attrs==20.3.0
-backports.functools-lru-cache==1.6.1
+backports.functools-lru-cache==1.6.3
 beautifulsoup4==4.9.3
 binaryornot==0.4.4
 black==20.8b1
