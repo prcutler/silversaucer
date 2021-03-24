@@ -1,4 +1,4 @@
-alembic==1.5.7
+alembic==1.5.8
 appdirs==1.4.4
 arrow==1.0.3
 atomicwrites==1.4.0
