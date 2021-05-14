@@ -9,7 +9,7 @@ binaryornot==0.4.4
 black==21.5b1
 certifi==2020.12.5
 cfgv==3.2.0
-Chameleon==3.9.0
+Chameleon==3.9.1
 chardet==4.0.0
 click==8.0.0
 configparser==5.0.2
