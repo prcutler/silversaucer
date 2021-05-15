@@ -258,3 +258,6 @@ dmypy.json
 /silversaucer/data/config.py
 /development.ini
 /production.ini
+.idea/vcs.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/.gitignore
