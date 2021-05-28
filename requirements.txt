@@ -22,7 +22,7 @@ filelock==3.0.12
 funcsigs==1.0.2
 hupper==1.10.3
 identify==2.2.6
-idna==2.10
+idna==3.1
 importlib-metadata==4.3.0
 iniconfig==1.1.1
 ipaddress==1.0.23
