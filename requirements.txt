@@ -59,7 +59,7 @@ python-dateutil==2.8.2
 python-editor==1.0.4
 python-slugify==5.0.2
 PyYAML==5.4.1
-regex==2021.8.3
+regex==2021.8.21
 repoze.lru==0.7
 requests==2.26.0
 scandir==1.10.0
