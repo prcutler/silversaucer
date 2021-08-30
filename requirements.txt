@@ -6,7 +6,7 @@ attrs==21.2.0
 backports.functools-lru-cache==1.6.4
 beautifulsoup4==4.9.3
 binaryornot==0.4.4
-black==21.7b0
+black==21.8b0
 certifi==2021.5.30
 cfgv==3.3.1
 Chameleon==3.9.1
