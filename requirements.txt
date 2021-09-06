@@ -82,4 +82,4 @@ WebTest==3.0.0
 zipp==3.5.0
 zope.deprecation==4.4.0
 zope.interface==5.4.0
-zope.sqlalchemy==1.5
+zope.sqlalchemy==1.6
