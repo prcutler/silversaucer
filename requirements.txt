@@ -4,7 +4,7 @@ arrow==1.1.1
 atomicwrites==1.4.0
 attrs==21.2.0
 backports.functools-lru-cache==1.6.4
-beautifulsoup4==4.9.3
+beautifulsoup4==4.10.0
 binaryornot==0.4.4
 black==21.8b0
 certifi==2021.5.30
