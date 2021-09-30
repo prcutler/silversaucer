@@ -79,7 +79,7 @@ waitress==2.0.0
 wcwidth==0.2.5
 WebOb==1.8.7
 WebTest==3.0.0
-zipp==3.5.1
+zipp==3.6.0
 zope.deprecation==4.4.0
 zope.interface==5.4.0
 zope.sqlalchemy==1.6
