@@ -1,6 +1,6 @@
 alembic==1.7.3
 appdirs==1.4.4
-arrow==1.1.1
+arrow==1.2.0
 atomicwrites==1.4.0
 attrs==21.2.0
 backports.functools-lru-cache==1.6.4
