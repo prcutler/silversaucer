@@ -21,7 +21,7 @@ distlib==0.3.3
 filelock==3.2.0
 funcsigs==1.0.2
 hupper==1.10.3
-identify==2.2.15
+identify==2.3.0
 idna==3.2
 importlib-metadata==4.8.1
 iniconfig==1.1.1
