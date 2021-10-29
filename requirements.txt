@@ -18,7 +18,7 @@ cookiecutter==1.7.3
 coverage==6.0.2
 discogs-api==0.1.0
 distlib==0.3.3
-filelock==3.3.1
+filelock==3.3.2
 funcsigs==1.0.2
 hupper==1.10.3
 identify==2.3.1
