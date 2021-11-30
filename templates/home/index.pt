@@ -1,23 +1,5 @@
 <div metal:use-macro="load: ../shared/_layout.pt">
-    <div metal:fill-slot="content" tal:omit-tag="True">
+    <div metal:fill-slot="content" tal:omit-tag="True"</div>
 
-        <div class="container-fluid bg-primary pt-3 d-flex align-items-center flex-column text-light">
-            <!-- Icon Divider-->
-            <div>
-                <div><i class="fas fa-record-vinyl fa-4x"></i></div>
-            </div>
-            <div>
-                <div class="divider-custom-icon"><a href="/play"><i class="fas fa-record-vinyl fa-6x"
-                                                                    title="Play an album"></i></a></div>
-            </div>
-
-            <div class="divider-custom divider-light">
-                <div class="divider-custom-icon"><a href="/today"><i class="fas fa-calendar fa-2x"
-                                                                     title="On This Day"></i></a></div>
-            </div>
-            <!-- Masthead Subheading-->
-        </div>
-    </div>
-
-</div>
+    <div>Testing the home index page</div>
 

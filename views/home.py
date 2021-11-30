@@ -7,7 +7,7 @@ router = fastapi.APIRouter()
 @router.get("/")
 @template()
 def index():
-    return {"message": "Hello world"}
+    return {}
 
 
 @router.get("/about")

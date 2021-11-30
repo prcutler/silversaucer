@@ -1,44 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Material Design for Bootstrap</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+    />
+    <!-- Dark MDB theme -->
+    <link rel="stylesheet" href="css/mdb.dark.min.css" />
+    <!-- Regular MDB theme -->
+    <!-- <link rel="stylesheet" href="css/mdb.min.css" /> -->
+  </head>
+  <body>
 
-    <title>Silver Saucer</title>
+  <h1>Testing FastAPI Layout Page</h1>
 
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" crossorigin="anonymous"></script>
-
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/3.0.0/css/ionicons.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="/static/monotony/theme.min.css">
-    <link rel="stylesheet" href="/static/monotony/theme.css">
-    <link rel="stylesheet" href="/static/monotony/template.css">
-
-</head>
-
-<body>
-
-<div class="container-fluid bg-primary pt-3 d-flex align-items-center flex-column text-white">
-
-<a href="/"> <img class="mb-5" src="/static/img/silver-saucer-400-logo.png"
-                                                       alt=""/></a>
-
-<div class="text-center m-0 vh-100 d-flex flex-column justify-content-center text-white">
+<div class="main-content">
     <div metal:define-slot="content" tal:omit-tag="True">No content</div>
 </div>
 
-    <footer id="footer" class="bg-dark text-light py-5">
-        <div class="container py-5">
-                <div class="col-6 col-md-6 col-lg-3 mb-2 justify-content-center">
-                    <p class="text-white">Made with love in MN with FastAPI and Python</p>
-                </div>
-        </div>
-    </footer>
+  </body>
 
-<script src="/static/monotony/scripts.js"></script>
-
-</div>
-
-</body>
+</html>

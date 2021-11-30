@@ -1,0 +1,12 @@
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content" tal:omit-tag="True">
+
+        <div>
+            <h2>Play an EP or 45</h2>
+            <p>
+                Choose something to play.
+            </p>
+
+        </div>
+    </div>
+</div>

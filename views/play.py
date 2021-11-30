@@ -4,9 +4,9 @@ from fastapi_chameleon import template
 router = fastapi.APIRouter()
 
 
-@router.get("/play")
+@router.get("/play_album")
 @template()
-def play():
+def play_albumy():
     return {}
 
 
