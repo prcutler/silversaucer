@@ -2,37 +2,98 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Material Design for Bootstrap</title>
+    
+    <title>Silver Saucer</title>
+
     <!-- MDB icon -->
     <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
     />
+
     <!-- Google Fonts Roboto -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
-    />
+    <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"/>
+
     <!-- Dark MDB theme -->
-    <link rel="stylesheet" href="css/mdb.dark.min.css" />
+    <link rel="stylesheet" href="/static/css/mdb.dark.min.css" />
+
     <!-- Regular MDB theme -->
     <!-- <link rel="stylesheet" href="css/mdb.min.css" /> -->
+
   </head>
+
+<header>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
+    <div class="container-fluid">
+      <button
+            class="navbar-toggler"
+              type="button"
+              data-mdb-toggle="collapse"
+              data-mdb-target="#navbarExample01"
+              aria-controls="navbarExample01"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarExample01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/play_album">Play</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/today">Today</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar -->
+
+  <!-- Jumbotron -->
+  <div class="p-5 text-center bg-dark" style="margin-top: 58px;">
+    <a href="/"> <img class="mb-5" src="/static/img/silver-saucer-400-logo.png"alt=""/></a>
+
+  </div>
+  <!-- Jumbotron -->
+</header>
+
   <body>
 
-  <h1>Testing FastAPI Layout Page</h1>
+  </body>
 
 <div class="main-content">
-    <div metal:define-slot="content" tal:omit-tag="True">No content</div>
+    <div metal:define-slot="content" tal:omit-tag="True"></div>
 </div>
 
-  </body>
+<footer class="text-center text-lg-start bg-dark text-muted">
+  <!-- Grid container -->
+  <div class="text-center p-3">
+    <!-- Section: Social media -->
+                        
+                        <a class="btn - btn-link btn-floating btn-lg" <a href="https://twitter.com/prcutler"><i class="fab fa-twitter fa-3x"></i></a>
+                        <a class="btn - btn-link btn-floating btn-xl" <a href="https://www.paulcutler.org"><i class="fas fa-home fa-3x"></i></a>
+                        <a class="btn - btn-link btn-floating btn-lg" <a href="https://github.com/prcutler/silversaucer"><i class="fab fa-github fa-3x"></i></a>
+</div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3">© 2021 Paul Cutler</div>
+  <!-- Copyright -->
+</footer>
+
+
 
 </html>

@@ -2,9 +2,9 @@
     <div metal:fill-slot="content" tal:omit-tag="True">
 
         <div>
-            <h2>Play an EP or 45</h2>
+            <h2>Today in your collection</h2>
             <p>
-                Choose something to play.
+                
             </p>
 
         </div>

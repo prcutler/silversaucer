@@ -1,5 +1,5 @@
 <div metal:use-macro="load: ../shared/_layout.pt">
     <div metal:fill-slot="content" tal:omit-tag="True"</div>
 
-    <div>Testing the home index page</div>
+    <div main-content>Welcome to Silver Saucer - built with FastAPI</div>
 

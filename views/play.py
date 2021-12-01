@@ -5,12 +5,12 @@ router = fastapi.APIRouter()
 
 
 @router.get("/play_album")
-@template()
-def play_albumy():
+@template(template_file="play/play_album.pt")
+def play_album():
     return {}
 
 
 @router.get("/play-single")
-@template()
+@template(template_file="play/play_single.pt")
 def play_single():
     return {}

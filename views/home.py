@@ -5,12 +5,12 @@ router = fastapi.APIRouter()
 
 
 @router.get("/")
-@template()
+@template(template_file="")
 def index():
     return {}
 
 
 @router.get("/about")
-@template()
+@template(template_file="home/about.pt")
 def about():
     return {}
