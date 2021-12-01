@@ -28,4 +28,4 @@ In Phase 3 I hope to build an "On this Day" feature with a web page that shows i
 * Learn how to use the CircuitPython MatrixPortal.  (This is more complex than it sounds!)
 * Potentially look at deploying this to Azure instead of hosting on Digital Ocean.  But that's a way out.
 
-You can view my [blog posts about Silver Saucer and my progress here](https://paulcutler.org/tags/silver-saucer/).
+Want to know more? You can view my [blog posts about Silver Saucer and my progress here](https://paulcutler.org/tags/silver-saucer/).
