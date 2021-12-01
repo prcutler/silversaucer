@@ -62,7 +62,7 @@
   </nav>
   <!-- Navbar -->
     <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white">
-      <img src="/static/img/silver-saucer-400-logo.png" alt="..."/>
+      <img src="/static/img/silver-saucer-400-logo.png" alt="Silver Saucer Logo"/>
     </div>
 
 </header>
@@ -78,9 +78,9 @@
   <div class="text-center p-3">
     <!-- Section: Social media -->
                         
-                        <a class="btn - btn-link btn-floating btn-lg" <a href="https://twitter.com/prcutler"><i class="fab fa-twitter fa-3x"></i></a>
-                        <a class="btn - btn-link btn-floating btn-xl" <a href="https://www.paulcutler.org"><i class="fas fa-home fa-3x"></i></a>
-                        <a class="btn - btn-link btn-floating btn-lg" <a href="https://github.com/prcutler/silversaucer"><i class="fab fa-github fa-3x"></i></a>
+                        <a class="btn - btn-link btn-floating btn-lg" <a href="https://twitter.com/prcutler"><i class="fab fa-twitter fa-3x" title="Twitter"></i></a>
+                        <a class="btn - btn-link btn-floating btn-xl" <a href="https://www.paulcutler.org"><i class="fas fa-home fa-3x" title="Paul Cutler's Homepage"></i></a>
+                        <a class="btn - btn-link btn-floating btn-lg" <a href="https://github.com/prcutler/silversaucer"><i class="fab fa-github fa-3x" title="Github"></i></a>
 </div>
   <!-- Grid container -->
 
