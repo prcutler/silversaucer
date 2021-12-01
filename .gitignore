@@ -271,3 +271,6 @@ dmypy.json
 /testvenv/
 
 .vscode/settings.json
+.idea/vcs.xml
+.idea/webResources.xml
+.idea/inspectionProfiles/profiles_settings.xml
