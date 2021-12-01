@@ -9,7 +9,7 @@
                     <br />
                 </div>
                 <div>
-                    <div class="divider-custom-icon"><a href="/play"><i class="fas fa-record-vinyl fa-5x" title="Play an album"></i></a></div>
+                    <div class="divider-custom-icon"><a href="/play-album"><i class="fas fa-record-vinyl fa-5x" title="Play an album"></i></a></div>
                     <br />
                     <br />
                 </div>
