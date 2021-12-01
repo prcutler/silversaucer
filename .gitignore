@@ -262,6 +262,7 @@ dmypy.json
 .idea/vcs.xml
 .idea/inspectionProfiles/profiles_settings.xml
 .idea/.gitignore
+/data/config.py
 
 # VENVs
 /.venv/
