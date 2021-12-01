@@ -227,6 +227,7 @@ ENV/
 env.bak/
 venv.bak/
 pythonenv*
+/.idea/
 
 # Spyder project settings
 .spyderproject
@@ -258,3 +259,18 @@ dmypy.json
 /silversaucer/data/config.py
 /development.ini
 /production.ini
+.idea/vcs.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/.gitignore
+
+# VENVs
+/.venv/
+/.newvenv/
+/.venvfastapi/
+/.venvtest/
+/testvenv/
+
+.vscode/settings.json
+.idea/vcs.xml
+.idea/webResources.xml
+.idea/inspectionProfiles/profiles_settings.xml

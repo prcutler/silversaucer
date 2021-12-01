@@ -1,0 +1,27 @@
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content" tal:omit-tag="True">
+
+
+    <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white vh-75">
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-icon"><a href="/play-single"><i class="fas fa-record-vinyl fa-3x" title="Play a single or EP"></i></a></div>
+                    <br />
+                </div>
+                <div>
+                    <div class="divider-custom-icon"><a href="/play"><i class="fas fa-record-vinyl fa-5x" title="Play an album"></i></a></div>
+                    <br />
+                    <br />
+                </div>
+
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-icon"><a href="/today"><i class="far fa-calendar fa-5x" title="On This Day"></i></a></div>
+                    <br />
+                    <br />
+                </div>
+                <!-- Masthead Subheading-->
+                </div>
+    </div>
+</div>
+
+
