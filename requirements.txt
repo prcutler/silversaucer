@@ -1,5 +1,5 @@
 fastapi
 uvicorn
-git+https://github.com/mikeckennedy/fastapi-chameleon
-starlette==0.13.6
+fastapi-chameleon
+starlette==0.16.0
 aiofiles
