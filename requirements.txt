@@ -3,3 +3,4 @@ uvicorn
 fastapi-chameleon
 starlette==0.16.0
 aiofiles
+requests
