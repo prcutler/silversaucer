@@ -1,7 +1,7 @@
 <div metal:use-macro="load: ../shared/_layout.pt">
     <div metal:fill-slot="content" tal:omit-tag="True">
 
-        <div>
+        <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white">
             <h2>Today in your collection</h2>
             <p>
                 
