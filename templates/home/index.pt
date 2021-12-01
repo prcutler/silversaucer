@@ -2,7 +2,7 @@
     <div metal:fill-slot="content" tal:omit-tag="True">
 
 
-    <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white">
+    <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white vh-75">
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-icon"><a href="/play-single"><i class="fas fa-record-vinyl fa-1x" title="Play a single or EP"></i></a></div>

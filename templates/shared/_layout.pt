@@ -61,13 +61,10 @@
     </div>
   </nav>
   <!-- Navbar -->
+    <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white">
+      <img src="/static/img/silver-saucer-400-logo.png" alt="..."/>
+    </div>
 
-  <!-- Jumbotron -->
-  <div class="p-5 text-center bg-dark" style="margin-top: 58px;">
-    <a href="/"> <img class="mb-5" src="/static/img/silver-saucer-400-logo.png"alt=""/></a>
-
-  </div>
-  <!-- Jumbotron -->
 </header>
 
   <body>
