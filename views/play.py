@@ -20,6 +20,13 @@ def play(request: Request):
     return vm.to_dict()
 
 
+@router.get("/play/now-playing")
+@template(template_file="")
+def play(request: Request):
+    vm = PlayAlbumViewModel(request)
+    return vm.to_dict()
+
+
 @router.get("/play/play-album")
 @template(template_file="play/play-album.pt")
 def playalbum(request: Request):
