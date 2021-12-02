@@ -4,13 +4,24 @@
 
     <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white vh-75">
                 <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
+                <div>
+                    <br />
                     <div class="divider-custom-icon"><a href="/play-single"><i class="fas fa-record-vinyl fa-3x" title="Play a single or EP"></i></a></div>
+                </div>
+
+                <div class="divider-custom divider-light">
+                <br />
+                    <div class="divider-custom-icon"><a href="/play"><i class="fas fa-random fa-3x" title="Play a random 45"></i></a></div>
                     <br />
                 </div>
+
                 <div>
-                    <div class="divider-custom-icon"><a href="/play-album"><i class="fas fa-record-vinyl fa-5x" title="Play an album"></i></a></div>
-                    <br />
+                    <div class="divider-custom-icon"><a href="/play/play-album"><i class="fas fa-record-vinyl fa-5x" title="Play an album"></i></a></div>
+                </div>
+
+                <div class="divider-custom divider-light">
+                <br />
+                    <div class="divider-custom-icon"><a href="/play"><i class="fas fa-random fa-5x" title="Play a random album"></i></a></div>
                     <br />
                 </div>
 
@@ -23,5 +34,3 @@
                 </div>
     </div>
 </div>
-
-

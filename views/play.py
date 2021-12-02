@@ -18,7 +18,7 @@ def play(request: Request):
     return {}
 
 
-@router.get("/play-album")
+@router.get("/play/play-album")
 @template(template_file="play/play-album.pt")
 def playalbum(request: Request):
     vm = PlayAlbumViewModel(request)
@@ -28,7 +28,7 @@ def playalbum(request: Request):
     return {}
 
 
-@router.get("/play-single")
+@router.get("/play/play-single")
 @template(template_file="play/play-single.pt")
 def playsingle(request: Request):
     vm = PlaySingleViewModel(request)
