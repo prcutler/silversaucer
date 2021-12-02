@@ -6,7 +6,7 @@
                 <!-- Icon Divider-->
                 <div>
                     <br />
-                    <div class="divider-custom-icon"><a href="/play-single"><i class="fas fa-record-vinyl fa-3x" title="Play a single or EP"></i></a></div>
+                    <div class="divider-custom-icon"><a href="/play/play-single"><i class="fas fa-record-vinyl fa-3x" title="Play a single or EP"></i></a></div>
                 </div>
 
                 <div class="divider-custom divider-light">
