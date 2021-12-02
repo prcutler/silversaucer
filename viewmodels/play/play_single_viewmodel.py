@@ -14,5 +14,5 @@ class PlaySingleViewModel(ViewModelBase):
         self.release_image_uri: str
         self.release_title: str
         self.release_date: str
-        self.release_date: str
+        self.release_date: int
         self.genres: str
