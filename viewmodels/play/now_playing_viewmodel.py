@@ -7,18 +7,11 @@ from viewmodels.shared.viewmodel import ViewModelBase
 
 
 class NowPlayingViewModel(ViewModelBase):
-    def __init__(self, request: Request):
+    def __init__(self, album_id: int, request: Request):
         super().__init__(request)
 
-        self.release_title: str = RandomRecordService.get_album_data()
-        self.release_uri: str = RandomRecordService.get_album_data()
-        self.artist_name: str = RandomRecordService.get_album_data()
-        self.artist_url: str = RandomRecordService.get_album_data()
-        self.release_image_uri: str = RandomRecordService.get_album_data()
-        self.release_title: str = RandomRecordService.get_album_data()
-        self.release_date: str = RandomRecordService.get_album_data()
-        self.release_date: int = RandomRecordService.get_album_data()
-        self.genres: str = RandomRecordService.get_album_data()
-        self.discogs_main_id: int = RandomRecordService.get_album_data()
-        self.discogs_main_url: str = RandomRecordService.get_album_data()
-        self.main_release_date: int = RandomRecordService.get_album_data()
+        self.album_id = RandomRecordService.get_album_id
+        self.album_info = RandomRecordService.get_album_info
+
+        if not self.album_id:
+            return

@@ -12,17 +12,24 @@ from viewmodels.shared.viewmodel import ViewModelBase
 router = fastapi.APIRouter()
 
 
-@router.get("/play/now-playing")
-@template(template_file="")
-def play(request: Request):
+@router.get("/play/{album_id}")
+@template(template_file="play/now-playing.pt")
+def now_playing(album_id: int, request: Request):
     vm = NowPlayingViewModel(request)
+
+    folder = 2162484
+
+    album_release_id = RandomRecordService.get_folder_count(folder)
+    release_data = RandomRecordService.get_album_data(folder, album_release_id)
+
     return vm.to_dict()
 
 
 @router.get("/play/album-choice")
 @template(template_file="play/album-choice.pt")
-def playalbum(request: Request):
+def album_choice(request: Request):
     vm = AlbumChoiceViewModel(request)
+
     return vm.to_dict()
 
 
