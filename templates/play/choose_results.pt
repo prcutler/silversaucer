@@ -3,9 +3,9 @@
 
     <div style="height 100%; width 100%;">
         <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white min-vh-75">
-            <h2>Choose Something</h2>
+            <h2>Choose something to play</h2>
             <p>
-                Choose from these results:
+                Pick from these options:
             </p>
 
         </div>
