@@ -6,6 +6,7 @@ from starlette.requests import Request
 
 from services.play_service import RandomRecordService
 from viewmodels.play.album_choice_viewmodel import AlbumChoiceViewModel
+from viewmodels.play.choose_results_viewmodel import ChooseResultsViewModel
 from viewmodels.play.now_playing_viewmodel import NowPlayingViewModel
 from viewmodels.shared.viewmodel import ViewModelBase
 
@@ -29,6 +30,14 @@ def now_playing(album_id: int, request: Request):
 @template(template_file="play/album-choice.pt")
 def album_choice(request: Request):
     vm = AlbumChoiceViewModel(request)
+
+    return vm.to_dict()
+
+
+@router.get("/play/choose-results")
+@template(template_file="play/choose-results.pt")
+def album_choice(request: Request):
+    vm = ChooseResultsViewModel(request)
 
     return vm.to_dict()
 
