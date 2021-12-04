@@ -62,7 +62,7 @@
   </nav>
   <!-- Navbar -->
     <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white">
-      <img src="/static/img/silver-saucer-400-logo.png" alt="Silver Saucer Logo"/>
+      <img src="/static/img/saucer-no-background.png" width="400" height="312" alt="Silver Saucer Logo"/>
     </div>
 
 </header>
