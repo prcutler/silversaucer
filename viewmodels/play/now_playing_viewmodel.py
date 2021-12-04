@@ -2,7 +2,6 @@ from typing import List, Optional
 
 from starlette.requests import Request
 
-from services import RandomRecordService
 from viewmodels.shared.viewmodel import ViewModelBase
 
 
