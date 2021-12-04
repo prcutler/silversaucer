@@ -2,7 +2,10 @@
     <div metal:fill-slot="content" tal:omit-tag="True">
 
     <div style="height 100%; width 100%;">
-        <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white min-vh-75">
+        <!--div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column vh-75" -->
+
+        <div class="container-fluid pt-3 d-flex align-items-center bg-dark pt-3 flex-column">
+
             <h2>About Silver Saucer</h2>
             <p>
                 You can learn more about Silver Saucer or me by visiting my home page on the icon below,

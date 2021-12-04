@@ -68,7 +68,7 @@
 </header>
 
   <body>
-    <div class="main-content bg-dark">
+    <div class="main-content bg-dark vh-100">
     <div metal:define-slot="content" tal:omit-tag="True"></div>
 </div>
   </body>
