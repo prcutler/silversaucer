@@ -61,14 +61,17 @@
     </div>
   </nav>
   <!-- Navbar -->
+
+<!-- Logo -->
     <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white">
       <img src="/static/img/saucer-no-background.png" width="400" height="312" alt="Silver Saucer Logo"/>
     </div>
 
 </header>
 
+<!--Main Content Embed -->
   <body>
-    <div class="main-content bg-dark vh-100">
+    <div class="container-fluid main-content col-md-5 bg-dark vh-100">
     <div metal:define-slot="content" tal:omit-tag="True"></div>
 </div>
   </body>
