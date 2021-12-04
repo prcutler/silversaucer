@@ -28,7 +28,7 @@
 
                 </div>
 
-            <hr class="my-5" />
+            <hr class="pt-3 bg-light">
 
                 <div class="text-center">
                     <div class="divider-custom-icon"><a href="/today"><i class="far fa-calendar fa-5x" title="On This Day"></i></a></div>

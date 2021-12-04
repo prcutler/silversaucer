@@ -4,7 +4,7 @@
     <div style="height 100%; width 100%;">
         <!--div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column" -->
 
-        <div class="container pt-3 d-flex align-items-center bg-dark pt-3 flex-column vw-50">
+        <div class="container pt-3 d-flex align-items-center bg-dark pt- flex-column vw-50">
 
             <h2>About Silver Saucer</h2>
             

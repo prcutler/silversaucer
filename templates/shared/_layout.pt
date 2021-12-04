@@ -71,7 +71,9 @@
 
 <!--Main Content Embed -->
   <body>
-    <div class="container-fluid main-content col-md-5 bg-dark vh-100">
+    <div class="container-fluid bg-dark pt-sm-5 d-flex align-items-center flex-column">
+    <!-- div class="container-fluid main-content col-md-5 bg-dark vh-100" -->
+
     <div metal:define-slot="content" tal:omit-tag="True"></div>
 </div>
   </body>
