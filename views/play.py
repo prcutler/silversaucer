@@ -4,7 +4,6 @@ import fastapi
 from fastapi_chameleon import template
 from starlette.requests import Request
 
-from services.play_service import RandomRecordService
 from viewmodels.play.album_choice_viewmodel import AlbumChoiceViewModel
 from viewmodels.play.choose_results_viewmodel import ChooseResultsViewModel
 from viewmodels.play.now_playing_viewmodel import NowPlayingViewModel
@@ -13,15 +12,10 @@ from viewmodels.shared.viewmodel import ViewModelBase
 router = fastapi.APIRouter()
 
 
-@router.get("/play/{album_id}")
+@router.get("/play/now-playing")
 @template(template_file="play/now-playing.pt")
-def now_playing(album_id: int, request: Request):
+def now_playing(request: Request):
     vm = NowPlayingViewModel(request)
-
-    folder = 2162484
-
-    album_release_id = RandomRecordService.get_folder_count(folder)
-    release_data = RandomRecordService.get_album_data(folder, album_release_id)
 
     return vm.to_dict()
 

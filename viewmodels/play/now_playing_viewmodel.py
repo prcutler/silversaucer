@@ -6,7 +6,7 @@ from viewmodels.shared.viewmodel import ViewModelBase
 
 
 class NowPlayingViewModel(ViewModelBase):
-    def __init__(self, album_id: int, request: Request):
+    def __init__(self, request: Request):
         super().__init__(request)
 
         #        self.album_id = RandomRecordService.get_album_id
@@ -19,7 +19,7 @@ class NowPlayingViewModel(ViewModelBase):
         self.release_date: Optional[int] = None
         self.genres: Optional[List[str]] = None
         self.main_release_date: Optional[int] = None
-        self.album_id: Optional[int] = None
+        self.album_id: Optional[str] = None
         self.release_uri: Optional[str] = None
         self.artist_url: Optional[str] = None
         self.release_image_uri: Optional[str] = None
