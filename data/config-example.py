@@ -14,3 +14,6 @@ discogs_oauth_token = ""
 discogs_url = "https://api.discogs.com/"
 
 discogs_user = "prcutler"
+
+username = ""
+password = ""

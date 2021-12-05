@@ -1,3 +1,5 @@
+from starlette.requests import Request
+
 from viewmodels.shared.viewmodel import ViewModelBase
 
 
