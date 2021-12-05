@@ -19,3 +19,13 @@ class ChooseResultsViewModel(ViewModelBase):
         self.release_date: Optional[int] = None
         self.genres: Optional[List[str]] = None
         self.main_release_date: Optional[int] = None
+
+        async def load(self):
+            form = await self.request.form()
+            self.folder = form.get("folder")
+            self.folder_number = form.get("folder_number")
+            self.artist_name = form.get("artist_name")
+            self.release_title = form.get("release_title")
+            self.release_date = form.get("release_date")
+            self.genres = form.getlist("genres")
+            self.main_release_date = form.get("main_release_date")
