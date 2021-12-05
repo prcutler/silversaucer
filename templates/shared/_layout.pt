@@ -61,14 +61,19 @@
     </div>
   </nav>
   <!-- Navbar -->
+
+<!-- Logo -->
     <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white">
-      <img src="/static/img/silver-saucer-400-logo.png" alt="Silver Saucer Logo"/>
+      <img src="/static/img/saucer-no-background.png" width="400" height="312" alt="Silver Saucer Logo"/>
     </div>
 
 </header>
 
+<!--Main Content Embed -->
   <body>
-    <div class="main-content">
+    <div class="container-fluid bg-dark pt-sm-5 d-flex align-items-center flex-column">
+    <!-- div class="container-fluid main-content col-md-5 bg-dark vh-100" -->
+
     <div metal:define-slot="content" tal:omit-tag="True"></div>
 </div>
   </body>
@@ -80,7 +85,7 @@
                         
                         <a class="btn - btn-link btn-lg" <a href="https://twitter.com/prcutler"><i class="fab fa-twitter fa-3x" title="Twitter"></i></a>
                         <a class="btn - btn-link btn-lg" <a href="https://www.paulcutler.org"><i class="fas fa-home fa-3x" title="Paul Cutler's Homepage"></i></a>
-                        <a class="btn - btn-link btn-lg" <a href="https://github.com/prcutler/silversaucer"><i class="fab fa-github fa-3x" title="Github"></i></a>
+                        <a class="btn - btn-link btn-lg" <a href="https://github.com/prcutler/r"><i class="fab fa-github fa-3x" title="Github"></i></a>
 </div>
   <!-- Grid container -->
 

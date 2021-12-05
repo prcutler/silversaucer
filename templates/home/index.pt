@@ -2,35 +2,42 @@
     <div metal:fill-slot="content" tal:omit-tag="True">
 
 
-    <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white vh-75">
+    <div class="container-fluid pt-3 d-flex align-items-center bg-dark pt-3 align-items-center flex-column vh-75">
+
                 <!-- Icon Divider-->
-                <div>
+                <div class="text-center">
                     <br />
-                    <div class="divider-custom-icon"><a href="/play-single"><i class="fas fa-record-vinyl fa-3x" title="Play a single or EP"></i></a></div>
+                    <div class="divider-custom-icon"><a href="/play/album-choice"><i class="fas fa-record-vinyl fa-3x" title="Play a single or EP"></i></a></div>
                 </div>
 
-                <div class="divider-custom divider-light">
+                <div class="text-center">
                 <br />
-                    <div class="divider-custom-icon"><a href="/play"><i class="fas fa-random fa-3x" title="Play a random 45"></i></a></div>
-                    <br />
+                    <div class="divider-custom-icon"><a href="/play/now-playing"><i class="fas fa-random fa-3x" title="Play a random 45"></i></a></div>
                 </div>
 
-                <div>
-                    <div class="divider-custom-icon"><a href="/play/play-album"><i class="fas fa-record-vinyl fa-5x" title="Play an album"></i></a></div>
+            <hr class="pt-3 bg-light">
+
+                <div class="text-center">
+
+                    <div class="divider-custom-icon"><a href="/play/album-choice"><i class="fas fa-record-vinyl fa-5x" title="Play an album"></i></a></div>
                 </div>
 
-                <div class="divider-custom divider-light">
+                <div class="text-center">
                 <br />
-                    <div class="divider-custom-icon"><a href="/play"><i class="fas fa-random fa-5x" title="Play a random album"></i></a></div>
-                    <br />
+                    <div class="divider-custom-icon"><a href="/play/now-playing"><i class="fas fa-random fa-5x" title="Play a random album"></i></a></div>
+
                 </div>
 
-                <div class="divider-custom divider-light">
+            <hr class="pt-3 bg-light">
+
+                <div class="text-center">
                     <div class="divider-custom-icon"><a href="/today"><i class="far fa-calendar fa-5x" title="On This Day"></i></a></div>
                     <br />
                     <br />
                 </div>
+
                 <!-- Masthead Subheading-->
                 </div>
+
+        </div>            
     </div>
-</div>
