@@ -2,8 +2,10 @@ from random import *
 
 import fastapi
 from fastapi_chameleon import template
+from starlette import status
 from starlette.requests import Request
 
+from services.play_service import RandomRecordService
 from viewmodels.play.album_choice_viewmodel import AlbumChoiceViewModel
 from viewmodels.play.choose_results_viewmodel import ChooseResultsViewModel
 from viewmodels.play.now_playing_viewmodel import NowPlayingViewModel
@@ -17,15 +19,27 @@ router = fastapi.APIRouter()
 def album_choice(request: Request):
     vm = AlbumChoiceViewModel(request)
 
-    return vm.to_dict()
-
 
 @router.post("/play/album-choice")
 @template()
 async def album_choice_post(request: Request):
     vm = AlbumChoiceViewModel(request)
     await vm.load()
-    return vm.to_dict()
+
+    album = RandomRecordService.get_random_album(
+        vm.artist_name,
+        vm.folder,
+        vm.folder_number,
+        vm.genres,
+        vm.release_date,
+        vm.release_title,
+        vm.main_release_date,
+    )
+    resp = fastapi.responses.RedirectResponse(
+        url="/play/choose-results", status_code=status.HTTP_302_FOUND
+    )
+
+    return resp
 
     # TODO - if empty, call random record service and redirect to now-playing
 
@@ -42,7 +56,21 @@ def album_choice(request: Request):
 async def album_choice_post(request: Request):
     vm = ChooseResultsViewModel(request)
     await vm.load()
-    return vm.to_dict()
+
+    album = RandomRecordService.get_random_album(
+        vm.artist_name,
+        vm.folder,
+        vm.folder_number,
+        vm.genres,
+        vm.release_date,
+        vm.release_title,
+        vm.main_release_date,
+    )
+    resp = fastapi.responses.RedirectResponse(
+        url="/play/now_playing", status_code=status.HTTP_302_FOUND
+    )
+
+    return resp
 
     # TODO - if empty, call random record service and redirect to now-playing
 
