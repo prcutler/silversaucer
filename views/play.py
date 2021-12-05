@@ -12,14 +12,6 @@ from viewmodels.shared.viewmodel import ViewModelBase
 router = fastapi.APIRouter()
 
 
-@router.get("/play/now-playing")
-@template(template_file="play/now-playing.pt")
-def now_playing(request: Request):
-    vm = NowPlayingViewModel(request)
-
-    return vm.to_dict()
-
-
 @router.get("/play/album-choice")
 @template(template_file="play/album-choice.pt")
 def album_choice(request: Request):
@@ -28,11 +20,37 @@ def album_choice(request: Request):
     return vm.to_dict()
 
 
+@router.post("/play/album-choice")
+@template()
+async def album_choice_post(request: Request):
+    vm = AlbumChoiceViewModel(request)
+    await vm.load()
+    return vm.to_dict()
+
+    # TODO - if empty, call random record service and redirect to now-playing
+
+
 @router.get("/play/choose-results")
 @template(template_file="play/choose-results.pt")
 def album_choice(request: Request):
     vm = ChooseResultsViewModel(request)
+    return vm.to_dict()
 
+
+@router.post("play/choose-results")
+@template()
+async def album_choice_post(request: Request):
+    vm = ChooseResultsViewModel(request)
+    await vm.load()
+    return vm.to_dict()
+
+    # TODO - if empty, call random record service and redirect to now-playing
+
+
+@router.get("/play/now-playing")
+@template(template_file="play/now-playing.pt")
+def now_playing(request: Request):
+    vm = NowPlayingViewModel(request)
     return vm.to_dict()
 
 

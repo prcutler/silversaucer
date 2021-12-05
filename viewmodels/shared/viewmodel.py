@@ -10,7 +10,7 @@ class ViewModelBase:
         self.user_id: Optional[int] = None
 
         # We'll get this once we have users from the cookies.
-        # self.is_logged_in = cookie_auth.get_user_id_via_auth_cookie(self.request)
+        self.is_logged_in = True
 
     def to_dict(self) -> dict:
         return self.__dict__
