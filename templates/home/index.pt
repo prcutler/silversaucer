@@ -7,7 +7,7 @@
                 <!-- Icon Divider-->
                 <div class="text-center">
                     <br />
-                    <div class="divider-custom-icon"><a href="/play/album-choice"><i class="fas fa-record-vinyl fa-3x" title="Play a single or EP"></i></a></div>
+                    <div class="divider-custom-icon"><a href="/play/album-choice"><i class="fas fa-play fa-3x" title="Play a single or EP"></i></a></div>
                 </div>
 
                 <div class="text-center">
@@ -19,7 +19,7 @@
 
                 <div class="text-center">
 
-                    <div class="divider-custom-icon"><a href="/play/album-choice"><i class="fas fa-record-vinyl fa-5x" title="Play an album"></i></a></div>
+                    <div class="divider-custom-icon"><a href="/play/album-choice"><i class="fas fa-play fa-5x" title="Play an album"></i></a></div>
                 </div>
 
                 <div class="text-center">
