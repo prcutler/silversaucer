@@ -48,9 +48,6 @@ class RandomRecordService:
                 random_album_release_id = random_album_json["releases"][position]["id"]
 
                 return random_album_release_id, folder
-            else:
-                # print("You screwed up")
-                pass
 
     @staticmethod
     def get_album_data(folder, album_release_id):
@@ -82,7 +79,7 @@ class RandomRecordService:
         release_image_uri = release_json["images"][0]["uri"]
         genres = release_json["genres"]
 
-        album_info = AlbumInfo(
+        return AlbumInfo(
             release_uri,
             artist_name,
             artist_url,
@@ -95,8 +92,6 @@ class RandomRecordService:
             release_image_uri,
             genres,
         )
-
-        return album_info
 
         # "release_title": release_title,
         # "release_uri": release_uri,
@@ -163,6 +158,4 @@ class RandomRecordService:
 
             # Fix the pagination problem (sorting?)
             random_album_json = response.json()
-            album_id = random_album_json["releases"][position]["id"]
-
-            return album_id
+            return random_album_json["releases"][position]["id"]
