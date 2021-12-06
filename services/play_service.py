@@ -1,5 +1,4 @@
 import random
-from random import *
 
 import requests
 
@@ -26,31 +25,28 @@ class RandomRecordService:
         json_folders = json_data["folders"]
 
         for get_folder_id in json_folders:
-            if get_folder_id["id"] == folder:
+            get_folder_id["id"] == folder
 
-                lp_count = get_folder_id["count"]
+            lp_count = get_folder_id["count"]
 
-                random_lp = random.randint(0, lp_count)
+            random_lp = random.randint(0, lp_count)
 
-                pg = (random_lp // 100) + 1
-                page = "?page=" + str(pg) + "&per_page=100"
+            pg = (random_lp // 100) + 1
+            page = "?page=" + str(pg) + "&per_page=100"
 
-                position_string = str(random_lp)[1:]
-                position = int(position_string) - 1
+            position_string = str(random_lp)[1:]
+            position = int(position_string) - 1
 
-                random_album_api_call = (
-                    folder_url + "/" + str(folder) + "/releases?" + page + api_token
-                )
-                response = requests.get(random_album_api_call)
+            random_album_api_call = (
+                folder_url + "/" + str(folder) + "/releases?" + page + api_token
+            )
+            response = requests.get(random_album_api_call)
 
-                # Fix the pagination problem (sorting?)
-                random_album_json = response.json()
-                random_album_release_id = random_album_json["releases"][position]["id"]
+            # Fix the pagination problem (sorting?)
+            random_album_json = response.json()
+            random_album_release_id = random_album_json["releases"][position]["id"]
 
-                return random_album_release_id, folder
-            else:
-                # print("You screwed up")
-                pass
+            return random_album_release_id, folder
 
     @staticmethod
     def get_album_data(folder, album_release_id):
@@ -65,10 +61,13 @@ class RandomRecordService:
         )
 
         response = requests.get(release_api)
+        print(response)
         release_json = response.json()
 
         # If the folder is equal to the "full albums folder":
         # if folder == 2162484:
+
+        print(release_json)
 
         release_uri = release_json["uri"]
         artist_name = release_json["artists"][0]["name"]
