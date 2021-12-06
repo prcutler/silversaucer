@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div metal:fill-slot="additional_css" tal:omit-tag="True">
+    <!--div metal:fill-slot="additional_css" tal:omit-tag="True">
         <link rel="stylesheet" href="/static/css/account.css">
-    </div>
+    </div -->
 </div>

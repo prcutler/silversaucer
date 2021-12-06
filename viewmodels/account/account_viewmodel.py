@@ -9,5 +9,3 @@ class AccountViewModel(ViewModelBase):
     def __init__(self, request: Request):
         super().__init__(request)
         self.user = User("prcutler", "fastapi")
-
-        import datetime

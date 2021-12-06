@@ -7,7 +7,7 @@ class LoginViewModel(ViewModelBase):
     def __init__(self, request: Request):
         super().__init__(request)
 
-        self.username = ""
+        self.email = ""
         self.password = ""
 
     async def load(self):

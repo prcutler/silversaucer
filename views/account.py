@@ -1,6 +1,7 @@
 import fastapi
 from fastapi_chameleon import template
-from starlette.requests import Request, status
+from starlette import status
+from starlette.requests import Request
 
 from services import user_service
 from viewmodels.account.login_viewmodel import LoginViewModel
@@ -18,7 +19,6 @@ def login_get(request: Request):
 @router.post("/account/login")
 @template(template_file="account/login.pt")
 async def login_post(request: Request):
-
     vm = LoginViewModel(request)
     await vm.load()
 
