@@ -15,7 +15,7 @@ class LoginViewModel(ViewModelBase):
         self.username = form.get("username", "").lower().strip()
         self.password = form.get("password", "").strip()
 
-        if not self.username or not self.email.strip():
+        if not self.username():
             self.error = "You must specify a username."
         elif not self.password:
             self.error = "You must specify a password."
