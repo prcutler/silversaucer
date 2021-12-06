@@ -1,0 +1,11 @@
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content" tal:omit-tag="True">
+        <div class="page-core">
+            <h1>Welcome, Paul</h1>
+
+            <div>
+                What would you like to listen to today?
+            </div>
+        </div>
+    </div>
+</div>

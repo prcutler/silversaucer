@@ -6,6 +6,8 @@ from data.user import User
 
 def login_user(username: str, password: str) -> Optional[User]:
     if password == config.password:
-        return User("silwenae", "fastapi")
+        return User(
+            "silwenae",
+        )
 
     return None

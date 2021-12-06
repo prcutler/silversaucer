@@ -55,7 +55,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/about">About</a>
-          </li>
+            </li>
         </ul>
       </div>
     </div>
@@ -91,7 +91,9 @@
   <!-- Grid container -->
 
   <!-- Copyright -->
-  <div class="text-center p-3">© 2021 Paul Cutler</div>
+  <div class="text-center p-3">© 2021 Paul Cutler
+    <br>Made with <i class="fas fa-heart"></i> in Minnesota
+  </div>
   <!-- Copyright -->
 </footer>
 

@@ -4,15 +4,19 @@
             <form action="" method="POST" class="account-form">
                 <h1>Login</h1>
 
-                <input name="username" type="text" placeholder=" Your username" class="form-control"
-                       value="${ email }">
+                <br />
+                <input name="email" type="text" placeholder=" Your username" class="form-control"
+                       value="${ username }" required>
                 <input name="password" type="password" placeholder=" Password" class="form-control"
-                       value="${ password }">
-                <button type="submit" class="btn btn-primary">Log In</button>
+                       value="${ password }" required>
+                       <br />
+                <button type="submit" class="btn btn-danger">Log In</button>
                 <div style="clear: both;"></div>
 
                 <div class="error-msg" tal:condition="error">${ error }</div>
             </form>
+            <br />
+            <br />
         </div>
     </div>
 
