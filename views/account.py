@@ -3,6 +3,7 @@ from fastapi_chameleon import template
 from starlette import status
 from starlette.requests import Request
 
+import data.config as config
 from infrastructure import cookie_auth
 from services import user_service
 from viewmodels.account.account_viewmodel import AccountViewModel
@@ -37,7 +38,7 @@ async def login_post(request: Request):
     resp = fastapi.responses.RedirectResponse(
         "/account", status_code=status.HTTP_302_FOUND
     )
-    cookie_auth.set_auth(resp, user.id)
+    cookie_auth.set_auth(resp, config.username)
 
     return resp
 
