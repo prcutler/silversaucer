@@ -17,8 +17,6 @@ class NowPlayingViewModel(ViewModelBase):
 
         release_data = RandomRecordService.get_album_data(folder, album_release_id)
 
-        # self.folder = folder
-
         self.release_id = release_data.release_id
         self.release_uri: Optional[str] = release_data.release_uri
         self.artist_id = release_data.artist_id
