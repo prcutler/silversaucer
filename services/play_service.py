@@ -94,7 +94,13 @@ class RandomRecordService:
     @staticmethod
     def get_album_data(folder, album_release_id):
 
-        release_api = config.discogs_url + "releases/" + str(album_release_id[0])
+        release_api = (
+            config.discogs_url
+            + "releases/"
+            + str(album_release_id[0])
+            + "?"
+            + config.discogs_user_token
+        )
 
         print("Album Data Release API: ", release_api)
         response = requests.get(release_api)
@@ -108,7 +114,7 @@ class RandomRecordService:
         artist_name = release_json["artists"][0]["name"]
         artist_url = release_json["artists"][0]["resource_url"]
         artist_id = release_json["artists"][0]["id"]
-        release_date = release_json["released"]
+        # release_date = release_json["released"]
         discogs_main_id = release_json["master_id"]
         discogs_main_url = release_json["master_url"]
         release_title = release_json["title"]
@@ -116,12 +122,14 @@ class RandomRecordService:
         release_image_uri = release_json["images"][0]["uri"]
         genres = release_json["genres"]
 
+        print(release_image_uri, genres)
+
         album_info = AlbumInfo(
             release_uri,
             artist_name,
             artist_url,
             artist_id,
-            release_date,
+            # release_date,
             discogs_main_id,
             discogs_main_url,
             release_title,
@@ -130,43 +138,9 @@ class RandomRecordService:
             genres,
         )
 
+        print("Album Info: ", album_info, type(album_info), album_info.artist_name)
+        print("Genres: ", genres)
         return album_info
-
-        # "release_title": release_title,
-        # "release_uri": release_uri,
-        # "artist_name": artist_name,
-        # "artist_url": artist_url,
-        # "release_date": release_date,
-        # "discogs_main_id": discogs_main_id,
-        # "discogs_main_url": discogs_main_url,
-        # "main_release_date": main_release_date,
-        # "release_image_uri": release_image_uri,
-        # "genres": genres,
-        # }
-
-        # else:
-        # For all other folders:
-
-        #    release_uri = release_json["uri"]
-        #    artist_name = release_json["artists"][0]["name"]
-        #    artist_url = release_json["artists"][0]["resource_url"]
-        #    artist_id = release_json["artists"][0]["id"]
-        #    release_date = release_json["released"]
-        #    release_title = release_json["title"]
-        #    main_release_date = release_json["year"]
-        #    release_image_uri = release_json["images"][0]["uri"]
-        #    genres = release_json["genres"]
-
-        #   return {
-        #       "release_title": release_title,
-        #       "release_uri": release_uri,
-        #       "artist_name": artist_name,
-        #       "artist_url": artist_url,
-        #       "release_date": release_date,
-        #       "main_release_date": main_release_date,
-        #       "release_image_uri": release_image_uri,
-        #       "genres": genres,
-        #   }
 
     def get_album_id():
         folder = 2162484

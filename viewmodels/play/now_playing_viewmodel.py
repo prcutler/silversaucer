@@ -2,6 +2,8 @@ from typing import List, Optional
 
 from starlette.requests import Request
 
+from data.album import AlbumInfo
+from services.play_service import RandomRecordService
 from viewmodels.shared.viewmodel import ViewModelBase
 
 
@@ -9,22 +11,22 @@ class NowPlayingViewModel(ViewModelBase):
     def __init__(self, request: Request):
         super().__init__(request)
 
-        #        self.album_id = RandomRecordService.get_album_id
-        #        self.album_info = RandomRecordService.get_album_info
+        folder = 2162484
+        album_release_id = RandomRecordService.get_folder_count(folder)
+        print(album_release_id)
 
-        self.folder: Optional[str] = None
-        self.folder_number: Optional[int] = None
-        self.artist_name: Optional[str] = None
-        self.release_title: Optional[str] = None
-        self.release_date: Optional[int] = None
-        self.genres: Optional[List[str]] = None
-        self.main_release_date: Optional[int] = None
-        self.album_id: Optional[str] = None
-        self.release_uri: Optional[str] = None
-        self.artist_url: Optional[str] = None
-        self.release_image_uri: Optional[str] = None
-        self.discogs_main_id: Optional[int] = None
-        self.discogs_main_url: Optional[str] = None
+        release_data = RandomRecordService.get_album_data(folder, album_release_id)
 
-        # if not self.album_id:
-        #    return
+        self.folder = folder
+        #      self.folder_number: Optional[int] = release_data.folder_number
+        self.artist_name: Optional[str] = release_data.artist_name
+        self.release_title: Optional[str] = release_data.release_title
+        # self.release_date: Optional[int] = release_data.release_date
+        self.main_release_date: Optional[int] = release_data.main_release_date
+        self.album_id: Optional[str] = release_data.release_id
+        self.artist_url: Optional[str] = release_data.artist_url
+        # self.release_image_uri: Optional[str] = release_data.release_image_uri
+        self.discogs_main_id: Optional[int] = release_data.discogs_main_id
+        self.discogs_main_url: Optional[str] = release_data.discogs_main_url
+        self.release_uri: Optional[str] = release_data.release_uri
+        # self.genres: Optional[List[str]] = release_data.genres
