@@ -110,32 +110,34 @@ class RandomRecordService:
         # If the folder is equal to the "full albums folder":
         # if folder == 2162484:
 
+        release_id = release_json["id"]
         release_uri = release_json["uri"]
+        artist_id = release_json["artists"][0]["id"]
+        release_title = release_json["title"]
         artist_name = release_json["artists"][0]["name"]
         artist_url = release_json["artists"][0]["resource_url"]
-        artist_id = release_json["artists"][0]["id"]
-        # release_date = release_json["released"]
-        discogs_main_id = release_json["master_id"]
-        discogs_main_url = release_json["master_url"]
-        release_title = release_json["title"]
-        main_release_date = release_json["year"]
         release_image_uri = release_json["images"][0]["uri"]
         genres = release_json["genres"]
+        discogs_main_id = release_json["master_id"]
+        discogs_main_url = release_json["master_url"]
+        release_date = release_json["released"]
+        main_release_date = release_json["year"]
 
         print(release_image_uri, genres)
 
         album_info = AlbumInfo(
+            release_id,
             release_uri,
+            artist_id,
+            release_title,
             artist_name,
             artist_url,
-            artist_id,
-            # release_date,
-            discogs_main_id,
-            discogs_main_url,
-            release_title,
-            main_release_date,
             release_image_uri,
             genres,
+            discogs_main_id,
+            discogs_main_url,
+            # release_date,
+            main_release_date,
         )
 
         print("Album Info: ", album_info, type(album_info), album_info.artist_name)

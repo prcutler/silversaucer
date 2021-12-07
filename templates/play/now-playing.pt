@@ -3,11 +3,17 @@
 
     <div style="height 100%; width 100%;">
         <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white min-vh-75">
-            <h2>Listen To THis</h2>
-    
+            <h2>Listen To This: </h2>
+            <br />
             
-            <img src = "${ release_title} " alt = "Album Cover" style="width:50%;height:auto;" class="center">
+            <img src = "${ release_image_uri } " alt = "Album Cover" style="width:50%;height:auto;" class="center">
+            <br /><br />
+            <ul>
+                <br />
 
+                    <li><a href="$ { release_url }"> ${ release_title }</a>  by <a href=" ${ discogs_main_url }"> ${ artist_name }</a></li>
+                    <li>Album released: ${ main_release_date }</li>
+                    <li>Original release date: ${ main_release_date }</li>
 
         </div>
     </div>
