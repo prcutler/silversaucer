@@ -11,10 +11,9 @@
             <ul>
                 <br />
 
-                    <li><a href="$ { release_url }"> ${ release_title }</a>  by <a href=" ${ discogs_main_url }"> ${ artist_name }</a></li>
+                    <li><a href="${ release_uri }"> ${ release_title }</a>  by ${ artist_name }</li>
                     <li>Album released: ${ album_release_date }</li>
-                    <li>Original release date: ${ main_release_date }</li>
-                    <dl>
+                    <li>Original release date: ${ main_release_date }</li>                    <dl>
                         <dt><li>Genres: </li></dt><ul>
                         <dd> <li tal:repeat="item genres" tal:content=item/> </dd>
                     </dl>
