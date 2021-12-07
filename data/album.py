@@ -15,7 +15,7 @@ class AlbumInfo:
         discogs_main_id: str,
         discogs_main_url: str,
         main_release_date: int,
-        # release_date: str,
+        album_release_date: str,
     ):
         self.release_id = release_id
         self.release_uri = release_uri
@@ -27,5 +27,5 @@ class AlbumInfo:
         self.genres = genres
         self.discogs_main_id: int = discogs_main_id
         self.discogs_main_url = discogs_main_url
-        # self.release_date
         self.main_release_date: int = main_release_date
+        self.album_release_date = album_release_date

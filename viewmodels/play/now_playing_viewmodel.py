@@ -27,5 +27,5 @@ class NowPlayingViewModel(ViewModelBase):
         self.genres: Optional[List[str]] = release_data.genres
         self.discogs_main_id: Optional[int] = release_data.discogs_main_id
         self.discogs_main_url: Optional[str] = release_data.discogs_main_url
-        # self.release_date: Optional[str] = release_data.release_date
+        self.album_release_date: Optional[str] = release_data.album_release_date
         self.main_release_date: Optional[int] = release_data.main_release_date

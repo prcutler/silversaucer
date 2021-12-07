@@ -120,7 +120,7 @@ class RandomRecordService:
         genres = release_json["genres"]
         discogs_main_id = release_json["master_id"]
         discogs_main_url = release_json["master_url"]
-        release_date = release_json["released"]
+        album_release_date = release_json["released"]
         main_release_date = release_json["year"]
 
         print(release_image_uri, genres)
@@ -136,7 +136,7 @@ class RandomRecordService:
             genres,
             discogs_main_id,
             discogs_main_url,
-            # release_date,
+            album_release_date,
             main_release_date,
         )
 
