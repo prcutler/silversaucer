@@ -26,5 +26,5 @@ class NowPlayingViewModel(ViewModelBase):
         self.discogs_main_id: Optional[int] = None
         self.discogs_main_url: Optional[str] = None
 
-        if not self.album_id:
-            return
+        # if not self.album_id:
+        #    return
