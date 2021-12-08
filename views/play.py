@@ -65,7 +65,7 @@ def now_playing(request: Request):
     return vm.to_dict()
 
 
-@router.get("/play/now-playing/{release_id}")
+@router.get("/play/now-playing/{album_release_id}")
 @template(template_file="play/now-playing.pt")
 def playing(release_id: int, request: Request):
     vm = RandomViewModel(release_id, request)

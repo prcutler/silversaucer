@@ -75,35 +75,8 @@ class RandomRecordService:
 
             random_lp = random.randint(1, lp_count)
 
-            if 0 < random_lp <= 99:
-                page = "?page=1&per_page=100"
-
-            elif 100 < random_lp <= 199:
-                page = "?page=2&per_page=100"
-
-            elif 200 < random_lp <= 299:
-                page = "?page=3&per_page=100"
-
-            elif 300 < random_lp <= 399:
-                page = "?page=4&per_page=100"
-
-            elif 400 < random_lp <= 499:
-                page = "?page=5&per_page=100"
-
-            elif 500 < random_lp <= 599:
-                page = "?page=6&per_page=100"
-
-            elif 600 < random_lp <= 699:
-                page = "?page=7&per_page=100"
-
-            elif 700 < random_lp <= 799:
-                page = "?page=8&per_page=100"
-
-            elif 800 < random_lp <= 899:
-                page = "?page=0&per_page=100"
-
-            else:
-                page = "?page=10&per_page=100"
+            pg = (random_lp // 100) + 1
+            page = "?page=" + str(pg) + "&per_page=100"
 
             position_string = str(random_lp)[1:]
             position = int(position_string) - 1
@@ -111,6 +84,7 @@ class RandomRecordService:
             random_album_api_call = (
                 folder_url + "/" + str(folder) + "/releases?" + page + api_token
             )
+            response = requests.get(random_album_api_call)
 
             print("Random API Call: ", random_album_api_call)
 
