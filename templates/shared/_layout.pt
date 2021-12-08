@@ -64,7 +64,7 @@
 
 <!-- Logo -->
     <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white">
-      <img src="/static/img/saucer-no-background.png" width="400" height="312" alt="Silver Saucer Logo"/>
+      <a href = "/" ><img src="/static/img/saucer-no-background.png" width="400" height="312" alt="Silver Saucer Logo"/></a>
     </div>
 
 </header>
