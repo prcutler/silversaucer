@@ -7,7 +7,8 @@ from starlette.requests import Request
 
 from viewmodels.play.album_choice_viewmodel import AlbumChoiceViewModel
 from viewmodels.play.choose_results_viewmodel import ChooseResultsViewModel
-from viewmodels.play.now_playing_viewmodel import NowPlayingViewModel
+from viewmodels.play.play_album_viewmodel import PlayAlbumViewModel
+from viewmodels.play.play_single_viewmodel import PlaySingleViewModel
 from viewmodels.play.random_viewmodel import RandomViewModel
 
 router = fastapi.APIRouter()
@@ -57,18 +58,10 @@ async def album_choice_post(request: Request):
     # TODO - if empty, call random record service and redirect to now-playing
 
 
-@router.get("/play/now-playing")
-@template(template_file="play/now-playing.pt")
+@router.get("/play/play-album")
+@template(template_file="play/play-album.pt")
 def now_playing(request: Request):
-    vm = NowPlayingViewModel(request)
-
-    return vm.to_dict()
-
-
-@router.get("/play/now-playing/{album_release_id}")
-@template(template_file="play/now-playing.pt")
-def playing(release_id: int, request: Request):
-    vm = RandomViewModel(release_id, request)
+    vm = PlayAlbumViewModel(request)
 
     return vm.to_dict()
 
@@ -76,6 +69,6 @@ def playing(release_id: int, request: Request):
 @router.get("/play/play-single")
 @template(template_file="play/play-single.pt")
 def playsingle(request: Request):
-    vm = NowPlayingViewModel(request)
+    vm = PlaySingleViewModel(request)
 
     return vm.to_dict()

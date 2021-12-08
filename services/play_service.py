@@ -1,9 +1,11 @@
 import random
+from random import randint
 
 import requests
 
 import data.config as config
 from data.album import AlbumInfo
+from data.single import SingleInfo
 
 # Discogs API Url for different folders in a collection
 folder_url = config.discogs_url + "users/" + config.discogs_user + "/collection/folders"
@@ -186,3 +188,68 @@ class RandomRecordService:
             album_id = random_album_json["releases"][position]["id"]
 
             return album_id
+
+    def get_single_data():
+        random_folder = randint(0, 2)
+
+        if random_folder == 0:
+            single = 2162483
+        elif random_folder == 1:
+            single = 2162486
+        else:
+            single = 2198941
+
+        folder = single
+
+        album_release_id = RandomRecordService.get_folder_count(single)
+        release_data = RandomRecordService.get_album_data(folder, album_release_id)
+
+        release_api = (
+            config.discogs_url
+            + "releases/"
+            + str(album_release_id[0])
+            + "?"
+            + config.discogs_user_token
+        )
+
+        print("Album Data Release API: ", release_api)
+        response = requests.get(release_api)
+        print(response)
+        release_json = response.json()
+
+        # If the folder is equal to the "full albums folder":
+        # if folder == 2162484:
+
+        # release_id = release_json["id"]
+        release_uri = release_json["uri"]
+        artist_id = release_json["artists"][0]["id"]
+        release_title = release_json["title"]
+        artist_name = release_json["artists"][0]["name"]
+        artist_url = release_json["artists"][0]["resource_url"]
+        release_image_uri = release_json["images"][0]["uri"]
+        genres = release_json["genres"]
+        # discogs_main_id = release_json["master_id"]
+        discogs_main_url = release_json["master_url"]
+        album_release_date = release_json["released"]
+        main_release_date = release_json["year"]
+
+        print(release_image_uri, genres)
+
+        single_info = SingleInfo(
+            # release_id,
+            release_uri,
+            artist_id,
+            release_title,
+            artist_name,
+            artist_url,
+            release_image_uri,
+            genres,
+            # discogs_main_id,
+            discogs_main_url,
+            album_release_date,
+            main_release_date,
+        )
+
+        print("Album Info: ", single_info, type(single_info), single_info.artist_name)
+        print("Genres: ", genres)
+        return single_info

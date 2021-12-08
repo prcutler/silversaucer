@@ -12,7 +12,7 @@
 
                 <div class="text-center">
                 <br />
-                    <div class="divider-custom-icon"><a href="/play/now-playing"><i class="fas fa-random fa-3x" title="Play a random 45"></i></a></div>
+                    <div class="divider-custom-icon"><a href="/play/play-single"><i class="fas fa-random fa-3x" title="Play a random 45"></i></a></div>
                 </div>
 
             <hr class="pt-3 bg-light">
@@ -24,7 +24,7 @@
 
                 <div class="text-center">
                 <br />
-                    <div class="divider-custom-icon"><a href="/play/now-playing"><i class="fas fa-random fa-5x" title="Play a random album"></i></a></div>
+                    <div class="divider-custom-icon"><a href="/play/play-album"><i class="fas fa-random fa-5x" title="Play a random album"></i></a></div>
 
                 </div>
 
