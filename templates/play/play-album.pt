@@ -1,0 +1,23 @@
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content" tal:omit-tag="True">
+
+    <div style="height 100%; width 100%;">
+        <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white min-vh-75">
+            <h2>Listen To This Album: </h2>
+            <br />
+            
+            <img src = "${ release_image_uri } " alt = "Album Cover" style="width:50%;height:auto;" class="center">
+            <br /><br />
+            <ul>
+                <br />
+
+                    <li><a href="${ release_uri }"> ${ release_title }</a>  by ${ artist_name }</li>
+                    <li>Album released: ${ album_release_date }</li>
+             <dl>
+                        <dt><li>Genres: </li></dt><ul>
+                        <dd> <li tal:repeat="item genres" tal:content=item/> </dd>
+                    </dl>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,26 @@
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content" tal:omit-tag="True">
+        <div class="form-container">
+            <form action="" method="POST" class="account-form">
+                <h1>Login</h1>
+
+                <br />
+                <input name="email" type="text" placeholder=" Your username" class="form-control"
+                       value="${ username }" required>
+                <input name="password" type="password" placeholder=" Password" class="form-control"
+                       value="${ password }" required>
+                       <br />
+                <button type="submit" class="btn btn-danger">Log In</button>
+                <div style="clear: both;"></div>
+
+                <div class="error-msg" tal:condition="error">${ error }</div>
+            </form>
+            <br />
+            <br />
+        </div>
+    </div>
+
+    <!--div metal:fill-slot="additional_css" tal:omit-tag="True">
+        <link rel="stylesheet" href="/static/css/account.css">
+    </div -->
+</div>

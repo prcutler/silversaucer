@@ -55,7 +55,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/about">About</a>
-          </li>
+            </li>
         </ul>
       </div>
     </div>
@@ -64,7 +64,7 @@
 
 <!-- Logo -->
     <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white">
-      <img src="/static/img/saucer-no-background.png" width="400" height="312" alt="Silver Saucer Logo"/>
+      <a href = "/" ><img src="/static/img/saucer-no-background.png" width="400" height="312" alt="Silver Saucer Logo"/></a>
     </div>
 
 </header>
@@ -85,13 +85,15 @@
                         
                         <a class="btn - btn-link btn-lg" <a href="https://twitter.com/prcutler"><i class="fab fa-twitter fa-3x" title="Twitter"></i></a>
                         <a class="btn - btn-link btn-lg" <a href="https://www.paulcutler.org"><i class="fas fa-home fa-3x" title="Paul Cutler's Homepage"></i></a>
-                        <a class="btn - btn-link btn-lg" <a href="https://www.discogs.com/user/prcutler/collection"><i class="fas fa-record-vinyl fa-3x" title="Github"></i></a>
+                        <a class="btn - btn-link btn-lg" <a href="https://www.discogs.com/user/prcutler/collection"><i class="fas fa-record-vinyl fa-3x" title="Discogs"></i></a>
                         <a class="btn - btn-link btn-lg" <a href="https://github.com/prcutler/"><i class="fab fa-github fa-3x" title="Github"></i></a>
 </div>
   <!-- Grid container -->
 
   <!-- Copyright -->
-  <div class="text-center p-3">© 2021 Paul Cutler</div>
+  <div class="text-center p-3">© 2021 Paul Cutler
+    <br>Made with <i class="fas fa-heart"></i> in Minnesota
+  </div>
   <!-- Copyright -->
 </footer>
 
