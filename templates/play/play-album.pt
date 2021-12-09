@@ -6,7 +6,7 @@
             <h2>Listen To This Album: </h2>
             <br />
             
-            <img src = "${ release_image_uri } " alt = "Album Cover" style="width:50%;height:auto;" class="center">
+            <img src = "${ release_image_uri } " alt = "Album Cover" width=400  height=400 class="center">
             <br /><br />
             <ul>
                 <br />

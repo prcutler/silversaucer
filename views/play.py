@@ -5,8 +5,8 @@ from fastapi_chameleon import template
 from starlette import status
 from starlette.requests import Request
 
-from viewmodels.play.album_choice_viewmodel import AlbumChoiceViewModel
 from viewmodels.play.choose_results_viewmodel import ChooseResultsViewModel
+from viewmodels.play.choose_viewmodel import AlbumChooseViewModel
 from viewmodels.play.play_album_viewmodel import PlayAlbumViewModel
 from viewmodels.play.play_single_viewmodel import PlaySingleViewModel
 from viewmodels.play.random_viewmodel import RandomViewModel
@@ -14,16 +14,17 @@ from viewmodels.play.random_viewmodel import RandomViewModel
 router = fastapi.APIRouter()
 
 
-@router.get("/play/album-choice")
-@template(template_file="play/album-choice.pt")
+@router.get("/play/choose")
+@template(template_file="play/choose.pt")
 def album_choice(request: Request):
-    vm = AlbumChoiceViewModel(request)
+    vm = AlbumChooseViewModel(request)
+    return vm.to_dict()
 
 
-@router.post("/play/album-choice")
+@router.post("/play/choose")
 @template()
 async def album_choice_post(request: Request):
-    vm = AlbumChoiceViewModel(request)
+    vm = AlbumChooseViewModel(request)
     await vm.load()
 
     # TODO: Write method for viewmodel to call service to get list choices
