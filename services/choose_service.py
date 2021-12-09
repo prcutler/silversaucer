@@ -23,11 +23,17 @@ json_folders = json_data["folders"]
 class ChooseService:
     def get_folder_name_list():
 
+        for get_folder_name in json_folders:
+            folder_name = get_folder_name["name"]
+
+        return folder_name
+
+    def get_folder_id_list():
+
         for get_folder_id in json_folders:
             folder_id = get_folder_id["id"]
-            folder_name = get_folder_id["name"]
 
-        return folder_id, folder_name
+        return folder_id
 
     def get_artist_list(folder_id):
         for get_artist_id in json_folders:
