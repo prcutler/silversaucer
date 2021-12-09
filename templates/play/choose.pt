@@ -7,6 +7,10 @@
             <p>
                 Choose from these results:
             </p>
+
+            <form class="form-horizontal" action="" method="POST">
+                    <div class="form-group">
+                    <option tal:repeat="a afc_east" value="${a.team_id}">${a.name}</option>
                  
                       
 
