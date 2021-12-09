@@ -25,6 +25,8 @@ class RandomRecordService:
 
         json_data = record_json
         json_folders = json_data["folders"]
+        print(json_folders)
+
         for get_folder_id in json_folders:
             if get_folder_id["id"] == folder:
 
