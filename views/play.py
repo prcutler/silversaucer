@@ -50,7 +50,7 @@ async def album_choice_post(request: Request):
     await vm.load()
 
     resp = fastapi.responses.RedirectResponse(
-        url="/play/now_playing", status_code=status.HTTP_302_FOUND
+        url="/play/now-playing", status_code=status.HTTP_302_FOUND
     )
 
     return resp

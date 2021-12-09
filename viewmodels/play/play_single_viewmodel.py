@@ -13,6 +13,7 @@ class PlaySingleViewModel(ViewModelBase):
 
         release_data = RandomRecordService.get_single_data()
 
+        self.release_id: int = release_data.release_id
         self.release_uri: Optional[str] = release_data.release_uri
         self.artist_id = release_data.artist_id
         self.release_title: Optional[str] = release_data.release_title
@@ -20,6 +21,5 @@ class PlaySingleViewModel(ViewModelBase):
         self.artist_url: Optional[str] = release_data.artist_url
         self.release_image_uri: Optional[str] = release_data.release_image_uri
         self.genres: Optional[List[str]] = release_data.genres
-        self.discogs_main_url: Optional[str] = release_data.discogs_main_url
         self.album_release_date: Optional[str] = release_data.album_release_date
         self.main_release_date: Optional[int] = release_data.main_release_date

@@ -31,6 +31,7 @@ class RandomRecordService:
                 lp_count = get_folder_id["count"]
 
                 random_lp = random.randint(0, lp_count)
+                print(random_lp)
 
                 pg = (random_lp // 100) + 1
                 page = "?page=" + str(pg) + "&per_page=100"
@@ -80,8 +81,23 @@ class RandomRecordService:
             pg = (random_lp // 100) + 1
             page = "?page=" + str(pg) + "&per_page=100"
 
-            position_string = str(random_lp)[1:]
-            position = int(position_string) - 1
+            try:
+                position_string = str(random_lp)[1:]
+                position = int(position_string) - 1
+                print(
+                    "Position string",
+                    position_string,
+                    type(position_string),
+                    "Position",
+                    position,
+                    type(position),
+                )
+            except ValueError:
+                print("Value Error Time!")
+                get_position_numbers = position_string.translate(
+                    None, position_string.letters
+                )
+                position = int(get_position_numbers) - 1
 
             random_album_api_call = (
                 folder_url + "/" + str(folder) + "/releases?" + page + api_token
@@ -171,6 +187,7 @@ class RandomRecordService:
             randint = random.randint(0, lp_count)
 
             random_lp = random.randint(0, lp_count)
+            print(random_lp)
 
             pg = (random_lp // 100) + 1
             page = "?page=" + str(pg) + "&per_page=100"
@@ -200,56 +217,94 @@ class RandomRecordService:
             single = 2198941
 
         folder = single
+        response = requests.get(discogs_api)
+        record_json = response.json()
 
-        album_release_id = RandomRecordService.get_folder_count(single)
-        release_data = RandomRecordService.get_album_data(folder, album_release_id)
+        json_data = record_json
+        json_folders = json_data["folders"]
+        for get_folder_id in json_folders:
+            if get_folder_id["id"] == folder:
 
-        release_api = (
-            config.discogs_url
-            + "releases/"
-            + str(album_release_id[0])
-            + "?"
-            + config.discogs_user_token
-        )
+                single_count = get_folder_id["count"]
 
-        print("Album Data Release API: ", release_api)
-        response = requests.get(release_api)
-        print(response)
-        release_json = response.json()
+                random_single = random.randint(0, single_count)
+                print(random_single)
 
-        # If the folder is equal to the "full albums folder":
-        # if folder == 2162484:
+                pg = (random_single // 100) + 1
+                page = "?page=" + str(pg) + "&per_page=100"
 
-        # release_id = release_json["id"]
-        release_uri = release_json["uri"]
-        artist_id = release_json["artists"][0]["id"]
-        release_title = release_json["title"]
-        artist_name = release_json["artists"][0]["name"]
-        artist_url = release_json["artists"][0]["resource_url"]
-        release_image_uri = release_json["images"][0]["uri"]
-        genres = release_json["genres"]
-        # discogs_main_id = release_json["master_id"]
-        discogs_main_url = release_json["master_url"]
-        album_release_date = release_json["released"]
-        main_release_date = release_json["year"]
+                try:
+                    position_string = str(random_single)[1:]
+                    position = int(position_string) - 1
+                    print(
+                        "Position string",
+                        position_string,
+                        type(position_string),
+                        "Position",
+                        position,
+                        type(position),
+                    )
+                except ValueError:
+                    print("Value Error Time!")
+                    get_position_numbers = position_string.translate(
+                        None, position_string.letters
+                    )
+                    position = int(get_position_numbers) - 1
 
-        print(release_image_uri, genres)
+                random_single_api_call = (
+                    folder_url + "/" + str(folder) + "/releases?" + page + api_token
+                )
+                response = requests.get(random_single_api_call)
+                print(random_single_api_call)
 
-        single_info = SingleInfo(
-            # release_id,
-            release_uri,
-            artist_id,
-            release_title,
-            artist_name,
-            artist_url,
-            release_image_uri,
-            genres,
-            # discogs_main_id,
-            discogs_main_url,
-            album_release_date,
-            main_release_date,
-        )
+                # Fix the pagination problem (sorting?)
+                random_album_json = response.json()
+                random_album_release_id = random_album_json["releases"][position]["id"]
 
-        print("Album Info: ", single_info, type(single_info), single_info.artist_name)
-        print("Genres: ", genres)
-        return single_info
+                release_api = (
+                    config.discogs_url
+                    + "releases/"
+                    + str(random_album_release_id)
+                    + "?"
+                    + config.discogs_user_token
+                )
+
+                print("Single Data Release API: ", release_api)
+                response = requests.get(release_api)
+                print(response)
+                release_json = response.json()
+
+                release_id = release_json["id"]
+                release_uri = release_json["uri"]
+                artist_id = release_json["artists"][0]["id"]
+                release_title = release_json["title"]
+                artist_name = release_json["artists"][0]["name"]
+                artist_url = release_json["artists"][0]["resource_url"]
+                release_image_uri = release_json["images"][0]["uri"]
+                genres = release_json["genres"]
+                album_release_date = release_json["released"]
+                main_release_date = release_json["year"]
+
+                print(release_image_uri, genres)
+
+                single_info = SingleInfo(
+                    release_id,
+                    release_uri,
+                    artist_id,
+                    release_title,
+                    artist_name,
+                    artist_url,
+                    release_image_uri,
+                    genres,
+                    album_release_date,
+                    main_release_date,
+                )
+
+                print(
+                    "Album Info: ",
+                    single_info,
+                    type(single_info),
+                    single_info.artist_name,
+                )
+                print("Genres: ", genres)
+                return single_info
