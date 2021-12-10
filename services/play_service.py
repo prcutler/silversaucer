@@ -26,7 +26,7 @@ class RandomRecordService:
         print("Random # = ", random_lp)
 
         random_album_release_id = (
-            discogs_data.identity().collection_folders[0].releases[random_lp].release.id
+            discogs_data.identity().collection_folders[8].releases[random_lp].release.id
         )
         print("Random_ID = ", random_album_release_id)
 
