@@ -15,6 +15,8 @@ print(my_data.release(20017387).images[0]["uri"])
 print(my_data.release(20017387).artists[0].name, type(my_data.release(1443762).artists))
 print(my_data.release(20017387).artists[0].name)
 print(my_data.release(2272402).year)
+print(my_data.release(20017387).tracklist[0].title)
+print(dir(my_data.release(20017387).tracklist[0]))
 
 # print(dir(my_data.master.release(2272402).year))
 
@@ -26,6 +28,6 @@ print(my_data.release(2272402).year)
 # print(d.collection_folders[8].releases(888785).release.id)
 
 
-def get_genres():
-    for genre in d.release_genres():
-        print(genre)
+# def get_genres():
+#    for genre in d.release_genres():
+#         print(genre)

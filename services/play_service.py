@@ -58,6 +58,19 @@ class RandomRecordService:
         genres = release_data.release(album_release_id).genres
         album_release_date = release_data.release(album_release_id).year
 
+        track_title = []
+        track_duration = []
+        track_position = []
+
+        for tracks in release_data.release(album_release_id).tracklist:
+            track_title.append(tracks.title)
+            track_duration.append(tracks.duration)
+            track_position.append(tracks.position)
+            # print(track_title, type(track_title))
+
+        #        tracklist = release_data.release(album_release_id).tracklist.title
+        #        print(tracklist)
+
         album_info = AlbumInfo(
             release_id,
             release_url,
@@ -67,6 +80,9 @@ class RandomRecordService:
             genres,
             # discogs_main_id,
             album_release_date,
+            track_title,
+            track_duration,
+            track_position,
         )
         # print("Genres: ", genres)
         return album_info
