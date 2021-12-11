@@ -1,24 +1,15 @@
 <div metal:use-macro="load: ../shared/_layout.pt">
     <div metal:fill-slot="content" tal:omit-tag="True">
 
-    <div style="height 100%; width 100%;">
-        <!--div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column" -->
+<div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column">
 
-        <div class="container pt-3 d-flex align-items-center bg-dark pt- flex-column vw-50">
+        <div class="page-core">
+            <h1>About</h1>
 
-            <h2>About Silver Saucer</h2>
-            
-            <p><br />
-                You can learn more about Silver Saucer or me by visiting my home page on the icon below,
-                or click the icons to follow me on Twitter or Github.
-            </p>
-            <p>
-                Silver Saucer is built using Python, the FastAPI web framework, and the Discogs API.
-            </p>
-
+            <div>
+                We shall fill this in later.
+            </div>
         </div>
     </div>
 </div>
 </div>
-
-

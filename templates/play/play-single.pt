@@ -6,11 +6,13 @@
             <h2>Listen To This Single or EP: </h2>
             <br />
             
+            <div>
+            <br /><br />
             <img src = "${ release_image_url } " alt = "Album Cover" width=400  height=400 class="center">
             <br /><br />
             <ul>
                 <br />
-
+</div
                     <li><a href="${ release_url } "> ${ release_title }</a>  by ${ artist_id }</li>
                     <li>Album released: ${ album_release_date }</li>
              <dl>

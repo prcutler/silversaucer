@@ -1,5 +1,6 @@
 import config
 import discogs_client
+from discogs_client.models import Master
 
 my_data = discogs_client.Client(config.agent, user_token=config.my_token)
 
@@ -17,6 +18,15 @@ print(my_data.release(20017387).artists[0].name)
 print(my_data.release(2272402).year)
 print(my_data.release(20017387).tracklist[0].title)
 print(dir(my_data.release(20017387).tracklist[0]))
+print(my_data.release(20017387).master.id)
+# print(my_data.release(20017387).master.year)
+# print(my_data.master(my_data.release(20017387).master.id).title)
+print(dir(my_data.master))
+# print(dir(my_data.release(20017387).value))
+
+# main_release_date = my_data.master.items
+# print(main_release_date)
+
 
 # print(dir(my_data.master.release(2272402).year))
 

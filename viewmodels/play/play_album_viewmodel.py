@@ -2,6 +2,7 @@ from typing import List, Optional
 
 from starlette.requests import Request
 
+import data.random_sayings
 from data.album import AlbumInfo
 from services.play_service import RandomRecordService
 from viewmodels.shared.viewmodel import ViewModelBase
@@ -26,3 +27,6 @@ class PlayAlbumViewModel(ViewModelBase):
         self.track_title: Optional[List](str) = release_data.track_title
         self.track_duration: Optional[List](str) = release_data.track_duration
         self.track_position: Optional[List](str) = release_data.track_position
+        self.random_saying: Optional[List](
+            str
+        ) = data.random_sayings.get_random_saying()
