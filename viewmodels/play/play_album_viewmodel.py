@@ -11,8 +11,7 @@ class PlayAlbumViewModel(ViewModelBase):
     def __init__(self, request: Request):
         super().__init__(request)
 
-        folder = 2162484
-        random_album_release_id = RandomRecordService.get_folder_count2()
+        random_album_release_id = RandomRecordService.get_folder_count2(8)
         # print("Viewmodel album release id: ", random_album_release_id)
         release_data = RandomRecordService.get_album_data(random_album_release_id)
         # print("Viewmodel album artist id: ", release_data.artist_id)

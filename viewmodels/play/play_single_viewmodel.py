@@ -11,15 +11,17 @@ class PlaySingleViewModel(ViewModelBase):
     def __init__(self, request: Request):
         super().__init__(request)
 
-        release_data = RandomRecordService.get_single_data()
+        get_random_folder = RandomRecordService.single_random_folder()
+        # print(get_random_folder)
+        random_album_release_id = RandomRecordService.get_folder_count2(
+            get_random_folder
+        )
+        release_data = RandomRecordService.get_album_data(random_album_release_id)
 
-        self.release_id: int = release_data.release_id
-        self.release_uri: Optional[str] = release_data.release_uri
+        self.release_id = release_data.release_id
+        self.release_url: Optional[str] = release_data.release_url
         self.artist_id = release_data.artist_id
         self.release_title: Optional[str] = release_data.release_title
-        self.artist_name: Optional[str] = release_data.artist_name
-        self.artist_url: Optional[str] = release_data.artist_url
-        self.release_image_uri: Optional[str] = release_data.release_image_uri
+        self.release_image_url: Optional[str] = release_data.release_image_url
         self.genres: Optional[List[str]] = release_data.genres
         self.album_release_date: Optional[str] = release_data.album_release_date
-        self.main_release_date: Optional[int] = release_data.main_release_date
