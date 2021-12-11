@@ -1,0 +1,35 @@
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content" tal:omit-tag="True">
+
+    <div>
+        <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white ">
+            <h2>Choose Something</h2>
+            <p>
+                Choose from these results:
+            </p>
+
+            <form class="form-horizontal" action="" method="POST">
+                    <div class="form-group">
+                    <p>Folder</p>
+                    <select name="folder_pick"
+                        class="form-control" id="folder_pick">
+                    <option tal:repeat="a folder_id_list" value="${ folder_id }">${ folder_name }</option>
+
+                 </select>
+
+                    <select name="album_id"
+                        class="form-control" id="album_id">
+                    <option tal:repeat="${ album_id }" value="${ album_id }">${ album_name }</option>
+
+                 </select>
+
+
+            </div>
+            </form>
+                      
+
+        </div>
+    </div>
+</div>
+</div>
+

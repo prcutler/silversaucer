@@ -5,27 +5,23 @@
     <div class="container-fluid pt-3 d-flex align-items-center bg-dark pt-3 align-items-center flex-column vh-75">
 
                 <!-- Icon Divider-->
-                <div class="text-center">
-                    <br />
-                    <div class="divider-custom-icon"><a href="/play/album-choice"><i class="fas fa-play fa-3x" title="Pick a single or EP"></i></a></div>
-                </div>
-
-                <div class="text-center">
-                <br />
-                    <div class="divider-custom-icon"><a href="/play/play-single"><i class="fas fa-random fa-3x" title="Play a random 45"></i></a></div>
-                </div>
 
             <hr class="pt-3 bg-light">
 
                 <div class="text-center">
 
-                    <div class="divider-custom-icon"><a href="/play/album-choice"><i class="fas fa-play fa-5x" title="Pick an album"></i></a></div>
+                <div class="text-center">
+                <br />
+                    <div class="divider-custom-icon"><a href="/play/play-album"><i class="fas fa-random fa-5x" title="Play a random album"></i></a></div>
+                    <br />
+                </div>
+
+                    <div class="divider-custom-icon"><a href="/play/choose"><i class="fas fa-play fa-5x" title="Pick an album"></i></a></div>
                 </div>
 
                 <div class="text-center">
                 <br />
-                    <div class="divider-custom-icon"><a href="/play/play-album"><i class="fas fa-random fa-5x" title="Play a random album"></i></a></div>
-
+                    <div class="divider-custom-icon"><a href="/play/play-single"><i class="fas fa-random fa-3x" title="Play a random 45"></i></a></div>
                 </div>
 
             <hr class="pt-3 bg-light">
