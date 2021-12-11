@@ -1,11 +1,12 @@
 import random
 from random import randint
 
+import discogs_client
 import requests
 
 import data.config as config
 from data.album import AlbumInfo
-from data.config import discogs_data
+from data.config import my_data
 from data.single import SingleInfo
 
 # Discogs API Url for different folders in a collection
@@ -19,69 +20,64 @@ discogs_api = folder_url + "?=" + api_token
 class RandomRecordService:
     @staticmethod
     def get_folder_count2():
-        lp_count = len(discogs_data.identity().collection_folders[0].releases)
+        lp_count = len(my_data.identity().collection_folders[8].releases)
         print(lp_count)
 
         random_lp = random.randint(0, lp_count)
         print("Random # = ", random_lp)
 
         random_album_release_id = (
-            discogs_data.identity().collection_folders[8].releases[random_lp].release.id
+            my_data.identity().collection_folders[8].releases[random_lp].release.id
         )
         print("Random_ID = ", random_album_release_id)
 
-        return random_album_release_id, 0
+        return random_album_release_id, random_lp
 
     @staticmethod
-    def get_album_data(folder, album_release_id):
+    def get_album_data(album_release_id, random_lp):
 
-        release_api = (
-            config.discogs_url
-            + "releases/"
-            + str(album_release_id[0])
-            + "?"
-            + config.discogs_user_token
+        d = my_data.identity()
+
+        release_data = config.my_data
+
+        release_id = album_release_id
+        release_url = d.collection_folders[8].releases[random_lp].release.url
+        artist_id = d.collection_folders[8].releases[random_lp].release.artists
+        release_title = d.collection_folders[8].releases[random_lp].release.title
+        # artist_name = d.collection_folders[8].releases[random_lp].release.artists[0].name
+        # artist_url = d.collection_folders[8].releases[random_lp].releases.artists[0].url
+        release_image_url = (
+            d.collection_folders[8].releases[random_lp].release.images[0]
         )
+        #        genres = d.collection_folders[8].releases[random_lp].genres
+        genres = release_data.release(random_lp).genres
 
-        print("Album Data Release API: ", release_api)
-        response = requests.get(release_api)
-        print(response)
-        release_json = response.json()
+        # discogs_main_id = d.collection_folders[8].releases[random_lp].release.master
+        # discogs_main_url = d.collection_folders[8].releases[random_lp].release.master.url
+        album_release_date = release_data.release(random_lp).year
 
-        # If the folder is equal to the "full albums folder":
-        # if folder == 2162484:
+        #        print(my_data.release(2272402).year)
 
-        release_id = release_json["id"]
-        release_uri = release_json["uri"]
-        artist_id = release_json["artists"][0]["id"]
-        release_title = release_json["title"]
-        artist_name = release_json["artists"][0]["name"]
-        artist_url = release_json["artists"][0]["resource_url"]
-        release_image_uri = release_json["images"][0]["uri"]
-        genres = release_json["genres"]
-        discogs_main_id = release_json["master_id"]
-        discogs_main_url = release_json["master_url"]
-        album_release_date = release_json["released"]
-        main_release_date = release_json["year"]
+        # main_release_date = d.collection_folders[8].releases(album_release_id).releases.year
 
-        print(release_image_uri, genres)
+        #        print(release_image_uri, genres)
 
         album_info = AlbumInfo(
             release_id,
-            release_uri,
+            release_url,
             artist_id,
             release_title,
-            artist_name,
-            artist_url,
-            release_image_uri,
+            # artist_name,
+            # artist_url,
+            release_image_url,
             genres,
-            discogs_main_id,
-            discogs_main_url,
+            # discogs_main_id,
+            # discogs_main_url,
             album_release_date,
-            main_release_date,
+            # main_release_date,
         )
 
-        print("Album Info: ", album_info, type(album_info), album_info.artist_name)
+        #        print("Album Info: ", album_info, type(album_info), album_info.artist_name)
         print("Genres: ", genres)
         return album_info
 
@@ -102,11 +98,11 @@ class RandomRecordService:
             random_lp = random.randint(0, lp_count)
             print(random_lp)
 
-            pg = (random_lp // 100) + 1
-            page = "?page=" + str(pg) + "&per_page=100"
+            #            pg = (random_lp // 100) + 1
+            #            page = "?page=" + str(pg) + "&per_page=100"
 
-            position_string = str(random_lp)[1:]
-            position = int(position_string) - 1
+            #            position_string = str(random_lp)[1:]
+            #            position = int(position_string) - 1
 
             random_album_api_call = (
                 folder_url + "/" + str(folder) + "/releases?" + page + api_token

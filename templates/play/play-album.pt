@@ -6,12 +6,12 @@
             <h2>Listen To This Album: </h2>
             <br />
             
-            <img src = "${ release_image_uri } " alt = "Album Cover" width=400  height=400 class="center">
+            <img src = "${ release_image_url } " alt = "Album Cover" width=400  height=400 class="center">
             <br /><br />
             <ul>
                 <br />
 
-                    <li><a href="${ release_uri }"> ${ release_title }</a>  by ${ artist_name }</li>
+                    <li><a href="${ release_url }"> ${ release_title }</a>  by ${ artist_id }</li>
                     <li>Album released: ${ album_release_date }</li>
              <dl>
                         <dt><li>Genres: </li></dt><ul>
