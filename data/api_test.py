@@ -26,6 +26,6 @@ print(my_data.release(2272402).year)
 # print(d.collection_folders[8].releases(888785).release.id)
 
 
-def get_genres():
-    for genre in d.release_genres():
-        print(genre)
+# def get_genres():
+#    for genre in d.release_genres():
+#       print(genre)
