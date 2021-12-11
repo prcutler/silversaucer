@@ -10,11 +10,26 @@
 
             <form class="form-horizontal" action="" method="POST">
                     <div class="form-group">
-                    <option tal:repeat="a afc_east" value="${a.team_id}">${a.name}</option>
-                 
+                    <p>Folder</p>
+                    <select name="folder_pick"
+                        class="form-control" id="folder_pick">
+                    <option tal:repeat="a folder_id_list" value="${ folder_id }">${ folder_name }</option>
+
+                 </select>
+
+                    <select name="album_id"
+                        class="form-control" id="album_id">
+                    <option tal:repeat="${ album_id }" value="${ album_id }">${ album_name }</option>
+
+                 </select>
+
+
+            </div>
+            </form>
                       
 
         </div>
     </div>
 </div>
 </div>
+
