@@ -8,17 +8,12 @@ chvrches_screen_violence = 20017387
 print(my_data.release(chvrches_screen_violence).genres)
 
 # print(discogs_data.identity().collection_foldes[8].releases[chvrches_screen_violence].release.id)
-
 # print(discogs_data.release(20017387))
-
 # print(my_data.release(20017387).url)
-
-# print(my_data.release(20017387).artists, my_data.release(20017387).title)
-
-# print(my_data.release(20017387).images[0])
-
-# print(my_data.release(1443762).artists[0], type(my_data.release(1443762).artists))
-
+print(my_data.release(20017387).artists, my_data.release(20017387).title)
+print(my_data.release(20017387).images[0]["uri"])
+print(my_data.release(20017387).artists[0].name, type(my_data.release(1443762).artists))
+print(my_data.release(20017387).artists[0].name)
 print(my_data.release(2272402).year)
 
 # print(dir(my_data.master.release(2272402).year))

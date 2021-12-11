@@ -21,64 +21,55 @@ class RandomRecordService:
     @staticmethod
     def get_folder_count2():
         lp_count = len(my_data.identity().collection_folders[8].releases)
-        print(lp_count)
+        # print(lp_count)
 
         random_lp = random.randint(0, lp_count)
-        print("Random # = ", random_lp)
+        # print("Random # = ", random_lp)
 
         random_album_release_id = (
             my_data.identity().collection_folders[8].releases[random_lp].release.id
         )
-        print("Random_ID = ", random_album_release_id)
+        # print("Random_ID = ", random_album_release_id)
 
-        return random_album_release_id, random_lp
+        return random_album_release_id
 
     @staticmethod
-    def get_album_data(album_release_id, random_lp):
+    def get_album_data(album_release_id):
 
         d = my_data.identity()
 
         release_data = config.my_data
 
+        artist_count = 0
+
+        for artist_name in release_data.release(album_release_id).artists:
+            artist_name = (
+                release_data.release(album_release_id).artists[artist_count].name
+            )
+
+            artist_count += 1
+            # print(artist_name)
+
+        artist_id = artist_name
         release_id = album_release_id
-        release_url = d.collection_folders[8].releases[random_lp].release.url
-        artist_id = d.collection_folders[8].releases[random_lp].release.artists
-        release_title = d.collection_folders[8].releases[random_lp].release.title
-        # artist_name = d.collection_folders[8].releases[random_lp].release.artists[0].name
-        # artist_url = d.collection_folders[8].releases[random_lp].releases.artists[0].url
-        release_image_url = (
-            d.collection_folders[8].releases[random_lp].release.images[0]
-        )
-        #        genres = d.collection_folders[8].releases[random_lp].genres
-        genres = release_data.release(random_lp).genres
+        release_url = release_data.release(release_id).url
+        release_title = release_data.release(album_release_id).title
+        release_image_url = release_data.release(album_release_id).images[0]["uri"]
 
-        # discogs_main_id = d.collection_folders[8].releases[random_lp].release.master
-        # discogs_main_url = d.collection_folders[8].releases[random_lp].release.master.url
-        album_release_date = release_data.release(random_lp).year
-
-        #        print(my_data.release(2272402).year)
-
-        # main_release_date = d.collection_folders[8].releases(album_release_id).releases.year
-
-        #        print(release_image_uri, genres)
+        genres = release_data.release(album_release_id).genres
+        album_release_date = release_data.release(album_release_id).year
 
         album_info = AlbumInfo(
             release_id,
             release_url,
             artist_id,
             release_title,
-            # artist_name,
-            # artist_url,
             release_image_url,
             genres,
             # discogs_main_id,
-            # discogs_main_url,
             album_release_date,
-            # main_release_date,
         )
-
-        #        print("Album Info: ", album_info, type(album_info), album_info.artist_name)
-        print("Genres: ", genres)
+        # print("Genres: ", genres)
         return album_info
 
     def get_album_id():
@@ -97,12 +88,6 @@ class RandomRecordService:
 
             random_lp = random.randint(0, lp_count)
             print(random_lp)
-
-            #            pg = (random_lp // 100) + 1
-            #            page = "?page=" + str(pg) + "&per_page=100"
-
-            #            position_string = str(random_lp)[1:]
-            #            position = int(position_string) - 1
 
             random_album_api_call = (
                 folder_url + "/" + str(folder) + "/releases?" + page + api_token
@@ -194,7 +179,7 @@ class RandomRecordService:
                 album_release_date = release_json["released"]
                 main_release_date = release_json["year"]
 
-                print(release_image_uri, genres)
+                print(release_image_uri[0], genres)
 
                 single_info = SingleInfo(
                     release_id,
