@@ -1,7 +1,6 @@
 import random
 from random import randint
 
-import discogs_client
 import requests
 
 import data.config as config
@@ -71,34 +70,6 @@ class RandomRecordService:
         )
         # print("Genres: ", genres)
         return album_info
-
-    def get_album_id():
-        folder = 2162484
-        RandomRecordService.get_folder_count(folder)
-
-        response = requests.get(discogs_api)
-        record_json = response.json()
-
-        json_data = record_json
-        json_folders = json_data["folders"]
-
-        for get_folder_id in json_folders:
-            lp_count = get_folder_id["count"]
-            randint = random.randint(0, lp_count)
-
-            random_lp = random.randint(0, lp_count)
-            print(random_lp)
-
-            random_album_api_call = (
-                folder_url + "/" + str(folder) + "/releases?" + page + api_token
-            )
-            response = requests.get(random_album_api_call)
-
-            # Fix the pagination problem (sorting?)
-            random_album_json = response.json()
-            album_id = random_album_json["releases"][position]["id"]
-
-            return album_id
 
     def get_single_data():
         random_folder = randint(0, 2)
