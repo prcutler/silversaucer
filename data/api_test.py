@@ -2,33 +2,37 @@ import config
 import discogs_client
 from discogs_client.models import Master
 
-my_data = discogs_client.Client(config.agent, user_token=config.my_token)
+d = discogs_client.Client(config.agent, user_token=config.my_token)
 
 chvrches_screen_violence = 20017387
 
-print(my_data.release(chvrches_screen_violence).genres)
+print(dir(d.release(20017387)))
+
+print(d.release(20017387).genres)
 
 # print(discogs_data.identity().collection_foldes[8].releases[chvrches_screen_violence].release.id)
 # print(discogs_data.release(20017387))
-# print(my_data.release(20017387).url)
-print(my_data.release(20017387).artists, my_data.release(20017387).title)
-print(my_data.release(20017387).images[0]["uri"])
-print(my_data.release(20017387).artists[0].name, type(my_data.release(1443762).artists))
-print(my_data.release(20017387).artists[0].name)
-print(my_data.release(2272402).year)
-print(my_data.release(20017387).tracklist[0].title)
-print(dir(my_data.release(20017387).tracklist[0]))
-print(my_data.release(20017387).master.id)
-# print(my_data.release(20017387).master.year)
-# print(my_data.master(my_data.release(20017387).master.id).title)
-print(dir(my_data.master))
-# print(dir(my_data.release(20017387).value))
+# print(d.release(20017387).url)
+print(d.release(11589538).artists, d.release(11589538).title)
+print(d.release(20017387).images[0]["uri"])
+print(d.release(20017387).artists[0].name, type(d.release(1443762).artists))
+print(d.release(20017387).artists[0].name)
+print(d.release(2272402).year)
+print(d.release(20017387).tracklist[0].title)
+print(dir(d.release(20017387).tracklist[0]))
+print(d.release(20017387).master.id)
+# print(d.release(20017387).master.year)
+# print(d.master(d.release(20017387).master.id).title)
+print(dir(d.master))
+print(d.release(20017387).images[0])
+# print(dir(d.release(20017387).value))
 
-# main_release_date = my_data.master.items
+
+# main_release_date = d.master.items
 # print(main_release_date)
 
 
-# print(dir(my_data.master.release(2272402).year))
+# print(dir(d.master.release(2272402).year))
 
 # d = config.discogs_data.identity() = User Object
 # So this is me - only need it to call images and my collection data

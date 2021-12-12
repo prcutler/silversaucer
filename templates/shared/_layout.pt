@@ -8,8 +8,14 @@
     <title>Silver Saucer</title>
 
     <!-- MDB icon -->
-    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" / -->
     
+    <!-- Favicons-->
+<link rel="apple-touch-icon" sizes="180x180" href="static/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="static/favicon/favicon-16x16.png">
+<link rel="manifest" href="static/favicon/site.webmanifest">
+
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
@@ -63,8 +69,8 @@
   <!-- Navbar -->
 
 <!-- Logo -->
-    <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white">
-      <a href = "/" ><img src="/static/img/saucer-no-background.png" width="400" height="312" alt="Silver Saucer Logo"/></a>
+    <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-center">
+      <a href = "/" ><img src="/static/img/silversaucer.png" style="width:50%; height:auto; max-width300px;" alt="Silver Saucer Logo" /></a>
     </div>
 
 </header>
