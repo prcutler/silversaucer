@@ -44,4 +44,6 @@ print(d.release(20017387).images[0])
 
 # def get_genres():
 #    for genre in d.release_genres():
+
 #         print(genre)
+#       print(genre)
