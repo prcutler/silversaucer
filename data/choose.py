@@ -7,11 +7,8 @@ class ChooseInfo:
         artist_name: str,
         release_date: str,
         genres: str,
-        main_release_date: int,
+        # main_release_date: int,
         album_release_date: str,
-        track_title: str,
-        track_duration: str,
-        track_position: str,
     ):
 
         self.artist_name = artist_name
@@ -21,8 +18,5 @@ class ChooseInfo:
         self.artist_name = artist_name
         self.release_date = release_date
         self.genres = genres
-        self.main_release_date: int = (main_release_date,)
+        # self.main_release_date: int = (main_release_date,)
         self.album_release_date = album_release_date
-        self.track_title = track_title
-        self.track_duration = track_duration
-        self.track_position = track_position

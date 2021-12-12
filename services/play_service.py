@@ -1,19 +1,9 @@
 import random
-from random import randint
-
-import requests
 
 import data.config as config
 from data.album import AlbumInfo
 from data.config import my_data
 from data.single import SingleInfo
-
-# Discogs API Url for different folders in a collection
-folder_url = config.discogs_url + "users/" + config.discogs_user + "/collection/folders"
-
-api_token = config.discogs_user_token
-
-discogs_api = folder_url + "?=" + api_token
 
 
 class RandomRecordService:
