@@ -3,8 +3,8 @@
 
     <div style="height 100%; width 100%;">
         <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white min-vh-75">
-            <h2>Listen To This Album: </h2>
-            <br />
+            <h2>${ random_saying }</h2>
+            <br /> <br />
             
             <img src = "${ release_image_url } " alt = "Album Cover" width=400  height=400 class="center">
             <br /><br />
@@ -15,8 +15,15 @@
                     <li>Album released: ${ album_release_date }</li>
              <dl>
                         <dt><li>Genres: </li></dt><ul>
-                        <dd> <li tal:repeat = "item genres" tal:content=item/> </dd>
-                    </dl>
+                        <dd> <li tal:repeat = "item genres" tal:content = item/> </dd>
+                </dl>
+                <dl>
+                <dt><li>Tracklist: </li></dt>
+                <ul>
+                <dd> <li tal:repeat = "item track_title"  tal:content = item" /> </dd>
+                </ul>
+                </dl>
+                
         </div>
     </div>
 </div>

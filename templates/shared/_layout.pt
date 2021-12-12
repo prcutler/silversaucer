@@ -8,8 +8,14 @@
     <title>Silver Saucer</title>
 
     <!-- MDB icon -->
-    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" / -->
     
+    <!-- Favicons-->
+<link rel="apple-touch-icon" sizes="180x180" href="static/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="static/favicon/favicon-16x16.png">
+<link rel="manifest" href="static/favicon/site.webmanifest">
+
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
@@ -28,43 +34,50 @@
 
 <header>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-primary bg-dark">
-    <div class="container-fluid">
-      <button
-            class="navbar-toggler"
-              type="button"
-              data-mdb-toggle="collapse"
-              data-mdb-target="#navbarExample01"
-              aria-controls="navbarExample01"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-      >
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarExample01">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/play/play-album">Play</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/today">Today</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/about">About</a>
-            </li>
-        </ul>
-      </div>
+
+
+<nav class="navbar navbar-expand-lg navbar-primary bg-dark">
+  <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+      <img
+        src="/static/img/silversaucer-org.png"
+        height="20"
+        alt="Silver Saucer Logo"
+        loading="lazy"
+      />
+    </a>
+    <div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class=navbar-brand" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="navbar-brand" href="/play-album">Random</a>
+        </li>
+        <li class="nav-item">
+          <a class="navbar-brand" href="/today">Today</a>
+        </li>
+      </ul>
     </div>
-  </nav>
-  <!-- Navbar -->
+  </div>
+  </div>
+</nav>
 
 <!-- Logo -->
-    <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white">
-      <a href = "/" ><img src="/static/img/saucer-no-background.png" width="400" height="312" alt="Silver Saucer Logo"/></a>
+    <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-center">
+      <a href = "/" ><img src="/static/img/silversaucer.png" style="width:50%; height:auto; max-width300px;" alt="Silver Saucer Logo" /></a>
     </div>
 
 </header>
