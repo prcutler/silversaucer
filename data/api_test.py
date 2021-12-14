@@ -10,6 +10,8 @@ print(dir(d.release(20017387)))
 
 print(d.release(20017387).genres)
 
+print("Title: ", d.release(20017387).title)
+
 # print(discogs_data.identity().collection_foldes[8].releases[chvrches_screen_violence].release.id)
 # print(discogs_data.release(20017387))
 # print(d.release(20017387).url)

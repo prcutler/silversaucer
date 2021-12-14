@@ -25,7 +25,6 @@ class AlbumInfo:
         self.artist_id = artist_id
         self.artist_name = artist_name
         self.release_title = release_title
-        # self.artist_name = artist_name
         self.artist_url = artist_url
         self.release_image_url = release_image_url
         self.genres = genres
