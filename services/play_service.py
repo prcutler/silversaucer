@@ -40,6 +40,8 @@ class RandomRecordService:
             # print(artist_name)
 
         artist_id = artist_name
+        artist_url = release_data.release(album_release_id).artists[0].url
+
         release_id = album_release_id
         release_url = release_data.release(release_id).url
         release_title = release_data.release(album_release_id).title
@@ -47,6 +49,12 @@ class RandomRecordService:
 
         genres = release_data.release(album_release_id).genres
         album_release_date = release_data.release(album_release_id).year
+
+        main_release_date = release_data.release(album_release_id).master.fetch("year")
+        if main_release_date == 0:
+            main_release_date = album_release_date
+        else:
+            main_release_date = main_release_date
 
         track_title = []
         track_duration = []
@@ -65,11 +73,14 @@ class RandomRecordService:
             release_id,
             release_url,
             artist_id,
+            artist_url,
+            artist_name,
             release_title,
             release_image_url,
             genres,
             # discogs_main_id,
             album_release_date,
+            main_release_date,
             track_title,
             track_duration,
             track_position,

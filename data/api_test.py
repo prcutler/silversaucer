@@ -27,6 +27,8 @@ print(dir(d.master))
 print(d.release(20017387).images[0])
 # print(dir(d.release(20017387).value))
 
+print(d.release(20017387).master.fetch("year"))
+print(d.release(20017387).artists[0].url)
 
 # main_release_date = d.master.items
 # print(main_release_date)

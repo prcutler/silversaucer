@@ -17,7 +17,7 @@ class AlbumChooseViewModel(ViewModelBase):
         self.album_id = ChooseService.get_album_id()
         self.release_date: Optional[int] = None
         self.genres: Optional[List[str]] = None
-        # self.main_release_date: Optional[int] = None
+        self.main_release_date: Optional[int] = None
 
     async def load(self):
         form = await self.request.form()
@@ -28,4 +28,4 @@ class AlbumChooseViewModel(ViewModelBase):
         self.album_id = form.get("album_id")
         self.release_date = form.get("release_date")
         self.genres = form.getlist("genres")
-        # self.main_release_date = form.get("main_release_date")
+        self.main_release_date = form.get("main_release_date")
