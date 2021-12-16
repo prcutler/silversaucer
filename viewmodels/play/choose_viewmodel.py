@@ -10,12 +10,13 @@ class AlbumChooseViewModel(ViewModelBase):
     def __init__(self, request: Request):
         super().__init__(request)
 
-        self.folder_id = ChooseService.get_folder_id_list()
+        self.folder_id = ChooseService.get_choose_data()
         self.folder_number = ChooseService.get_folder_id_list()
-        self.artist_name: ChooseService.get_artist_name()
         self.release_title = ChooseService.get_album_names()
-        self.album_id = ChooseService.get_album_id()
+        self.artist_name: ChooseService.get_artist_name()
         self.release_date: Optional[int] = None
+        self.genres: Optional[List[str]] = None
+        self.album_id = ChooseService.get_album_id()
         self.genres: Optional[List[str]] = None
         self.main_release_date: Optional[int] = None
 

@@ -11,8 +11,7 @@ class ChooseInfo:
         album_release_date: str,
     ):
 
-        self.artist_name = artist_name
-        self.folder = folder
+        self.folder = folder  # Folder ID
         self.folder_number = folder_number
         self.release_title = release_title
         self.artist_name = artist_name
