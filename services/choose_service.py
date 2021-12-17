@@ -1,90 +1,59 @@
-import json
-
-import fastapi
-import requests
-from fastapi_chameleon import template
-from starlette import status
 from starlette.requests import Request
 
 import data.config as config
-
-# Discogs API Url for different folders in a collection
-folder_url = config.discogs_url + "users/" + config.discogs_user + "/collection/folders"
-
-api_token = config.discogs_user_token
-
-
-# Get Folder Data and API call
-folder_api = folder_url + "?=" + api_token
-
-response = requests.get(folder_api)
-folder_json = response.json()
-
-folder_data = folder_json
-json_folders = folder_data["folders"]
-
-# Get Album Data and API Call
-album_json = folder_url + "/" + str(2162484) + "/releases?" + api_token
-album_response = requests.get(album_json)
-album_json = album_response.json()
+from data.choose import ChooseInfo
+from data.config import my_data
 
 
 class ChooseService:
-    def get_folder_name_list():
 
-        for get_folder_name in json_folders:
-            folder_name = get_folder_name["name"]
-            # print("folder name: ", folder_name)
+    count = 0
 
-        return folder_name
+    def get_choose_data():
+        count = 0
 
-    def get_folder_id_list():
+        folder_data = []
+        folder_id_data = []
 
-        folder_id_list = []
+        for folders in my_data.collection_folders:
+            folder = my_data.collection_folders[count]
+            folder_id = my_data.collection_folders.id[count]
+            print(folder, folder.name)
+            count += 1
 
-        for get_folder_id in json_folders:
-            folder_id = get_folder_id["id"]
-            print("folder id: ", folder_id)
+            folder_data.append(folder)
+            folder_id_data.append(folder_id)
 
-            folder_id_list.append(folder_id)
-            print(folder_id_list)
+            return folder_data, folder_id_data
 
-            return folder_id_list
+        def get_album_data():
+            release_data = config.my_data
 
-    def get_album_id_list():
+            artist_count = 0
 
-        artist_counter = 0
+            for artist_name in release_data.release(album_release_id).artists:
+                artist_name = (
+                    release_data.release(album_release_id).artists[artist_count].name
+                )
 
-        for get_artist_id in album_json["releases"]:
-            artist_id = album_json["releases"][artist_counter]
-            artist_counter += 1
-            print(artist_id)
+            artist_count += 1
 
-            print("Artist ID: ", artist_id)
-            return artist_id
+            release_id = album_release_id
 
-    def get_album_id():
+            artist_id = release_data.release(album_release_id).artists[0].name
+            release_title = release_data.release(album_release_id).title
+            genres = release_data.release(album_release_id).genres
 
-        album_counter = 0
-
-        for get_album_id in album_json["releases"]:
-            album_id = album_json["releases"][album_counter]["id"]
-            album_counter += 1
-            print("album id: ", album_id)
-
-        return album_id
-
-    def get_artist_names():
-
-        artist_names = album_json["artists"]["name"]
-        print(artist_names)
-
-        return artist_names
-
-    def get_album_names():
-
-        pass
-
-        # album_names = json_folders["title"]
-
-        # return album_names
+        choose_info = ChooseInfo(
+            folder,
+            folder_number,
+            release_id,
+            release_title,
+            artist_name,
+            release_date,
+            genres,
+            main_release_date,
+            album_release_date,
+        )
+        # print("Genres: ", genres)
+        return album_info

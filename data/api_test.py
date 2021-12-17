@@ -10,6 +10,8 @@ print(dir(d.release(20017387)))
 
 print(d.release(20017387).genres)
 
+print("Title: ", d.release(20017387).title)
+
 # print(discogs_data.identity().collection_foldes[8].releases[chvrches_screen_violence].release.id)
 # print(discogs_data.release(20017387))
 # print(d.release(20017387).url)
@@ -27,6 +29,8 @@ print(dir(d.master))
 print(d.release(20017387).images[0])
 # print(dir(d.release(20017387).value))
 
+print(d.release(20017387).master.fetch("year"))
+print(d.release(20017387).artists[0].url)
 
 # main_release_date = d.master.items
 # print(main_release_date)
