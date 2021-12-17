@@ -6,3 +6,4 @@ aiofiles
 requests
 python-multipart
 python3-discogs-client
+gunicorn
