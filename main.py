@@ -10,7 +10,7 @@ app = fastapi.FastAPI()
 
 def main():
     configure()
-    uvicorn.run(app, host="127.0.01", port=8000, log_level="info")
+    # :uvicorn.run(app, host="127.0.01", port=8000, log_level="info")
 
 
 def configure():
