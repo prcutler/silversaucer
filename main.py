@@ -5,7 +5,7 @@ from starlette.staticfiles import StaticFiles
 
 from views import account, home, play, today
 
-api = fastapi.FastAPI()
+app = fastapi.FastAPI()
 
 
 def main():
