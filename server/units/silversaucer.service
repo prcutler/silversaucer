@@ -1,0 +1,24 @@
+[Unit]
+Description=gunicorn uvicorn service for Silversaucer.com
+After=syslog.target
+
+[Service]
+ExecStart=/var/www/silversaucer/html/.venv/bin/gunicorn -b 127.0.0.1:8000 -w 4 -k uvicorn.workers.UvicornWorker main:api --name silversaucer --chdir /var/www/silversaucer/html  --access-logfile /var/www/silversaucer/logs/access.log --error-logfile /var/www/silversaucer/logs/errors.log --user apiuser
+
+# \/ \/ <- Added post recording for better restart perf.
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+# /\ /\ <- Added post recording for better restart perf.
+
+# Requires systemd version 211 or newer
+RuntimeDirectory=/var/www/silversaucer/html/
+Restart=always
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+
+
+[Install]
+WantedBy=multi-user.target
