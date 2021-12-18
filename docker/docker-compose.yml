@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+
+  backend:
+    container_name: app
+    restart: unless-stopped
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - ..:/app
+    ports:
+      - "80:8000"
+    networks:
+      - net
+
+
+networks:
+  net:
