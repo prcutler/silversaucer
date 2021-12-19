@@ -10,6 +10,7 @@ from viewmodels.play.choose_viewmodel import AlbumChooseViewModel
 from viewmodels.play.play_album_viewmodel import PlayAlbumViewModel
 from viewmodels.play.play_single_viewmodel import PlaySingleViewModel
 from viewmodels.play.random_viewmodel import RandomViewModel
+from viewmodels.play.soon_viewmodel import SoonViewModel
 
 router = fastapi.APIRouter()
 
@@ -19,6 +20,13 @@ router = fastapi.APIRouter()
 def album_choice(request: Request):
     vm = AlbumChooseViewModel(request)
     return vm.to_dict()
+
+
+@router.get("/play/soon")
+@template(template_file="play/soon.pt")
+def soon():
+
+    return {}
 
 
 @router.post("/play/choose")
