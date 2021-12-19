@@ -1,0 +1,20 @@
+alerts:
+- rule: DEPLOYMENT_FAILED
+- rule: DOMAIN_FAILED
+name: silversaucer
+region: nyc
+services:
+- environment_slug: python
+  github:
+    branch: main
+    deploy_on_push: true
+    repo: prcutler/silversaucer
+  http_port: 8080
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  name: silversaucer
+  routes:
+  - path: /
+  run_command: gunicorn --worker-tmp-dir /dev/shm silversaucer.wsgi --config gunicorn.conf.py
+    main:app
+  source_dir: /
