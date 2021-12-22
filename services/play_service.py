@@ -46,9 +46,10 @@ class RandomRecordService:
         release_url = release_data.release(release_id).url
         release_title = release_data.release(album_release_id).title
 
-        print("release title in service: , ", release_title)
+        #        print("release title in service: , ", release_title)
 
         release_image_url = release_data.release(album_release_id).images[0]["uri"]
+        #        print("release image url in service: , ", release_image_url)
 
         genres = release_data.release(album_release_id).genres
         album_release_date = release_data.release(album_release_id).year
@@ -88,7 +89,7 @@ class RandomRecordService:
             track_duration,
             track_position,
         )
-        print("release title in album_info: ", album_info.release_title)
+        #        print("release title in album_info: ", album_info.release_title)
 
         print(
             album_info.artist_name,
