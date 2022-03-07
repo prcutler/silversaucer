@@ -7,7 +7,7 @@ from starlette.staticfiles import StaticFiles
 
 from data import db_session
 
-from views import account, home, play, today
+from views import account, home, play, today, api
 
 app = fastapi.FastAPI()
 
@@ -38,6 +38,7 @@ def configure_routes():
     app.include_router(play.router)
     app.include_router(today.router)
     app.include_router(account.router)
+    app.include_router(api.router)
 
 
 if __name__ == "__main__":
