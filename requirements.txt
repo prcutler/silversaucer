@@ -1,5 +1,5 @@
 fastapi
-uvicorn
+uvicorn~=0.17.5
 fastapi-chameleon
 starlette==0.16.0
 aiofiles
@@ -7,3 +7,5 @@ requests
 python-multipart
 python3-discogs-client
 gunicorn
+SQLAlchemy
+passlib~=1.7.4
