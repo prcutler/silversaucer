@@ -3,7 +3,7 @@ from typing import List, Optional
 from starlette.requests import Request
 
 from viewmodels.shared.viewmodel import ViewModelBase
-from services.api_service import get_json_data as get_json
+from services import api_service
 
 
 class APIJsonViewmodel(ViewModelBase):
@@ -12,7 +12,9 @@ class APIJsonViewmodel(ViewModelBase):
 
         self.image_url: str = ""
         self.artist: str = ""
-        self.title: str = ""
+        self.album: str = ""
 
     async def load(self) -> None:
-        self.image_url = await get_json()
+        self.image_url = await api_service.get_image_url_json()
+        self.artist = await api_service.get_artist_json()
+        self.album = await api_service.get_album_json()

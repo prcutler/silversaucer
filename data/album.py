@@ -3,7 +3,6 @@ import sqlalchemy as sa
 from data.modelbase import SqlAlchemyBase
 
 
-
 class AlbumInfo:
     def __init__(
         self,
