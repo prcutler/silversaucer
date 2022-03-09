@@ -69,8 +69,9 @@ async def album_choice_post(request: Request):
 
 @router.get("/play/play-album")
 @template(template_file="play/play-album.pt")
-def now_playing(request: Request):
+async def now_playing(request: Request):
     vm = PlayAlbumViewModel(request)
+    await vm.load()
 
     return vm.to_dict()
 
