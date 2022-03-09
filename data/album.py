@@ -1,5 +1,5 @@
-from typing import List
 import sqlalchemy as sa
+from typing import List, Optional
 from data.modelbase import SqlAlchemyBase
 
 
