@@ -27,6 +27,8 @@ class PlayAlbumViewModel(ViewModelBase):
         self.track_duration: Optional[List](str) = None
         self.track_position: Optional[List](str) = None
         self.random_saying = None
+        self.login_status = self.is_logged_in
+        print("Login status: ", self.login_status)
 
     async def load(self):
         random_album_release_id = RandomRecordService.get_folder_count2(8)
@@ -47,4 +49,8 @@ class PlayAlbumViewModel(ViewModelBase):
         self.track_position: Optional[List](str) = release_data.track_position
         self.random_saying = data.random_sayings.get_random_saying()
 
-        album_api_data = await api_service.update_api_db(self.release_title, self.artist_name, self.release_image_url)
+        if self.login_status is False:
+            print("False")
+            pass
+        else:
+            album_api_data = await api_service.update_api_db(self.release_title, self.artist_name, self.release_image_url)

@@ -5,7 +5,7 @@ from fastapi import Request, Response
 
 from infrastructure.num_convert import try_int
 
-auth_cookie_name = "pypi_account"
+auth_cookie_name = "silver_saucer"
 
 
 def set_auth(response: Response, user_id: int):
