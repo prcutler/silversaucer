@@ -29,23 +29,23 @@ def register(request: Request):
     return vm.to_dict()
 
 
-@router.post('/account/register', include_in_schema=False)
-@template()
-async def register(request: Request):
-    vm = RegisterViewModel(request)
-    await vm.load()
+#@router.post('/account/register', include_in_schema=False)
+#@template()
+#async def register(request: Request):
+#    vm = RegisterViewModel(request)
+#    await vm.load()
 
-    if vm.error:
-        return vm.to_dict()
+#    if vm.error:
+#        return vm.to_dict()
 
     # Create the account
-    account = await user_service.create_account(vm.name, vm.email, vm.password)
+#    account = await user_service.create_account(vm.name, vm.email, vm.password)
 
     # Login user
-    response = fastapi.responses.RedirectResponse(url='/account', status_code=status.HTTP_302_FOUND)
-    cookie_auth.set_auth(response, account.id)
+#    response = fastapi.responses.RedirectResponse(url='/account', status_code=status.HTTP_302_FOUND)
+#    cookie_auth.set_auth(response, account.id)
 
-    return response
+#    return response
 
 
 # ################### LOGIN #################################
