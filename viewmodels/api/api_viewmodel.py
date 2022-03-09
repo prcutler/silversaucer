@@ -14,5 +14,5 @@ class DataViewModel(ViewModelBase):
 
     async def load(self):
         self.album = await api_service.get_album_json()
-        self.artist = "Artist"
-        self.image_url = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+        self.artist = await api_service.get_artist_json()
+        self.image_url = await api_service.get_image_url_json()
