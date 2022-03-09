@@ -1,18 +1,28 @@
 <div metal:use-macro="load: ../shared/_layout.pt">
     <div metal:fill-slot="content" tal:omit-tag="True">
-    <div class="form-container">
-        <form action="" method="POST" class="account-form">
-            <h1>Register at PyPI</h1>
 
-            <input name="name" type="text" placeholder=" Your name" class="form-control" value="${ name }" required>
+
+    <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column ">
+
+        <div class="form-container">
+            <form action="" method="POST" class="account-form">
+                <h1>Register</h1>
+
             <input name="email" type="email" placeholder=" Your email address" class="form-control" value="${ email }" required>
+            <br />
             <input name="password" minlength="5" type="password" placeholder=" Password" class="form-control" value="${ password }" required>
-            <input name="age" type="number" min="18" max="120" placeholder=" Your age in years" style="display: block; width: 100%" required>
+            <!-- input name="age" type="number" min="18" max="120" placeholder=" Your age in years" style="display: block; width: 100%" required -->
+            <br />
             <button type="submit" class="btn btn-danger">Register</button>
-            <div style="clear: both;"></div>
+            <br />
+            <br />
+                <div style="clear: both;"></div>
+                <br /><br /><br />
 
-            <div class="error-msg" tal:condition="error">${ error }</div>
-        </form>
+                <div class="error-msg" tal:condition="error">${ error }</div>
+            </form>
+
+        </div>
     </div>
     </div>
 

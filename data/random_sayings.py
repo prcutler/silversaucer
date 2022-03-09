@@ -2,7 +2,6 @@ import random
 
 random_sayings = [
     "Listen to this, meatbag:",
-    "Rock out with your.. nevermind.",
     "Put these tunes on:",
     "Head bang to this album:",
     "Turn the volume up to 11 and play this:",
