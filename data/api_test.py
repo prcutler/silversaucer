@@ -1,6 +1,5 @@
 import config
 import discogs_client
-from discogs_client.models import Master
 
 d = discogs_client.Client(config.agent, user_token=config.my_token)
 
@@ -12,7 +11,7 @@ print(d.release(20017387).genres)
 
 print("Title: ", d.release(20017387).title)
 
-# print(discogs_data.identity().collection_foldes[8].releases[chvrches_screen_violence].release.id)
+# print(discogs_data.identity().collection_folders[8].releases[chvrches_screen_violence].release.id)
 # print(discogs_data.release(20017387))
 # print(d.release(20017387).url)
 print(d.release(11589538).artists, d.release(11589538).title)

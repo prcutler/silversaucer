@@ -1,6 +1,4 @@
-import sqlalchemy as sa
-from typing import List, Optional
-from data.modelbase import SqlAlchemyBase
+from typing import List
 
 
 class AlbumInfo:
@@ -37,5 +35,3 @@ class AlbumInfo:
         self.track_title = track_title
         self.track_duration = track_duration
         self.track_position = track_position
-
-
