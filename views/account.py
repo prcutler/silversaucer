@@ -37,7 +37,7 @@ async def index(request: Request):
 #    if vm.error:
 #        return vm.to_dict()
 
-    # Create the account
+    # Account creation
 #    account = await user_service.create_account(vm.name, vm.email, vm.password)
 
     # Login user
