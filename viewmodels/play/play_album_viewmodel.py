@@ -3,7 +3,6 @@ from typing import List, Optional
 from starlette.requests import Request
 
 import data.random_sayings
-from data.album import AlbumInfo
 from services.play_service import RandomRecordService
 from services import api_service
 from viewmodels.shared.viewmodel import ViewModelBase
@@ -13,7 +12,7 @@ class PlayAlbumViewModel(ViewModelBase):
     def __init__(self, request: Request):
         super().__init__(request)
 
-        self.release_id: str = None
+        self.release_id = None
         self.release_url = None
         self.artist_id = None
         self.artist_url = None
@@ -53,4 +52,5 @@ class PlayAlbumViewModel(ViewModelBase):
             print("False")
             pass
         else:
-            album_api_data = await api_service.update_api_db(self.release_title, self.artist_name, self.release_image_url)
+            album_api_data = await api_service.update_api_db(self.release_title,
+                                                             self.artist_name, self.release_image_url)
