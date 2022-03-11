@@ -1,16 +1,8 @@
 import random
 
-from sqlalchemy import text
-from sqlalchemy import func
-from sqlalchemy.future import select
-
-from data import db_session
-
 import data.config as config
 from data.album import AlbumInfo
 from data.config import my_data
-from data.single import SingleInfo
-from data.api_json import JSONData
 
 
 class RandomRecordService:
@@ -113,6 +105,7 @@ class RandomRecordService:
 
         return album_info
 
+    @staticmethod
     def single_random_folder():
         get_single_random_folder = random.randint(1, 3)
 

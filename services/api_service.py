@@ -1,10 +1,8 @@
-from typing import Dict, Any
+from typing import Any
 
-import data.config as config
 from data.api_json import JSONData
 from sqlalchemy.future import select
 from data import db_session
-from services import api_service
 
 
 async def get_album_json() -> dict[str, Any]:
@@ -55,6 +53,3 @@ async def update_api_db(album, artist, image_url):
         api_data.image_url = image_url
 
         await session.commit()
-
-
-

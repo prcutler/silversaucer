@@ -9,8 +9,7 @@ from viewmodels.play.choose_results_viewmodel import ChooseResultsViewModel
 from viewmodels.play.choose_viewmodel import AlbumChooseViewModel
 from viewmodels.play.play_album_viewmodel import PlayAlbumViewModel
 from viewmodels.play.play_single_viewmodel import PlaySingleViewModel
-from viewmodels.play.random_viewmodel import RandomViewModel
-from viewmodels.play.soon_viewmodel import SoonViewModel
+
 
 router = fastapi.APIRouter()
 
@@ -78,7 +77,7 @@ async def now_playing(request: Request):
 
 @router.get("/play/play-single")
 @template(template_file="play/play-single.pt")
-def playsingle(request: Request):
+def play_single(request: Request):
     vm = PlaySingleViewModel(request)
 
     return vm.to_dict()

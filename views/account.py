@@ -9,7 +9,6 @@ from infrastructure import cookie_auth
 from services import user_service
 from viewmodels.account.account_viewmodel import AccountViewModel
 from viewmodels.account.login_viewmodel import LoginViewModel
-from viewmodels.account.register_viewmodel import RegisterViewModel
 
 router = fastapi.APIRouter()
 
@@ -22,23 +21,23 @@ async def index(request: Request):
     return vm.to_dict()
 
 
-#@router.get('/account/register', include_in_schema=False)
-#@template()
-#def register(request: Request):
+# @router.get('/account/register', include_in_schema=False)
+# @template()
+# def register(request: Request):
 #    vm = RegisterViewModel(request)
 #    return vm.to_dict()
 
 
-#@router.post('/account/register', include_in_schema=False)
-#@template()
-#async def register(request: Request):
+# @router.post('/account/register', include_in_schema=False)
+# @template()
+# async def register(request: Request):
 #    vm = RegisterViewModel(request)
 #    await vm.load()
 
 #    if vm.error:
 #        return vm.to_dict()
 
-    # Create the account
+    # Account creation
 #    account = await user_service.create_account(vm.name, vm.email, vm.password)
 
     # Login user
