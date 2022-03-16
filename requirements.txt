@@ -9,3 +9,4 @@ python3-discogs-client
 gunicorn
 SQLAlchemy
 passlib~=1.7.4
+pillow
