@@ -3,9 +3,13 @@ from typing import Any
 from data.api_json import JSONData
 from sqlalchemy.future import select
 from data import db_session
+from data import config
 
 from PIL import Image
+
 import requests
+
+import paho.mqtt.client as mqtt
 
 
 async def get_album_json() -> dict[str, Any]:
@@ -62,4 +66,22 @@ async def get_discogs_image(release_image_url):
     image_dl = requests.get(release_image_url, stream=True).raw
     download = Image.open(image_dl)
     download.save('static/img/album-art/image_600.jpg')
+
+    img = Image.open('static/img/album-art/image_600.jpg')
+    # img.quantize(colors=256, method=2)
+    smol_img = img.resize((320, 320))
+    convert = smol_img.convert(mode="P", palette=Image.WEB)
+    convert.save('static/img/album-art/image_300.bmp')
+
+
+async def publish_image(image_url):
+    client = mqtt.Client()
+
+    client.username_pw_set(config.mqtt_user, config.mqtt_pw)
+    client.connect("mqtt.silversaucer.com", 1883)
+
+    client.publish("vinylart", "Ping!")
+
+    client.disconnect()
+
 
