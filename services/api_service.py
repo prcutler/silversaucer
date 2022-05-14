@@ -67,11 +67,18 @@ async def get_discogs_image(release_image_url):
     download = Image.open(image_dl)
     download.save('static/img/album-art/image_600.jpg')
 
-    img = Image.open('static/img/album-art/image_600.jpg')
+    #img = Image.open('static/img/album-art/image_600.jpg')
     # img.quantize(colors=256, method=2)
-    smol_img = img.resize((320, 320))
-    convert = smol_img.convert(mode="P", palette=Image.WEB)
-    convert.save('static/img/album-art/image_300.bmp')
+    #smol_img = img.resize((320, 320))
+    #convert = smol_img.convert(mode="P", palette=Image.WEB)
+    #convert.save('static/img/album-art/image_300.bmp')
+
+    size = (320, 320)
+    num_colors = 64
+    img = Image.open('static/img/album-art/image_600.jpg')
+    img = img.resize(size)
+    newimg = img.convert(mode='P', colors=num_colors)
+    newimg.save('static/img/album-art/image_300.bmp')
 
 
 async def publish_image(image_url):
