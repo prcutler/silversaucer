@@ -73,13 +73,6 @@ async def get_discogs_image(release_image_url):
     convert = smol_img.convert(mode="P", palette=Image.WEB)
     convert.save('static/img/album-art/image_300.bmp')
 
-#    size = (320, 320)
-#    num_colors = 16
-#    img = Image.open('static/img/album-art/image_600.jpg')
-#    img = img.resize(size)
-#    newimg = img.convert(mode='P', colors=num_colors)
-#    newimg.save('static/img/album-art/image_300.bmp')
-
 
 async def publish_image(image_url):
     client = mqtt.Client()
