@@ -11,7 +11,7 @@ Silver Saucer's main goal is to integrate my record collection, using the Discog
 
 ## Project Goals
 
-I have separted my goals for the project into three phases to help make it more manageable:
+I have separated my goals for the project into three phases to help make it more manageable:
 
 Phase 1 will integrate Discogs to choose a record at random for me to play.
 
