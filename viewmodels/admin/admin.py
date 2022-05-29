@@ -11,7 +11,7 @@ class AdminViewModel(ViewModelBase):
 
         self.release_id: [int] = None
         self.release_url: [str] = None
-        self.artist_id[: str] = None
+        self.artist_id: [str] = None
         self.artist_url: [str] = None
         self.artist_name: [str] = None
         self.release_title: [str] = None
