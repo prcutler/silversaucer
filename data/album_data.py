@@ -25,3 +25,4 @@ class Album(SqlAlchemyBase):
     track_title: List[str] = sa.Column(sa.String)
     track_duration: List[str] = sa.Column(sa.String)
     track_position: List[str] = sa.Column(sa.String)
+    folder: int = sa.Column(sa.Integer)
