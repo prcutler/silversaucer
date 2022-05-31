@@ -3,4 +3,5 @@
 # noinspection PyUnresolvedReferences
 from data.user import User
 # noinspection PyUnresolvedReferences
-# from data.release import Release
+from data.album_data import Album
+# noinspection PyUnresolvedReferences
