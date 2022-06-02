@@ -29,6 +29,6 @@ def admin_index(request: Request):
 async def admin_index(request: Request):
     vm = AdminViewModel(request)
 
-    await admin_service.get_db_data()
+    await admin_service.get_album_db_data()
 
     return vm.to_dict()

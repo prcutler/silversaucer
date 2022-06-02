@@ -6,18 +6,16 @@ from data import db_session
 from data import config
 import discogs_client
 
-
 import requests
 
 me = config.my_data.identity()
+folder = 8
+folder_id = 2162484
 
 
-async def get_db_data():
+async def get_album_db_data():
 
-    folder = 2162484
-    x = 0
-
-    for records in me.collection_folders[8].releases:
+    for records in me.collection_folders[folder].releases:
         album_data = Album()
 
         async with db_session.create_async_session() as session:
@@ -34,7 +32,7 @@ async def get_db_data():
 
                 try:
 
-                    album_data.folder = folder
+                    album_data.folder = folder_id
                     album_data.release_id = records.release.id
                     album_data.release_url = records.release.url
                     album_data.artist_id = records.release.artists[0].id
@@ -42,8 +40,8 @@ async def get_db_data():
                     album_data.release_title = records.release.title
                     album_data.artist_url = records.release.artists[0].url
 
-                    #album_data.genres = records.release.genres
-                    album_data.release_date = records.release.year
+                    album_data.genres = records.release.genres[0]
+                    album_data.album_release_date = records.release.year
 
                     if records.release.images[0]["uri"] is not None:
                         album_data.release_image_url = records.release.images[0]["uri"]
@@ -65,7 +63,7 @@ async def get_db_data():
                 except discogs_client.client.HTTPError:
                     pass
 
-        print(records)
+        print(records, records.release.year)
 
 
 async def update_db_data():
