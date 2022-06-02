@@ -1,0 +1,20 @@
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content" tal:omit-tag="True">
+
+<div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column">
+
+        <div class="page-core">
+            <h1>Welcome, Paul</h1>
+
+            <div>
+                What would you like to do today?
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-danger">Create Database</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>

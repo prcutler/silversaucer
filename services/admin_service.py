@@ -1,6 +1,5 @@
 from typing import Any
 
-from data.api_json import JSONData
 from data.album_data import Album
 from sqlalchemy.future import select
 from data import db_session
