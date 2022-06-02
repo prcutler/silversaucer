@@ -9,7 +9,8 @@ import requests
 
 me = config.my_data.identity()
 
-async def get_db_data() -> dict:
+
+async def get_db_data():
 
     album_data = Album()
 
@@ -34,5 +35,6 @@ async def get_db_data() -> dict:
             await session.commit()
  #       print(records)
 
-async def update_db_data -> dict:
+
+async def update_db_data():
     pass

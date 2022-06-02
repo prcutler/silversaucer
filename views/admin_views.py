@@ -5,6 +5,7 @@ from starlette.requests import Request
 
 from viewmodels.admin.admin_viewmodel import AdminViewModel
 from viewmodels.shared.viewmodel import ViewModelBase
+from services import admin_service
 
 router = fastapi.APIRouter()
 
@@ -16,5 +17,18 @@ def admin_index(request: Request):
     return vm.to_dict()
 
 
+@router.get("/admin/")
+@template(template_file="admin/index.pt")
+def admin_index(request: Request):
+    vm = AdminViewModel(request)
+    return vm.to_dict()
 
 
+@router.get("/admin/create_db")
+@template(template_file="admin/index.pt")
+async def admin_index(request: Request):
+    vm = AdminViewModel(request)
+
+    await admin_service.get_db_data()
+
+    return vm.to_dict()
