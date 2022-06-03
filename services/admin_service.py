@@ -36,7 +36,7 @@ async def get_album_db_data():
                     album_data.release_id = records.release.id
                     album_data.release_url = records.release.url
                     album_data.artist_id = records.release.artists[0].id
-                    album_data. artist_name = records.release.artists[0].name
+                    album_data.artist_name = records.release.artists[0].name
                     album_data.release_title = records.release.title
                     album_data.artist_url = records.release.artists[0].url
 
@@ -68,3 +68,16 @@ async def get_album_db_data():
 
 async def update_db_data():
     pass
+
+
+async def get_genre_data():
+    pass
+
+
+async def get_main_release_data():
+    pass
+
+
+async def get_tracklist_data():
+    pass
+

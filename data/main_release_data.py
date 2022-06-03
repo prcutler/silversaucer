@@ -5,7 +5,7 @@ import sqlalchemy as sa
 from data.modelbase import SqlAlchemyBase
 
 
-class Album(SqlAlchemyBase):
+class Main_Data(SqlAlchemyBase):
     __tablename__ = 'main_release_data'
 
     release_id: int = sa.Column(sa.Integer, index=True, primary_key=True)
