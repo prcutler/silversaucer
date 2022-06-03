@@ -32,3 +32,13 @@ async def admin_index(request: Request):
     await admin_service.get_album_db_data()
 
     return vm.to_dict()
+
+
+@router.get("/admin/main_data")
+@template(template_file="admin/index.pt")
+async def admin_index(request: Request):
+    vm = AdminViewModel(request)
+
+    await admin_service.get_main_release_data()
+
+    return vm.to_dict()

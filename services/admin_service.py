@@ -6,7 +6,11 @@ from data import db_session
 from data import config
 import discogs_client
 
-import requests
+from data.album_data import Album
+from data.genre_data import Genre
+from data.main_release_data import Main_Data
+from data.tracklist_data import Tracklists
+
 
 me = config.my_data.identity()
 folder = 8
@@ -48,14 +52,6 @@ async def get_album_db_data():
                     else:
                         continue
 
-                    if records.release.master is not None:
-                        album_data.main_release_date = records.release.master.fetch("year")
-                        album_data.discogs_main_id = records.release.master.id
-                        album_data.discogs_main_url = records.release.master.url
-
-                    else:
-                        continue
-
                     async with db_session.create_async_session() as session:
                         session.add(album_data)
                         await session.commit()
@@ -75,7 +71,27 @@ async def get_genre_data():
 
 
 async def get_main_release_data():
-    pass
+
+    async with db_session.create_async_session() as session:
+        release_id_query = select(Album.release_id).filter(Album.release_id)
+        results = await session.execute(release_id_query)
+
+        release_id_results = results.scalar()
+
+        for records in release_id_results:
+            main_data = Main_Data()
+
+            if records.release.master is not None:
+                main_data.main_release_date = records.release.master.fetch("year")
+                main_data.discogs_main_id = records.release.master.id
+                main_data.discogs_main_url = records.release.master.url
+
+                async with db_session.create_async_session() as session:
+                    session.add(main_data)
+                    await session.commit()
+
+            else:
+                continue
 
 
 async def get_tracklist_data():
