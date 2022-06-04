@@ -8,6 +8,7 @@ from data.genre_data import Genre
 from data.main_release_data import Main_Data
 from data.tracklist_data import Tracklists
 import sqlalchemy
+import json
 
 
 me = config.my_data.identity()
@@ -65,48 +66,37 @@ async def update_db_data():
 
 
 async def get_genre_data():
-    async with db_session.create_async_session() as session:
-        release_id_query = select(Album.release_id)
-        results = await session.execute(release_id_query)
+    # Need to match the int from each row and pass it to the method to get the main data
+    for records in me.collection_folders[folder].releases:
+        genre_data = Genre()
 
-        # Get all rows
-        release_id_results = results.all()
-        print(release_id_results[1], type(release_id_results[1]))
+        async with db_session.create_async_session() as session:
+            release_id_query = select(Genre.release_id).filter(Genre.release_id == records.release.id)
+            results = await session.execute(release_id_query)
 
-        # Need to match the int from each row and pass it to the method to get the main data
-        for records in me.collection_folders[folder].releases:
-            genre_data = Genre()
+            release_id_results = results.scalar_one_or_none()
 
-            try:
+            if records.release.id == release_id_results:
+                print("Record Release ID: ", records.release.id,
+                      "SQL Query Results: ", release_id_results, "Already in db, pass")
+                pass
 
-                if records == me.collection_folders[folder].releases:
-                    print(records.release.id, " Already in db, pass")
-                    pass
-
-                else:
-                    genre_data.release_id = records.release.id
+            else:
+                genre_data.release_id = records.release.id
 
                 for genres in records.release.genres:
+                    print("Genre: ", genres)
+                    genre_data.release_id = records.release.id
+                    genre_data.genres = genres
 
-                    try:
-                        genre_data.release_id = records.release.id
-                        genre_data.genres = genres
+                    async with db_session.create_async_session() as session:
+                        session.add(genre_data)
+                        await session.commit()
 
-                    except AttributeError:
-                        pass
+            print("Adding to db: ", genre_data.release_id, genre_data.genres)
 
-                    except IndexError:
-                        genre_data.genres = "None"
 
-                print("Adding to db: ", genre_data.release_id, genre_data.genres)
 
-                async with db_session.create_async_session() as session:
-                    session.add(genre_data)
-                    await session.commit()
-
-            except sqlalchemy.exc.IntegrityError:
-                print("Already in db, pass")
-                pass
 
 
 async def get_main_release_data():
