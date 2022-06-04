@@ -65,7 +65,48 @@ async def update_db_data():
 
 
 async def get_genre_data():
-    pass
+    async with db_session.create_async_session() as session:
+        release_id_query = select(Album.release_id)
+        results = await session.execute(release_id_query)
+
+        # Get all rows
+        release_id_results = results.all()
+        print(release_id_results[1], type(release_id_results[1]))
+
+        # Need to match the int from each row and pass it to the method to get the main data
+        for records in me.collection_folders[folder].releases:
+            genre_data = Genre()
+
+            try:
+
+                if records == me.collection_folders[folder].releases:
+                    print(records.release.id, " Already in db, pass")
+                    pass
+
+                else:
+                    genre_data.release_id = records.release.id
+
+                for genres in records.release.genres:
+
+                    try:
+                        genre_data.release_id = records.release.id
+                        genre_data.genres = genres
+
+                    except AttributeError:
+                        pass
+
+                    except IndexError:
+                        genre_data.genres = "None"
+
+                print("Adding to db: ", genre_data.release_id, genre_data.genres)
+
+                async with db_session.create_async_session() as session:
+                    session.add(genre_data)
+                    await session.commit()
+
+            except sqlalchemy.exc.IntegrityError:
+                print("Already in db, pass")
+                pass
 
 
 async def get_main_release_data():
