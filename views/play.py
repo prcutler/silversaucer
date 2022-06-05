@@ -77,7 +77,9 @@ async def now_playing(request: Request):
 
 @router.get("/play/play-single")
 @template(template_file="play/play-single.pt")
-def play_single(request: Request):
+async def play_single(request: Request):
     vm = PlaySingleViewModel(request)
+
+    await vm.load()
 
     return vm.to_dict()

@@ -1,7 +1,7 @@
 <div metal:use-macro="load: ../shared/_layout.pt">
     <div metal:fill-slot="content" tal:omit-tag="True">
 
-<div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column">
+<div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column min-vh-75">
 
         <div class="page-core">
             <h1>Welcome, Paul</h1>

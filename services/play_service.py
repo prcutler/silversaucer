@@ -22,26 +22,34 @@ async def get_album_data(folder):
         release_id_results = results.all()
         total_count = len(release_id_results)
 
-        album_pick = randint(1, total_count)
-        print(total_count, album_pick)
+        random_result = randint(1, total_count)
+        # print(total_count, random_result)
 
-        album_id_query = select(Album.release_id).filter(Album.id == album_pick)
-
+        album_id_query = select(Album).filter(Album.folder == folder)
         results = await session.execute(album_id_query)
+        album_rows = results.all()
+        # print("Album ID:", album_rows)
 
-        album_id = results.scalar_one_or_none()
+        for album_id in album_rows[random_result]:
+            album_id = album_id.release_id
+            # print(album_rows)
 
-        artist_count = 0
         for artist_name in me.release(album_id).artists:
+            artist_count = 0
+
             artist_name = (
                 me.release(album_id).artists[artist_count].name
             )
 
             artist_count += 1
-            print(artist_name)
+            # print(artist_name)
 
-        artist_id = me.release(album_id).artists[0].id
-        artist_url = me.release(album_id).artists[0].url
+            artist_id = me.release(album_id).artists[0].id
+
+            try:
+                artist_url = me.release(album_id).artists[0].url
+            except me.exceptions.HTTPError:
+                artist_url = None
 
         release_url = me.release(album_id).url
         release_title = me.release(album_id).title
@@ -54,11 +62,10 @@ async def get_album_data(folder):
         genres = me.release(album_id).genres
         album_release_date = me.release(album_id).year
 
-        main_release_date = me.release(album_id).master.fetch("year")
-        if main_release_date == 0:
-            main_release_date = album_release_date
+        if me.release(album_id).master is not None:
+            main_release_date = me.release(album_id).master.fetch("year")
         else:
-            main_release_date = main_release_date
+            main_release_date = album_release_date
 
         track_title = []
         track_duration = []
@@ -85,7 +92,7 @@ async def get_album_data(folder):
         track_duration,
         track_position,
     )
-    print(album_info, album_info.release_title)
+    print(album_info)
     return album_info
 
 
