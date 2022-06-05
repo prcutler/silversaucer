@@ -33,7 +33,7 @@ class PlayAlbumViewModel(ViewModelBase):
         # random_album_release_id = RandomRecordService.get_folder_count2(8)
         # release_data = RandomRecordService.get_album_data(random_album_release_id)
 
-        release_data = await play_service.get_album_data()
+        release_data = await play_service.get_album_data(2162484)
 
         self.release_id = release_data.release_id
         self.release_url = release_data.release_url

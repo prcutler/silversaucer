@@ -2,7 +2,6 @@ import random
 
 import data.config as config
 from data.album import AlbumInfo
-from data.config import my_data
 
 from sqlalchemy.future import select
 from data import db_session
@@ -11,13 +10,13 @@ from random import randint
 
 
 me = config.my_data
-folder = 8
+# folder = 8
 folder_id = 2162484
 
 
-async def get_album_data():
+async def get_album_data(folder):
     async with db_session.create_async_session() as session:
-        release_id_query = select(Album.release_id)
+        release_id_query = select(Album.release_id).filter(Album.folder == folder)
         results = await session.execute(release_id_query)
 
         release_id_results = results.all()
