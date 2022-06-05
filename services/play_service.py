@@ -32,9 +32,44 @@ async def get_total_count():
 
         album_id = results.scalar_one_or_none()
 
-        artist_id = me.release(album_id).artists[0].name
+        artist_count = 0
+        for artist_name in me.release(album_id).artists:
+            artist_name = (
+                me.release(album_id).artists[artist_count].name
+            )
+
+            artist_count += 1
+            print(artist_name)
+
         artist_url = me.release(album_id).artists[0].url
-        print(album_id, artist_id, artist_url)
+
+        release_url = me.release(album_id).url
+        release_title = me.release(album_id).title
+
+        #        print("release title in service: , ", release_title)
+
+        release_image_url = me.release(album_id).images[0]["uri"]
+        #        print("release image url in service: , ", release_image_url)
+
+        genres = me.release(album_id).genres
+        album_release_date = me.release(album_id).year
+
+        main_release_date = me.release(album_id).master.fetch("year")
+        if main_release_date == 0:
+            main_release_date = album_release_date
+        else:
+            main_release_date = main_release_date
+
+        track_title = []
+        track_duration = []
+        track_position = []
+
+        for tracks in me.release(album_id).tracklist:
+            track_title.append(tracks.title)
+            track_duration.append(tracks.duration)
+            track_position.append(tracks.position)
+
+        print(album_id, artist_name, artist_url, genres, main_release_date)
 
 
 class RandomRecordService:
