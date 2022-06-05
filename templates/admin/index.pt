@@ -8,19 +8,15 @@
 
             <div>
                 What would you like to do today?
+                <br />
             </div>
 
             <div>
-                <a class="btn btn-danger" href="/admin/create_db">Create Database</a>
+                <a class="btn btn-danger" href="/admin/create_db">Update Database</a>
+                <br />
             </div>
             <br />
-            <div>
-                <a class="btn btn-danger" href="/admin/main_data">Add Main Release Data</a>
-            </div>
-            <br />
-            <div>
-                <a class="btn btn-danger" href="/admin/get_genres">Add Genre Data</a>
-            </div>
+
         </div>
     </div>
 </div>
