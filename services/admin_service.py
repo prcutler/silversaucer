@@ -12,13 +12,11 @@ import json
 
 
 me = config.my_data.identity()
-folder = 8
-folder_id = 2162484
 
 
 async def get_album_db_data():
 
-    for records in me.collection_folders[folder].releases:
+    for records in me.collection_folders[0].releases:
         album_data = Album()
 
         async with db_session.create_async_session() as session:
@@ -33,7 +31,7 @@ async def get_album_db_data():
 
             else:
 
-                album_data.folder = folder_id
+                album_data.folder = records.folder_id
                 album_data.release_id = records.release.id
                 album_data.artist_id = records.release.artists[0].id
                 album_data.artist_name = records.release.artists[0].name

@@ -15,12 +15,12 @@ print(me)
 folder = 2162484
 x = 0
 
-print(me.collection_folders)
+print("Me.collection_folders: ", me.collection_folders)
 
 # for item in me.collection_folders[8].releases:
 #    print(item)
 
-for records in me.collection_folders[8].releases:
+for records in me.collection_folders[0].releases:
     release_id = records.release.id
     release_url = records.release.url
     artist_id = records.release.artists[0].id
@@ -31,6 +31,7 @@ for records in me.collection_folders[8].releases:
     genres = records.release.genres
     album_release_date = records.release.year
     main_release_date = records.release.master.fetch("year")
+    folder = records.folder_id
 
     discogs_main_id = records.release.master.id
     #    print(dir(me.collection_folders[8].releases[0]))
@@ -47,4 +48,5 @@ for records in me.collection_folders[8].releases:
         "Album Release Date: ", album_release_date,
         "Main release date: ", main_release_date,
         "Main ID: ", discogs_main_id,
+        "Folder ID: ", folder,
     )
