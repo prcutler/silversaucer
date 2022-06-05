@@ -4,6 +4,38 @@ import data.config as config
 from data.album import AlbumInfo
 from data.config import my_data
 
+from sqlalchemy.future import select
+from data import db_session
+from data.album_data import Album
+from random import randint
+
+
+me = config.my_data
+folder = 8
+folder_id = 2162484
+
+
+async def get_total_count():
+    async with db_session.create_async_session() as session:
+        release_id_query = select(Album.release_id)
+        results = await session.execute(release_id_query)
+
+        release_id_results = results.all()
+        total_count = len(release_id_results)
+
+        album_pick = randint(1, total_count)
+        print(total_count, album_pick)
+
+        album_id_query = select(Album.release_id).filter(Album.id == album_pick)
+
+        results = await session.execute(album_id_query)
+
+        album_id = results.scalar_one_or_none()
+
+        artist_id = me.release(album_id).artists[0].name
+        artist_url = me.release(album_id).artists[0].url
+        print(album_id, artist_id, artist_url)
+
 
 class RandomRecordService:
     @staticmethod

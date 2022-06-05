@@ -50,10 +50,13 @@ async def get_image_url_json() -> dict[str, Any]:
 async def update_api_db(album, artist, image_url):
     async with db_session.create_async_session() as session:
 
-        query = select(JSONData).filter(JSONData.id == 1)
-        results = await session.execute(query)
+        #query = select(JSONData).filter(JSONData.id == 1)
+        #esults = await session.execute(query)
 
-        api_data = results.scalar()
+        #api_data = results.scalar()
+        #print("API Data is: ", api_data)
+
+        api_data = JSONData()
 
         api_data.album = album
         api_data.artist = artist

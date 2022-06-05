@@ -52,3 +52,13 @@ async def admin_index(request: Request):
     await admin_service.get_genre_data()
 
     return vm.to_dict()
+
+
+@router.get("/admin/get_tracks")
+@template(template_file="admin/index.pt")
+async def admin_index(request: Request):
+    vm = AdminViewModel(request)
+
+    await admin_service.get_tracklist_data()
+
+    return vm.to_dict()
