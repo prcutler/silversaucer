@@ -11,7 +11,7 @@
             <ul>
                 <br />
 
-                    <li><a href="${ release_url } "> ${ release_title }</a>  by ${ artist_id }</li>
+                    <li><a href="${ release_url } "> ${ release_title }</a>  by ${ artist_name }</li>
                     <li>Album released: ${ album_release_date }</li>
              <dl>
                         <dt><li>Genres: </li></dt><ul>
