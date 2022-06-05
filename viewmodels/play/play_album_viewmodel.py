@@ -31,8 +31,10 @@ class PlayAlbumViewModel(ViewModelBase):
         print("Login status: ", self.login_status)
 
     async def load(self):
-        random_album_release_id = RandomRecordService.get_folder_count2(8)
-        release_data = RandomRecordService.get_album_data(random_album_release_id)
+        # random_album_release_id = RandomRecordService.get_folder_count2(8)
+        # release_data = RandomRecordService.get_album_data(random_album_release_id)
+
+        release_data = await play_service.get_album_data()
 
         self.release_id = release_data.release_id
         self.release_url = release_data.release_url
@@ -48,7 +50,6 @@ class PlayAlbumViewModel(ViewModelBase):
         self.track_duration: Optional[List](str) = release_data.track_duration
         self.track_position: Optional[List](str) = release_data.track_position
 
-
         self.random_saying = data.random_sayings.get_random_saying()
 
         if self.login_status is False:
@@ -59,6 +60,6 @@ class PlayAlbumViewModel(ViewModelBase):
                                                             self.artist_name, self.release_image_url)
             get_discogs_img = await api_service.get_discogs_image(self.release_image_url)
             publish_img = await api_service.publish_image(self.release_image_url)
-            total_count = await play_service.get_total_count()
+#            total_count = await play_service.get_total_count()
 
 

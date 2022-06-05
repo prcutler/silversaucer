@@ -15,7 +15,7 @@ folder = 8
 folder_id = 2162484
 
 
-async def get_total_count():
+async def get_album_data():
     async with db_session.create_async_session() as session:
         release_id_query = select(Album.release_id)
         results = await session.execute(release_id_query)
@@ -41,6 +41,7 @@ async def get_total_count():
             artist_count += 1
             print(artist_name)
 
+        artist_id = me.release(album_id).artists[0].id
         artist_url = me.release(album_id).artists[0].url
 
         release_url = me.release(album_id).url
@@ -69,7 +70,27 @@ async def get_total_count():
             track_duration.append(tracks.duration)
             track_position.append(tracks.position)
 
-        print(album_id, artist_name, artist_url, genres, main_release_date)
+    album_info = AlbumInfo(
+        album_id,
+        release_url,
+        artist_id,
+        artist_name,
+        release_title,
+        artist_url,
+        release_image_url,
+        genres,
+        # discogs_main_id,
+        main_release_date,
+        album_release_date,
+        track_title,
+        track_duration,
+        track_position,
+    )
+    print(album_info, album_info.release_title)
+    return album_info
+
+
+       # print(album_id, artist_name, artist_url, genres, main_release_date)
 
 
 class RandomRecordService:
