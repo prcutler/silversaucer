@@ -12,16 +12,34 @@ router = fastapi.APIRouter()
 
 @router.get("/admin/index")
 @template(template_file="admin/index.pt")
-def admin_index(request: Request):
+async def admin_index(request: Request):
     vm = AdminViewModel(request)
-    return vm.to_dict()
+
+    await vm.load()
+
+    if vm.login_status is False:
+        response = fastapi.responses.RedirectResponse(
+            url="/", status_code=status.HTTP_302_FOUND
+        )
+        return response
+    else:
+        return vm.to_dict()
 
 
 @router.get("/admin/")
 @template(template_file="admin/index.pt")
-def admin_index(request: Request):
+async def admin_index(request: Request):
     vm = AdminViewModel(request)
-    return vm.to_dict()
+
+    await vm.load()
+
+    if vm.login_status is False:
+        response = fastapi.responses.RedirectResponse(
+            url="/", status_code=status.HTTP_302_FOUND
+        )
+        return response
+    else:
+        return vm.to_dict()
 
 
 @router.get("/admin/create_db")
@@ -29,9 +47,17 @@ def admin_index(request: Request):
 async def admin_index(request: Request):
     vm = AdminViewModel(request)
 
+    await vm.load()
+
     await admin_service.get_album_db_data()
 
-    return vm.to_dict()
+    if vm.login_status is False:
+        response = fastapi.responses.RedirectResponse(
+            url="/", status_code=status.HTTP_302_FOUND
+        )
+        return response
+    else:
+        return vm.to_dict()
 
 
 @router.get("/admin/main_data")
@@ -41,24 +67,11 @@ async def admin_index(request: Request):
 
     await admin_service.get_main_release_data()
 
-    return vm.to_dict()
+    if vm.login_status is False:
+        response = fastapi.responses.RedirectResponse(
+            url="/", status_code=status.HTTP_302_FOUND
+        )
+        return response
+    else:
+        return vm.to_dict()
 
-
-@router.get("/admin/get_genres")
-@template(template_file="admin/index.pt")
-async def admin_index(request: Request):
-    vm = AdminViewModel(request)
-
-    await admin_service.get_genre_data()
-
-    return vm.to_dict()
-
-
-@router.get("/admin/get_tracks")
-@template(template_file="admin/index.pt")
-async def admin_index(request: Request):
-    vm = AdminViewModel(request)
-
-    await admin_service.get_tracklist_data()
-
-    return vm.to_dict()
