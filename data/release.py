@@ -5,7 +5,7 @@ import sqlalchemy as sa
 from data.modelbase import SqlAlchemyBase
 
 
-class Album(SqlAlchemyBase):
+class Release(SqlAlchemyBase):
     __tablename__ = 'mb_release_info'
 
     discogs_id: int = sa.Column(sa.Integer, primary_key=True)
