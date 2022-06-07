@@ -60,12 +60,12 @@ async def admin_index(request: Request):
         return vm.to_dict()
 
 
-@router.get("/admin/main_data")
+@router.get("/admin/mb_data")
 @template(template_file="admin/index.pt")
 async def admin_index(request: Request):
     vm = AdminViewModel(request)
 
-    await admin_service.get_main_release_data()
+    await admin_service.show_mb_id()
 
     if vm.login_status is False:
         response = fastapi.responses.RedirectResponse(

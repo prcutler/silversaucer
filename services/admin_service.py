@@ -5,6 +5,7 @@ import discogs_client
 
 from data.album_data import Album
 from data.genre_data import Genre
+from data.release import Release
 from data.main_release_data import Main_Data
 from data.tracklist_data import Tracklists
 import sqlalchemy
@@ -174,3 +175,21 @@ async def get_tracklist_data():
 
             print("Adding to db: ", tracklists.release_id, tracklists.track_title)
 
+
+async def show_mb_id():
+    async with db_session.create_async_session() as session:
+        query = select(Release.m_rel_id).filter(Album.release_id == Release.discogs_id)
+        results = await session.execute(query)
+        release_id_results = results.all()
+        print("Count: ", len(release_id_results), release_id_results)
+
+        x = 0
+        #print("Results: ", release_id_results[x])
+
+        for musicbrainz_id in release_id_results:
+            #print(musicbrainz_id[0])
+            if musicbrainz_id[0] is not None:
+
+                print(musicbrainz_id[0], x)
+
+            x = x + 1
