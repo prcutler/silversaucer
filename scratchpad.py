@@ -8,45 +8,28 @@ from data import config
 
 import requests
 
+import musicbrainzngs
 
-me = config.my_data.identity()
-print(me)
 
-folder = 2162484
-x = 0
 
-print("Me.collection_folders: ", me.collection_folders)
+musicbrainzngs.set_useragent(
+    "silversaucer",
+    "0.1",
+    "https://github.com/prcutler/silversaucer/",)
 
-# for item in me.collection_folders[8].releases:
-#    print(item)
 
-for records in me.collection_folders[0].releases:
-    release_id = records.release.id
-    release_url = records.release.url
-    artist_id = records.release.artists[0].id
-    artist_name = records.release.artists[0].name
-    release_title = records.release.title
-    artist_url = records.release.artists[0].url
-    release_image_url = records.release.images[0]["uri"]
-    genres = records.release.genres
-    album_release_date = records.release.year
-    main_release_date = records.release.master.fetch("year")
-    folder = records.folder_id
+mb_album_id = 'db5676ca-f922-4ec1-87bf-35b60d71e126'
 
-    discogs_main_id = records.release.master.id
-    #    print(dir(me.collection_folders[8].releases[0]))
-    #    print(dir(me.collection_folders[8]))
-    print(
-        "Release ID: ", release_id,
-        "Release URL: ", release_url,
-        "Artist ID: ", artist_id,
-        "Artist: ", artist_name,
-        "Title: ", release_title,
-        "Artist URL: ", artist_url,
-        "Image URL: ", release_image_url,
-        "Genre list: ", genres,
-        "Album Release Date: ", album_release_date,
-        "Main release date: ", main_release_date,
-        "Main ID: ", discogs_main_id,
-        "Folder ID: ", folder,
-    )
+
+try:
+    result = musicbrainzngs.get_release_by_id(mb_album_id)
+except ReferenceError as exc:
+    print("Something went wrong with the request: %s" % exc)
+else:
+    id = result['release']["id"]
+    album = result['release']["title"]
+    release_date = result['release']['date']
+#    artist = result["artist"]
+#    print("name:\t\t%s" % artist["name"])
+#    print("sort name:\t%s" % artist["sort-name"])
+    print("MusicBrainz ID: ", id, "Album: ", album, "Release Date: ", release_date)
