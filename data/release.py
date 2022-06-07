@@ -6,7 +6,7 @@ from data.modelbase import SqlAlchemyBase
 
 
 class Release(SqlAlchemyBase):
-    __tablename__ = 'mb_release_info'
+    __tablename__ = 'release'
 
     discogs_id: int = sa.Column(sa.Integer, primary_key=True)
 
