@@ -43,7 +43,7 @@ class PlayAlbumViewModel(ViewModelBase):
         self.release_title: Optional[str] = release_data.release_title
         self.release_image_url = release_data.release_image_url
         self.genres = release_data.genres
-        self.album_release_date: Optional[str] = release_data.album_release_date
+        self.album_release_date: Optional[str] = release_data.album_release_year
         self.main_release_date: Optional[str] = release_data.main_release_date
         self.track_title: Optional[List](str) = release_data.track_title
         self.track_duration: Optional[List](str) = release_data.track_duration

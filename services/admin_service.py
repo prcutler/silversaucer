@@ -38,7 +38,7 @@ async def get_album_db_data():
                 album_data.release_title = records.release.title
 
                 album_data.release_url = records.release.url
-                album_data.album_release_date = records.release.year
+                album_data.album_release_year = records.release.year
 
                 try:
                     album_data.artist_url = records.release.artists[0].url
