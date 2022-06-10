@@ -65,7 +65,7 @@ async def admin_index(request: Request):
 async def admin_index(request: Request):
     vm = AdminViewModel(request)
 
-    await admin_service.show_mb_id()
+    await admin_service.update_mb_id()
 
     if vm.login_status is False:
         response = fastapi.responses.RedirectResponse(

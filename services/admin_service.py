@@ -53,7 +53,7 @@ async def get_album_db_data():
                 except TypeError:
                     album_data.release_image_url = "None"
 
-                async with db_session.create_async_session() as session:
+                # async with db_session.create_async_session() as session:
                     session.add(album_data)
                     await session.commit()
 
@@ -176,20 +176,29 @@ async def get_tracklist_data():
             print("Adding to db: ", tracklists.release_id, tracklists.track_title)
 
 
-async def show_mb_id():
+async def update_mb_id():
+
     async with db_session.create_async_session() as session:
-        query = select(Release.m_rel_id).filter(Album.release_id == Release.discogs_id)
+
+        query = select(Release.discogs_id, Release.m_rel_id).filter(Album.release_id == Release.discogs_id)
         results = await session.execute(query)
         release_id_results = results.all()
+
         print("Count: ", len(release_id_results), release_id_results)
+        # print("Tuple [7]", release_id_results[7])
+        # results.all Returns a tuple: (124983, None), (190430, 'e5d96b48-c7dc-4a61-bf54-f32353fe08e5'),
 
-        x = 0
-        #print("Results: ", release_id_results[x])
+        album_data = Album()
 
-        for musicbrainz_id in release_id_results:
-            #print(musicbrainz_id[0])
-            if musicbrainz_id[0] is not None:
+        for discogs_id, mb_id in release_id_results:
 
-                print(musicbrainz_id[0], x)
+            if mb_id is not None:
 
-            x = x + 1
+                album_data.release_id = discogs_id
+                album_data.mb_id = mb_id
+                print("Release ID: ", album_data.release_id, "MusicBrainz ID: ", album_data.mb_id)
+
+                session.add(album_data)
+                # Above line adds a blank row with only mb_id populated
+                await session.commit()
+
