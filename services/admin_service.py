@@ -182,7 +182,7 @@ async def update_mb_id():
 
         query = select(Release.discogs_id, Release.m_rel_id).filter(Album.release_id == Release.discogs_id)
         results = await session.execute(query)
-        release_id_results = results.all()
+        release_id_results = results.fetchall()
 
         print("Count: ", len(release_id_results), release_id_results)
         # print("Tuple [7]", release_id_results[7])
@@ -198,7 +198,7 @@ async def update_mb_id():
                 album_data.mb_id = mb_id
                 print("Release ID: ", album_data.release_id, "MusicBrainz ID: ", album_data.mb_id)
 
-                session.add(album_data)
+                #session.add(album_data)
                 # Above line adds a blank row with only mb_id populated
                 await session.commit()
 

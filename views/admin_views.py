@@ -4,6 +4,7 @@ from starlette import status
 from starlette.requests import Request
 
 from viewmodels.admin.admin_viewmodel import AdminViewModel
+from viewmodels.admin.edit_viewmodel import EditViewModel
 from viewmodels.shared.viewmodel import ViewModelBase
 from services import admin_service
 
@@ -75,3 +76,18 @@ async def admin_index(request: Request):
     else:
         return vm.to_dict()
 
+
+@router.get("/admin/edit")
+@template(template_file="admin/edit-record.pt")
+async def admin_index(request: Request):
+    vm = EditViewModel(request)
+
+    await admin_service.update_mb_id()
+
+    if vm.login_status is False:
+        response = fastapi.responses.RedirectResponse(
+            url="/", status_code=status.HTTP_302_FOUND
+        )
+        return response
+    else:
+        return vm.to_dict()

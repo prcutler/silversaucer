@@ -1,0 +1,18 @@
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content" tal:omit-tag="True">
+
+<div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column min-vh-75">
+
+        <div class="page-core">
+            <h1>Welcome, Paul</h1>
+
+            <div>
+                What would you like to edit today?
+                <br />
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</div>
