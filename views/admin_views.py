@@ -79,7 +79,7 @@ async def admin_index(request: Request):
 
 @router.get("/admin/edit")
 @template(template_file="admin/edit-record.pt")
-async def admin_index(request: Request):
+async def admin_edit(request: Request):
     vm = EditViewModel(request)
 
     await admin_service.edit_album_data()
