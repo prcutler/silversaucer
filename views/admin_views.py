@@ -11,22 +11,6 @@ from services import admin_service
 router = fastapi.APIRouter()
 
 
-@router.get("/admin/index")
-@template(template_file="admin/index.pt")
-async def admin_index(request: Request):
-    vm = AdminViewModel(request)
-
-    await vm.load()
-
-    if vm.login_status is False:
-        response = fastapi.responses.RedirectResponse(
-            url="/", status_code=status.HTTP_302_FOUND
-        )
-        return response
-    else:
-        return vm.to_dict()
-
-
 @router.get("/admin/")
 @template(template_file="admin/index.pt")
 async def admin_index(request: Request):
@@ -41,6 +25,38 @@ async def admin_index(request: Request):
         return response
     else:
         return vm.to_dict()
+
+
+@router.get("/admin/index")
+@template(template_file="admin/index.pt")
+async def index(request: Request):
+    vm = AdminViewModel(request)
+
+    await vm.load()
+
+    if vm.login_status is False:
+        response = fastapi.responses.RedirectResponse(
+            url="/", status_code=status.HTTP_302_FOUND
+        )
+        return response
+    else:
+        return vm.to_dict()
+
+
+@router.post("/admin/index", include_in_schema=False)
+@template()
+async def edit_post(request: Request):
+    vm = AdminViewModel(request)
+    await vm.load()
+
+    episode_number = vm.release_id
+
+    # Redirect to Admin homepage on post
+    response = fastapi.responses.RedirectResponse(
+        url=f"/admin/edit-episode/{episode_number}", status_code=status.HTTP_302_FOUND
+    )
+
+    return response
 
 
 @router.get("/admin/create_db")

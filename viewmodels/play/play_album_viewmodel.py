@@ -30,8 +30,6 @@ class PlayAlbumViewModel(ViewModelBase):
         print("Login status: ", self.login_status)
 
     async def load(self):
-        # random_album_release_id = RandomRecordService.get_folder_count2(8)
-        # release_data = RandomRecordService.get_album_data(random_album_release_id)
 
         release_data = await play_service.get_album_data(2162484)
 
