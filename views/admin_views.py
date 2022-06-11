@@ -82,7 +82,7 @@ async def admin_index(request: Request):
 async def admin_index(request: Request):
     vm = EditViewModel(request)
 
-    await admin_service.update_mb_id()
+    await admin_service.edit_album_data()
 
     if vm.login_status is False:
         response = fastapi.responses.RedirectResponse(

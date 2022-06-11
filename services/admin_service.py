@@ -202,3 +202,6 @@ async def update_mb_id():
                 # Above line adds a blank row with only mb_id populated
                 await session.commit()
 
+
+async def edit_album_data():
+    pass
