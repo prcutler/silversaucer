@@ -7,8 +7,8 @@ import discogs_client
 
 from data.album_data import Album
 from data.genre_data import Genre
-from data.release import Release
 from data.main_release_data import Main_Data
+from data.release import Release
 from data.tracklist_data import Tracklists
 import sqlalchemy
 import json
@@ -208,9 +208,7 @@ async def update_mb_id():
 # ## GET LIST OF ALL RELEASES MISSING MUSICBRAINZ RELEASE ID ###
 async def missing_mb_info() -> List[Release]:
     async with db_session.create_async_session() as session:
-        query = (
-            select(Album)
-        )
+        query = (select(Album).filter(Album.mb_id == None))
 
         results = await session.execute(query)
         releases = results.scalars()
@@ -254,12 +252,11 @@ async def edit_release(
         release_results.track_title = track_title
         release_results.track_duration = track_duration
         release_results.track_position = track_position
-        release_title.mb_id = mb_id
+        release_results.mb_id = mb_id
 
         await session.commit()
 
     return release
-
 
 
 async def edit_album_data():
