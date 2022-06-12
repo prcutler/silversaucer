@@ -38,29 +38,23 @@ async def get_album_data(folder):
  #           album_id = album_id.release_id
  #           print("Album ID:", album_id, type(album_id))
 
-        for artist_id in album_rows[random_result]:
-            artist_id = artist_id.artist_id
-            print(artist_id)
+        artist_id = [album_id.artist_id for album_id in album_rows[random_result]]
+        artist_id = artist_id[0]
 
-        for artist_name in album_rows[random_result]:
-            artist_name = artist_name.artist_name
-            print(artist_name)
+        artist_name = [album_id.artist_name for album_id in album_rows[random_result]]
+        artist_name = artist_name[0]
 
-        for artist_url in album_rows[random_result]:
-            artist_url = artist_url.artist_url
-            print(artist_url)
+        artist_url = [album_id.artist_url for album_id in album_rows[random_result]]
+        artist_url = artist_url[0]
 
-        for release_url in album_rows[random_result]:
-            release_url = release_url.release_url
-            print(release_url)
+        release_title = [album_id.release_title for album_id in album_rows[random_result]]
+        release_title = release_title[0]
 
-        for release_title in album_rows[random_result]:
-            release_title = release_title.release_title
-            print(release_title)
+        release_url = [album_id.release_url for album_id in album_rows[random_result]]
+        release_url = release_url[0]
 
-        for release_image_url in album_rows[random_result]:
-            release_image_url = release_image_url.release_image_url
-            print(release_image_url)
+        release_image_url = [album_id.release_image_url for album_id in album_rows[random_result]]
+        release_image_url = release_image_url[0]
 
         genres = me.release(album_id).genres
         album_release_date = me.release(album_id).year
