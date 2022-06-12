@@ -4,6 +4,7 @@ from sqlalchemy.future import select
 from data import db_session
 from data import config
 import discogs_client
+import musicbrainzngs
 
 from data.album_data import Album
 from data.genre_data import Genre
@@ -251,5 +252,26 @@ async def edit_release(
     return release
 
 
-async def edit_album_data():
-    pass
+async def get_mb_date():
+    async with db_session.create_async_session() as session:
+        query = select(Album).filter(Album.mb_id is not None)
+        results = await session.execute(query)
+
+        date_results = results.scalars()
+        print(date_results)
+
+        for musicbrainz in date_results:
+            if musicbrainz.mb_id is not None:
+                # print(musicbrainz.mb_id)
+
+                musicbrainzngs.set_useragent(
+                    "silversaucer",
+                    "0.1",
+                    "https://github.com/prcutler/silversaucer/", )
+
+                musicbrainzngs.get_release_by_id(musicbrainz.mb_id)
+                mb_release_date = musicbrainzngs.get_release_by_id(musicbrainz.mb_id).get("release").get("date")
+                print(mb_release_date)
+
+
+
