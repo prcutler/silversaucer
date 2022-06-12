@@ -30,34 +30,37 @@ async def get_album_data(folder):
         album_rows = results.all()
         # print("Album ID:", album_rows)
 
-        for album_id in album_rows[random_result]:
-            album_id = album_id.release_id
-            # print(album_rows)
+        album_id = [album_id.release_id for album_id in album_rows[random_result]]
+        print("Album ID:", album_id, type(album_id))
+        album_id = album_id[0]
 
-        for artist_name in me.release(album_id).artists:
-            artist_count = 0
+ #       for album_id in album_rows[random_result]:
+ #           album_id = album_id.release_id
+ #           print("Album ID:", album_id, type(album_id))
 
-            artist_name = (
-                me.release(album_id).artists[artist_count].name
-            )
+        for artist_id in album_rows[random_result]:
+            artist_id = artist_id.artist_id
+            print(artist_id)
 
-            artist_count += 1
-            # print(artist_name)
+        for artist_name in album_rows[random_result]:
+            artist_name = artist_name.artist_name
+            print(artist_name)
 
-            artist_id = me.release(album_id).artists[0].id
+        for artist_url in album_rows[random_result]:
+            artist_url = artist_url.artist_url
+            print(artist_url)
 
-            try:
-                artist_url = me.release(album_id).artists[0].url
-            except me.exceptions.HTTPError:
-                artist_url = None
+        for release_url in album_rows[random_result]:
+            release_url = release_url.release_url
+            print(release_url)
 
-        release_url = me.release(album_id).url
-        release_title = me.release(album_id).title
+        for release_title in album_rows[random_result]:
+            release_title = release_title.release_title
+            print(release_title)
 
-        #        print("release title in service: , ", release_title)
-
-        release_image_url = me.release(album_id).images[0]["uri"]
-        #        print("release image url in service: , ", release_image_url)
+        for release_image_url in album_rows[random_result]:
+            release_image_url = release_image_url.release_image_url
+            print(release_image_url)
 
         genres = me.release(album_id).genres
         album_release_date = me.release(album_id).year
