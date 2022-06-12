@@ -41,20 +41,20 @@ async def get_album_data(folder):
         artist_id = [album_id.artist_id for album_id in album_rows[random_result]]
         artist_id = artist_id[0]
 
-        artist_name = [album_id.artist_name for album_id in album_rows[random_result]]
-        artist_name = artist_name[0]
+        name = [name.artist_name for name in album_rows[random_result]]
+        artist_name = name[0]
 
-        artist_url = [album_id.artist_url for album_id in album_rows[random_result]]
-        artist_url = artist_url[0]
+        url = [url.artist_url for url in album_rows[random_result]]
+        artist_url = url[0]
 
-        release_title = [album_id.release_title for album_id in album_rows[random_result]]
-        release_title = release_title[0]
+        title = [title.release_title for title in album_rows[random_result]]
+        release_title = title[0]
 
-        release_url = [album_id.release_url for album_id in album_rows[random_result]]
-        release_url = release_url[0]
+        url = [url.release_url for url in album_rows[random_result]]
+        release_url = url[0]
 
-        release_image_url = [album_id.release_image_url for album_id in album_rows[random_result]]
-        release_image_url = release_image_url[0]
+        image_url = [image_url.release_image_url for image_url in album_rows[random_result]]
+        release_image_url = image_url[0]
 
         genres = me.release(album_id).genres
         album_release_date = me.release(album_id).year
