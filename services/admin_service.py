@@ -225,12 +225,8 @@ async def edit_release(
     artist_name,
     release_title,
     release_image_url,
-    genres,
     album_release_date,
     main_release_date,
-    track_title,
-    track_duration,
-    track_position,
     mb_id
 ):
     async with db_session.create_async_session() as session:
@@ -246,12 +242,8 @@ async def edit_release(
         release_results.artist_name = artist_name
         release_results.release_title = release_title
         release_results.release_image_url = release_image_url
-        release_results.genres = genres
         release_results.album_release_date = album_release_date
         release_results.main_release_date = main_release_date
-        release_results.track_title = track_title
-        release_results.track_duration = track_duration
-        release_results.track_position = track_position
         release_results.mb_id = mb_id
 
         await session.commit()
