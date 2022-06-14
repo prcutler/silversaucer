@@ -14,7 +14,7 @@
                     <li><a href="${ release_url } "> ${ release_title }</a> by <a
                             href="${ artist_url }">${ artist_name }</a></li>
                     <li>Record released: ${ album_release_year }</li>
-
+                    <li>MusicBrainz ID: ${ mb_id }</li>
 
 
         </div>
