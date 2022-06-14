@@ -7,6 +7,7 @@ import discogs_client
 import musicbrainzngs
 
 from data.album_data import Album
+from data.album import AlbumInfo
 from data.genre_data import Genre
 from data.main_release_data import Main_Data
 from data.release import Release
@@ -218,38 +219,41 @@ async def missing_mb_info() -> List[Release]:
         return releases
 
 
-async def edit_release(
-    release_id,
-    release_url,
-    artist_id,
-    artist_url,
-    artist_name,
-    release_title,
-    release_image_url,
-    album_release_date,
-    main_release_date,
-    mb_id
-):
+async def edit_release(release_id):
     async with db_session.create_async_session() as session:
         query = select(Album).filter(Album.release_id == release_id)
         results = await session.execute(query)
 
-        release_results = results.scalar()
+        query_results = results.scalar_one_or_none()
 
-        release_results.release_id = release_id
-        release_results.release_url = release_url
-        release_results.artist_id = artist_id
-        release_results.artist_url = artist_url
-        release_results.artist_name = artist_name
-        release_results.release_title = release_title
-        release_results.release_image_url = release_image_url
-        release_results.album_release_date = album_release_date
-        release_results.main_release_date = main_release_date
-        release_results.mb_id = mb_id
+        release_results = query_results
+        print("Release results: ", release_results)
 
-        await session.commit()
+        # release_results.release_id = release_id
+        release_url = release_results.release_url
+        artist_id = release_results.artist_id
+        artist_url = release_results.artist_url
+        artist_name = release_results.artist_name
+        release_title = release_results.release_title
+        release_image_url = release_results.release_image_url
+        album_release_year = release_results.album_release_year
+        mb_id = release_results.mb_id
 
-    return release
+        # await session.commit()
+
+        album_info = Album(
+            release_url=release_url,
+            release_id=release_id,
+            artist_id=artist_id,
+            artist_url=artist_url,
+            artist_name=artist_name,
+            release_title=release_title,
+            release_image_url=release_image_url,
+            album_release_year=album_release_year,
+            mb_id=mb_id
+        )
+
+        return album_info
 
 
 async def get_mb_date():
@@ -271,7 +275,17 @@ async def get_mb_date():
 
                 musicbrainzngs.get_release_by_id(musicbrainz.mb_id)
                 mb_release_date = musicbrainzngs.get_release_by_id(musicbrainz.mb_id).get("release").get("date")
-                print(mb_release_date)
+
+                mb_dates = Album()
+
+                mb_dates.release_id = musicbrainz.release_id
+                mb_dates.mb_id = musicbrainz.mb_id
+                mb_dates.mb_release_date = mb_release_date
+                # print(mb_release_date)
+                await session.commit()
+
+
+
 
 
 

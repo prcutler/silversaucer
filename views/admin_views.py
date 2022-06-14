@@ -98,12 +98,9 @@ async def admin_index(request: Request):
 async def admin_edit(request: Request):
     vm = EditViewModel(request)
 
-    await admin_service.edit_album_data()
+    await admin_service.edit_release(7663806)
 
-    if vm.login_status is False:
-        response = fastapi.responses.RedirectResponse(
-            url="/", status_code=status.HTTP_302_FOUND
-        )
-        return response
-    else:
-        return vm.to_dict()
+   # return vm.to_dict()
+    await vm.load()
+
+    return vm.to_dict()
