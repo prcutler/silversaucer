@@ -230,14 +230,14 @@ async def edit_release(release_id):
         print("Release results: ", release_results)
 
         # release_results.release_id = release_id
-        release_url = release_results.release_url
-        artist_id = release_results.artist_id
-        artist_url = release_results.artist_url
-        artist_name = release_results.artist_name
-        release_title = release_results.release_title
-        release_image_url = release_results.release_image_url
-        album_release_year = release_results.album_release_year
-        mb_id = release_results.mb_id
+        release_url: Optional[str] = release_results.release_url
+        artist_id: int = release_results.artist_id
+        artist_url: Optional[str] = release_results.artist_url
+        artist_name: Optional[str] = release_results.artist_name
+        release_title: Optional[str] = release_results.release_title
+        release_image_url: Optional[str] = release_results.release_image_url
+        album_release_year: Optional[str] = release_results.album_release_year
+        mb_id: Optional[str] = release_results.mb_id
 
         # await session.commit()
 

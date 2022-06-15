@@ -114,6 +114,6 @@
   <!-- Copyright -->
 </footer>
 
-
+<script src="/static/js/htmx.min.js"></script>
 
 </html>
