@@ -20,8 +20,10 @@ class AdminViewModel(ViewModelBase):
 
         self.login_status = self.is_logged_in
         self.releases = await admin_service.missing_mb_info()
+
         form = await self.request.form()
         self.release_id = form.get("release_id")
+        print("Vm.load: self.release_id: ", self.release_id)
 
         return {}
 

@@ -21,8 +21,8 @@
                 <form class="form-horizontal" action="" method="POST">
                     <div class="form-group">
 
-                        <p>Releases: <select class="form-control" name="releases">
-                            <option tal:repeat="r releases" > ${r.artist_name} - ${r.release_title}
+                        <p>Releases: <select class="form-control" name="release_id">
+                            <option tal:repeat="r releases" > ${r.release_id}
                             </option>
                         </select></p>
 

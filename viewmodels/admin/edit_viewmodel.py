@@ -6,10 +6,10 @@ from viewmodels.shared.viewmodel import ViewModelBase
 
 
 class EditViewModel(ViewModelBase):
-    def __init__(self, request: Request):
+    def __init__(self, release_id, request: Request):
         super().__init__(request)
 
-        self.release_id: int = None
+        self.release_id: int = release_id
         self.release_url: str = None
         self.artist_id: int = None
         self.artist_name: str = None
@@ -25,7 +25,7 @@ class EditViewModel(ViewModelBase):
 
     async def load(self):
 
-        release_data = await admin_service.edit_release(7663806)
+        release_data = await admin_service.edit_release(self.release_id)
         print("release_data: ", release_data, release_data.release_id)
 
         self.release_id = release_data.release_id

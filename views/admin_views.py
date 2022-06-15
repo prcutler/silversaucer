@@ -49,11 +49,28 @@ async def edit_post(request: Request):
     vm = AdminViewModel(request)
     await vm.load()
 
-    episode_number = vm.release_id
+    release_id = vm.release_id
+    print("release_id viewmodel: ", release_id)
+    # Redirect to Admin homepage on post
+    response = fastapi.responses.RedirectResponse(
+        url=f"/admin/edit/{release_id}", status_code=status.HTTP_302_FOUND
+    )
+
+    return response
+
+
+@router.post("/admin/", include_in_schema=False)
+@template()
+async def edit_post(request: Request):
+    vm = AdminViewModel(request)
+    await vm.load()
+
+    release_id = vm.release_id
+    print("release_id viewmodel: ", release_id)
 
     # Redirect to Admin homepage on post
     response = fastapi.responses.RedirectResponse(
-        url=f"/admin/edit-episode/{episode_number}", status_code=status.HTTP_302_FOUND
+        url=f"/admin/edit/{release_id}", status_code=status.HTTP_302_FOUND
     )
 
     return response
@@ -93,14 +110,14 @@ async def admin_index(request: Request):
         return vm.to_dict()
 
 
-@router.get("/admin/edit")
+@router.get("/admin/edit/{release_id}")
 @template(template_file="admin/edit-record.pt")
-async def admin_edit(request: Request):
-    vm = EditViewModel(request)
+async def admin_edit(release_id, request: Request):
 
-    await admin_service.edit_release(7663806)
+    vm = EditViewModel(release_id, request)
+    print("admin view release_id: ", release_id)
+    await admin_service.edit_release(release_id)
 
-   # return vm.to_dict()
     await vm.load()
 
     return vm.to_dict()
