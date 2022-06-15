@@ -1,11 +1,16 @@
+from typing import List, Optional
+
 from sqlalchemy.future import select
 from data import db_session
 from data import config
 import discogs_client
+import musicbrainzngs
 
 from data.album_data import Album
+from data.album import AlbumInfo
 from data.genre_data import Genre
 from data.main_release_data import Main_Data
+from data.release import Release
 from data.tracklist_data import Tracklists
 import sqlalchemy
 import json
@@ -38,7 +43,7 @@ async def get_album_db_data():
                 album_data.release_title = records.release.title
 
                 album_data.release_url = records.release.url
-                album_data.album_release_date = records.release.year
+                album_data.album_release_year = records.release.year
 
                 try:
                     album_data.artist_url = records.release.artists[0].url
@@ -52,7 +57,7 @@ async def get_album_db_data():
                 except TypeError:
                     album_data.release_image_url = "None"
 
-                async with db_session.create_async_session() as session:
+                # async with db_session.create_async_session() as session:
                     session.add(album_data)
                     await session.commit()
 
@@ -173,4 +178,114 @@ async def get_tracklist_data():
                 x = x + 1
 
             print("Adding to db: ", tracklists.release_id, tracklists.track_title)
+
+
+async def update_mb_id():
+
+    async with db_session.create_async_session() as session:
+
+        query = select(Release.discogs_id, Release.m_rel_id).filter(Album.release_id == Release.discogs_id)
+        results = await session.execute(query)
+        release_id_results = results.fetchall()
+
+        print("Count: ", len(release_id_results), release_id_results)
+        # print("Tuple [7]", release_id_results[7])
+        # results.all Returns a tuple: (124983, None), (190430, 'e5d96b48-c7dc-4a61-bf54-f32353fe08e5'),
+
+        album_data = Album()
+
+        for discogs_id, mb_id in release_id_results:
+
+            if mb_id is not None:
+
+                album_data.release_id = discogs_id
+                album_data.mb_id = mb_id
+                print("Release ID: ", album_data.release_id, "MusicBrainz ID: ", album_data.mb_id)
+
+                #session.add(album_data)
+                # Above line adds a blank row with only mb_id populated
+                await session.commit()
+
+
+# ## GET LIST OF ALL RELEASES MISSING MUSICBRAINZ RELEASE ID ###
+async def missing_mb_info() -> List[Release]:
+    async with db_session.create_async_session() as session:
+        query = (select(Album).filter(Album.mb_id == None))
+
+        results = await session.execute(query)
+        releases = results.scalars()
+        print(releases)
+
+        return releases
+
+
+async def edit_release(release_id):
+    async with db_session.create_async_session() as session:
+        query = select(Album).filter(Album.release_id == release_id)
+        results = await session.execute(query)
+
+        query_results = results.scalar_one_or_none()
+
+        release_results = query_results
+        print("Release results: ", release_results)
+
+        # release_results.release_id = release_id
+        release_url = release_results.release_url
+        artist_id = release_results.artist_id
+        artist_url = release_results.artist_url
+        artist_name = release_results.artist_name
+        release_title = release_results.release_title
+        release_image_url = release_results.release_image_url
+        album_release_year = release_results.album_release_year
+        mb_id = release_results.mb_id
+
+        # await session.commit()
+
+        album_info = Album(
+            release_url=release_url,
+            release_id=release_id,
+            artist_id=artist_id,
+            artist_url=artist_url,
+            artist_name=artist_name,
+            release_title=release_title,
+            release_image_url=release_image_url,
+            album_release_year=album_release_year,
+            mb_id=mb_id
+        )
+
+        return album_info
+
+
+async def get_mb_date():
+    async with db_session.create_async_session() as session:
+        query = select(Album).filter(Album.mb_id is not None)
+        results = await session.execute(query)
+
+        date_results = results.scalars()
+        print(date_results)
+
+        for musicbrainz in date_results:
+            if musicbrainz.mb_id is not None:
+                # print(musicbrainz.mb_id)
+
+                musicbrainzngs.set_useragent(
+                    "silversaucer",
+                    "0.1",
+                    "https://github.com/prcutler/silversaucer/", )
+
+                musicbrainzngs.get_release_by_id(musicbrainz.mb_id)
+                mb_release_date = musicbrainzngs.get_release_by_id(musicbrainz.mb_id).get("release").get("date")
+
+                mb_dates = Album()
+
+                mb_dates.release_id = musicbrainz.release_id
+                mb_dates.mb_id = musicbrainz.mb_id
+                mb_dates.mb_release_date = mb_release_date
+                # print(mb_release_date)
+                await session.commit()
+
+
+
+
+
 

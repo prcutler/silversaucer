@@ -10,4 +10,6 @@ from data.genre_data import Genre
 from data.main_release_data import Main_Data
 # noinspection PyUnresolvedReferences
 from data.tracklist_data import Tracklists
+# noinspection PyUnresolvedReferences
+from data.release import Release
 

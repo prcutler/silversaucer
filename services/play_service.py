@@ -30,34 +30,31 @@ async def get_album_data(folder):
         album_rows = results.all()
         # print("Album ID:", album_rows)
 
-        for album_id in album_rows[random_result]:
-            album_id = album_id.release_id
-            # print(album_rows)
+        album_id = [album_id.release_id for album_id in album_rows[random_result]]
+        print("Album ID:", album_id, type(album_id))
+        album_id = album_id[0]
 
-        for artist_name in me.release(album_id).artists:
-            artist_count = 0
+ #       for album_id in album_rows[random_result]:
+ #           album_id = album_id.release_id
+ #           print("Album ID:", album_id, type(album_id))
 
-            artist_name = (
-                me.release(album_id).artists[artist_count].name
-            )
+        artist_id = [album_id.artist_id for album_id in album_rows[random_result]]
+        artist_id = artist_id[0]
 
-            artist_count += 1
-            # print(artist_name)
+        name = [name.artist_name for name in album_rows[random_result]]
+        artist_name = name[0]
 
-            artist_id = me.release(album_id).artists[0].id
+        url = [url.artist_url for url in album_rows[random_result]]
+        artist_url = url[0]
 
-            try:
-                artist_url = me.release(album_id).artists[0].url
-            except me.exceptions.HTTPError:
-                artist_url = None
+        title = [title.release_title for title in album_rows[random_result]]
+        release_title = title[0]
 
-        release_url = me.release(album_id).url
-        release_title = me.release(album_id).title
+        url = [url.release_url for url in album_rows[random_result]]
+        release_url = url[0]
 
-        #        print("release title in service: , ", release_title)
-
-        release_image_url = me.release(album_id).images[0]["uri"]
-        #        print("release image url in service: , ", release_image_url)
+        image_url = [image_url.release_image_url for image_url in album_rows[random_result]]
+        release_image_url = image_url[0]
 
         genres = me.release(album_id).genres
         album_release_date = me.release(album_id).year

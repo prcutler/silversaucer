@@ -17,5 +17,7 @@ class Album(SqlAlchemyBase):
     release_title: str = sa.Column(sa.String)
     artist_url: str = sa.Column(sa.String)
     release_image_url: str = sa.Column(sa.String)
-    album_release_date: str = sa.Column(sa.String)
+    album_release_year: str = sa.Column(sa.String)
     folder: int = sa.Column(sa.Integer)
+    mb_id: str = sa.Column(sa.String, index=True)
+    mb_release_date: str = sa.Column(sa.String, index=True)
