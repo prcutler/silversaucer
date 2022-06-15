@@ -2,30 +2,40 @@ from typing import List, Optional
 
 from starlette.requests import Request
 
+from services import choose_service
+from data.album_data import Album
+
 from viewmodels.shared.viewmodel import ViewModelBase
 
 
 class ChooseResultsViewModel(ViewModelBase):
-    def __init__(self, request: Request):
+    def __init__(self, release_id, request: Request):
         super().__init__(request)
 
-        # folder = 1
-        # album_release_id = 1026691
+        self.release_id: int = release_id
+        self.release_url: str = None
+        self.artist_id: int = None
+        self.artist_name: str = None
+        self.release_title: str = None
+        self.artist_url: str = None
+        self.release_image_url: Optional[str] = None
+        self.album_release_year: Optional = None
+        self.folder: int = None
+        self.mb_id: Optional[str] = None
+        self.mb_release_date: Optional[str] = None
 
-        self.folder: Optional[str] = None
-        self.folder_number: Optional[int] = None
-        self.artist_name: Optional[str] = None
-        self.release_title: Optional[str] = None
-        self.release_date: Optional[int] = None
-        self.genres: Optional[List[str]] = None
-        self.main_release_date: Optional[int] = None
+    async def load(self):
 
-        async def load(self):
-            form = await self.request.form()
-            self.folder = form.get("folder")
-            self.folder_number = form.get("folder_number")
-            self.artist_name = form.get("artist_name")
-            self.release_title = form.get("release_title")
-            self.release_date = form.get("release_date")
-            self.genres = form.getlist("genres")
-            self.main_release_date = form.get("main_release_date")
+        release_data = await choose_service.get_release_data(self.release_id)
+        print("release_data: ", release_data, release_data.release_id)
+
+        self.release_id = release_data.release_id
+        self.release_url = release_data.release_url
+        self.artist_id = release_data.artist_id
+        self.artist_url = release_data.artist_url
+        self.artist_name = release_data.artist_name
+        self.release_title = release_data.release_title
+        self.release_image_url = release_data.release_image_url
+        self.album_release_year = release_data.album_release_year
+        self.mb_id = release_data.mb_id
+

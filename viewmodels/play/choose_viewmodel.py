@@ -19,6 +19,7 @@ class AlbumChooseViewModel(ViewModelBase):
     async def load(self):
         self.login_status = self.is_logged_in
         self.releases = await play_service.get_album_list()
+        print("Vm.load: self.releases: ", self.releases)
 
         form = await self.request.form()
         self.release_id = form.get("release_id")

@@ -1,59 +1,47 @@
 from starlette.requests import Request
+from typing import List, Optional
+from sqlalchemy.future import select
+from data import db_session
+from data.album_data import Album
 
 import data.config as config
 from data.choose import ChooseInfo
 from data.config import my_data
 
 
-class ChooseService:
+async def get_release_data(release_id):
+    async with db_session.create_async_session() as session:
+        query = select(Album).filter(Album.release_id == release_id)
+        results = await session.execute(query)
 
-    count = 0
+        query_results = results.scalar_one_or_none()
+        print("query_results: ", query_results)
 
-    def get_choose_data():
-        count = 0
+        release_results = query_results
+        print("Release results: ", release_results)
 
-        folder_data = []
-        folder_id_data = []
+        # release_results.release_id = release_id
+        release_url: Optional[str] = release_results.release_url
+        artist_id: int = release_results.artist_id
+        artist_url: Optional[str] = release_results.artist_url
+        artist_name: Optional[str] = release_results.artist_name
+        release_title: Optional[str] = release_results.release_title
+        release_image_url: Optional[str] = release_results.release_image_url
+        album_release_year: Optional[str] = release_results.album_release_year
+        mb_id: Optional[str] = release_results.mb_id
 
-        for folders in my_data.collection_folders:
-            folder = my_data.collection_folders[count]
-            folder_id = my_data.collection_folders.id[count]
-            print(folder, folder.name)
-            count += 1
+        # await session.commit()
 
-            folder_data.append(folder)
-            folder_id_data.append(folder_id)
-
-            return folder_data, folder_id_data
-
-        def get_album_data():
-            release_data = config.my_data
-
-            artist_count = 0
-
-            for artist_name in release_data.release(album_release_id).artists:
-                artist_name = (
-                    release_data.release(album_release_id).artists[artist_count].name
-                )
-
-            artist_count += 1
-
-            release_id = album_release_id
-
-            artist_id = release_data.release(album_release_id).artists[0].name
-            release_title = release_data.release(album_release_id).title
-            genres = release_data.release(album_release_id).genres
-
-        choose_info = ChooseInfo(
-            folder,
-            folder_number,
-            release_id,
-            release_title,
-            artist_name,
-            release_date,
-            genres,
-            main_release_date,
-            album_release_date,
+        album_info = Album(
+            release_url=release_url,
+            release_id=release_id,
+            artist_id=artist_id,
+            artist_url=artist_url,
+            artist_name=artist_name,
+            release_title=release_title,
+            release_image_url=release_image_url,
+            album_release_year=album_release_year,
+            mb_id=mb_id
         )
-        # print("Genres: ", genres)
+
         return album_info

@@ -5,6 +5,8 @@ from fastapi_chameleon import template
 from starlette import status
 from starlette.requests import Request
 
+from services import choose_service
+
 from viewmodels.play.choose_results_viewmodel import ChooseResultsViewModel
 from viewmodels.play.choose_viewmodel import AlbumChooseViewModel
 from viewmodels.play.play_album_viewmodel import PlayAlbumViewModel
@@ -53,6 +55,11 @@ async def album_choice_post(request: Request):
 @template(template_file="play/choose-results.pt")
 async def album_choice(release_id, request: Request):
     vm = ChooseResultsViewModel(release_id, request)
+
+    await choose_service.get_release_data(release_id)
+
+    await vm.load()
+
     return vm.to_dict()
 
 
