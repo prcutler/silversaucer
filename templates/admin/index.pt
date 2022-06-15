@@ -22,7 +22,7 @@
                     <div class="form-group">
 
                         <p>Releases: <select class="form-control" name="release_id">
-                            <option tal:repeat="r releases" > ${r.release_id}
+                            <option tal:repeat="r releases" value="${r.release_id}"> ${r.artist_name} - ${r.release_title}
                             </option>
                         </select></p>
 
