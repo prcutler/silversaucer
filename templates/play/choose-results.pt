@@ -1,14 +1,39 @@
 <div metal:use-macro="load: ../shared/_layout.pt">
     <div metal:fill-slot="content" tal:omit-tag="True">
 
-    <div style="height 100%; width 100%;">
-        <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white min-vh-75">
-            <h2>Choose something to play</h2>
-            <p>
-                Pick from these options:
-            </p>
+        <div style="height 100%; width 100%;">
+            <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white min-vh-75">
+
+                <br/> <br/>
+
+                <img src="${ release_image_url } " alt="Album Cover" width=400 height=400 class="center">
+                <br/><br/>
+                <ul>
+                    <br/>
+
+                    <li><a href="${ release_url } "> ${ release_title }</a> by <a
+                            href="${ artist_url }">${ artist_name }</a></li>
+                    <li>Record released: ${ album_release_year }</li>
+                    <li>Original album release date: ${ album_release_year }</li>
+                    <dl>
+                        <dt>
+                            <li>Genres:</li>
+                        <dd>
+                            <ul><li tal:repeat = "item genres" tal:content = item/></ul>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <li>Tracklist:</li>
+                        </dt>
+                        <ul>
+                            <dd>
+                                <li tal:repeat = "item track_title"  tal:content = item" /> </dd>
+        </ul>
+        </dl>
+
 
         </div>
-    </div>
-</div>
-</div>
+        </div>
+        </div>
+        </div>

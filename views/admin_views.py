@@ -120,4 +120,10 @@ async def admin_edit(release_id, request: Request):
 
     await vm.load()
 
-    return vm.to_dict()
+    if vm.login_status is False:
+        response = fastapi.responses.RedirectResponse(
+            url="/", status_code=status.HTTP_302_FOUND
+        )
+        return response
+    else:
+        return vm.to_dict()
