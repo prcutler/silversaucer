@@ -18,9 +18,13 @@ class ChooseResultsViewModel(ViewModelBase):
         self.artist_name: str = None
         self.release_title: str = None
         self.artist_url: str = None
+        self.genres: List[str] = []
         self.release_image_url: Optional[str] = None
         self.album_release_year: Optional = None
         self.folder: int = None
+        self.track_title: Optional[List](str) = None
+        self.track_duration: Optional[List](str) = None
+        self.track_position: Optional[List](str) = None
         self.mb_id: Optional[str] = None
         self.mb_release_date: Optional[str] = None
 
@@ -28,14 +32,19 @@ class ChooseResultsViewModel(ViewModelBase):
 
         release_data = await choose_service.get_release_data(self.release_id)
         print("release_data: ", release_data, release_data.release_id)
+        print(release_data.genres, type(release_data.genres))
 
         self.release_id = release_data.release_id
         self.release_url = release_data.release_url
         self.artist_id = release_data.artist_id
         self.artist_url = release_data.artist_url
+        self.genres = release_data.genres
         self.artist_name = release_data.artist_name
         self.release_title = release_data.release_title
         self.release_image_url = release_data.release_image_url
         self.album_release_year = release_data.album_release_year
-        self.mb_id = release_data.mb_id
+        self.track_title: Optional[List](str) = release_data.track_title
+        self.track_duration: Optional[List](str) = release_data.track_duration
+        self.track_position: Optional[List](str) = release_data.track_position
+#        self.mb_id = release_data.mb_id
 

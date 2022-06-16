@@ -69,13 +69,7 @@ async def album_choice_post(request: Request):
     vm = ChooseResultsViewModel(request)
     await vm.load()
 
-    resp = fastapi.responses.RedirectResponse(
-        url="/play/now-playing", status_code=status.HTTP_302_FOUND
-    )
-
-    return resp
-
-    # TODO - if empty, call random record service and redirect to now-playing
+    return vm.to_dict()
 
 
 @router.get("/play/play-album")

@@ -59,6 +59,7 @@ async def get_album_data(folder):
         release_image_url = image_url[0]
 
         genres = me.release(album_id).genres
+        print("Genres: ", genres)
         album_release_date = me.release(album_id).year
 
         if me.release(album_id).master is not None:
