@@ -16,6 +16,7 @@
                     <li>Original album release date: ${ main_release_date }</li>
              <dl>
                         <dt><li>Genres: </li></dt><ul>
+
                         <dd> <li tal:repeat = "item genres" tal:content = item/> </dd>
                 </dl>
                 <dl>

@@ -8,6 +8,8 @@ from data import db_session
 from data.album_data import Album
 from random import randint
 
+from typing import List, Optional
+
 
 me = config.my_data
 # folder = 8
@@ -57,6 +59,7 @@ async def get_album_data(folder):
         release_image_url = image_url[0]
 
         genres = me.release(album_id).genres
+        print("Genres: ", genres)
         album_release_date = me.release(album_id).year
 
         if me.release(album_id).master is not None:
@@ -93,7 +96,13 @@ async def get_album_data(folder):
     return album_info
 
 
-       # print(album_id, artist_name, artist_url, genres, main_release_date)
+# ## GET LIST OF ALL RELEASES MISSING MUSICBRAINZ RELEASE ID ###
+async def get_album_list() -> List[Album]:
+    async with db_session.create_async_session() as session:
+        query = (select(Album))
 
+        results = await session.execute(query)
+        releases = results.scalars()
+        print(releases)
 
-
+        return releases

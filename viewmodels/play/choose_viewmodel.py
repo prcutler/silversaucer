@@ -1,8 +1,9 @@
 from typing import List, Optional
+from data.album_data import Album
 
 from starlette.requests import Request
 
-from services.choose_service import ChooseService
+from services import play_service
 from viewmodels.shared.viewmodel import ViewModelBase
 
 
@@ -10,23 +11,16 @@ class AlbumChooseViewModel(ViewModelBase):
     def __init__(self, request: Request):
         super().__init__(request)
 
-        self.folder_id = ChooseService.get_choose_data()
-        self.folder_number = ChooseService.get_folder_id_list()
-        self.release_title = ChooseService.get_album_names()
-        self.artist_name: ChooseService.get_artist_name()
-        self.release_date: Optional[int] = None
-        self.genres: Optional[List[str]] = None
-        self.album_id = ChooseService.get_album_id()
-        self.genres: Optional[List[str]] = None
-        self.main_release_date: Optional[int] = None
+        self.release_id: Optional[int] = None
+        self.releases: List[Album] = []
+
+        self.login_status = None
 
     async def load(self):
+        self.login_status = self.is_logged_in
+        self.releases = await play_service.get_album_list()
+        print("Vm.load: self.releases: ", self.releases)
+
         form = await self.request.form()
-        self.folder = form.get("folder_id")
-        self.folder_number = form.get("folder_number")
-        self.artist_name = form.get("artist_name")
-        self.release_title = form.get("release_title")
-        self.album_id = form.get("album_id")
-        self.release_date = form.get("release_date")
-        self.genres = form.getlist("genres")
-        self.main_release_date = form.get("main_release_date")
+        self.release_id = form.get("release_id")
+        print("Vm.load: self.release_id: ", self.release_id)
