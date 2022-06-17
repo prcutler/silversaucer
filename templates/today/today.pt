@@ -10,7 +10,6 @@
             <table class="table table-hover text-light">
                 <p>
                     <tr>
-                        <th>Release ID</th>
                         <th>Artist Name</th>
                         <th>Album Name</th>
                         <th>Release Date</th>
@@ -19,9 +18,8 @@
                     </tr>
                     <span tal:repeat = "e releases">
                         <tr>
-                            <td>${e.release_id}</td>
-                            <td>${e.artist_name}</td>
-                            <td>${e.release_title}</td>
+                            <td><a href="${e.artist_url}">${e.artist_name}</td>
+                            <td><a href="${e.release_url}">${e.release_title}</td>
                             <td>${e.mb_release_date}</td>
                         </tr>
                     </span>
