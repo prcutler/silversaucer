@@ -12,3 +12,5 @@ router = fastapi.APIRouter()
 async def today(request: Request):
     vm = TodayViewModel(request)
     await vm.load()
+
+    return vm.to_dict()

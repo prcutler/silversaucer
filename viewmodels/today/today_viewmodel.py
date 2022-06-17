@@ -3,7 +3,7 @@ from typing import List, Optional
 
 from viewmodels.shared.viewmodel import ViewModelBase
 from data.today_data import TodayInfo
-from services import today_service
+from services import today_service, admin_service
 
 
 class TodayViewModel(ViewModelBase):
@@ -18,9 +18,8 @@ class TodayViewModel(ViewModelBase):
     async def load(self):
 
         self.login_status = self.is_logged_in
-
         self.releases = await today_service.get_today_list()
 
-        print("Vm.load: self.release_id: ", self.releases.release_id)
+#        print("Vm.load: self.release_id: ", self.releases.release_id)
 
-        # return {}
+        return {}

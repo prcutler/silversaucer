@@ -16,47 +16,23 @@ async def get_today_list():
 
     today = pendulum.today()
     print("Today: ", today)
-
     search = str(today.month) + "-" + str(16)
     print("Search: ", search)
 
     async with db_session.create_async_session() as session:
+        query = select(Album).filter(Album.mb_id == None)
 
-        query = select(Album).filter(Album.mb_release_date)
         results = await session.execute(query)
+        query_results = results.scalars()
+        print("query_results: ", query_results, type(query_results))
 
-        query_results = results.scalar()
-        print("query_results: ", query_results)
+        return query_results
 
-        if query_results.mb_release_date[::-4] is search:
-            print("Search results: ", query_results)
+        # for rows in query_results:
+            # print("Row: ", rows, type(rows))
 
-        release_results = query_results
-        print("Release results: ", release_results)
+        #if str(query_results.mb_release_date[::-4]) == search:
+        #    print("Search results: ", query_results)
+        #else:
+        #    print("No results")
 
-        release_id = release_results.release_id
-        release_url: Optional[str] = release_results.release_url
-        artist_id: int = release_results.artist_id
-        artist_url: Optional[str] = release_results.artist_url
-        artist_name: Optional[str] = release_results.artist_name
-        release_title: Optional[str] = release_results.release_title
-        release_image_url: Optional[str] = release_results.release_image_url
-        album_release_year: Optional[str] = release_results.album_release_year
-        mb_id = release_results.mb_id
-        mb_release_date = release_results.mb_release_date
-
-        album_info = TodayInfo(
-            release_id,
-            release_url,
-            artist_id,
-            artist_name,
-            release_title,
-            artist_url,
-            release_image_url,
-            album_release_year,
-            mb_id,
-            mb_release_date
-        )
-        print("Album info: ", album_info, type(album_info))
-
-        return album_info
