@@ -1,24 +1,34 @@
 <div metal:use-macro="load: ../shared/_layout.pt">
     <div metal:fill-slot="content" tal:omit-tag="True">
 
-    <div style="height 100%; width 100%;">
-        <div class="container-fluid pt-3 d-flex align-items-center bg-dark pt-3 flex-column">
-            <h2>Today in your collection</h2>
-            <div class="form-container">
-                <form class="form-horizontal" action="" method="POST">
-                    <div class="form-group">
+<div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column min-vh-75">
 
-                        <p>Releases: <select class="form-control" name="release_id">
-                            <option tal:repeat="r releases" value="${r.release_id}"> ${r.artist_name} - ${r.release_title}
-                            </option>
-                        </select></p>
+        <div class="page-core">
+            <h1>Today in your collection</h1>
 
-                        <button type="submit" class="btn-success">Submit</button>
-                    </div>
-                </form>
-            </div>
 
-</div>
+
+
+            <table class="table table-hover text-light">
+                <p>
+                    <tr>
+                        <th>Release ID</th>
+                        <th>Artist Name</th>
+                        <th>Album Name</th>
+
+
+                    </tr>
+                    <span tal:repeat = "r releases">
+                        <tr>
+                            <td>${r.release_id}</td>
+                            <td>${r.artist_name}</td>
+                            <td>${r.release_title}</td>
+                        </tr>
+                    </span>
+                </p>
+            </table>
+
         </div>
     </div>
+</div>
 </div>
