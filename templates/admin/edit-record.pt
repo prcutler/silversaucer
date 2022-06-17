@@ -14,7 +14,14 @@
                     <li><a href="${ release_url } "> ${ release_title }</a> by <a
                             href="${ artist_url }">${ artist_name }</a></li>
                     <li>Record released: ${ album_release_year }</li>
-                    <li>MusicBrainz ID: ${ mb_id }</li>
+
+                    <form action="" method="POST" class="edit" >
+
+                    MusicBrainz ID: <input name="mb_id" type="text" class="form-control" value="${ mb_id }" />
+
+                    <br />
+                    <button type="submit" class="btn btn-danger">Add MusicBrainz ID</button>
+                    <br />
 
 
         </div>

@@ -61,7 +61,7 @@ async def edit_post(request: Request):
 
 @router.post("/admin/", include_in_schema=False)
 @template()
-async def edit_post(request: Request):
+async def list_post(request: Request):
     vm = AdminViewModel(request)
     await vm.load()
 
@@ -116,7 +116,7 @@ async def admin_edit(release_id, request: Request):
 
     vm = EditViewModel(release_id, request)
     print("admin view release_id: ", release_id)
-    await admin_service.edit_release(release_id)
+    await admin_service.view_edit(release_id)
 
     await vm.load()
 
@@ -127,3 +127,22 @@ async def admin_edit(release_id, request: Request):
         return response
     else:
         return vm.to_dict()
+
+
+@router.post("/admin/edit/{release_id}", include_in_schema=False)
+@template()
+async def edit_post(release_id, request: Request):
+    vm = EditViewModel(release_id, request)
+    await vm.load()
+
+    release_id = vm.release_id
+    print("release_id viewmodel: ", release_id, "MB_ID: ", vm.mb_id)
+
+    album = await admin_service.edit_release(release_id, vm.mb_id)
+
+    # Redirect to Admin homepage on post
+    response = fastapi.responses.RedirectResponse(
+        url=f"/admin/", status_code=status.HTTP_302_FOUND
+    )
+
+    return response
