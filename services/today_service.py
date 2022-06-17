@@ -16,17 +16,22 @@ async def get_today_list():
 
     today = pendulum.today()
     print("Today: ", today)
-    search = str(today.month) + "-" + str(16)
-    print("Search: ", search)
+#    search = str(today.month) + "-" + str(11)
+    search = '06-11'
+    print("Search: ", search, type(search))
 
     async with db_session.create_async_session() as session:
-        query = select(Album).filter(Album.mb_id == None)
+        query = select(Album).filter(Album.mb_release_date.like('%09-27'))
+        print(query)
 
         results = await session.execute(query)
         query_results = results.scalars()
-        print("query_results: ", query_results, type(query_results))
 
-        return query_results
+        for data in query_results:
+            print("Row: ", data)
+            print("query_results: ", type(query_results))
+
+            return query_results
 
         # for rows in query_results:
             # print("Row: ", rows, type(rows))
