@@ -20,6 +20,7 @@ class AlbumInfo:
         track_duration: List[str],
         track_position: List[str],
         mb_id: str,
+        mb_release_date: str,
     ):
         self.release_id = release_id
         self.release_url = release_url
@@ -37,3 +38,4 @@ class AlbumInfo:
         self.track_duration = track_duration
         self.track_position = track_position
         self.mb_id = mb_id
+        self.mb_release_date = mb_release_date
