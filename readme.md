@@ -5,19 +5,19 @@
 
 # Overview
 
-Silver Saucer is a domain I registered many years ago and kept because I like the name. Both the name and the logo are inspired from both a poem by Neil Gaiman, *The Day the Saucers Came* and *The X-Files*.
+Silver Saucer is a domain I registered many years ago and kept because I like the name. Both the name and the logo are inspired from both a poem by Neil Gaiman, *The Day the Saucers Came* and my love of *The X-Files*.
 
-Silver Saucer's main goal is to integrate my record collection, using the Discogs API, with my record collection.
+Silver Saucer's main goal is to integrate my record collection, using the Discogs API, with a website to display album art when an album is chosen or randomply picked.
 
 ## Project Goals
 
 I have separated my goals for the project into three phases to help make it more manageable:
 
-Phase 1 will integrate Discogs to choose a record at random for me to play.
+Phase 1 - Complete: Build a website that integrates with the Discogs API to display information about an album. 
 
-Phase 2  will have me build physical hardware using CircuitPython.  Using a CircuitPython MatrixPortal from Adafruit, after the random record is chosen, I will display the album art on the LED matrix.  (My record player and stereo are in a different room, on the other side of the wall from my home office.)  I will also add the ability to just choose the album that is playing and have the artwork display.
+Phase 2 - Complete:  Using an Adafruit PyPortal, build a display that automatically displays album art for the album chosen on SilverSaucer.com.
 
-In Phase 3 I hope to build an "On this Day" feature with a web page that shows information from my record collection of things that match the calendar date.  This could include which albums were released, an artist's birthday, etc.  This will be more complicated due to the way Discogs stores some of this information.
+Phase 3 - 50%: Build an "On this Day" feature that displays which albums were released on a given day. As of June 2022, this is 50% complete.  Using `discodos`, I was able to get about half of the MusicBrainz IDs for my collection and I have built a form to manually enter the other 50%.  I have already integrated MusicBrainz's API  to fetch the release day, which Discogs doesn't have (only year) and this can run after all MusicBrainz IDs are stored in the database.
 
 ## Development Goals
 
