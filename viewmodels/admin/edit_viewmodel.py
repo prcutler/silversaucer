@@ -25,8 +25,10 @@ class EditViewModel(ViewModelBase):
 
     async def load(self):
 
-        release_data = await admin_service.edit_release(self.release_id)
+        release_data = await admin_service.view_edit(self.release_id)
         print("release_data: ", release_data, release_data.release_id)
+
+        form = await self.request.form()
 
         self.release_id = release_data.release_id
         self.release_url = release_data.release_url
@@ -37,7 +39,7 @@ class EditViewModel(ViewModelBase):
         self.release_image_url = release_data.release_image_url
         self.album_release_year = release_data.album_release_year
         self.folder = release_data.folder
-        self.mb_id = release_data.mb_id
+        self.mb_id = form.get("mb_id")
         self.mb_release_date = release_data.mb_release_date
 
         self.login_status = self.is_logged_in
