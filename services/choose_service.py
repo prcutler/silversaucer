@@ -31,7 +31,7 @@ async def get_release_data(release_id):
         release_title: Optional[str] = release_results.release_title
         release_image_url: Optional[str] = release_results.release_image_url
         album_release_year: Optional[str] = release_results.album_release_year
-        # mb_id: Optional[str] = release_results.mb_id
+        mb_id: Optional[str] = release_results.mb_id
 
         genres = me.release(release_id).genres
         print("Genres: ", genres, type(genres))
@@ -66,6 +66,7 @@ async def get_release_data(release_id):
             track_title,
             track_duration,
             track_position,
+            mb_id,
         )
         print("Album info: ", album_info, album_info.genres, type(album_info.genres))
         return album_info

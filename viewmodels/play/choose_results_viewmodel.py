@@ -48,7 +48,7 @@ class ChooseResultsViewModel(ViewModelBase):
         self.track_title: Optional[List](str) = release_data.track_title
         self.track_duration: Optional[List](str) = release_data.track_duration
         self.track_position: Optional[List](str) = release_data.track_position
-#        self.mb_id = release_data.mb_id
+        self.mb_id = release_data.mb_id
 
         if self.login_status is False:
             print("False")
