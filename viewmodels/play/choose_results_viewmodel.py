@@ -2,7 +2,7 @@ from typing import List, Optional
 
 from starlette.requests import Request
 
-from services import choose_service
+from services import choose_service, api_service
 from data.album_data import Album
 
 from viewmodels.shared.viewmodel import ViewModelBase
@@ -28,6 +28,8 @@ class ChooseResultsViewModel(ViewModelBase):
         self.mb_id: Optional[str] = None
         self.mb_release_date: Optional[str] = None
 
+        self.login_status = self.is_logged_in
+
     async def load(self):
 
         release_data = await choose_service.get_release_data(self.release_id)
@@ -46,5 +48,16 @@ class ChooseResultsViewModel(ViewModelBase):
         self.track_title: Optional[List](str) = release_data.track_title
         self.track_duration: Optional[List](str) = release_data.track_duration
         self.track_position: Optional[List](str) = release_data.track_position
-#        self.mb_id = release_data.mb_id
+        self.mb_id = release_data.mb_id
+        self.mb_release_date = release_data.mb_release_date
 
+        if self.login_status is False:
+            print("False")
+            pass
+        else:
+            album_api_data = await api_service.update_api_db(
+                self.release_title,
+                self.artist_name,
+                self.release_image_url)
+            get_discogs_img = await api_service.get_discogs_image(self.release_image_url)
+            publish_img = await api_service.publish_image(self.release_image_url)

@@ -12,16 +12,23 @@ import requests
 import musicbrainzngs
 
 
-
-
 musicbrainzngs.set_useragent(
     "silversaucer",
     "0.1",
     "https://github.com/prcutler/silversaucer/",)
 
 
-mb_album_id = 'db5676ca-f922-4ec1-87bf-35b60d71e126'
+mb_album_id = '8a7c5652-d859-4bb0-9b6d-7b44be43b08b'
+artist_id = "c5c2ea1c-4bde-4f4d-bd0b-47b200bf99d6"
 
+try:
+    result = musicbrainzngs.get_artist_by_id(artist_id)
+except WebServiceError as exc:
+    print("Something went wrong with the request: %s" % exc)
+else:
+    artist = result["artist"]
+    print("name:\t\t%s" % artist["name"])
+    print("sort name:\t%s" % artist["sort-name"])
 
 try:
     result = musicbrainzngs.get_release_by_id(mb_album_id)
