@@ -15,10 +15,12 @@ class AlbumInfo:
         # discogs_main_id: str,
         # discogs_main_url: str,
         main_release_date: int,
-        album_release_date: str,
+        album_release_year: str,
         track_title: List[str],
         track_duration: List[str],
         track_position: List[str],
+        mb_id: str,
+        mb_release_date: str,
     ):
         self.release_id = release_id
         self.release_url = release_url
@@ -31,7 +33,9 @@ class AlbumInfo:
         # self.discogs_main_id: int = discogs_main_id
         # self.discogs_main_url = discogs_main_url
         self.main_release_date: int = main_release_date
-        self.album_release_date = album_release_date
+        self.album_release_year = album_release_year
         self.track_title = track_title
         self.track_duration = track_duration
         self.track_position = track_position
+        self.mb_id = mb_id
+        self.mb_release_date = mb_release_date

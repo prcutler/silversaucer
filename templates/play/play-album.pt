@@ -11,11 +11,12 @@
             <ul>
                 <br />
 
-                    <li><a href="${ release_url } "> ${ release_title }</a>  by <a href="${ artist_url }">${ artist_id }</a> </li>
+                    <li><a href="${ release_url } "> ${ release_title }</a>  by <a href="${ artist_url }">${ artist_name }</a> </li>
                     <li>Record released: ${ album_release_date }</li>
                     <li>Original album release date: ${ main_release_date }</li>
              <dl>
                         <dt><li>Genres: </li></dt><ul>
+
                         <dd> <li tal:repeat = "item genres" tal:content = item/> </dd>
                 </dl>
                 <dl>

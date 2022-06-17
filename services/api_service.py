@@ -55,11 +55,17 @@ async def update_api_db(album, artist, image_url):
 
         api_data = results.scalar()
 
-        api_data.album = album
-        api_data.artist = artist
-        api_data.image_url = image_url
+        try:
+            api_data.album = album
+            api_data.artist = artist
+            api_data.image_url = image_url
+            await session.commit()
 
-        await session.commit()
+        except AttributeError:
+
+            api_data = JSONData(album=album, artist=artist, image_url=image_url)
+            session.add(api_data)
+            await session.commit()
 
 
 async def get_discogs_image(release_image_url):

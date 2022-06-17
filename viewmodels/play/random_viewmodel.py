@@ -11,7 +11,7 @@ class RandomViewModel(ViewModelBase):
         super().__init__(request)
 
         folder = 2162484
-        album_release_id = RandomRecordService.get_folder_count(folder)
+        album_release_id = get_folder_count(folder)
         print(album_release_id)
 
         release_data = RandomRecordService.get_album_data(album_release_id)
@@ -26,5 +26,5 @@ class RandomViewModel(ViewModelBase):
         self.genres: Optional[List[str]] = release_data.genres
         self.discogs_main_id: Optional[int] = release_data.discogs_main_id
         self.discogs_main_url: Optional[str] = release_data.discogs_main_url
-        self.album_release_date: Optional[str] = release_data.album_release_date
+        self.album_release_date: Optional[str] = release_data.album_release_year
         self.main_release_date: Optional[int] = release_data.main_release_date

@@ -1,20 +1,28 @@
 <div metal:use-macro="load: ../shared/_layout.pt">
     <div metal:fill-slot="content" tal:omit-tag="True">
 
-    <div>
-        <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white ">
-            <h2>Choose Something</h2>
-            <p>
-                Choose from these results:
-            </p>
+<div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column min-vh-75">
+
+        <div class="page-core">
+            <h1>Welcome, Paul</h1>
+
+            <div>
+                What would you like to do today?
+                <br />
+            </div>
+
+            <div>
+                <a class="btn btn-danger" href="/admin/create_db">Update Database</a>
+                <br />
+            </div>
+            <br />
 
             <div class="form-container">
                 <form class="form-horizontal" action="" method="POST">
                     <div class="form-group">
 
                         <p>Releases: <select class="form-control" name="release_id">
-                            <option tal:repeat="r releases" value="${r.release_id}"> ${r.artist_name}
-                                - ${r.release_title}
+                            <option tal:repeat="r releases" value="${r.release_id}"> ${r.artist_name} - ${r.release_title}
                             </option>
                         </select></p>
 
@@ -22,10 +30,8 @@
                     </div>
                 </form>
             </div>
-                      
 
         </div>
     </div>
 </div>
 </div>
-

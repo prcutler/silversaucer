@@ -2,111 +2,107 @@ import random
 
 import data.config as config
 from data.album import AlbumInfo
-from data.config import my_data
+
+from sqlalchemy.future import select
+from data import db_session
+from data.album_data import Album
+from random import randint
+
+from typing import List, Optional
 
 
-class RandomRecordService:
-    @staticmethod
-    def get_folder_count2(folder):
+me = config.my_data
+# folder = 8
+folder_id = 2162484
 
-        # print(folder)
-        lp_count = len(my_data.identity().collection_folders[folder].releases)
-        # print(lp_count)
 
-        random_lp = random.randint(0, lp_count)
-        # print("Random # = ", random_lp)
+async def get_album_data(folder):
+    async with db_session.create_async_session() as session:
+        release_id_query = select(Album.release_id).filter(Album.folder == folder)
+        results = await session.execute(release_id_query)
 
-        random_album_release_id = (
-            my_data.identity().collection_folders[folder].releases[random_lp].release.id
-        )
-        # print("Random_ID = ", random_album_release_id)
+        release_id_results = results.all()
+        total_count = len(release_id_results)
 
-        return random_album_release_id
+        random_result = randint(1, total_count)
+        # print(total_count, random_result)
 
-    @staticmethod
-    def get_album_data(album_release_id):
+        album_id_query = select(Album).filter(Album.folder == folder)
+        results = await session.execute(album_id_query)
+        album_rows = results.all()
+        # print("Album ID:", album_rows)
 
-        release_data = config.my_data
+        album_id = [album_id.release_id for album_id in album_rows[random_result]]
+        print("Album ID:", album_id, type(album_id))
+        album_id = album_id[0]
 
-        artist_count = 0
+ #       for album_id in album_rows[random_result]:
+ #           album_id = album_id.release_id
+ #           print("Album ID:", album_id, type(album_id))
 
-        for artist_name in release_data.release(album_release_id).artists:
-            artist_name = (
-                release_data.release(album_release_id).artists[artist_count].name
-            )
+        artist_id = [album_id.artist_id for album_id in album_rows[random_result]]
+        artist_id = artist_id[0]
 
-            artist_count += 1
-            # print(artist_name)
+        name = [name.artist_name for name in album_rows[random_result]]
+        artist_name = name[0]
 
-        artist_id = release_data.release(album_release_id).artists[0].name
-        artist_url = release_data.release(album_release_id).artists[0].url
+        url = [url.artist_url for url in album_rows[random_result]]
+        artist_url = url[0]
 
-        release_id = album_release_id
-        release_url = release_data.release(release_id).url
-        release_title = release_data.release(album_release_id).title
+        title = [title.release_title for title in album_rows[random_result]]
+        release_title = title[0]
 
-        #        print("release title in service: , ", release_title)
+        url = [url.release_url for url in album_rows[random_result]]
+        release_url = url[0]
 
-        release_image_url = release_data.release(album_release_id).images[0]["uri"]
-        #        print("release image url in service: , ", release_image_url)
+        image_url = [image_url.release_image_url for image_url in album_rows[random_result]]
+        release_image_url = image_url[0]
 
-        genres = release_data.release(album_release_id).genres
-        album_release_date = release_data.release(album_release_id).year
+        genres = me.release(album_id).genres
+        print("Genres: ", genres)
+        album_release_date = me.release(album_id).year
 
-        main_release_date = release_data.release(album_release_id).master.fetch("year")
-        if main_release_date == 0:
-            main_release_date = album_release_date
+        if me.release(album_id).master is not None:
+            main_release_date = me.release(album_id).master.fetch("year")
         else:
-            main_release_date = main_release_date
+            main_release_date = album_release_date
 
         track_title = []
         track_duration = []
         track_position = []
 
-        for tracks in release_data.release(album_release_id).tracklist:
+        for tracks in me.release(album_id).tracklist:
             track_title.append(tracks.title)
             track_duration.append(tracks.duration)
             track_position.append(tracks.position)
-            # print(track_title, type(track_title))
 
-        #        tracklist = release_data.release(album_release_id).tracklist.title
-        #        print(tracklist)
+    album_info = AlbumInfo(
+        album_id,
+        release_url,
+        artist_id,
+        artist_name,
+        release_title,
+        artist_url,
+        release_image_url,
+        genres,
+        # discogs_main_id,
+        main_release_date,
+        album_release_date,
+        track_title,
+        track_duration,
+        track_position,
+    )
+    print(album_info)
+    return album_info
 
-        album_info = AlbumInfo(
-            release_id,
-            release_url,
-            artist_id,
-            artist_name,
-            release_title,
-            artist_url,
-            release_image_url,
-            genres,
-            # discogs_main_id,
-            main_release_date,
-            album_release_date,
-            track_title,
-            track_duration,
-            track_position,
-        )
-        #        print("release title in album_info: ", album_info.release_title)
 
-        print(
-            album_info.artist_name,
-            album_info.release_id,
-            album_info.release_title,
-            # album_info.release_image_url,
-            # album_info.genres,
-            # album_info.album_release_date,
-            # album_info.main_release_date,
-            # album_info.track_title,
-            # album_info.track_duration,
-            # album_info.track_position
-        )
+# ## GET LIST OF ALL RELEASES MISSING MUSICBRAINZ RELEASE ID ###
+async def get_album_list() -> List[Album]:
+    async with db_session.create_async_session() as session:
+        query = (select(Album))
 
-        return album_info
+        results = await session.execute(query)
+        releases = results.scalars()
+        print(releases)
 
-    @staticmethod
-    def single_random_folder():
-        get_single_random_folder = random.randint(1, 3)
-
-        return get_single_random_folder
+        return releases

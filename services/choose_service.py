@@ -1,59 +1,74 @@
 from starlette.requests import Request
+from typing import List, Optional
+from sqlalchemy.future import select
+from data import db_session
+from data.album_data import Album
+from data.album import AlbumInfo
 
 import data.config as config
 from data.choose import ChooseInfo
 from data.config import my_data
 
+me = config.my_data
 
-class ChooseService:
 
-    count = 0
+async def get_release_data(release_id):
+    async with db_session.create_async_session() as session:
+        query = select(Album).filter(Album.release_id == release_id)
+        results = await session.execute(query)
 
-    def get_choose_data():
-        count = 0
+        query_results = results.scalar_one_or_none()
+        print("query_results: ", query_results)
 
-        folder_data = []
-        folder_id_data = []
+        release_results = query_results
+        print("Release results: ", release_results)
 
-        for folders in my_data.collection_folders:
-            folder = my_data.collection_folders[count]
-            folder_id = my_data.collection_folders.id[count]
-            print(folder, folder.name)
-            count += 1
+        # release_results.release_id = release_id
+        release_url: Optional[str] = release_results.release_url
+        artist_id: int = release_results.artist_id
+        artist_url: Optional[str] = release_results.artist_url
+        artist_name: Optional[str] = release_results.artist_name
+        release_title: Optional[str] = release_results.release_title
+        release_image_url: Optional[str] = release_results.release_image_url
+        album_release_year: Optional[str] = release_results.album_release_year
+        mb_id: Optional[str] = release_results.mb_id
+        mb_release_date: Optional[str] = release_results.mb_release_date
 
-            folder_data.append(folder)
-            folder_id_data.append(folder_id)
+        genres = me.release(release_id).genres
+        print("Genres: ", genres, type(genres))
+        album_release_date = me.release(release_id).year
 
-            return folder_data, folder_id_data
+        if me.release(release_id).master is not None:
+            main_release_date = me.release(release_id).master.fetch("year")
+        else:
+            main_release_date = album_release_date
 
-        def get_album_data():
-            release_data = config.my_data
+        track_title = []
+        track_duration = []
+        track_position = []
 
-            artist_count = 0
+        for tracks in me.release(release_id).tracklist:
+            track_title.append(tracks.title)
+            track_duration.append(tracks.duration)
+            track_position.append(tracks.position)
 
-            for artist_name in release_data.release(album_release_id).artists:
-                artist_name = (
-                    release_data.release(album_release_id).artists[artist_count].name
-                )
-
-            artist_count += 1
-
-            release_id = album_release_id
-
-            artist_id = release_data.release(album_release_id).artists[0].name
-            release_title = release_data.release(album_release_id).title
-            genres = release_data.release(album_release_id).genres
-
-        choose_info = ChooseInfo(
-            folder,
-            folder_number,
+        album_info = AlbumInfo(
             release_id,
-            release_title,
+            release_url,
+            artist_id,
             artist_name,
-            release_date,
+            release_title,
+            artist_url,
+            release_image_url,
             genres,
+            # discogs_main_id,
             main_release_date,
-            album_release_date,
+            album_release_year,
+            track_title,
+            track_duration,
+            track_position,
+            mb_id,
+            mb_release_date
         )
-        # print("Genres: ", genres)
+        print("Album info: ", album_info, album_info.genres, type(album_info.genres))
         return album_info

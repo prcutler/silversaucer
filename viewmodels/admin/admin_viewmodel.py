@@ -1,26 +1,30 @@
-from typing import List, Optional
-from data.album_data import Album
-
+from typing import Optional, List
 from starlette.requests import Request
+from data.release import Release
 
-from services import play_service
+from services import admin_service
+
 from viewmodels.shared.viewmodel import ViewModelBase
 
 
-class AlbumChooseViewModel(ViewModelBase):
+class AdminViewModel(ViewModelBase):
     def __init__(self, request: Request):
         super().__init__(request)
 
         self.release_id: Optional[int] = None
-        self.releases: List[Album] = []
+        self.releases: List[Release] = []
 
         self.login_status = None
 
     async def load(self):
+
         self.login_status = self.is_logged_in
-        self.releases = await play_service.get_album_list()
-        print("Vm.load: self.releases: ", self.releases)
+        self.releases = await admin_service.missing_mb_info()
 
         form = await self.request.form()
         self.release_id = form.get("release_id")
         print("Vm.load: self.release_id: ", self.release_id)
+
+        return {}
+
+

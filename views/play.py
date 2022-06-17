@@ -5,6 +5,8 @@ from fastapi_chameleon import template
 from starlette import status
 from starlette.requests import Request
 
+from services import choose_service
+
 from viewmodels.play.choose_results_viewmodel import ChooseResultsViewModel
 from viewmodels.play.choose_viewmodel import AlbumChooseViewModel
 from viewmodels.play.play_album_viewmodel import PlayAlbumViewModel
@@ -16,8 +18,13 @@ router = fastapi.APIRouter()
 
 @router.get("/play/choose")
 @template(template_file="play/choose.pt")
-def album_choice(request: Request):
+async def album_choice(request: Request):
     vm = AlbumChooseViewModel(request)
+    await vm.load()
+
+    release_id = vm.release_id
+    print("release_id viewmodel: ", release_id)
+
     return vm.to_dict()
 
 
@@ -34,20 +41,25 @@ async def album_choice_post(request: Request):
     vm = AlbumChooseViewModel(request)
     await vm.load()
 
-    # TODO: Write method for viewmodel to call service to get list choices
-    # TODO - if empty, call random record service and redirect to now-playing
-
-    resp = fastapi.responses.RedirectResponse(
-        url="/play/choose-results", status_code=status.HTTP_302_FOUND
+    release_id = vm.release_id
+    print("release_id viewmodel: ", release_id)
+    # Redirect to Admin homepage on post
+    response = fastapi.responses.RedirectResponse(
+        url=f"/play/choose-results/{release_id}", status_code=status.HTTP_302_FOUND
     )
 
-    return resp
+    return response
 
 
-@router.get("/play/choose-results")
+@router.get("/play/choose-results/{release_id}")
 @template(template_file="play/choose-results.pt")
-def album_choice(request: Request):
-    vm = ChooseResultsViewModel(request)
+async def album_choice(release_id, request: Request):
+    vm = ChooseResultsViewModel(release_id, request)
+
+    await choose_service.get_release_data(release_id)
+
+    await vm.load()
+
     return vm.to_dict()
 
 
@@ -57,13 +69,7 @@ async def album_choice_post(request: Request):
     vm = ChooseResultsViewModel(request)
     await vm.load()
 
-    resp = fastapi.responses.RedirectResponse(
-        url="/play/now-playing", status_code=status.HTTP_302_FOUND
-    )
-
-    return resp
-
-    # TODO - if empty, call random record service and redirect to now-playing
+    return vm.to_dict()
 
 
 @router.get("/play/play-album")
@@ -77,7 +83,9 @@ async def now_playing(request: Request):
 
 @router.get("/play/play-single")
 @template(template_file="play/play-single.pt")
-def play_single(request: Request):
+async def play_single(request: Request):
     vm = PlaySingleViewModel(request)
+
+    await vm.load()
 
     return vm.to_dict()
