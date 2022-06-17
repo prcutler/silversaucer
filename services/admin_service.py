@@ -312,7 +312,7 @@ async def get_mb_date():
 
         for musicbrainz in date_results:
             if musicbrainz.mb_id is not None:
-                # print(musicbrainz.mb_id)
+                print(musicbrainz.mb_id)
 
                 musicbrainzngs.set_useragent(
                     "silversaucer",
@@ -322,12 +322,11 @@ async def get_mb_date():
                 musicbrainzngs.get_release_by_id(musicbrainz.mb_id)
                 mb_release_date = musicbrainzngs.get_release_by_id(musicbrainz.mb_id).get("release").get("date")
 
-                mb_dates = Album()
+                musicbrainz.release_id = musicbrainz.release_id
+                musicbrainz.mb_id = musicbrainz.mb_id
+                musicbrainz.mb_release_date = mb_release_date
+                print("Release ID: ", musicbrainz.release_id, "MusicBrainz ID: ", musicbrainz.mb_id, "Release Date: ", musicbrainz.mb_release_date)
 
-                mb_dates.release_id = musicbrainz.release_id
-                mb_dates.mb_id = musicbrainz.mb_id
-                mb_dates.mb_release_date = mb_release_date
-                # print(mb_release_date)
                 await session.commit()
 
 
