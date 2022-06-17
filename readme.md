@@ -21,11 +21,12 @@ In Phase 3 I hope to build an "On this Day" feature with a web page that shows i
 
 ## Development Goals
 
-* Switch from the Pyramid web framework to the FastAPI framework.
-* Still need to learn testing and 'pytest'.  Just can't wrap my head around it.
-* Migrate to Github Actions from Azure Pipelines.
-* Learn the Discogs API (and potentially MusicBrainz).
-* Learn how to use the CircuitPython MatrixPortal.  (This is more complex than it sounds!)
-* Potentially look at deploying this to Azure instead of hosting on Digital Ocean.  But that's a way out.
+* [x] Switch from the Pyramid web framework to the FastAPI framework.
+* [ ] Still need to learn testing and 'pytest'.  Just can't wrap my head around it.
+* [x] Migrate to Github Actions from Azure Pipelines.
+* [x] Learn the Discogs API (and potentially MusicBrainz).
+* [x] Learn how to use the CircuitPython MatrixPortal.  (This is more complex than it sounds!)
+* [ ] Learn how to use HTMX in place of Javascript.
+* [ ] Potentially look at deploying this to Azure instead of hosting on Digital Ocean.  But that's a way out.
 
 Want to know more? You can view my [blog posts about Silver Saucer and my progress here](https://paulcutler.org/tags/silver-saucer/).
