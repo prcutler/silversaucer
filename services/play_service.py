@@ -76,6 +76,9 @@ async def get_album_data(folder):
             track_duration.append(tracks.duration)
             track_position.append(tracks.position)
 
+        mb_id = [mb_id.mb_id for mb_id in album_rows[random_result]]
+        mb_release_date = [mb_release_date.mb_release_date for mb_release_date in album_rows[random_result]]
+
     album_info = AlbumInfo(
         album_id,
         release_url,
@@ -91,6 +94,8 @@ async def get_album_data(folder):
         track_title,
         track_duration,
         track_position,
+        mb_id,
+        mb_release_date,
     )
     print(album_info)
     return album_info
