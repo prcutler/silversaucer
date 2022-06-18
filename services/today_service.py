@@ -7,6 +7,7 @@ from data.today_data import TodayInfo
 
 import data.config as config
 import pendulum
+import sqlalchemy
 
 
 me = config.my_data
@@ -17,11 +18,12 @@ async def get_today_list():
     today = pendulum.today()
     print("Today: ", today)
     search = str(today.month) + "-" + str(today.day)
-    # search = '02-08'
+    # search = '6-18'
+    #search = '09-21'
     print("Search: ", search, type(search))
 
     async with db_session.create_async_session() as session:
-        query = select(Album).filter(Album.mb_release_date.like('%' + search))
+        query = select(Album).filter(Album.mb_release_date.like('%' + search)).order_by(Album.mb_release_date)
         print(query)
 
         results = await session.execute(query)
