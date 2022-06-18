@@ -210,7 +210,7 @@ async def update_mb_id():
 # ## GET LIST OF ALL RELEASES MISSING MUSICBRAINZ RELEASE ID ###
 async def missing_mb_info() -> List[Release]:
     async with db_session.create_async_session() as session:
-        query = (select(Album).filter(Album.mb_id == None))
+        query = select(Album).filter(Album.mb_id == None).order_by(Album.artist_name.asc())
 
         results = await session.execute(query)
         releases = results.scalars()
@@ -304,7 +304,7 @@ async def edit_release(release_id: int, mb_id: str):
 
 async def get_mb_date():
     async with db_session.create_async_session() as session:
-        query = select(Album).filter(Album.mb_id is not None)
+        query = select(Album).filter(Album.mb_id is not None).filter(Album.mb_release_date == None)
         results = await session.execute(query)
 
         date_results = results.scalars()
@@ -319,8 +319,11 @@ async def get_mb_date():
                     "0.1",
                     "https://github.com/prcutler/silversaucer/", )
 
-                musicbrainzngs.get_release_by_id(musicbrainz.mb_id)
-                mb_release_date = musicbrainzngs.get_release_by_id(musicbrainz.mb_id).get("release").get("date")
+                try:
+                    musicbrainzngs.get_release_by_id(musicbrainz.mb_id)
+                    mb_release_date = musicbrainzngs.get_release_by_id(musicbrainz.mb_id).get("release").get("date")
+                except musicbrainzngs.musicbrainz.ResponseError:
+                    mb_release_date = None
 
                 musicbrainz.release_id = musicbrainz.release_id
                 musicbrainz.mb_id = musicbrainz.mb_id

@@ -18,7 +18,7 @@ musicbrainzngs.set_useragent(
     "https://github.com/prcutler/silversaucer/",)
 
 
-mb_album_id = '8a7c5652-d859-4bb0-9b6d-7b44be43b08b'
+mb_album_id = '52f218b7-7a2d-444a-b9bf-faaaa8175759'
 artist_id = "c5c2ea1c-4bde-4f4d-bd0b-47b200bf99d6"
 
 try:

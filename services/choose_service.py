@@ -6,8 +6,7 @@ from data.album_data import Album
 from data.album import AlbumInfo
 
 import data.config as config
-from data.choose import ChooseInfo
-from data.config import my_data
+
 
 me = config.my_data
 
