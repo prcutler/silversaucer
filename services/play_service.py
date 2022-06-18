@@ -9,6 +9,7 @@ from data.album_data import Album
 from random import randint
 
 from typing import List, Optional
+import pendulum
 
 
 me = config.my_data
@@ -77,7 +78,11 @@ async def get_album_data(folder):
             track_position.append(tracks.position)
 
         mb_id = [mb_id.mb_id for mb_id in album_rows[random_result]]
-        mb_release_date = [mb_release_date.mb_release_date for mb_release_date in album_rows[random_result]]
+        mb_release_str = [mb_release_date.mb_release_date for mb_release_date in album_rows[random_result]]
+        mb_release_convert = pendulum.parse(mb_release_str[0])
+        mb_release_date = mb_release_convert.to_formatted_date_string()
+        print("MB Release Date: ", mb_release_date, type(mb_release_date))
+
 
     album_info = AlbumInfo(
         album_id,

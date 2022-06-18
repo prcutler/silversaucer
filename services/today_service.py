@@ -16,9 +16,14 @@ me = config.my_data
 async def get_today_list():
 
     today = pendulum.today()
-    print("Today: ", today)
-    search = str(today.month) + "-" + str(today.day)
-    # search = '6-18'
+    print("Today: ", today, today.month, today.day)
+
+    if today.month < 10:
+        search = "0" + str(today.month) + "-" + str(today.day)
+    else:
+        search = str(today.month) + "-" + str(today.day)
+
+    #search = '06-21'
     #search = '09-21'
     print("Search: ", search, type(search))
 
@@ -34,12 +39,3 @@ async def get_today_list():
             print("query_results: ", type(query_results))
 
             return query_results
-
-        # for rows in query_results:
-            # print("Row: ", rows, type(rows))
-
-        #if str(query_results.mb_release_date[::-4]) == search:
-        #    print("Search results: ", query_results)
-        #else:
-        #    print("No results")
-
