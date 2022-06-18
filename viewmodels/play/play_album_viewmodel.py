@@ -50,7 +50,7 @@ class PlayAlbumViewModel(ViewModelBase):
         self.track_duration: Optional[List](str) = release_data.track_duration
         self.track_position: Optional[List](str) = release_data.track_position
         self.mb_id = release_data.mb_id
-        self.mb_release_date = release_data.mb_release_date[0]
+        self.mb_release_date = release_data.mb_release_date
 
         self.random_saying = data.random_sayings.get_random_saying()
 

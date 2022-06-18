@@ -23,7 +23,7 @@ async def get_today_list():
     else:
         search = str(today.month) + "-" + str(today.day)
 
-    # search = '6-18'
+    #search = '06-21'
     #search = '09-21'
     print("Search: ", search, type(search))
 
@@ -39,12 +39,3 @@ async def get_today_list():
             print("query_results: ", type(query_results))
 
             return query_results
-
-        # for rows in query_results:
-            # print("Row: ", rows, type(rows))
-
-        #if str(query_results.mb_release_date[::-4]) == search:
-        #    print("Search results: ", query_results)
-        #else:
-        #    print("No results")
-
