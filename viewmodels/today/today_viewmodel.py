@@ -3,7 +3,7 @@ from typing import List, Optional
 
 from viewmodels.shared.viewmodel import ViewModelBase
 from data.today_data import TodayInfo
-from services import today_service, admin_service
+from services import today_service
 import pendulum
 
 

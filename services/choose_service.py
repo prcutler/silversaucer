@@ -6,6 +6,7 @@ from data.album_data import Album
 from data.album import AlbumInfo
 
 import data.config as config
+import pendulum
 
 
 me = config.my_data
@@ -31,7 +32,17 @@ async def get_release_data(release_id):
         release_image_url: Optional[str] = release_results.release_image_url
         album_release_year: Optional[str] = release_results.album_release_year
         mb_id: Optional[str] = release_results.mb_id
-        mb_release_date: Optional[str] = release_results.mb_release_date
+
+        mb_release_str = release_results.mb_release_date
+        try:
+            mb_release_convert = pendulum.parse(mb_release_str)
+
+            mb_release_date = mb_release_convert.to_formatted_date_string()
+            print("MB Release Date: ", mb_release_date, type(mb_release_date))
+
+        except mb_release_str is None:
+            mb_release_date = None
+            pass
 
         genres = me.release(release_id).genres
         print("Genres: ", genres, type(genres))

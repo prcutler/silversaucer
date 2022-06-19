@@ -84,9 +84,15 @@ async def get_album_data(folder):
             mb_release_date.mb_release_date
             for mb_release_date in album_rows[random_result]
         ]
-        mb_release_convert = pendulum.parse(mb_release_str[0])
-        mb_release_date = mb_release_convert.to_formatted_date_string()
-        print("MB Release Date: ", mb_release_date, type(mb_release_date))
+        try:
+            mb_release_convert = pendulum.parse(mb_release_str[0])
+
+            mb_release_date = mb_release_convert.to_formatted_date_string()
+            print("MB Release Date: ", mb_release_date, type(mb_release_date))
+
+        except mb_release_str[0] is None:
+            mb_release_date = None
+            pass
 
     album_info = AlbumInfo(
         album_id,
@@ -113,7 +119,7 @@ async def get_album_data(folder):
 # ## GET LIST OF ALL RELEASES MISSING MUSICBRAINZ RELEASE ID ###
 async def get_album_list() -> List[Album]:
     async with db_session.create_async_session() as session:
-        query = select(Album)
+        query = select(Album).order_by(Album.artist_name.asc())
 
         results = await session.execute(query)
         releases = results.scalars()

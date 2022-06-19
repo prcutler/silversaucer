@@ -106,9 +106,9 @@ async def get_genre_data():
                     genre_data.release_id = records.release.id
                     genre_data.genres = genres
 
-                    async with db_session.create_async_session() as session:
-                        session.add(genre_data)
-                        await session.commit()
+    #                async with db_session.create_async_session() as session:
+                    session.add(genre_data)
+                    await session.commit()
 
             print("Adding to db: ", genre_data.release_id, genre_data.genres)
 
@@ -147,9 +147,9 @@ async def get_main_release_data():
 
                 print("Adding to db", main_data.discogs_main_id)
 
-                async with db_session.create_async_session() as session:
-                    session.add(main_data)
-                    await session.commit()
+#                async with db_session.create_async_session() as session:
+                session.add(main_data)
+                await session.commit()
 
             except sqlalchemy.exc.IntegrityError:
                 print("Already in db, pass")

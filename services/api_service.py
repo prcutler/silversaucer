@@ -78,7 +78,7 @@ async def get_discogs_image(release_image_url):
     convert.save("static/img/album-art/image_300.bmp")
 
 
-async def publish_image(image_url):
+async def publish_image():
     client = mqtt.Client()
     client.username_pw_set(config.mqtt_user, config.mqtt_pw)
     client.connect("mqtt.silversaucer.com", 1883)
