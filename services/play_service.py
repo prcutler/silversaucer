@@ -26,7 +26,7 @@ async def get_album_data(folder):
         total_count = len(release_id_results)
 
         random_result = randint(1, total_count)
-        # print(total_count, random_result)
+        print(total_count, random_result)
 
         album_id_query = select(Album).filter(Album.folder == folder)
         results = await session.execute(album_id_query)
