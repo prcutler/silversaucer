@@ -45,5 +45,3 @@ class EditViewModel(ViewModelBase):
         self.login_status = self.is_logged_in
 
         # return {}
-
-

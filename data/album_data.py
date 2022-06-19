@@ -6,7 +6,7 @@ from data.modelbase import SqlAlchemyBase
 
 
 class Album(SqlAlchemyBase):
-    __tablename__ = 'albums'
+    __tablename__ = "albums"
 
     id: int = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
 

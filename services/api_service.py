@@ -14,7 +14,7 @@ import paho.mqtt.client as mqtt
 
 async def get_album_json() -> dict[str, Any]:
     async with db_session.create_async_session() as session:
-        query = (select(JSONData.album).filter(JSONData.id == 1))
+        query = select(JSONData.album).filter(JSONData.id == 1)
 
         results = await session.execute(query)
         album_json = results.scalar()
@@ -24,9 +24,7 @@ async def get_album_json() -> dict[str, Any]:
 
 async def get_artist_json() -> dict[str, Any]:
     async with db_session.create_async_session() as session:
-        query = (
-            select(JSONData.artist)
-            .filter(JSONData.id == 1))
+        query = select(JSONData.artist).filter(JSONData.id == 1)
 
         results = await session.execute(query)
         results_json = results.scalar_one_or_none()
@@ -39,7 +37,7 @@ async def get_artist_json() -> dict[str, Any]:
 async def get_image_url_json() -> dict[str, Any]:
     async with db_session.create_async_session() as session:
 
-        query = (select(JSONData.image_url).filter(JSONData.id == 1))
+        query = select(JSONData.image_url).filter(JSONData.id == 1)
 
         results = await session.execute(query)
         image_url_json = results.scalar()
@@ -71,13 +69,13 @@ async def update_api_db(album, artist, image_url):
 async def get_discogs_image(release_image_url):
     image_dl = requests.get(release_image_url, stream=True).raw
     download = Image.open(image_dl)
-    download.save('static/img/album-art/image_600.jpg')
+    download.save("static/img/album-art/image_600.jpg")
 
-    img = Image.open('static/img/album-art/image_600.jpg')
+    img = Image.open("static/img/album-art/image_600.jpg")
     img.quantize(colors=16, method=2)
     smol_img = img.resize((320, 320))
     convert = smol_img.convert(mode="P", palette=Image.WEB)
-    convert.save('static/img/album-art/image_300.bmp')
+    convert.save("static/img/album-art/image_300.bmp")
 
 
 async def publish_image(image_url):
@@ -86,5 +84,3 @@ async def publish_image(image_url):
     client.connect("mqtt.silversaucer.com", 1883)
     client.publish("albumart", "Ping!")
     client.disconnect()
-
-

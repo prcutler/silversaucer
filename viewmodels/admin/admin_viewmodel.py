@@ -26,5 +26,3 @@ class AdminViewModel(ViewModelBase):
         print("Vm.load: self.release_id: ", self.release_id)
 
         return {}
-
-

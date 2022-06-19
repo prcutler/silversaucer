@@ -37,9 +37,9 @@ async def get_album_data(folder):
         print("Album ID:", album_id, type(album_id))
         album_id = album_id[0]
 
- #       for album_id in album_rows[random_result]:
- #           album_id = album_id.release_id
- #           print("Album ID:", album_id, type(album_id))
+        #       for album_id in album_rows[random_result]:
+        #           album_id = album_id.release_id
+        #           print("Album ID:", album_id, type(album_id))
 
         artist_id = [album_id.artist_id for album_id in album_rows[random_result]]
         artist_id = artist_id[0]
@@ -56,7 +56,9 @@ async def get_album_data(folder):
         url = [url.release_url for url in album_rows[random_result]]
         release_url = url[0]
 
-        image_url = [image_url.release_image_url for image_url in album_rows[random_result]]
+        image_url = [
+            image_url.release_image_url for image_url in album_rows[random_result]
+        ]
         release_image_url = image_url[0]
 
         genres = me.release(album_id).genres
@@ -78,11 +80,13 @@ async def get_album_data(folder):
             track_position.append(tracks.position)
 
         mb_id = [mb_id.mb_id for mb_id in album_rows[random_result]]
-        mb_release_str = [mb_release_date.mb_release_date for mb_release_date in album_rows[random_result]]
+        mb_release_str = [
+            mb_release_date.mb_release_date
+            for mb_release_date in album_rows[random_result]
+        ]
         mb_release_convert = pendulum.parse(mb_release_str[0])
         mb_release_date = mb_release_convert.to_formatted_date_string()
         print("MB Release Date: ", mb_release_date, type(mb_release_date))
-
 
     album_info = AlbumInfo(
         album_id,
@@ -109,7 +113,7 @@ async def get_album_data(folder):
 # ## GET LIST OF ALL RELEASES MISSING MUSICBRAINZ RELEASE ID ###
 async def get_album_list() -> List[Album]:
     async with db_session.create_async_session() as session:
-        query = (select(Album))
+        query = select(Album)
 
         results = await session.execute(query)
         releases = results.scalars()

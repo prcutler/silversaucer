@@ -25,11 +25,18 @@ async def get_album_db_data():
         album_data = Album()
 
         async with db_session.create_async_session() as session:
-            release_id_query = select(Album.release_id).filter(Album.release_id == records.release.id)
+            release_id_query = select(Album.release_id).filter(
+                Album.release_id == records.release.id
+            )
             results = await session.execute(release_id_query)
 
             release_id_results = results.scalar_one_or_none()
-            print("DB query results: ", release_id_results, "Type: ", type(release_id_results))
+            print(
+                "DB query results: ",
+                release_id_results,
+                "Type: ",
+                type(release_id_results),
+            )
 
             if records.release.id == release_id_results:
                 pass
@@ -57,7 +64,7 @@ async def get_album_db_data():
                 except TypeError:
                     album_data.release_image_url = "None"
 
-                # async with db_session.create_async_session() as session:
+                    # async with db_session.create_async_session() as session:
                     session.add(album_data)
                     await session.commit()
 
@@ -74,14 +81,21 @@ async def get_genre_data():
         genre_data = Genre()
 
         async with db_session.create_async_session() as session:
-            release_id_query = select(Genre.release_id).filter(Genre.release_id == records.release.id)
+            release_id_query = select(Genre.release_id).filter(
+                Genre.release_id == records.release.id
+            )
             results = await session.execute(release_id_query)
 
             release_id_results = results.scalar_one_or_none()
 
             if records.release.id == release_id_results:
-                print("Record Release ID: ", records.release.id,
-                      "SQL Query Results: ", release_id_results, "Already in db, pass")
+                print(
+                    "Record Release ID: ",
+                    records.release.id,
+                    "SQL Query Results: ",
+                    release_id_results,
+                    "Already in db, pass",
+                )
                 pass
 
             else:
@@ -128,7 +142,7 @@ async def get_main_release_data():
                     main_data.discogs_main_url = records.release.master.url
 
                 except AttributeError:
-                    #main_data.main_release_date = 1900
+                    # main_data.main_release_date = 1900
                     pass
 
                 print("Adding to db", main_data.discogs_main_id)
@@ -148,15 +162,16 @@ async def get_tracklist_data():
         tracklists = Tracklists()
 
         async with db_session.create_async_session() as session:
-            release_id_query = select(Tracklists.release_id)\
-                .filter(Tracklists.release_id == records.release.id)
+            release_id_query = select(Tracklists.release_id).filter(
+                Tracklists.release_id == records.release.id
+            )
             results = await session.execute(release_id_query)
 
             release_id_results = results.scalar_one_or_none()
 
             x = 0
 
-            #if records.release.id == release_id_results:
+            # if records.release.id == release_id_results:
             #    print("Record Release ID: ", records.release.id,
             #          "SQL Query Results: ", release_id_results, "Already in db, pass")
             #    pass
@@ -184,7 +199,9 @@ async def update_mb_id():
 
     async with db_session.create_async_session() as session:
 
-        query = select(Release.discogs_id, Release.m_rel_id).filter(Album.release_id == Release.discogs_id)
+        query = select(Release.discogs_id, Release.m_rel_id).filter(
+            Album.release_id == Release.discogs_id
+        )
         results = await session.execute(query)
         release_id_results = results.fetchall()
 
@@ -200,9 +217,14 @@ async def update_mb_id():
 
                 album_data.release_id = discogs_id
                 album_data.mb_id = mb_id
-                print("Release ID: ", album_data.release_id, "MusicBrainz ID: ", album_data.mb_id)
+                print(
+                    "Release ID: ",
+                    album_data.release_id,
+                    "MusicBrainz ID: ",
+                    album_data.mb_id,
+                )
 
-                #session.add(album_data)
+                # session.add(album_data)
                 # Above line adds a blank row with only mb_id populated
                 await session.commit()
 
@@ -210,7 +232,9 @@ async def update_mb_id():
 # ## GET LIST OF ALL RELEASES MISSING MUSICBRAINZ RELEASE ID ###
 async def missing_mb_info() -> List[Release]:
     async with db_session.create_async_session() as session:
-        query = select(Album).filter(Album.mb_id == None).order_by(Album.artist_name.asc())
+        query = (
+            select(Album).filter(Album.mb_id == None).order_by(Album.artist_name.asc())
+        )
 
         results = await session.execute(query)
         releases = results.scalars()
@@ -304,7 +328,11 @@ async def edit_release(release_id: int, mb_id: str):
 
 async def get_mb_date():
     async with db_session.create_async_session() as session:
-        query = select(Album).filter(Album.mb_id is not None).filter(Album.mb_release_date == None)
+        query = (
+            select(Album)
+            .filter(Album.mb_id is not None)
+            .filter(Album.mb_release_date == None)
+        )
         results = await session.execute(query)
 
         date_results = results.scalars()
@@ -317,23 +345,29 @@ async def get_mb_date():
                 musicbrainzngs.set_useragent(
                     "silversaucer",
                     "0.1",
-                    "https://github.com/prcutler/silversaucer/", )
+                    "https://github.com/prcutler/silversaucer/",
+                )
 
                 try:
                     musicbrainzngs.get_release_by_id(musicbrainz.mb_id)
-                    mb_release_date = musicbrainzngs.get_release_by_id(musicbrainz.mb_id).get("release").get("date")
+                    mb_release_date = (
+                        musicbrainzngs.get_release_by_id(musicbrainz.mb_id)
+                        .get("release")
+                        .get("date")
+                    )
                 except musicbrainzngs.musicbrainz.ResponseError:
                     mb_release_date = None
 
                 musicbrainz.release_id = musicbrainz.release_id
                 musicbrainz.mb_id = musicbrainz.mb_id
                 musicbrainz.mb_release_date = mb_release_date
-                print("Release ID: ", musicbrainz.release_id, "MusicBrainz ID: ", musicbrainz.mb_id, "Release Date: ", musicbrainz.mb_release_date)
+                print(
+                    "Release ID: ",
+                    musicbrainz.release_id,
+                    "MusicBrainz ID: ",
+                    musicbrainz.mb_id,
+                    "Release Date: ",
+                    musicbrainz.mb_release_date,
+                )
 
                 await session.commit()
-
-
-
-
-
-

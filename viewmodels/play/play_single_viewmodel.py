@@ -55,5 +55,3 @@ class PlaySingleViewModel(ViewModelBase):
         self.track_title: Optional[List](str) = release_data.track_title
         self.track_duration: Optional[List](str) = release_data.track_duration
         self.track_position: Optional[List](str) = release_data.track_position
-
-
