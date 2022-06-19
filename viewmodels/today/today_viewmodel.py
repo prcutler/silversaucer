@@ -23,7 +23,7 @@ class TodayViewModel(ViewModelBase):
 
         self.releases = await today_service.get_today_list()
 
-        self.today_date = pendulum.now().format("MMMM Do")
+        self.today_date = pendulum.now(tz='America/Chicago').format("MMMM Do")
 
         #        print("Vm.load: self.release_id: ", self.releases.release_id)
 
