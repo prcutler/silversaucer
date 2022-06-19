@@ -15,7 +15,7 @@ me = config.my_data
 
 async def get_today_list():
 
-    today = pendulum.today()
+    today = pendulum.today(tz="America/Chicago")
     print("Today: ", today, today.month, today.day)
 
     if today.month < 10:
