@@ -84,9 +84,15 @@ async def get_album_data(folder):
             mb_release_date.mb_release_date
             for mb_release_date in album_rows[random_result]
         ]
-        mb_release_convert = pendulum.parse(mb_release_str[0])
-        mb_release_date = mb_release_convert.to_formatted_date_string()
-        print("MB Release Date: ", mb_release_date, type(mb_release_date))
+        try:
+            mb_release_convert = pendulum.parse(mb_release_str[0])
+
+            mb_release_date = mb_release_convert.to_formatted_date_string()
+            print("MB Release Date: ", mb_release_date, type(mb_release_date))
+
+        except mb_release_str[0] is None:
+            mb_release_date = None
+            pass
 
     album_info = AlbumInfo(
         album_id,

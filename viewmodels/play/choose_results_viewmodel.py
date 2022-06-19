@@ -61,4 +61,4 @@ class ChooseResultsViewModel(ViewModelBase):
             get_discogs_img = await api_service.get_discogs_image(
                 self.release_image_url
             )
-            publish_img = await api_service.publish_image(self.release_image_url)
+            publish_img = await api_service.publish_image()
