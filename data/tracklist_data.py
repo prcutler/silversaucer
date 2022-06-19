@@ -6,7 +6,7 @@ from data.modelbase import SqlAlchemyBase
 
 
 class Tracklists(SqlAlchemyBase):
-    __tablename__ = 'tracks'
+    __tablename__ = "tracks"
 
     id: int = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
     release_id: int = sa.Column(sa.Integer, index=True)
