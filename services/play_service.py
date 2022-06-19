@@ -33,13 +33,15 @@ async def get_album_data(folder):
         album_rows = results.all()
         # print("Album ID:", album_rows)
 
-        album_id = [album_id.release_id for album_id in album_rows[random_result]]
+        album_id = [album_id.release_id for album_id in album_rows[random_result - 1]]
         print("Album ID:", album_id, type(album_id))
         album_id = album_id[0]
 
-        #       for album_id in album_rows[random_result]:
-        #           album_id = album_id.release_id
-        #           print("Album ID:", album_id, type(album_id))
+        # for album_id in album_rows[random_result]:
+        #    album_id = album_id.release_id
+        #    print("Album ID:", album_id, type(album_id))
+
+        #    return album_id
 
         artist_id = [album_id.artist_id for album_id in album_rows[random_result]]
         artist_id = artist_id[0]
