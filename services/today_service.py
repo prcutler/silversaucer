@@ -43,3 +43,5 @@ async def get_today_list():
             print("query_results: ", type(query_results))
 
             return query_results
+
+
