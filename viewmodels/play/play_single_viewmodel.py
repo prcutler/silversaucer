@@ -25,6 +25,8 @@ class PlaySingleViewModel(ViewModelBase):
         self.track_duration: Optional[List](str) = None
         self.track_position: Optional[List](str) = None
 
+        self.mb_release_date: Optional[str] = None
+
         self.login_status = self.is_logged_in
         # print("Login status: ", self.login_status)
 
@@ -55,3 +57,5 @@ class PlaySingleViewModel(ViewModelBase):
         self.track_title: Optional[List](str) = release_data.track_title
         self.track_duration: Optional[List](str) = release_data.track_duration
         self.track_position: Optional[List](str) = release_data.track_position
+
+        self.mb_release_date: Optional[str] = release_data.mb_release_date

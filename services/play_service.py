@@ -97,7 +97,10 @@ async def get_album_data(folder):
         if mb_release_str[0] is None:
             mb_release_date = None
         else:
-            mb_release_date = mb_release_str[0]
+
+            mb_release_convert = pendulum.parse(mb_release_str[0])
+            mb_release_date = mb_release_convert.to_formatted_date_string()
+            print("MB Release Date: ", mb_release_date, type(mb_release_date))
 
     album_info = AlbumInfo(
         album_id,
