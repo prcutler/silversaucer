@@ -23,12 +23,16 @@ async def get_today_list():
     else:
         search = str(today.month) + "-" + str(today.day)
 
-    #search = '06-21'
-    #search = '09-21'
+    # search = '06-21'
+    # search = '09-21'
     print("Search: ", search, type(search))
 
     async with db_session.create_async_session() as session:
-        query = select(Album).filter(Album.mb_release_date.like('%' + search)).order_by(Album.mb_release_date)
+        query = (
+            select(Album)
+            .filter(Album.mb_release_date.like("%" + search))
+            .order_by(Album.mb_release_date)
+        )
         print(query)
 
         results = await session.execute(query)

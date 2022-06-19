@@ -67,7 +67,7 @@ async def get_release_data(release_id):
             track_duration,
             track_position,
             mb_id,
-            mb_release_date
+            mb_release_date,
         )
         print("Album info: ", album_info, album_info.genres, type(album_info.genres))
         return album_info
