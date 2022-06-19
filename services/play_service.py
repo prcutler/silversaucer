@@ -119,7 +119,7 @@ async def get_album_data(folder):
 # ## GET LIST OF ALL RELEASES MISSING MUSICBRAINZ RELEASE ID ###
 async def get_album_list() -> List[Album]:
     async with db_session.create_async_session() as session:
-        query = select(Album)
+        query = select(Album).order_by(Album.artist_name.asc())
 
         results = await session.execute(query)
         releases = results.scalars()
