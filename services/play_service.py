@@ -23,7 +23,7 @@ async def get_album_data(folder):
         results = await session.execute(release_id_query)
 
         release_id_results = results.all()
-        total_count = len(release_id_results)
+        total_count = len(release_id_results) - 1
 
         random_result = randint(1, total_count)
         print(total_count, random_result)
@@ -33,7 +33,7 @@ async def get_album_data(folder):
         album_rows = results.all()
         # print("Album ID:", album_rows)
 
-        album_id = [album_id.release_id for album_id in album_rows[int(random_result) - 1]]
+        album_id = [album_id.release_id for album_id in album_rows[int(random_result)]]
         print("Album ID:", album_id, type(album_id), "Random Result:", random_result)
         album_id = album_id[0]
 
