@@ -17,9 +17,9 @@ You can visit [Silversaucer.com](https://silversaucer.com/) to see the site in a
 
 The project had three main goals:
 
-    1 Complete: Build a website that integrates with the Discogs API to display information about an album, either chosen at random or picked specifically.
-    2 Integrate with an Adafruit PyPortal and using CircuitPython, display the album art on the PyPortal.
-    3 Build an "On this Day" feature to display albums released on a specific day.  This required a number of steps to integrate the MusicBrainz into the app.
+* Complete: Build a website that integrates with the Discogs API to display information about an album, either chosen at random or picked specifically.
+* Integrate with an Adafruit PyPortal and using CircuitPython, display the album art on the PyPortal.
+* Build an "On this Day" feature to display albums released on a specific day.  This required a number of steps to integrate the MusicBrainz into the app.
 
 Want to know more? You can view my [blog posts about Silver Saucer and my progress here](https://paulcutler.org/tags/silver-saucer/).
 
