@@ -5,19 +5,24 @@
 
 # Overview
 
+### Project Status:  Completed
+
 Silver Saucer is a domain I registered many years ago and kept because I like the name. Both the name and the logo are inspired from both a poem by Neil Gaiman, *The Day the Saucers Came* and my love of *The X-Files*.
 
-Silver Saucer's main goal is to integrate my record collection, using the Discogs API, with a website to display album art when an album is chosen or randomply picked.
+Silver Saucer's main goal is was a Python learning exercise to integrate my record collection, using the Discogs API, with a website to display album art when an album is chosen or randomly picked.
+
+You can visit [Silversaucer.com](https://silversaucer.com/) to see the site in action.
 
 ## Project Goals
 
-I have separated my goals for the project into three phases to help make it more manageable:
+The project had three main goals:
 
-Phase 1 - Complete: Build a website that integrates with the Discogs API to display information about an album. 
+    1 Complete: Build a website that integrates with the Discogs API to display information about an album, either chosen at random or picked specifically.
+    2 Integrate with an Adafruit PyPortal and using CircuitPython, display the album art on the PyPortal.
+    3 Build an "On this Day" feature to display albums released on a specific day.  This required a number of steps to integrate the MusicBrainz into the app.
 
-Phase 2 - Complete:  Using an Adafruit PyPortal, build a display that automatically displays album art for the album chosen on SilverSaucer.com.
+Want to know more? You can view my [blog posts about Silver Saucer and my progress here](https://paulcutler.org/tags/silver-saucer/).
 
-Phase 3 - 50%: Build an "On this Day" feature that displays which albums were released on a given day. As of June 2022, this is 50% complete.  Using `discodos`, I was able to get about half of the MusicBrainz IDs for my collection and I have built a form to manually enter the other 50%.  I have already integrated MusicBrainz's API  to fetch the release day, which Discogs doesn't have (only year) and this can run after all MusicBrainz IDs are stored in the database.
 
 ## Development Goals
 
@@ -26,7 +31,4 @@ Phase 3 - 50%: Build an "On this Day" feature that displays which albums were re
 * [x] Migrate to Github Actions from Azure Pipelines.
 * [x] Learn the Discogs API (and potentially MusicBrainz).
 * [x] Learn how to use the CircuitPython MatrixPortal.  (This is more complex than it sounds!)
-* [ ] Learn how to use HTMX in place of Javascript.
-* [ ] Potentially look at deploying this to Azure instead of hosting on Digital Ocean.  But that's a way out.
 
-Want to know more? You can view my [blog posts about Silver Saucer and my progress here](https://paulcutler.org/tags/silver-saucer/).
