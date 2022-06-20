@@ -1,7 +1,7 @@
 fastapi~=0.78.0
 uvicorn~=0.17.6
 fastapi-chameleon
-starlette~=0.16.0
+starlette~=0.19.1
 aiofiles
 requests~=2.27.1
 python-multipart~=0.0.5
@@ -12,7 +12,7 @@ paho-mqtt~=1.6.1
 passlib~=1.7.4
 pillow~=9.0.1
 h11~=0.13.0
-pip~=22.0.3
+pip
 anyio~=3.5.0
 sniffio~=1.2.0
 asgiref~=3.5.0
