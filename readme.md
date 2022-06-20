@@ -1,7 +1,7 @@
 [![Project Type: Toy](https://img.shields.io/badge/project%20type-toy-blue)](https://project-types.github.io/#toy)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
-[![Azure Build Succeeded](https://github.com/prcutler/silversaucer/actions/workflows/main_silversaucer.yml/badge.svg)](https://github.com/prcutler/silversaucer/actions/workflows/main_silversaucer.yml)
+[![SilverSaucer](https://github.com/prcutler/silversaucer/actions/workflows/python-app.yml/badge.svg)](https://github.com/prcutler/silversaucer/actions/workflows/python-app.yml)
 
 # Overview
 
