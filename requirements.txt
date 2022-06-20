@@ -29,7 +29,6 @@ urllib3~=1.26.8
 Chameleon~=3.10.1
 setuptools~=60.6.0
 urllib3~=1.26.9
-Chameleon~=3.9.1
 setuptools~=62.6.0
 musicbrainzngs~=0.7.1
 pendulum~=2.1.2
