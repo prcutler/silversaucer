@@ -45,7 +45,7 @@
 
                     <button type="submit" class="btn-success">Submit</button>
                 </form>
-            </div>
+            </div><br /><br />
 
             <form class="form-horizontal" action="" method="POST">
                 <div class="form-group">
