@@ -36,6 +36,7 @@ async def get_album_db_data():
                 release_id_results,
                 "Type: ",
                 type(release_id_results),
+                "records.release.id: ", records.release.id, type(records.release.id),
             )
 
             if records.release.id == release_id_results:
@@ -72,45 +73,55 @@ async def get_album_db_data():
 
 
 async def update_db_data():
-    pass
+    for records in me.collection_folders[0].releases:
 
-
-async def get_genre_data():
-    # Need to match the int from each row and pass it to the method to get the main data
-    for records in me.collection_folders[folder].releases:
-        genre_data = Genre()
+        album_data = Album()
 
         async with db_session.create_async_session() as session:
-            release_id_query = select(Genre.release_id).filter(
-                Genre.release_id == records.release.id
-            )
+            release_id_query = select(Album.release_id)
+
             results = await session.execute(release_id_query)
 
-            release_id_results = results.scalar_one_or_none()
+            release_id_results = results.scalars()
+            print(
+                "DB query results: ",
+                release_id_results,
+                "Type: ",
+                type(release_id_results),
+                "records.release.id: ", records.release.id, type(records.release.id),
+            )
 
-            if records.release.id == release_id_results:
-                print(
-                    "Record Release ID: ",
-                    records.release.id,
-                    "SQL Query Results: ",
-                    release_id_results,
-                    "Already in db, pass",
-                )
+            if records.release.id in release_id_results:
                 pass
 
             else:
-                genre_data.release_id = records.release.id
 
-                for genres in records.release.genres:
-                    print("Genre: ", genres)
-                    genre_data.release_id = records.release.id
-                    genre_data.genres = genres
+                album_data.folder = records.folder_id
+                album_data.release_id = records.release.id
+                album_data.artist_id = records.release.artists[0].id
+                album_data.artist_name = records.release.artists[0].name
+                album_data.release_title = records.release.title
 
-    #                async with db_session.create_async_session() as session:
-                    session.add(genre_data)
+                album_data.release_url = records.release.url
+                album_data.album_release_year = records.release.year
+
+                try:
+                    album_data.artist_url = records.release.artists[0].url
+
+                except discogs_client.client.HTTPError:
+                    album_data.artist_url = "None"
+
+                try:
+                    album_data.release_image_url = records.release.images[0]["uri"]
+
+                except TypeError:
+                    album_data.release_image_url = "None"
+
+                    # async with db_session.create_async_session() as session:
+                    session.add(album_data)
                     await session.commit()
 
-            print("Adding to db: ", genre_data.release_id, genre_data.genres)
+        print(records, records.release.year)
 
 
 async def get_main_release_data():
@@ -154,45 +165,6 @@ async def get_main_release_data():
             except sqlalchemy.exc.IntegrityError:
                 print("Already in db, pass")
                 pass
-
-
-async def get_tracklist_data():
-    # Need to match the int from each row and pass it to the method to get the main data
-    for records in me.collection_folders[folder].releases:
-        tracklists = Tracklists()
-
-        async with db_session.create_async_session() as session:
-            release_id_query = select(Tracklists.release_id).filter(
-                Tracklists.release_id == records.release.id
-            )
-            results = await session.execute(release_id_query)
-
-            release_id_results = results.scalar_one_or_none()
-
-            x = 0
-
-            # if records.release.id == release_id_results:
-            #    print("Record Release ID: ", records.release.id,
-            #          "SQL Query Results: ", release_id_results, "Already in db, pass")
-            #    pass
-
-            # else:
-            tracklists.release_id = records.release.id
-
-            for tracks in records.release.tracklist:
-                print("Tracks: ", tracks)
-                tracklists.release_id = records.release.id
-                tracklists.track_title = records.release.tracklist[x].title
-                tracklists.track_duration = records.release.tracklist[x].duration
-                tracklists.track_position = records.release.tracklist[x].position
-
-                async with db_session.create_async_session() as session:
-                    session.add(tracklists)
-                    await session.commit()
-
-                x = x + 1
-
-            print("Adding to db: ", tracklists.release_id, tracklists.track_title)
 
 
 async def update_mb_id():

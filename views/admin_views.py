@@ -94,6 +94,24 @@ async def admin_index(request: Request):
         return vm.to_dict()
 
 
+@router.get("/admin/update_db")
+@template(template_file="admin/index.pt")
+async def admin_index(request: Request):
+    vm = AdminViewModel(request)
+
+    await vm.load()
+
+    await admin_service.update_db_data()
+
+    if vm.login_status is False:
+        response = fastapi.responses.RedirectResponse(
+            url="/", status_code=status.HTTP_302_FOUND
+        )
+        return response
+    else:
+        return vm.to_dict()
+
+
 @router.get("/admin/mb_date")
 @template(template_file="admin/index.pt")
 async def admin_index(request: Request):

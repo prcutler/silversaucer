@@ -12,16 +12,22 @@
             </div>
 
             <div>
-                <a class="btn btn-danger" href="/admin/create_db">Update Database</a>
+                <a class="btn btn-primary" href="/admin/create_db">Create Database</a>
                 <br />
             </div>
             <br />
+
+            <div>
+                <a class="btn btn-danger" href="/admin/update_db">Update Database</a>
+                <br/>
+            </div>
+            <br/>
 
             <div class="form-container">
                 <form class="form-horizontal" action="" method="POST">
                     <div class="form-group">
 
-                        <p>Releases: <select class="form-control" name="release_id">
+                        <p>Edit a Release: <select class="form-control" name="release_id">
                             <option tal:repeat="r releases" value="${r.release_id}"> ${r.artist_name} - ${r.release_title}
                             </option>
                         </select></p>
