@@ -51,7 +51,7 @@
                 <div class="form-group">
 
                     <p>Edit a release: <select class="form-control" name="edit_release">
-                        <option tal:repeat="r releases" value="${r.release_id}"> ${r.artist_name} - ${r.release_title}
+                        <option tal:repeat="r all_releases" value="${r.release_id}"> ${r.artist_name} - ${r.release_title}
                         </option>
                     </select></p>
 
