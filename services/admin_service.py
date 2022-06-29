@@ -83,15 +83,9 @@ async def update_db_data():
             results = await session.execute(release_id_query)
 
             release_id_results = results.scalars()
-            print(
-                "DB query results: ",
-                release_id_results,
-                "Type: ",
-                type(release_id_results),
-                "records.release.id: ", records.release.id, type(records.release.id),
-            )
 
             if records.release.id in release_id_results:
+                print("Already in db, pass")
                 pass
 
             else:
@@ -117,11 +111,10 @@ async def update_db_data():
                 except TypeError:
                     album_data.release_image_url = "None"
 
-                    # async with db_session.create_async_session() as session:
-                    session.add(album_data)
-                    await session.commit()
+                    print("Adding to db", album_data.release_id)
 
-        print(records, records.release.year)
+                session.add(album_data)
+                await session.commit()
 
 
 async def get_main_release_data():
