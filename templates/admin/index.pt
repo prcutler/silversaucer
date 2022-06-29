@@ -33,33 +33,40 @@
                         </select></p>
 
                         <button type="submit" class="btn-success">Submit</button>
+
+
                     </div>
                 </form>
-            </div>
+
+
         <br /><br />
             <div class="form-container">
-                <form action="" method="POST" class="add-release-form">
-
-                Add Release: <input type="text" name="new_release" placeholder=" Discogs ID"
+                <form class="form-horizontal" action="" method="POST">
+                    <div class="form-group">
+                Add Release: <input type="text" name="new_release_id" placeholder=" Discogs ID"
                                     class="form-control" value=""><br />
 
                     <button type="submit" class="btn-success">Submit</button>
-                </form>
+
             </div><br /><br />
+            </form>
+            </div>
 
-            <form class="form-horizontal" action="" method="POST">
-                <div class="form-group">
-
-                    <p>Edit a release: <select class="form-control" name="edit_release">
+            <div class="form-container">
+                <form class="form-horizontal" action="" method="POST">
+                    <div class="form-group">
+                    <p>Edit a release: <select class="form-control" name="edit_release_id">
                         <option tal:repeat="r all_releases" value="${r.release_id}"> ${r.artist_name} - ${r.release_title}
                         </option>
                     </select></p>
 
                     <button type="submit" class="btn-success">Submit</button>
                 </div>
-            </form>
 
+                </form>
+            </div>
 
+            </div>
         </div>
     </div>
 </div>

@@ -31,6 +31,9 @@ class AdminViewModel(ViewModelBase):
 
         form = await self.request.form()
         self.release_id = form.get("release_id")
+        self.new_release_id = form.get("new_release_id")
+        self.edit_release_id = form.get("edit_release_id")
+
         print("Vm.load: self.release_id: ", self.release_id)
 
         return {}

@@ -10,11 +10,11 @@ class EditViewModel(ViewModelBase):
         super().__init__(request)
 
         self.release_id: int = release_id
-        self.release_url: str = None
+        self.release_url: Optional[str] = None
         self.artist_id: int = None
-        self.artist_name: str = None
-        self.release_title: str = None
-        self.artist_url: str = None
+        self.artist_name: Optional[str] = None
+        self.release_title: Optional[str] = None
+        self.artist_url: Optional[str] = None
         self.release_image_url: Optional[str] = None
         self.album_release_year: Optional = None
         self.folder: int = None

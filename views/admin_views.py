@@ -49,7 +49,15 @@ async def edit_post(request: Request):
     vm = AdminViewModel(request)
     await vm.load()
 
-    release_id = vm.release_id
+    if vm.release_id is not None:
+        release_id = vm.new_release_id
+    elif vm.new_release_id is not None:
+        release_id = vm.new_release_id
+    else:
+        release_id = vm.edit_release_id
+
+
+
     print("release_id viewmodel: ", release_id)
     # Redirect to Admin homepage on post
     response = fastapi.responses.RedirectResponse(
@@ -66,6 +74,7 @@ async def list_post(request: Request):
     await vm.load()
 
     release_id = vm.release_id
+
     print("release_id viewmodel: ", release_id)
 
     # Redirect to Admin homepage on post
@@ -154,6 +163,7 @@ async def edit_post(release_id, request: Request):
     await vm.load()
 
     release_id = vm.release_id
+
     print("release_id viewmodel: ", release_id, "MB_ID: ", vm.mb_id)
 
     album = await admin_service.edit_release(release_id, vm.mb_id)
