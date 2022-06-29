@@ -27,7 +27,7 @@
                 <form class="form-horizontal" action="" method="POST">
                     <div class="form-group">
 
-                        <p>Edit a Release: <select class="form-control" name="release_id">
+                        <p>Add MusicBrainz ID: <select class="form-control" name="release_id">
                             <option tal:repeat="r releases" value="${r.release_id}"> ${r.artist_name} - ${r.release_title}
                             </option>
                         </select></p>

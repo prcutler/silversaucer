@@ -219,12 +219,24 @@ async def view_edit(release_id: int):
         print("Release results: ", release_results)
 
         # release_results.release_id = release_id
-        release_url: Optional[str] = release_results.release_url
+
+        try:
+            release_url: Optional[str] = release_results.release_url
+
+        except AttributeError:
+            release_url = None
+
         artist_id: int = release_results.artist_id
         artist_name: Optional[str] = release_results.artist_name
         release_title: Optional[str] = release_results.release_title
         artist_url: Optional[str] = release_results.artist_url
-        release_image_url: Optional[str] = release_results.release_image_url
+
+        try:
+            release_image_url: Optional[str] = release_results.release_image_url
+
+        except AttributeError:
+            release_image_url = None
+
         album_release_year: Optional[str] = release_results.album_release_year
         folder = release_results.folder
         mb_id: Optional[str] = release_results.mb_id
