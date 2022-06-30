@@ -160,7 +160,14 @@ async def edit_post(release_id, request: Request):
 
     print("release_id viewmodel: ", release_id, "MB_ID: ", vm.mb_id)
 
-    album = await admin_service.edit_release(release_id, vm.mb_id)
+    album = await admin_service.edit_release(release_id,
+                                             vm.artist_name,
+                                             vm.release_title,
+                                             vm.release_image_url,
+                                             vm.album_release_year,
+                                             vm.folder,
+                                             vm.mb_id,
+                                             vm.mb_release_date)
 
     # Redirect to Admin homepage on post
     response = fastapi.responses.RedirectResponse(
