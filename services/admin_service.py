@@ -213,7 +213,7 @@ async def view_edit(release_id: int):
         query = select(Album).filter(Album.release_id == release_id)
         results = await session.execute(query)
 
-        query_results = results.scalar_one_or_none()
+        query_results = results.scalar()
 
         release_results = query_results
         print("Release results: ", release_results)

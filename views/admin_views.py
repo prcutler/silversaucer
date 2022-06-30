@@ -49,13 +49,7 @@ async def edit_post(request: Request):
     vm = AdminViewModel(request)
     await vm.load()
 
-    if vm.release_id is not None:
-        release_id = vm.new_release_id
-    elif vm.new_release_id is not None:
-        release_id = vm.new_release_id
-    else:
-        release_id = vm.edit_release_id
-
+    release_id = vm.release_id
 
 
     print("release_id viewmodel: ", release_id)

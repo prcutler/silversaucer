@@ -6,18 +6,21 @@
 
                 <br/> <br/>
 
-                <img src="${ release_image_url } " alt="Album Cover" width=400 height=400 class="center">
+                <img src="${ release_data.release_image_url } " alt="Album Cover" width=400 height=400 class="center">
                 <br/><br/>
                 <ul>
                     <br/>
 
-                    <li><a href="${ release_url } "> ${ release_title }</a> by <a
-                            href="${ artist_url }">${ artist_name }</a></li>
-                    <li>Record released: ${ album_release_year }</li>
+                    <li><a href="${ release_data.release_url } "> ${ release_data.release_title }</a> by <a
+                            href="${ release_data.artist_url }">${ release_data.artist_name }</a></li>
+                    <li>Record released: ${ release_data.album_release_year }</li>
 
                     <form action="" method="POST" class="edit" >
 
-                    MusicBrainz ID: <input name="mb_id" type="text" class="form-control" value="${ mb_id }" />
+                    MusicBrainz ID: <input name="mb_id" type="text" class="form-control" placeholder=" ${ release_data.mb_id }"
+                                           value="${ mb_id }" />
+                    MusicBrainz Release: <input name="mb_release_date" type="text" class="form-control" placeholder=" ${ release_data.mb_release_date }"
+                                           value="${ mb_id }" />
 
                     <br />
                     <button type="submit" class="btn btn-danger">Add MusicBrainz ID</button>

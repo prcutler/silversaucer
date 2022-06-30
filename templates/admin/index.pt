@@ -23,6 +23,12 @@
             </div>
             <br/>
 
+            <div>
+                <a class="btn btn-danger" href="/admin/add-release">Add Release</a>
+                <br/>
+            </div>
+            <br/>
+
             <div class="form-container">
                 <form class="form-horizontal" action="" method="POST">
                     <div class="form-group">
@@ -40,22 +46,11 @@
 
 
         <br /><br />
-            <div class="form-container">
-                <form class="form-horizontal" action="" method="POST">
-                    <div class="form-group">
-                Add Release: <input type="text" name="new_release_id" placeholder=" Discogs ID"
-                                    class="form-control" value=""><br />
-
-                    <button type="submit" class="btn-success">Submit</button>
-
-            </div><br /><br />
-            </form>
-            </div>
 
             <div class="form-container">
                 <form class="form-horizontal" action="" method="POST">
                     <div class="form-group">
-                    <p>Edit a release: <select class="form-control" name="edit_release_id">
+                    <p>Edit a release: <select class="form-control" name="release_id">
                         <option tal:repeat="r all_releases" value="${r.release_id}"> ${r.artist_name} - ${r.release_title}
                         </option>
                     </select></p>
