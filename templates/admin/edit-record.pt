@@ -23,9 +23,9 @@
                                                           value="${ release_data.release_image_url }" /></li><br/>
                     <li>Folder: <input name="folder" type="text" class="form-control"
                                                           value="${ release_data.folder }" /></li><br/>
-                    <li>MusicBrainz ID: <input name="mb_id" type="text" class="form-control" placeholder=" ${ release_data.mb_id }"
+                    <li>MusicBrainz ID: <input name="mb_id" type="text" class="form-control" value=" ${ release_data.mb_id }"
                                            value="${ mb_id }" /></li><br/>
-                    <li>MusicBrainz Release Date: <input name="mb_release_date" type="text" class="form-control" placeholder=" ${ release_data.mb_release_date }"
+                    <li>MusicBrainz Release Date: <input name="mb_release_date" type="text" class="form-control" value=" ${ release_data.mb_release_date }"
                                                      value="${ mb_id }" /></li>
 
                     <br />

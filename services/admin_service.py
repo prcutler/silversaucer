@@ -302,7 +302,9 @@ async def edit_release(release_id: int, release_title: str,
             mb_release_date=mb_release_date,
         )
 
+        query_results.album_release_year = album_release_year
         query_results.mb_id = mb_id
+        query_results.mb_release_date = mb_release_date
 
         await session.commit()
 
