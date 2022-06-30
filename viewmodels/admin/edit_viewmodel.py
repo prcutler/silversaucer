@@ -35,12 +35,12 @@ class EditViewModel(ViewModelBase):
         self.release_id = self.release_data.release_id
         # self.release_url = release_data.release_url
         # self.artist_id = release_data.artist_id
-        # self.artist_name = release_data.artist_name
-        # self.release_title = release_data.release_title
+        self.artist_name = form.get("artist_name")
+        self.release_title = form.get("release_title")
         # self.artist_url = release_data.artist_url
-        # self.release_image_url = release_data.release_image_url
-        # self.album_release_year = release_data.album_release_year
-        # self.folder = release_data.folder
+        self.release_image_url = form.get("release_image_url")
+        self.album_release_year = form.get("album_release_year")
+        self.folder = form.get("folder")
         self.mb_id = form.get("mb_id")
         self.mb_release_date = form.get("mb_release_date")
 

@@ -18,7 +18,7 @@
                     <li>Album:  <input name="release_title" type="text" value="${ release_data.release_title }" /></li>
                     <li>Discogs Release Date: <input name="album_release_year" type="text"
                                                           value="${ release_data.album_release_year }" /></li>
-                    <li>Image URL: <input name="release_image_url" type="text"
+                    <li>Image URL: <input name="release_image_url" type="text" class="form-control"
                                                           value="${ release_data.release_image_url }" /></li>
                     <li>Folder: <input name="folder" type="text"
                                                           value="${ release_data.folder }" /></li>
