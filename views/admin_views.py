@@ -180,11 +180,9 @@ async def edit_post(release_id, request: Request):
 
 @router.get("/admin/add-release")
 @template(template_file="admin/add-record.pt")
-async def add_record(release_id, request: Request):
+async def add_record(request: Request):
 
-    vm = AddViewModel(release_id, request)
-    print("admin view release_id: ", release_id)
-    await admin_service.add_record(release_id)
+    vm = AddViewModel(request)
 
     await vm.load()
 

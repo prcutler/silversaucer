@@ -1,0 +1,39 @@
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content" tal:omit-tag="True">
+
+        <div style="height 100%; width 100%;">
+            <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white min-vh-75">
+
+                <br/> <br/>
+
+                <img src="${ release_data.release_image_url } " alt="Album Cover" width=400 height=400 class="center">
+                <br/><br/>
+                <ul>
+                    <br/>
+
+                <form action="" method="POST" class="edit" >
+
+                    <li>Artist:  <input name="artist_name" type="text" class="form-control"
+                                        value="${ release_data.artist_name }" placeholder="${release_data.artist_name}"/></li><br/>
+                    <li>Album:  <input name="release_title" type="text" class="form-control"
+                                       value="${ release_data.release_title }" /></li><br/>
+                    <li>Discogs Release Date: <input name="album_release_year" type="text" class="form-control"
+                                                          value="${ release_data.album_release_year }" /></li><br/>
+                    <li>Image URL: <input name="release_image_url" type="text" class="form-control"
+                                                          value="${ release_data.release_image_url }" /></li><br/>
+                    <li>Folder: <input name="folder" type="text" class="form-control"
+                                                          value="${ release_data.folder }" /></li><br/>
+                    <li>MusicBrainz ID: <input name="mb_id" type="text" class="form-control" value=" ${ release_data.mb_id }"
+                                           value="${ mb_id }" /></li><br/>
+                    <li>MusicBrainz Release Date: <input name="mb_release_date" type="text" class="form-control" value=" ${ release_data.mb_release_date }"
+                                                     value="${ mb_id }" /></li>
+
+                    <br />
+                    <button type="submit" class="btn btn-danger">Add MusicBrainz ID</button>
+                    <br />
+                </form>
+
+        </div>
+        </div>
+        </div>
+        </div>

@@ -6,10 +6,10 @@ from viewmodels.shared.viewmodel import ViewModelBase
 
 
 class AddViewModel(ViewModelBase):
-    def __init__(self, release_id, request: Request):
+    def __init__(self, request: Request):
         super().__init__(request)
 
-        self.release_id: int = release_id
+        self.release_id: int = None
 
         self.login_status = self.is_logged_in
 
