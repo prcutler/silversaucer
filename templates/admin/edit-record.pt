@@ -11,16 +11,19 @@
                 <ul>
                     <br/>
 
-                    <li><a href="${ release_data.release_url } "> ${ release_data.release_title }</a> by <a
-                            href="${ release_data.artist_url }">${ release_data.artist_name }</a></li>
+                <form action="" method="POST" class="edit" >
+
+                    <li>Band:  <input name="artist_name" type="text" value="${ release_data.artist_name }"
+                    placeholder="${release_data.artist_name}"/></li>
+                    <li>Album:  <input name="release_title" type="text" value="${ release_data.release_title }" /></li>
                     <li>Record released: ${ release_data.album_release_year }</li>
 
-                    <form action="" method="POST" class="edit" >
 
-                    MusicBrainz ID: <input name="mb_id" type="text" class="form-control" placeholder=" ${ release_data.mb_id }"
-                                           value="${ mb_id }" />
-                    MusicBrainz Release: <input name="mb_release_date" type="text" class="form-control" placeholder=" ${ release_data.mb_release_date }"
-                                           value="${ mb_id }" />
+
+                    <li>MusicBrainz ID: <input name="mb_id" type="text" class="form-control" placeholder=" ${ release_data.mb_id }"
+                                           value="${ mb_id }" /></li>
+                    <li>MusicBrainz Release Date: <input name="mb_release_date" type="text" class="form-control" placeholder=" ${ release_data.mb_release_date }"
+                                                     value="${ mb_id }" /></li>
 
                     <br />
                     <button type="submit" class="btn btn-danger">Add MusicBrainz ID</button>
