@@ -13,10 +13,15 @@
 
                 <form action="" method="POST" class="edit" >
 
-                    <li>Band:  <input name="artist_name" type="text" value="${ release_data.artist_name }"
+                    <li>Artist:  <input name="artist_name" type="text" value="${ release_data.artist_name }"
                     placeholder="${release_data.artist_name}"/></li>
                     <li>Album:  <input name="release_title" type="text" value="${ release_data.release_title }" /></li>
-                    <li>Record released: ${ release_data.album_release_year }</li>
+                    <li>Discogs Release Date: <input name="album_release_year" type="text"
+                                                          value="${ release_data.album_release_year }" /></li>
+                    <li>Image URL: <input name="release_image_url" type="text"
+                                                          value="${ release_data.release_image_url }" /></li>
+                    <li>Folder: <input name="folder" type="text"
+                                                          value="${ release_data.folder }" /></li>
 
 
 
@@ -28,7 +33,7 @@
                     <br />
                     <button type="submit" class="btn btn-danger">Add MusicBrainz ID</button>
                     <br />
-
+                </form>
 
         </div>
         </div>
