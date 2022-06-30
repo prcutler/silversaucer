@@ -15,12 +15,10 @@ from data.tracklist_data import Tracklists
 import sqlalchemy
 import json
 
-
 me = config.my_data.identity()
 
 
 async def get_album_db_data():
-
     for records in me.collection_folders[0].releases:
         album_data = Album()
 
@@ -118,7 +116,6 @@ async def update_db_data():
 
 
 async def get_main_release_data():
-
     async with db_session.create_async_session() as session:
         release_id_query = select(Album.release_id)
         results = await session.execute(release_id_query)
@@ -151,7 +148,7 @@ async def get_main_release_data():
 
                 print("Adding to db", main_data.discogs_main_id)
 
-#                async with db_session.create_async_session() as session:
+                #                async with db_session.create_async_session() as session:
                 session.add(main_data)
                 await session.commit()
 
@@ -161,7 +158,6 @@ async def get_main_release_data():
 
 
 async def update_mb_id():
-
     async with db_session.create_async_session() as session:
 
         query = select(Release.discogs_id, Release.m_rel_id).filter(
@@ -179,7 +175,6 @@ async def update_mb_id():
         for discogs_id, mb_id in release_id_results:
 
             if mb_id is not None:
-
                 album_data.release_id = discogs_id
                 album_data.mb_id = mb_id
                 print(
@@ -356,3 +351,19 @@ async def get_mb_date():
                 )
 
                 await session.commit()
+
+
+async def get_new_release_data(release_id: int):
+
+    album_info = Album(
+        release_id=release_id,
+        release_url=me.release(release_id).release_url,
+        artist_id=me.release(release_id).artist_id,
+        artist_name=me.release(release_id).artist_name,
+        release_title=me.release(release_id).title,
+        artist_url=me.release(release_id).artist_url,
+        release_image_url=me.release(release_id).image_url,
+        album_release_year=me.release(release_id).release_date
+    )
+
+    return album_info

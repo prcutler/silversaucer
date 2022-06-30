@@ -5,6 +5,7 @@ from starlette.requests import Request
 
 from viewmodels.admin.admin_viewmodel import AdminViewModel
 from viewmodels.admin.edit_viewmodel import EditViewModel
+from viewmodels.admin.add_viewmodel import AddViewModel
 from viewmodels.shared.viewmodel import ViewModelBase
 from services import admin_service
 
@@ -175,3 +176,22 @@ async def edit_post(release_id, request: Request):
     )
 
     return response
+
+
+@router.get("/admin/add-release")
+@template(template_file="admin/add-record.pt")
+async def add_record(release_id, request: Request):
+
+    vm = AddViewModel(release_id, request)
+    print("admin view release_id: ", release_id)
+    await admin_service.add_record(release_id)
+
+    await vm.load()
+
+    if vm.login_status is False:
+        response = fastapi.responses.RedirectResponse(
+            url="/admin/add-record-data", status_code=status.HTTP_302_FOUND
+        )
+        return response
+    else:
+        return vm.to_dict()
