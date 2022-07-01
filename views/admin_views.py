@@ -7,8 +7,6 @@ from viewmodels.admin.admin_viewmodel import AdminViewModel
 from viewmodels.admin.edit_viewmodel import EditViewModel
 from viewmodels.admin.add_viewmodel import AddViewModel
 from viewmodels.admin.add_record_data_viewmodel import AddRecordDataViewModel
-from viewmodels.admin.post_record_data_viewmodel import PostRecordDataViewModel
-from viewmodels.shared.viewmodel import ViewModelBase
 from services import admin_service
 
 router = fastapi.APIRouter()
