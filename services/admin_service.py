@@ -372,3 +372,47 @@ async def get_new_release_data(release_id: int):
     print("Album Info: ", album_info)
 
     return album_info
+
+
+async def add_new_release(release_id):
+    async with db_session.create_async_session() as session:
+        query = select(Album).filter(Album.release_id == release_id)
+        results = await session.execute(query)
+
+        query_results = results.scalar_one_or_none()
+
+        release_results = query_results
+        print("Release results: ", release_results)
+
+        if release_results is None:
+            print("Release ID: ", release_id)
+
+            release_url = me.release(release_id).url
+            artist_id = me.release(release_id).artists[0].id
+            artist_name = me.release(release_id).artists[0].name
+            release_title = me.release(release_id).title
+            artist_url = me.release(release_id).artists[0].url
+            release_image_url = me.release(release_id).images[0]["uri"]
+            album_release_year = me.release(release_id).year
+
+            album_info = Album(
+                release_url=release_url,
+                release_id=release_id,
+                artist_id=artist_id,
+                artist_name=artist_name,
+                release_title=release_title,
+                artist_url=artist_url,
+                release_image_url=release_image_url,
+                album_release_year=album_release_year,
+                folder=2162484,
+                mb_id=None,
+                mb_release_date=None,
+            )
+
+            session.add(album_info)
+            await session.commit()
+
+            return album_info
+
+        else:
+            return None

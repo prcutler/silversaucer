@@ -3,6 +3,9 @@
 
         <div style="height 100%; width 100%;">
             <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white min-vh-75">
+                <div class="form-container">
+                <form class="form-horizontal" action="" method="POST">
+                    <div class="form-group">
 
                 <br/> <br/>
 
@@ -20,7 +23,9 @@
                     <button type="submit" class="btn btn-danger">Add Release</button>
                     <br />
                 </ul>
-
+                    </div>
+                    </form>
+                </div>
 
         </div>
         </div>

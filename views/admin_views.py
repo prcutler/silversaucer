@@ -7,6 +7,7 @@ from viewmodels.admin.admin_viewmodel import AdminViewModel
 from viewmodels.admin.edit_viewmodel import EditViewModel
 from viewmodels.admin.add_viewmodel import AddViewModel
 from viewmodels.admin.add_record_data_viewmodel import AddRecordDataViewModel
+from viewmodels.admin.post_record_data_viewmodel import PostRecordDataViewModel
 from viewmodels.shared.viewmodel import ViewModelBase
 from services import admin_service
 
@@ -52,7 +53,6 @@ async def edit_post(request: Request):
     await vm.load()
 
     release_id = vm.release_id
-
 
     print("release_id viewmodel: ", release_id)
     # Redirect to Admin homepage on post
@@ -196,6 +196,23 @@ async def add_record(request: Request):
         return vm.to_dict()
 
 
+@router.post("/admin/add-release", include_in_schema=False)
+@template()
+async def add_release_post(request: Request):
+    vm = AdminViewModel(request)
+    await vm.load()
+
+    release_id = vm.release_id
+
+    print("release_id viewmodel: ", release_id)
+    # Redirect to Admin homepage on post
+    response = fastapi.responses.RedirectResponse(
+        url=f"/admin/add-release/{release_id}", status_code=status.HTTP_302_FOUND
+    )
+
+    return response
+
+
 @router.get("/admin/add-release/{release_id}")
 @template(template_file="admin/add-record-data.pt")
 async def add_record_data(release_id, request: Request):
@@ -213,18 +230,21 @@ async def add_record_data(release_id, request: Request):
         return vm.to_dict()
 
 
-@router.post("/admin/add-release", include_in_schema=False)
+@router.post("/admin/add-release/{release_id}", include_in_schema=False)
 @template()
-async def add_release_post(request: Request):
-    vm = AdminViewModel(request)
+async def add_release_data_post(release_id, request: Request):
+    vm = AddRecordDataViewModel(release_id, request)
     await vm.load()
 
     release_id = vm.release_id
 
     print("release_id viewmodel: ", release_id)
+
+    await admin_service.add_new_release(release_id)
+
     # Redirect to Admin homepage on post
     response = fastapi.responses.RedirectResponse(
-        url=f"/admin/add-release/{release_id}", status_code=status.HTTP_302_FOUND
+        url=f"/admin/edit/{release_id}", status_code=status.HTTP_302_FOUND
     )
 
     return response
