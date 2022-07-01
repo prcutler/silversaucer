@@ -211,3 +211,20 @@ async def add_record_data(release_id, request: Request):
         return response
     else:
         return vm.to_dict()
+
+
+@router.post("/admin/add-release", include_in_schema=False)
+@template()
+async def add_release_post(request: Request):
+    vm = AdminViewModel(request)
+    await vm.load()
+
+    release_id = vm.release_id
+
+    print("release_id viewmodel: ", release_id)
+    # Redirect to Admin homepage on post
+    response = fastapi.responses.RedirectResponse(
+        url=f"/admin/add-release/{release_id}", status_code=status.HTTP_302_FOUND
+    )
+
+    return response
