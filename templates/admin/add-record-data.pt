@@ -1,0 +1,33 @@
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content" tal:omit-tag="True">
+
+        <div style="height 100%; width 100%;">
+            <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white min-vh-75">
+                <div class="form-container">
+                <form class="form-horizontal" action="" method="POST">
+                    <div class="form-group">
+
+                <br/> <br/>
+
+                <img src="${ release_image_url } " alt="Album Cover" width=400 height=400 class="center">
+                <br/><br/>
+                <ul>
+                    <br/>
+
+
+                    <li>Artist: <a href="${ artist_url }">${ artist_name }</a></li>
+                    <li>Album: <a href="${ release_url }">${ release_title }</a></li>
+                    <li>Release Year: ${ album_release_year }</li>
+
+                    <br />
+                    <button type="submit" class="btn btn-danger">Add Release</button>
+                    <br />
+                </ul>
+                    </div>
+                    </form>
+                </div>
+
+        </div>
+        </div>
+        </div>
+        </div>
