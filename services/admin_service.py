@@ -15,7 +15,7 @@ from data.tracklist_data import Tracklists
 import sqlalchemy
 import json
 
-me = config.my_data.identity()
+me = config.my_data
 
 
 async def get_album_db_data():
@@ -355,15 +355,19 @@ async def get_mb_date():
 
 async def get_new_release_data(release_id: int):
 
-    album_info = Album(
-        release_id=release_id,
-        release_url=me.release(release_id).release_url,
-        artist_id=me.release(release_id).artist_id,
-        artist_name=me.release(release_id).artist_name,
-        release_title=me.release(release_id).title,
-        artist_url=me.release(release_id).artist_url,
-        release_image_url=me.release(release_id).image_url,
-        album_release_year=me.release(release_id).release_date
-    )
+    release_id = release_id
+    release_url = me.release(release_id).url
+    artist_id = me.release(release_id).artists[0].id
+    artist_name = me.release(release_id).artists[0].name
+    release_title = me.release(release_id).title
+    artist_url = me.release(release_id).artists[0].url
+    release_image_url = me.release(release_id).images[0]["uri"]
+    album_release_year = me.release(release_id).year
+
+    album_info = AlbumInfo(
+        release_id, release_url, artist_id, artist_name, release_title, artist_url,
+        release_image_url, album_release_year=None, genres=None,
+        main_release_date=None, track_title=None, track_duration=None, track_position=None, mb_id=None, mb_release_date=None,)
+    print("Album Info: ", album_info)
 
     return album_info
