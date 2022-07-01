@@ -366,8 +366,9 @@ async def get_new_release_data(release_id: int):
 
     album_info = AlbumInfo(
         release_id, release_url, artist_id, artist_name, release_title, artist_url,
-        release_image_url, album_release_year=None, genres=None,
-        main_release_date=None, track_title=None, track_duration=None, track_position=None, mb_id=None, mb_release_date=None,)
+        release_image_url, genres=None, main_release_date=None, album_release_year=album_release_year,
+        track_title=None, track_duration=None, track_position=None,
+        mb_id=None, mb_release_date=None,)
     print("Album Info: ", album_info)
 
     return album_info

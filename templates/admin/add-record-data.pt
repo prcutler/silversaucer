@@ -11,23 +11,14 @@
                 <ul>
                     <br/>
 
-                <form action="" method="POST" class="edit" >
 
-                    <li>Artist:  <input name="artist_name" type="text" class="form-control"
-                                        value="${ artist_name }" placeholder="${artist_name}"/></li><br/>
-                    <li>Album:  <input name="release_title" type="text" class="form-control"
-                                       value="${ release_title }" /></li><br/>
-                    <li>Discogs Release Date: <input name="album_release_year" type="text" class="form-control"
-                                                          value="${ album_release_year }" /></li><br/>
-                    <li>Image URL: <input name="release_image_url" type="text" class="form-control"
-                                                          value="${ release_image_url }" /></li><br/>
-
-
+                    <li>Artist: <a href="${artist_url}">${artist_name}</a></li>
+                    <li>Album: <a href="${release_url}">${release_title}</a></li>
 
                     <br />
                     <button type="submit" class="btn btn-danger">Add Release</button>
                     <br />
-                </form>
+
 
         </div>
         </div>
