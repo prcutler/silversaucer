@@ -12,8 +12,9 @@
                     <br/>
 
 
-                    <li>Artist: <a href="${artist_url}">${artist_name}</a></li>
-                    <li>Album: <a href="${release_url}">${release_title}</a></li>
+                    <li>Artist: <a href="${ artist_url }">${ artist_name }</a></li>
+                    <li>Album: <a href="${ release_url }">${ release_title }</a></li>
+                    <li>Release Year: ${ album_release_year }</li>
 
                     <br />
                     <button type="submit" class="btn btn-danger">Add Release</button>
