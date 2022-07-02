@@ -34,13 +34,13 @@ async def get_release_data(release_id):
         mb_id: Optional[str] = release_results.mb_id
 
         mb_release_str = release_results.mb_release_date
-        try:
+        if mb_release_str is not None:
             mb_release_convert = pendulum.parse(mb_release_str)
 
             mb_release_date = mb_release_convert.to_formatted_date_string()
             print("MB Release Date: ", mb_release_date, type(mb_release_date))
 
-        except mb_release_str is None:
+        else:
             mb_release_date = None
             pass
 
