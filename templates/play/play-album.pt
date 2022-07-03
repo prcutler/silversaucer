@@ -11,7 +11,7 @@
             <ul>
                 <br />
 
-                    <li><a href="${ release_url } "> ${ release_title }</a>  by <a href="${ artist_url }">${ artist_name }</a> </li>
+                    <h2><a href="${ release_url } "> ${ release_title }</a>  by <a href="${ artist_url }">${ artist_name }</a> </h2>
                     <li>Record released: ${ album_release_date }</li>
                     <li>Original album release date: ${ mb_release_date }</li>
              <dl>
@@ -20,11 +20,29 @@
                         <dd> <li tal:repeat = "item genres" tal:content = item/> </dd>
                 </dl>
                 <dl>
-                <dt><li>Tracklist: </li></dt>
-                <ul>
-                <dd> <li tal:repeat = "item track_title"  tal:content = item" /> </dd>
-                </ul>
-                </dl>
+
+                <b>Tracklist:</b>
+                        <table class="table">
+                            <thead>
+                                        <tr>
+                                            <th>Position</th>
+                                            <th>Track</th>
+                                            <th>Duration</th>
+                                        </tr>
+                            </thead>
+                            <tbody>
+
+
+                        <tr tal:repeat = "tracks track_info">
+                            <td tal:repeat = "title tracks" tal:content = title />
+
+                        </tr>
+
+
+
+                        </tbody>
+        </table>
+
                 
         </div>
     </div>
