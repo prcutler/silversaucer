@@ -11,8 +11,8 @@
                 <ul>
                     <br/>
 
-                    <li><a href="${ release_url } "> ${ release_title }</a> by <a
-                            href="${ artist_url }">${ artist_name }</a></li>
+                    <h2><a href="${ release_url } "> ${ release_title }</a> by <a
+                            href="${ artist_url }">${ artist_name }</a></h2>
                     <li>Record released: ${ album_release_year }</li>
                     <li>Original album release date: ${ mb_release_date }</li>
                     <dl>
@@ -22,15 +22,55 @@
                             <ul><li tal:repeat = "item genres" tal:content = item/></ul>
                         </dd>
                     </dl>
-                    <dl>
-                        <dt>
-                            <li>Tracklist:</li>
-                        </dt>
-                        <ul>
-                            <dd>
-                                <li tal:repeat = "item track_title"  tal:content = item" /> </dd>
-        </ul>
-        </dl>
+        <table class="table">
+            <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Track</th>
+                            <th>Duration</th>
+                        </tr>
+            </thead>
+                        <tbody>
+
+
+                            <!--  This prints everything in one row:
+                            <tr>
+                                <td tal:repeat = "position track_position" tal:content = position />
+                                <td tal:repeat = "title track_title"  tal:content = title/>
+                                <td tal:repeat = "duration track_duration" tal:content = duration />
+                            <tr-->
+
+
+                            <!-- This prints the track list correctly:
+                            <tr tal:repeat = "position track_position" >
+
+                            <td tal:content = position />
+                            </tr>
+                            -->
+
+                            <!-- This prints Position correctly, but all of the list is in the second td
+                            <tr tal:repeat = "position track_position">
+                                <td tal:content = position />
+                                <span tal:omit-tag="True" tal:repeat = "t track_title" >
+                                    <td tal:content = t />
+                                </span>
+                                <td>Test Column 3</td>
+
+                            </tr>
+                            -->
+                        <tr tal:repeat = "position [tracks for tracks in track_position]">
+                            <td tal:content = position />
+
+                            <span tal:omit-tag="True" tal:repeat = "title [title for title in track_title]" >
+                                <td tal:content = title />
+
+                        </span>
+                        </tr>
+
+
+
+                        </tbody>
+        </table>
 
 
         </div>
