@@ -25,6 +25,7 @@ class PlayAlbumViewModel(ViewModelBase):
         self.track_title: Optional[List](str) = None
         self.track_duration: Optional[List](str) = None
         self.track_position: Optional[List](str) = None
+        self.track_info: Optional[List](str) = None
         self.mb_id: Optional[str] = None
         self.mb_release_date: Optional[str] = None
 
@@ -49,6 +50,7 @@ class PlayAlbumViewModel(ViewModelBase):
         self.track_title: Optional[List](str) = release_data.track_title
         self.track_duration: Optional[List](str) = release_data.track_duration
         self.track_position: Optional[List](str) = release_data.track_position
+        self.track_info: Optional[List](str) = release_data.track_info
         self.mb_id = release_data.mb_id
         self.mb_release_date = release_data.mb_release_date
 
