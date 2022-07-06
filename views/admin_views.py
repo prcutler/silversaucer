@@ -134,7 +134,6 @@ async def admin_index(request: Request):
 @router.get("/admin/edit/{release_id}")
 @template(template_file="admin/edit-record.pt")
 async def admin_edit(release_id, request: Request):
-
     vm = EditViewModel(release_id, request)
     print("admin view release_id: ", release_id)
     await admin_service.view_edit(release_id)
@@ -160,14 +159,16 @@ async def edit_post(release_id, request: Request):
 
     print("release_id viewmodel: ", release_id, "MB_ID: ", vm.mb_id)
 
-    album = await admin_service.edit_release(release_id,
-                                             vm.artist_name,
-                                             vm.release_title,
-                                             vm.release_image_url,
-                                             vm.album_release_year,
-                                             vm.folder,
-                                             vm.mb_id,
-                                             vm.mb_release_date)
+    album = await admin_service.edit_release(
+        release_id,
+        vm.artist_name,
+        vm.release_title,
+        vm.release_image_url,
+        vm.album_release_year,
+        vm.folder,
+        vm.mb_id,
+        vm.mb_release_date,
+    )
 
     # Redirect to Admin homepage on post
     response = fastapi.responses.RedirectResponse(
@@ -180,7 +181,6 @@ async def edit_post(release_id, request: Request):
 @router.get("/admin/add-release")
 @template(template_file="admin/add-record.pt")
 async def add_record(request: Request):
-
     vm = AddViewModel(request)
 
     await vm.load()
@@ -214,7 +214,6 @@ async def add_release_post(request: Request):
 @router.get("/admin/add-release/{release_id}")
 @template(template_file="admin/add-record-data.pt")
 async def add_record_data(release_id, request: Request):
-
     vm = AddRecordDataViewModel(release_id, request)
 
     await vm.load()
