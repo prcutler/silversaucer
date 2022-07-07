@@ -59,9 +59,7 @@ async def get_release_data(release_id):
 
         track_info = []
         for track in me.release(release_id).tracklist:
-            track_info.append([track.position,
-                               track.title,
-                               track.duration])
+            track_info.append([track.position, track.title, track.duration])
 
         print("Track info: ", track_info)
 
@@ -71,7 +69,7 @@ async def get_release_data(release_id):
             track_position.append(tracks.position)
             track_title.append(tracks.title)
 
-            print('API Tracklist info: ', tracks.title, type(tracks.title))
+            print("API Tracklist info: ", tracks.title, type(tracks.title))
 
         # track_title = me.release(release_id).tracklist.
         print("Track Title: ", track_title, type(track_title))

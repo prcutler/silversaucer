@@ -34,7 +34,9 @@ async def get_album_db_data():
                 release_id_results,
                 "Type: ",
                 type(release_id_results),
-                "records.release.id: ", records.release.id, type(records.release.id),
+                "records.release.id: ",
+                records.release.id,
+                type(records.release.id),
             )
 
             if records.release.id == release_id_results:
@@ -254,13 +256,16 @@ async def view_edit(release_id: int):
         return album_info
 
 
-async def edit_release(release_id: int, release_title: str,
-                       artist_name: str,
-                       release_image_url: str,
-                       album_release_year: str,
-                       folder: int,
-                       mb_id: str,
-                       mb_release_date: str):
+async def edit_release(
+    release_id: int,
+    release_title: str,
+    artist_name: str,
+    release_image_url: str,
+    album_release_year: str,
+    folder: int,
+    mb_id: str,
+    mb_release_date: str,
+):
     async with db_session.create_async_session() as session:
         query = select(Album).filter(Album.release_id == release_id)
         results = await session.execute(query)
@@ -365,10 +370,23 @@ async def get_new_release_data(release_id: int):
     album_release_year = me.release(release_id).year
 
     album_info = AlbumInfo(
-        release_id, release_url, artist_id, artist_name, release_title, artist_url,
-        release_image_url, genres=None, main_release_date=None, album_release_year=album_release_year,
-        track_title=None, track_duration=None, track_position=None,
-        mb_id=None, mb_release_date=None,)
+        release_id,
+        release_url,
+        artist_id,
+        artist_name,
+        release_title,
+        artist_url,
+        release_image_url,
+        genres=None,
+        main_release_date=None,
+        album_release_year=album_release_year,
+        track_title=None,
+        track_duration=None,
+        track_position=None,
+        track_info=None,
+        mb_id=None,
+        mb_release_date=None,
+    )
     print("Album Info: ", album_info)
 
     return album_info
