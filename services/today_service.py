@@ -37,3 +37,29 @@ async def get_today_list():
         query_results = results.scalars()
 
         return query_results
+
+
+async def get_month_list():
+
+    today = pendulum.today(tz="America/Chicago")
+    print("Today: ", today, today.month, today.day)
+
+    if today.month < 10:
+        search = "-" + "0" + str(today.month)
+    else:
+        search = str(today.month)
+
+    print("Search: ", search, type(search))
+
+    async with db_session.create_async_session() as session:
+        query = (
+            select(Album)
+            .filter(Album.mb_release_date.like("%" + search + "%"))
+            .order_by(Album.mb_release_date)
+        )
+        print(query)
+
+        results = await session.execute(query)
+        query_results = results.scalars()
+
+        return query_results

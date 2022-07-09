@@ -4,8 +4,9 @@
 <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column">
 
         <div class="page-core">
-            <h1>Albums in your collection released on ${ today_date }</h1>
-
+            <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column">
+            <h1>${ month } Releases</h1>
+        </div>
 
             <table class="table table-hover text-light">
                 <p>
@@ -26,9 +27,6 @@
                 </p>
             </table>
 
-            <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column">
-            <p>All <a href="/month" > ${ month } </a> releases</p>
-            </div>
         </div>
     </div>
 </div>

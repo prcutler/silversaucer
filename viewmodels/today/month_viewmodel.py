@@ -7,13 +7,12 @@ from services import today_service
 import pendulum
 
 
-class TodayViewModel(ViewModelBase):
+class MonthViewModel(ViewModelBase):
     def __init__(self, request: Request):
         super().__init__(request)
 
         # self.release_id: Optional[int] = None
         self.releases: List[TodayInfo] = []
-        self.today_date = None
         self.month = None
 
         self.login_status = None
@@ -22,9 +21,10 @@ class TodayViewModel(ViewModelBase):
 
         self.login_status = self.is_logged_in
 
-        self.releases = await today_service.get_today_list()
+        self.releases = await today_service.get_month_list()
 
-        self.today_date = pendulum.now(tz='America/Chicago').format("MMMM Do")
         self.month = pendulum.now(tz='America/Chicago').format("MMMM")
+
+        #        print("Vm.load: self.release_id: ", self.releases.release_id)
 
         return {}
