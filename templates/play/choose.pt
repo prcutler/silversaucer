@@ -2,7 +2,7 @@
     <div metal:fill-slot="content" tal:omit-tag="True">
 
     <div>
-        <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white ">
+        <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column text-white">
             <h2>Choose Something</h2>
             <p>
                 Choose from these results:
