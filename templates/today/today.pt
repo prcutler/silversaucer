@@ -26,6 +26,9 @@
                 </p>
             </table>
 
+            <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column">
+            <p>All <a href="/month" > ${ month } </a> releases</p>
+            </div>
         </div>
     </div>
 </div>

@@ -14,6 +14,7 @@ class TodayViewModel(ViewModelBase):
         # self.release_id: Optional[int] = None
         self.releases: List[TodayInfo] = []
         self.today_date = None
+        self.month = None
 
         self.login_status = None
 
@@ -24,7 +25,6 @@ class TodayViewModel(ViewModelBase):
         self.releases = await today_service.get_today_list()
 
         self.today_date = pendulum.now(tz='America/Chicago').format("MMMM Do")
-
-        #        print("Vm.load: self.release_id: ", self.releases.release_id)
+        self.month = pendulum.now(tz='America/Chicago').format("MMMM")
 
         return {}
