@@ -75,7 +75,7 @@ async def login_post(request: Request):
     resp = fastapi.responses.RedirectResponse(
         "/account", status_code=status.HTTP_302_FOUND
     )
-    cookie_auth.set_auth(resp, user.id)
+    cookie_auth.set_auth(resp, user)
 
     return resp
 
