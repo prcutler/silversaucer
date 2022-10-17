@@ -26,6 +26,6 @@ oauthlib~=3.2.1
 idna~=3.4
 Chameleon~=3.10.1
 urllib3~=1.26.12
-setuptools~=65.4.1
+setuptools~=65.5.0
 musicbrainzngs~=0.7.1
 pendulum~=2.1.2
