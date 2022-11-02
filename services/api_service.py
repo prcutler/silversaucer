@@ -67,7 +67,9 @@ async def update_api_db(album, artist, image_url):
 
 
 async def get_discogs_image(release_image_url):
+    print(release_image_url)
     image_dl = requests.get(release_image_url, stream=True).raw
+
     download = Image.open(image_dl)
     download.save("static/img/album-art/image_600.jpg")
 

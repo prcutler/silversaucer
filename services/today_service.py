@@ -33,8 +33,7 @@ async def get_today_list():
     else:
         search = str(today.month) + "-" + str(today.day)
 
-
-
+    # search = '12-03'
     # search = '06-19'
     # search = '09-21'
     print("Search: ", search, type(search))
