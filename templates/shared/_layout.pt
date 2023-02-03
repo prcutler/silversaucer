@@ -100,7 +100,7 @@
   <div class="text-center p-3">
     <!-- Section: Social media -->
                         
-                        <a class="btn - btn-link btn-lg" <a href="https://twitter.com/prcutler"><i class="fab fa-mastodon fa-3x" title="Twitter"></i></a>
+                        <a class="btn - btn-link btn-lg" <a href="https://hachyderm.io/@prcutler"><i class="fab fa-mastodon fa-3x" title="Mastodon"></i></a>
                         <a class="btn - btn-link btn-lg" <a href="https://www.paulcutler.org"><i class="fas fa-home fa-3x" title="Paul Cutler's Homepage"></i></a>
                         <a class="btn - btn-link btn-lg" <a href="https://www.discogs.com/user/prcutler/collection"><i class="fas fa-record-vinyl fa-3x" title="Discogs"></i></a>
                         <a class="btn - btn-link btn-lg" <a href="https://github.com/prcutler/"><i class="fab fa-github fa-3x" title="Github"></i></a>
