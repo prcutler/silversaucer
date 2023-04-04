@@ -4,6 +4,7 @@ import data.config as config
 from data.album import AlbumInfo
 
 from sqlalchemy.future import select
+from sqlalchemy import collate
 from data import db_session
 from data.album_data import Album
 from random import randint
@@ -136,7 +137,7 @@ async def get_album_data(folder):
 # ## GET LIST OF ALL RELEASES MISSING MUSICBRAINZ RELEASE ID ###
 async def get_album_list() -> List[Album]:
     async with db_session.create_async_session() as session:
-        query = select(Album).order_by(Album.artist_name.asc())
+        query = select(Album).order_by(collate(Album.artist_name, 'NOCASE').asc())
 
         results = await session.execute(query)
         releases = results.scalars()
