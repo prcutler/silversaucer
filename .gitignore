@@ -276,3 +276,4 @@ dmypy.json
 .idea/webResources.xml
 .idea/inspectionProfiles/profiles_settings.xml
 silversaucer.code-workspace
+db/saucerdb.sqlite
