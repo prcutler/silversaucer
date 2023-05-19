@@ -57,10 +57,11 @@ class ChooseResultsViewModel(ViewModelBase):
             print("False")
             pass
         else:
+            print("Getting Album Art...")
             album_api_data = await api_service.update_api_db(
                 self.release_title, self.artist_name, self.release_image_url
             )
-#            get_discogs_img = await api_service.get_discogs_image(
-#                self.release_image_url
-#            )
-#            publish_img = await api_service.publish_image()
+            get_discogs_img = await api_service.get_discogs_image(
+                self.release_image_url
+            )
+            publish_img = await api_service.publish_image()
