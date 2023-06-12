@@ -1,4 +1,4 @@
-fastapi~=0.96.0
+fastapi~=0.97.0
 uvicorn~=0.22.0
 fastapi-chameleon
 starlette~=0.27.0
