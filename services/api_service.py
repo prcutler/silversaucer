@@ -88,6 +88,12 @@ async def get_discogs_image(release_image_url):
     convert = smol_img.convert(mode="P", palette=Image.WEB)
     convert.save("static/img/album-art/image_300.bmp")
 
+    img = Image.open("static/img/album-art/image_600.jpg")
+    img.quantize(colors=16, method=2)
+    size64 = img.resize((64, 64))
+    convert64 = size64.convert(mode="P", palette=Image.ADAPTIVE)
+    convert64.save("static/img/album-art/image64.bmp")
+
 
 async def publish_image():
     client = mqtt.Client()
