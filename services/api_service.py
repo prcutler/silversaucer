@@ -4,6 +4,7 @@ from data.api_json import JSONData
 from sqlalchemy.future import select
 from data import db_session
 from data import config
+from Adafruit_IO import Client, Feed
 
 from PIL import Image
 
@@ -96,8 +97,6 @@ async def get_discogs_image(release_image_url):
 
 
 async def publish_image():
-    client = mqtt.Client()
-    client.username_pw_set(config.mqtt_user, config.mqtt_pw)
-    client.connect("mqtt.silversaucer.com", 1883)
-    client.publish("albumart", "Ping!")
-    client.disconnect()
+
+    aio = Client(config.aio_username, config.aio_key)
+    aio.send_data('albumart', "New album picked!")
