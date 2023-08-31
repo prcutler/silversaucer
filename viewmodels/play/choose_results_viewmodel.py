@@ -64,5 +64,7 @@ class ChooseResultsViewModel(ViewModelBase):
             get_discogs_img = await api_service.get_discogs_image(
                 self.release_image_url
             )
+            dither_image = await api_service.process_image()
+
             print("Sending MQTT message...")
             publish_img = await api_service.publish_image()
