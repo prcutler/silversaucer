@@ -166,7 +166,7 @@ async def process_image():
 
     img = img.convert('P', palette=Image.ADAPTIVE)
 
-    img.save('image64p.bmp')
+    img.save('static/img/album-art/image64p.bmp')
 
 
 
