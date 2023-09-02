@@ -113,7 +113,7 @@ async def process_image():
 
     # print(filename, output_8_bit, passthrough)
     img = Image.open('static/img/album-art/image64.bmp').convert('RGB')
-    img.show()
+    # img.show()
     # print(img.format, img.size, img.mode)
     err_next_pixel = (0, 0, 0) # Error diffused to the right
     err_next_row = [(0, 0, 0) for _ in range(img.size[0])] # " diffused down
@@ -167,9 +167,6 @@ async def process_image():
     img = img.convert('P', palette=Image.ADAPTIVE)
 
     img.save('static/img/album-art/image64p.bmp')
-
-
-
 
 
 async def publish_image():
