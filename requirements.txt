@@ -1,7 +1,7 @@
 fastapi~=0.105.0
 uvicorn~=0.24.0
 fastapi-chameleon
-starlette<0.28.0
+starlette<0.34.0
 aiofiles
 requests~=2.31.0
 python-multipart~=0.0.6
