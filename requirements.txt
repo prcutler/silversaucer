@@ -25,6 +25,6 @@ greenlet~=3.0.3
 oauthlib~=3.2.2
 idna~=3.6
 urllib3~=2.1.0
-setuptools~=69.0.2
+setuptools~=69.0.3
 musicbrainzngs~=0.7.1
 pendulum~=3.0.0
