@@ -5,7 +5,7 @@ from sqlalchemy.future import select
 from data import db_session
 from data import config
 from Adafruit_IO import Client, Feed
-
+import urllib3
 from PIL import Image
 import math
 
@@ -72,17 +72,23 @@ async def get_discogs_image(release_image_url):
     print(release_image_url)
 #    image_dl = requests.get(release_image_url, stream=True).raw
 
-   # r = requests.get(release_image_url, stream=True)
+#    r = requests.get(release_image_url, stream=True)
 
 #    with open("static/img/album-art/image_600.jpg", "wb") as f:
-#        for chunk in r.iter_content(chunk_size = 16*1024):
+#       for chunk in r.iter_content(chunk_size=16*1024):
 #            f.write(chunk)
 
-    urllib.request.urlretrieve(release_image_url, "static/img/album-art/image_600.jpg")
+    # urllib.request.urlretrieve(release_image_url, "static/img/album-art/image_600.jpg")
+    # urllib.request.urlretrieve(release_image_url + config.discogs_user_token, "static/img/album-art/image_600.jpg")
 
-#    download = Image.open("static/img/album-art/image_600.jpg")
+    http = urllib3.PoolManager()
+    response = http.request('GET', release_image_url)
+    with open('static/img/album-art/image_600.jpg', 'wb') as file:
+        file.write(response.data)
+
+    download = Image.open("static/img/album-art/image_600.jpg")
 #    download = Image.open(image_dl)
-#    download.save("static/img/album-art/image_600.jpg")
+    download.save("static/img/album-art/image_600.jpg")
 
     img = Image.open("static/img/album-art/image_600.jpg")
     img.quantize(colors=16, method=2)
