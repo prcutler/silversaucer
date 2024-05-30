@@ -3,7 +3,7 @@ uvicorn~=0.30.0
 fastapi-chameleon
 starlette<0.38.0
 aiofiles
-requests~=2.32.2
+requests~=2.32.3
 python-multipart~=0.0.9
 python3-discogs-client==2.7
 gunicorn~=22.0.0
