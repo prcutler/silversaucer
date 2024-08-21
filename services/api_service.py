@@ -102,6 +102,10 @@ async def get_discogs_image(release_image_url):
     convert64 = size64.convert(mode="P", palette=Image.ADAPTIVE)
     convert64.save("static/img/album-art/image64.bmp")
 
+    img = Image.open("static/img/album-art/image_600.jpg")
+    size480 = img.resize((480, 480))
+    size480.save("static/img/album-art/image480.jpg")
+
 
 GAMMA = 2.6
 
