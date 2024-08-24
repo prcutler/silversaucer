@@ -106,6 +106,12 @@ async def get_discogs_image(release_image_url):
     size480 = img.resize((480, 480))
     size480.save("static/img/album-art/image480.jpg")
 
+    img = Image.open("static/img/album-art/image_600.jpg")
+    img.quantize(colors=16, method=2)
+    size480bmp = img.resize((480, 480))
+    convert480bmp = size480bmp.convert(mode="P", palette=Image.ADAPTIVE)
+    convert480bmp.save("static/img/album-art/480.bmp")
+
 
 GAMMA = 2.6
 
