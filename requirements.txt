@@ -7,7 +7,7 @@ requests~=2.32.3
 python-multipart~=0.0.9
 python3-discogs-client==2.7
 gunicorn~=23.0.0
-SQLAlchemy~=2.0.33
+SQLAlchemy~=2.0.34
 paho-mqtt~=2.1.0
 passlib~=1.7.4
 pillow~=10.4.0
