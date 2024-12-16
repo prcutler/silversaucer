@@ -1,5 +1,5 @@
 fastapi~=0.115.6
-uvicorn~=0.32.1
+uvicorn~=0.34.0
 fastapi-chameleon
 starlette<0.42.0
 aiofiles
