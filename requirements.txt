@@ -4,7 +4,7 @@ fastapi-chameleon
 starlette<0.43.0
 aiofiles
 requests~=2.32.3
-python-multipart~=0.0.19
+python-multipart~=0.0.20
 python3-discogs-client==2.7.1
 gunicorn~=23.0.0
 SQLAlchemy~=2.0.36
