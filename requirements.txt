@@ -19,7 +19,7 @@ certifi~=2024.12.14
 pydantic~=2.10.4
 pip==24.3.1
 six~=1.17.0
-click~=8.1.7
+click~=8.1.8
 python-dateutil~=2.9.0
 greenlet~=3.1.1
 oauthlib~=3.2.2
