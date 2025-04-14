@@ -20,7 +20,7 @@ packaging==24.2
 paho-mqtt==2.1.0
 passlib==1.7.4
 pendulum==3.0.0
-pillow==11.1.0
+pillow==11.2.1
 pydantic==2.11.3
 pydantic_core==2.33.1
 python-dateutil==2.9.0.post0
