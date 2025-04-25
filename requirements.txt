@@ -12,17 +12,17 @@ fastapi==0.115.12
 fastapi_chameleon==0.1.17
 greenlet==3.2.0
 gunicorn==23.0.0
-h11==0.14.0
+h11==0.16.0
 idna==3.10
 musicbrainzngs==0.7.1
 oauthlib==3.2.2
-packaging==24.2
+packaging==25.0
 paho-mqtt==2.1.0
 passlib==1.7.4
-pendulum==3.0.0
+pendulum==3.1.0
 pillow==11.2.1
 pydantic==2.11.3
-pydantic_core==2.34.1
+pydantic_core
 python-dateutil==2.9.0.post0
 python-multipart==0.0.20
 python3-discogs-client==2.8
@@ -37,4 +37,4 @@ typing-inspection==0.4.0
 typing_extensions==4.13.2
 tzdata==2025.2
 urllib3==2.4.0
-uvicorn==0.34.1
+uvicorn==0.34.2
