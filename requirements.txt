@@ -19,7 +19,7 @@ oauthlib==3.2.2
 packaging==24.2
 paho-mqtt==2.1.0
 passlib==1.7.4
-pendulum==3.0.0
+pendulum==3.1.0
 pillow==11.2.1
 pydantic==2.11.3
 pydantic_core
