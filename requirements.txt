@@ -10,7 +10,7 @@ charset-normalizer==3.4.2
 click==8.1.8
 fastapi==0.115.12
 fastapi_chameleon==0.1.17
-greenlet==3.2.1
+greenlet==3.2.2
 gunicorn==23.0.0
 h11==0.16.0
 idna==3.10
