@@ -4,7 +4,7 @@ aiosqlite==0.21.0
 annotated-types==0.7.0
 anyio==4.9.0
 asgiref==3.9.1
-certifi==2025.7.9
+certifi==2025.7.14
 Chameleon==4.6.0
 charset-normalizer==3.4.2
 click==8.1.8
