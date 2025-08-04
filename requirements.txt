@@ -2,7 +2,7 @@ adafruit-io==2.8.0
 aiofiles==24.1.0
 aiosqlite==0.21.0
 annotated-types==0.7.0
-anyio==4.9.0
+anyio==4.10.0
 asgiref==3.9.1
 certifi==2025.7.14
 Chameleon==4.6.0
