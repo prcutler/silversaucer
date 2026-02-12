@@ -1,4 +1,4 @@
-adafruit-io==2.8.0
+adafruit-io==2.8.2
 aiofiles==25.1.0
 aiosqlite==0.22.1
 annotated-types==0.7.0
