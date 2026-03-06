@@ -6,7 +6,7 @@ anyio==4.12.1
 asgiref==3.11.1
 certifi==2026.2.25
 Chameleon==4.6.0
-charset-normalizer==3.4.4
+charset-normalizer==3.4.5
 click==8.3.1
 fastapi==0.135.1
 fastapi_chameleon==0.1.17
