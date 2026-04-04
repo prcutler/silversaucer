@@ -15,7 +15,7 @@ import pendulum
 
 me = config.my_data
 # folder = 8
-folder_id = 2162484
+folder_id = config.LP_folder_id
 
 
 async def get_album_data(folder):
