@@ -1,5 +1,3 @@
-from random import *
-
 import fastapi
 from fastapi_chameleon import template
 from starlette import status
