@@ -7,6 +7,8 @@
 
     <title>Silver Saucer</title>
 
+    <link rel="human-json" href="static/human.json">
+
     <!-- MDB icon -->
     <!-- link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" / -->
 
