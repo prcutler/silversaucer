@@ -2,6 +2,7 @@ from typing import List, Optional
 
 from starlette.requests import Request
 
+import data.config as config
 import data.random_sayings
 from services import api_service
 from viewmodels.shared.viewmodel import ViewModelBase
@@ -22,10 +23,10 @@ class PlayAlbumViewModel(ViewModelBase):
         self.genres = None
         self.album_release_date: Optional[str] = None
         self.main_release_date: Optional[str] = None
-        self.track_title: Optional[List](str) = None
-        self.track_duration: Optional[List](str) = None
-        self.track_position: Optional[List](str) = None
-        self.track_info: Optional[List](str) = None
+        self.track_title: Optional[List[str]] = None
+        self.track_duration: Optional[List[str]] = None
+        self.track_position: Optional[List[str]] = None
+        self.track_info: Optional[List[dict]] = None
         self.mb_id: Optional[str] = None
         self.mb_release_date: Optional[str] = None
 
@@ -35,7 +36,11 @@ class PlayAlbumViewModel(ViewModelBase):
 
     async def load(self):
 
-        release_data = await play_service.get_album_data(2162484)
+        release_data = await play_service.get_album_data(config.LP_folder_id)
+
+        if release_data is None:
+            self.error = "Release not found on Discogs."
+            return
 
         self.release_id = release_data.release_id
         self.release_url = release_data.release_url
@@ -47,10 +52,10 @@ class PlayAlbumViewModel(ViewModelBase):
         self.genres = release_data.genres
         self.album_release_date: Optional[str] = release_data.album_release_year
         self.main_release_date: Optional[str] = release_data.main_release_date
-        self.track_title: Optional[List](str) = release_data.track_title
-        self.track_duration: Optional[List](str) = release_data.track_duration
-        self.track_position: Optional[List](str) = release_data.track_position
-        self.track_info: Optional[List](str) = release_data.track_info
+        self.track_title = release_data.track_title
+        self.track_duration = release_data.track_duration
+        self.track_position = release_data.track_position
+        self.track_info = release_data.track_info
         self.mb_id = release_data.mb_id
         self.mb_release_date = release_data.mb_release_date
 

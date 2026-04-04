@@ -1,5 +1,6 @@
 import random
 
+from discogs_client.exceptions import HTTPError
 import data.config as config
 from data.album import AlbumInfo
 
@@ -64,29 +65,37 @@ async def get_album_data(folder):
         ]
         release_image_url = image_url[0]
 
-        genres = me.release(album_id).genres
-        print("Genres: ", genres)
-        album_release_date = me.release(album_id).year
+        try:
+            release = me.release(album_id)
+            genres = release.genres
+            print("Genres: ", genres)
+            album_release_date = release.year
 
-        if me.release(album_id).master is not None:
-            main_release_date = me.release(album_id).master.fetch("year")
-        else:
-            main_release_date = album_release_date
+            if release.master is not None:
+                main_release_date = release.master.fetch("year")
+            else:
+                main_release_date = album_release_date
 
-        track_title = []
-        track_duration = []
-        track_position = []
+            track_title = []
+            track_duration = []
+            track_position = []
 
-        for tracks in me.release(album_id).tracklist:
-            track_title.append(tracks.title)
-            track_duration.append(tracks.duration)
-            track_position.append(tracks.position)
+            for tracks in release.tracklist:
+                track_title.append(tracks.title)
+                track_duration.append(tracks.duration)
+                track_position.append(tracks.position)
 
-        track_info = []
-        for track in me.release(album_id).tracklist:
-            track_info.append([track.position,
-                               track.title,
-                               track.duration])
+            track_info = []
+            for track in release.tracklist:
+                track_info.append([track.position,
+                                   track.title,
+                                   track.duration])
+        except HTTPError as e:
+            if e.status_code == 404:
+                print(f"Release {album_id} not found on Discogs: {e}")
+                
+                return None
+            raise
 
         mb_id = [mb_id.mb_id for mb_id in album_rows[random_result]]
         mb_release_str = [
