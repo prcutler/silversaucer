@@ -317,7 +317,7 @@ async def get_mb_date():
     async with db_session.create_async_session() as session:
         query = (
             select(Album)
-            .filter(Album.mb_id is not None)
+            .filter(Album.mb_id != None)
             .filter(Album.mb_release_date == None)
         )
         results = await session.execute(query)
