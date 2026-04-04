@@ -270,6 +270,7 @@ dmypy.json
 /.venvfastapi/
 /.venvtest/
 /testvenv/
+/venv
 
 .vscode/settings.json
 .idea/vcs.xml
