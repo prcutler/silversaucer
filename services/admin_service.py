@@ -66,8 +66,8 @@ async def get_album_db_data():
                     album_data.release_image_url = "None"
 
                     # async with db_session.create_async_session() as session:
-                    session.add(album_data)
-                    await session.commit()
+                session.add(album_data)
+                await session.commit()
 
         print(records, records.release.year)
 
