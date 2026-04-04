@@ -122,6 +122,8 @@ async def get_main_release_data():
         release_id_query = select(Album.release_id)
         results = await session.execute(release_id_query)
 
+        folder=2162484
+
         # Get all rows
         release_id_results = results.all()
         print(release_id_results[1], type(release_id_results[1]))
