@@ -10,34 +10,11 @@ import pendulum
 me = config.my_data
 
 
-async def get_today_list():
+async def get_today_list(offset: int = 0):
 
-#    today = pendulum.today(tz="America/Chicago")
-#    print("Today: ", today, today.month, today.day)
-
-#    if today.month < 10 and today.day < 10:
-#        search = "0" + str(today.month) + "-0" + str(today.day)
-#    elif today.month < 10:
-#        search = "0" + str(today.month) + "-" + str(today.day)
-#    else:
-#        search = str(today.month) + "-" + str(today.day)
-
-    today = pendulum.today(tz="America/Chicago")
-    print("Today: ", today, today.month, today.day)
-
-    if today.month < 10 and today.day < 10:
-        search = "0" + str(today.month) + "-0" + str(today.day)
-    elif today.month < 10:
-        search = "0" + str(today.month) + "-" + str(today.day)
-    elif today.month <= 12 and today.day < 10:
-        search = str(today.month) + "-0" + str(today.day)
-    else:
-        search = str(today.month) + "-" + str(today.day)
-
-    # search = '12-03'
-    # search = '06-19'
-    # search = '09-21'
-    print("Search: ", search, type(search))
+    target_date = pendulum.today(tz="America/Chicago").add(days=offset)
+    search = target_date.format("MM-DD")
+    print("Target date: ", target_date, "Search: ", search)
 
     async with db_session.create_async_session() as session:
         query = (
@@ -53,11 +30,11 @@ async def get_today_list():
         return query_results
 
 
-async def get_month_list():
+async def get_month_list(offset: int = 0):
 
-    today = pendulum.today(tz="America/Chicago")
-    search = "{:02d}".format(today.month)
-    print("Today: ", today, "Search month: ", search)
+    target_date = pendulum.today(tz="America/Chicago").add(months=offset)
+    search = "{:02d}".format(target_date.month)
+    print("Target month: ", target_date, "Search month: ", search)
 
     async with db_session.create_async_session() as session:
         trimmed_date = func.trim(Album.mb_release_date)

@@ -5,7 +5,11 @@
 
         <div class="page-core">
             <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column">
-            <h1>${ month } Releases</h1>
+            <div class="d-flex justify-content-center align-items-center">
+                <a class="px-3" href="/month?offset=${ prev_offset }" title="Previous month"><i class="fas fa-arrow-left fa-2x" style="color: #72a4f7;"></i></a>
+                <h1 class="mb-0">${ month } Releases</h1>
+                <a class="px-3" href="/month?offset=${ next_offset }" title="Next month"><i class="fas fa-arrow-right fa-2x" style="color: #72a4f7;"></i></a>
+            </div>
         </div>
 
             <table class="table table-hover text-light">
