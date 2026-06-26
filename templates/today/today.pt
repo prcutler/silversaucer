@@ -4,12 +4,7 @@
 <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column">
 
         <div class="page-core">
-            <div class="d-flex justify-content-center align-items-center">
-                <a class="px-3" href="/today?offset=${ prev_offset }" title="Previous day"><i class="fas fa-arrow-left fa-2x" style="color: #72a4f7;"></i></a>
-                <h1 class="mb-0">Albums in your collection released on ${ today_date }</h1>
-                <a class="px-3" href="/today?offset=${ next_offset }" title="Next day"><i class="fas fa-arrow-right fa-2x" style="color: #72a4f7;"></i></a>
-            </div>
-
+            <h1 class="mb-0">Albums in your collection released on ${ today_date }</h1>
 
             <table class="table table-hover text-light">
                 <p>
@@ -29,6 +24,11 @@
                     </span>
                 </p>
             </table>
+
+            <div class="d-flex justify-content-center align-items-center">
+                <a class="px-3" href="/today?offset=${ prev_offset }" title="Previous day"><i class="fas fa-arrow-left fa-2x" style="color: #72a4f7;"></i></a>
+                <a class="px-3" href="/today?offset=${ next_offset }" title="Next day"><i class="fas fa-arrow-right fa-2x" style="color: #72a4f7;"></i></a>
+            </div>
 
             <div class="container-fluid bg-dark pt-3 d-flex align-items-center flex-column">
             <p>All <a href="/month" > ${ month } </a> releases</p>
