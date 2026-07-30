@@ -8,7 +8,7 @@ certifi==2026.7.22
 Chameleon==4.6.0
 charset-normalizer==3.4.9
 click==8.4.2
-fastapi==0.140.13
+fastapi==0.141.1
 fastapi_chameleon==0.1.18
 greenlet==3.5.4
 gunicorn==26.0.0
