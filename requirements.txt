@@ -35,6 +35,6 @@ starlette==1.6.0
 time-machine==3.5.1
 typing-inspection==0.4.4
 typing_extensions==4.16.0
-tzdata==2026.3
+tzdata==2026.4
 urllib3==2.7.0
 uvicorn==0.52.4
