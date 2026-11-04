@@ -24,7 +24,7 @@ pillow==13.0.0
 pydantic==2.14.2
 pydantic_core
 python-dateutil==3.0.0
-python-multipart==0.0.32
+python-multipart==0.0.33
 python3-discogs-client==2.10
 requests==2.34.2
 setuptools==84.2.1
