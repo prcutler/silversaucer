@@ -18,103 +18,107 @@ import json
 me = config.my_data
 
 
+def _build_album(record) -> Album:
+    """Build an Album row from a Discogs collection item instance."""
+    release = record.release
+    album_data = Album()
+
+    album_data.folder = record.folder_id
+    album_data.release_id = release.id
+    album_data.artist_id = release.artists[0].id
+    album_data.artist_name = release.artists[0].name
+    album_data.release_title = release.title
+    album_data.release_url = release.url
+    album_data.album_release_year = release.year
+
+    try:
+        album_data.artist_url = release.artists[0].url
+    except discogs_client.client.HTTPError:
+        album_data.artist_url = "None"
+
+    try:
+        album_data.release_image_url = release.images[0]["uri"]
+    except (TypeError, IndexError):
+        album_data.release_image_url = "None"
+
+    return album_data
+
+
+async def sync_collection() -> dict:
+    """Incrementally sync every Discogs collection folder into the albums table.
+
+    - Releases not yet in the database are added.
+    - Releases already in the database whose folder changed in Discogs are moved.
+    - Releases in the database that are no longer in any folder are reported
+      (not deleted), so nothing is lost by accident.
+
+    Folder 0 ("All") is skipped because it duplicates every other folder.
+    If the same release is in more than one folder, the first folder seen wins.
+    """
+    summary = {"added": [], "moved": [], "missing": [], "folders": {}}
+
+    async with db_session.create_async_session() as session:
+        # Load what we already have once, instead of querying per record.
+        results = await session.execute(select(Album))
+        existing = {}
+        for album in results.scalars():
+            existing.setdefault(album.release_id, album)
+
+        seen = set()
+
+        for folder in me.collection_folders:
+            if folder.id == 0:
+                continue
+
+            folder_added = 0
+            print(f"Syncing folder {folder.name} ({folder.id}), {folder.count} items")
+
+            for record in folder.releases:
+                release_id = record.release.id
+
+                if release_id in seen:
+                    # Another copy of a release we already handled this run.
+                    continue
+                seen.add(release_id)
+
+                album = existing.get(release_id)
+
+                if album is None:
+                    album = _build_album(record)
+                    session.add(album)
+                    existing[release_id] = album
+                    summary["added"].append(release_id)
+                    folder_added += 1
+                    print("Adding to db", release_id, album.release_title)
+
+                elif album.folder != record.folder_id:
+                    print(
+                        "Moving", release_id, "from", album.folder, "to", record.folder_id
+                    )
+                    album.folder = record.folder_id
+                    summary["moved"].append(release_id)
+
+            # Commit per folder so a failure part-way keeps earlier progress.
+            await session.commit()
+            summary["folders"][folder.name] = folder_added
+
+        summary["missing"] = sorted(set(existing) - seen)
+
+    print(
+        f"Sync complete: {len(summary['added'])} added, "
+        f"{len(summary['moved'])} moved, "
+        f"{len(summary['missing'])} in db but no longer in any Discogs folder"
+    )
+
+    return summary
+
+
 async def get_album_db_data():
-    for records in me.collection_folders[0].releases:
-        album_data = Album()
-
-        async with db_session.create_async_session() as session:
-            release_id_query = select(Album.release_id).filter(
-                Album.release_id == records.release.id
-            )
-            results = await session.execute(release_id_query)
-
-            release_id_results = results.scalar_one_or_none()
-            print(
-                "DB query results: ",
-                release_id_results,
-                "Type: ",
-                type(release_id_results),
-                "records.release.id: ",
-                records.release.id,
-                type(records.release.id),
-            )
-
-            if records.release.id == release_id_results:
-                pass
-
-            else:
-
-                album_data.folder = records.folder_id
-                album_data.release_id = records.release.id
-                album_data.artist_id = records.release.artists[0].id
-                album_data.artist_name = records.release.artists[0].name
-                album_data.release_title = records.release.title
-
-                album_data.release_url = records.release.url
-                album_data.album_release_year = records.release.year
-
-                try:
-                    album_data.artist_url = records.release.artists[0].url
-
-                except discogs_client.client.HTTPError:
-                    album_data.artist_url = "None"
-
-                try:
-                    album_data.release_image_url = records.release.images[0]["uri"]
-
-                except TypeError:
-                    album_data.release_image_url = "None"
-
-                    # async with db_session.create_async_session() as session:
-                session.add(album_data)
-                await session.commit()
-
-        print(records, records.release.year)
+    return await sync_collection()
 
 
 async def update_db_data():
-    for records in me.collection_folders[0].releases:
-
-        album_data = Album()
-
-        async with db_session.create_async_session() as session:
-            release_id_query = select(Album.release_id)
-
-            results = await session.execute(release_id_query)
-
-            release_id_results = results.scalars()
-
-            if records.release.id in release_id_results:
-                print("Already in db, pass")
-                pass
-
-            else:
-
-                album_data.folder = records.folder_id
-                album_data.release_id = records.release.id
-                album_data.artist_id = records.release.artists[0].id
-                album_data.artist_name = records.release.artists[0].name
-                album_data.release_title = records.release.title
-
-                album_data.release_url = records.release.url
-                album_data.album_release_year = records.release.year
-
-                try:
-                    album_data.artist_url = records.release.artists[0].url
-
-                except discogs_client.client.HTTPError:
-                    album_data.artist_url = "None"
-
-                try:
-                    album_data.release_image_url = records.release.images[0]["uri"]
-
-                except TypeError:
-                    album_data.release_image_url = "None"
-
-                    print("Adding to db", album_data.release_id)
-
-                session.add(album_data)
-                await session.commit()
+    return await sync_collection()
 
 
 async def get_main_release_data():
