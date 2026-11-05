@@ -1,3 +1,5 @@
+import asyncio
+import traceback
 from typing import List, Optional
 
 from sqlalchemy.future import select
@@ -22,6 +24,39 @@ musicbrainzngs.set_useragent(
     "0.1",
     "https://github.com/prcutler/silversaucer/",
 )
+
+
+# Only one long-running import job at a time (per server process).
+_job_running: Optional[str] = None
+
+
+def job_in_progress() -> Optional[str]:
+    """Name of the import job currently running, or None."""
+    return _job_running
+
+
+async def run_exclusive(name: str, job) -> None:
+    """Run an async import job unless another one is already running.
+
+    Meant to be scheduled as a background task so the web request returns
+    immediately. Errors are logged rather than raised, since nobody is
+    waiting on the result.
+    """
+    global _job_running
+    if _job_running:
+        print(f"Not starting {name}: {_job_running} is already running")
+        return
+
+    _job_running = name
+    try:
+        print(f"Starting {name}")
+        await job()
+        print(f"Finished {name}")
+    except Exception:
+        print(f"{name} failed:")
+        traceback.print_exc()
+    finally:
+        _job_running = None
 
 
 def _lookup_musicbrainz(discogs_release_id: int):
@@ -138,14 +173,20 @@ async def sync_collection() -> dict:
 
         seen = set()
 
-        for folder in me.collection_folders:
+        # The Discogs and MusicBrainz clients make blocking HTTP calls, so run
+        # them in a worker thread to keep the web server responsive.
+        folders = await asyncio.to_thread(lambda: list(me.collection_folders))
+
+        for folder in folders:
             if folder.id == 0:
                 continue
 
             folder_added = 0
             print(f"Syncing folder {folder.name} ({folder.id}), {folder.count} items")
 
-            for record in folder.releases:
+            records = await asyncio.to_thread(lambda: list(folder.releases))
+
+            for record in records:
                 release_id = record.release.id
 
                 if release_id in seen:
@@ -156,7 +197,7 @@ async def sync_collection() -> dict:
                 album = existing.get(release_id)
 
                 if album is None:
-                    album = _build_album(record)
+                    album = await asyncio.to_thread(_build_album, record)
                     session.add(album)
                     existing[release_id] = album
                     summary["added"].append(release_id)
@@ -187,7 +228,9 @@ async def sync_collection() -> dict:
         print(f"Looking up {len(need_mb)} releases on MusicBrainz")
 
         for album in need_mb:
-            mb_id, mb_release_date = _lookup_musicbrainz(album.release_id)
+            mb_id, mb_release_date = await asyncio.to_thread(
+                _lookup_musicbrainz, album.release_id
+            )
             if mb_id is None:
                 summary["mb_not_found"].append(album.release_id)
                 continue
@@ -430,7 +473,9 @@ async def get_mb_date():
             if musicbrainz.mb_id is not None:
                 print(musicbrainz.mb_id)
 
-                mb_release_date = _original_release_date(musicbrainz.mb_id)
+                mb_release_date = await asyncio.to_thread(
+                    _original_release_date, musicbrainz.mb_id
+                )
 
                 musicbrainz.release_id = musicbrainz.release_id
                 musicbrainz.mb_id = musicbrainz.mb_id

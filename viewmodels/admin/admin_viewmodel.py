@@ -21,6 +21,7 @@ class AdminViewModel(ViewModelBase):
         self.edit_release_id: Optional[int] = None
 
         self.login_status = None
+        self.message: Optional[str] = None
 
     async def load(self):
 
