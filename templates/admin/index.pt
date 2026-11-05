@@ -6,6 +6,8 @@
         <div class="page-core">
             <h1>Welcome, Paul</h1>
 
+            <div class="alert alert-info" tal:condition="message">${message}</div>
+
             <div>
                 What would you like to do today?
                 <br /><br />

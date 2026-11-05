@@ -79,56 +79,58 @@ async def list_post(request: Request):
     return response
 
 
-@router.get("/admin/create_db")
-@template(template_file="admin/index.pt")
-async def admin_index(request: Request):
-    vm = AdminViewModel(request)
+async def _start_import_job(request: Request, background_tasks, name: str, job):
+    """Check login, then start an import job in the background.
 
+    The job runs after the response is sent, so the page returns right away
+    instead of waiting for (and timing out on) Discogs and MusicBrainz.
+    """
+    vm = AdminViewModel(request)
     await vm.load()
 
-    await admin_service.get_album_db_data()
-
-    if vm.login_status is False:
-        response = fastapi.responses.RedirectResponse(
+    if not vm.login_status:
+        return fastapi.responses.RedirectResponse(
             url="/", status_code=status.HTTP_302_FOUND
         )
-        return response
+
+    running = admin_service.job_in_progress()
+    if running:
+        vm.message = f"{running} is already running. Check back in a few minutes."
     else:
-        return vm.to_dict()
+        background_tasks.add_task(admin_service.run_exclusive, name, job)
+        vm.message = (
+            f"{name} started in the background. It can take several minutes; "
+            "progress is written to the server log."
+        )
+
+    return vm.to_dict()
+
+
+@router.get("/admin/create_db")
+@template(template_file="admin/index.pt")
+async def create_db(request: Request, background_tasks: fastapi.BackgroundTasks):
+    return await _start_import_job(
+        request, background_tasks, "Database sync", admin_service.sync_collection
+    )
 
 
 @router.get("/admin/update_db")
 @template(template_file="admin/index.pt")
-async def admin_index(request: Request):
-    vm = AdminViewModel(request)
-
-    await vm.load()
-
-    await admin_service.update_db_data()
-
-    if vm.login_status is False:
-        response = fastapi.responses.RedirectResponse(
-            url="/", status_code=status.HTTP_302_FOUND
-        )
-        return response
-    else:
-        return vm.to_dict()
+async def update_db(request: Request, background_tasks: fastapi.BackgroundTasks):
+    return await _start_import_job(
+        request, background_tasks, "Database sync", admin_service.sync_collection
+    )
 
 
 @router.get("/admin/mb_date")
 @template(template_file="admin/index.pt")
-async def admin_index(request: Request):
-    vm = AdminViewModel(request)
-
-    await admin_service.get_mb_date()
-
-    if vm.login_status is False:
-        response = fastapi.responses.RedirectResponse(
-            url="/", status_code=status.HTTP_302_FOUND
-        )
-        return response
-    else:
-        return vm.to_dict()
+async def mb_date(request: Request, background_tasks: fastapi.BackgroundTasks):
+    return await _start_import_job(
+        request,
+        background_tasks,
+        "MusicBrainz date update",
+        admin_service.get_mb_date,
+    )
 
 
 @router.get("/admin/edit/{release_id}")
