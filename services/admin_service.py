@@ -17,6 +17,68 @@ import json
 
 me = config.my_data
 
+musicbrainzngs.set_useragent(
+    "silversaucer",
+    "0.1",
+    "https://github.com/prcutler/silversaucer/",
+)
+
+
+def _lookup_musicbrainz(discogs_release_id: int):
+    """Find the MusicBrainz release linked to a Discogs release.
+
+    Returns (mb_id, mb_release_date); either may be None. The date is the
+    original release date of the album (see _original_release_date). MusicBrainz returns
+    404 when no release links to this Discogs URL. musicbrainzngs enforces the
+    1 request/second rate limit itself.
+    """
+    resource = f"https://www.discogs.com/release/{discogs_release_id}"
+    try:
+        result = musicbrainzngs.browse_urls(
+            resource=resource, includes=["release-rels"]
+        )
+    except musicbrainzngs.ResponseError as e:
+        if getattr(e.cause, "code", None) != 404:
+            print("MusicBrainz lookup failed for", discogs_release_id, e)
+        return None, None
+    except musicbrainzngs.WebServiceError as e:
+        print("MusicBrainz lookup failed for", discogs_release_id, e)
+        return None, None
+
+    relations = result.get("url", {}).get("release-relation-list", [])
+    if not relations:
+        return None, None
+    if len(relations) > 1:
+        print(
+            "Multiple MusicBrainz releases for",
+            discogs_release_id,
+            [r["release"]["id"] for r in relations],
+            "- using the first",
+        )
+
+    release = relations[0]["release"]
+    mb_id = release["id"]
+    return mb_id, _original_release_date(mb_id, fallback=release.get("date"))
+
+
+def _original_release_date(mb_id: str, fallback: Optional[str] = None):
+    """Return the original release date for a MusicBrainz release.
+
+    This is the release group's first-release-date (the earliest date of any
+    edition), so reissues get the album's original date rather than the
+    reissue date. Falls back to `fallback` if MusicBrainz has no group date.
+    """
+    try:
+        release = musicbrainzngs.get_release_by_id(
+            mb_id, includes=["release-groups"]
+        )["release"]
+    except musicbrainzngs.WebServiceError as e:
+        print("MusicBrainz release lookup failed for", mb_id, e)
+        return fallback
+
+    first_date = release.get("release-group", {}).get("first-release-date")
+    return first_date or release.get("date") or fallback
+
 
 def _build_album(record) -> Album:
     """Build an Album row from a Discogs collection item instance."""
@@ -49,13 +111,23 @@ async def sync_collection() -> dict:
 
     - Releases not yet in the database are added.
     - Releases already in the database whose folder changed in Discogs are moved.
+    - Releases in the collection with no MusicBrainz ID are looked up on
+      MusicBrainz (via the Discogs URL relationship) and get mb_id and
+      mb_release_date filled in.
     - Releases in the database that are no longer in any folder are reported
       (not deleted), so nothing is lost by accident.
 
     Folder 0 ("All") is skipped because it duplicates every other folder.
     If the same release is in more than one folder, the first folder seen wins.
     """
-    summary = {"added": [], "moved": [], "missing": [], "folders": {}}
+    summary = {
+        "added": [],
+        "moved": [],
+        "missing": [],
+        "mb_matched": [],
+        "mb_not_found": [],
+        "folders": {},
+    }
 
     async with db_session.create_async_session() as session:
         # Load what we already have once, instead of querying per record.
@@ -104,9 +176,34 @@ async def sync_collection() -> dict:
 
         summary["missing"] = sorted(set(existing) - seen)
 
+        # Fill in MusicBrainz data for anything in the collection that has no
+        # MusicBrainz ID yet. Existing (possibly hand-picked) IDs are never
+        # overwritten.
+        need_mb = [
+            album
+            for release_id, album in existing.items()
+            if release_id in seen and not album.mb_id
+        ]
+        print(f"Looking up {len(need_mb)} releases on MusicBrainz")
+
+        for album in need_mb:
+            mb_id, mb_release_date = _lookup_musicbrainz(album.release_id)
+            if mb_id is None:
+                summary["mb_not_found"].append(album.release_id)
+                continue
+
+            album.mb_id = mb_id
+            album.mb_release_date = mb_release_date
+            summary["mb_matched"].append(album.release_id)
+            print("MusicBrainz match", album.release_id, mb_id, mb_release_date)
+            # Commit each match so a long run that fails keeps its progress.
+            await session.commit()
+
     print(
         f"Sync complete: {len(summary['added'])} added, "
         f"{len(summary['moved'])} moved, "
+        f"{len(summary['mb_matched'])} matched on MusicBrainz, "
+        f"{len(summary['mb_not_found'])} not on MusicBrainz, "
         f"{len(summary['missing'])} in db but no longer in any Discogs folder"
     )
 
@@ -333,21 +430,7 @@ async def get_mb_date():
             if musicbrainz.mb_id is not None:
                 print(musicbrainz.mb_id)
 
-                musicbrainzngs.set_useragent(
-                    "silversaucer",
-                    "0.1",
-                    "https://github.com/prcutler/silversaucer/",
-                )
-
-                try:
-                    musicbrainzngs.get_release_by_id(musicbrainz.mb_id)
-                    mb_release_date = (
-                        musicbrainzngs.get_release_by_id(musicbrainz.mb_id)
-                        .get("release")
-                        .get("date")
-                    )
-                except musicbrainzngs.musicbrainz.ResponseError:
-                    mb_release_date = None
+                mb_release_date = _original_release_date(musicbrainz.mb_id)
 
                 musicbrainz.release_id = musicbrainz.release_id
                 musicbrainz.mb_id = musicbrainz.mb_id
