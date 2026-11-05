@@ -278,3 +278,6 @@ dmypy.json
 .idea/inspectionProfiles/profiles_settings.xml
 silversaucer.code-workspace
 db/saucerdb.sqlite
+db/*.sqlite
+static/img/album-art/*
+!static/img/album-art/.gitkeep
