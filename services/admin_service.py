@@ -175,7 +175,11 @@ async def sync_collection() -> dict:
 
         # The Discogs and MusicBrainz clients make blocking HTTP calls, so run
         # them in a worker thread to keep the web server responsive.
-        folders = await asyncio.to_thread(lambda: list(me.collection_folders))
+        # config.my_data is a Client; folders belong to the User that the
+        # token authenticates as.
+        folders = await asyncio.to_thread(
+            lambda: list(me.identity().collection_folders)
+        )
 
         for folder in folders:
             if folder.id == 0:

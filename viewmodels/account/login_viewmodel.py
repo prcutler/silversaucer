@@ -13,7 +13,9 @@ class LoginViewModel(ViewModelBase):
     async def load(self):
         form = await self.request.form()
         self.email = form.get("email", "").lower().strip()
-        self.password = form.get("password", "").strip()
+        # Not stripped: spaces are part of the password, and registration
+        # doesn't strip them either.
+        self.password = form.get("password", "")
 
         if not self.email or not self.email.strip():
             self.error = "You must specify a email."
