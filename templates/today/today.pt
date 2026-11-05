@@ -12,6 +12,7 @@
                         <th>Artist Name</th>
                         <th>Album Name</th>
                         <th>Release Date</th>
+                        <th>Format</th>
 
 
                     </tr>
@@ -20,6 +21,7 @@
                             <td><a href="${e.artist_url}">${e.artist_name}</td>
                             <td><a href="${e.release_url}">${e.release_title}</td>
                             <td>${e.mb_release_date}</td>
+                            <td>${e.format}</td>
                         </tr>
                     </span>
                 </p>

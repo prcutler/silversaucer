@@ -2,6 +2,7 @@ from sqlalchemy import func
 from sqlalchemy.future import select
 from data import db_session
 from data.album_data import Album
+from data.formats import format_for_folder
 
 import data.config as config
 import pendulum
@@ -25,9 +26,12 @@ async def get_today_list(offset: int = 0):
         print(query)
 
         results = await session.execute(query)
-        query_results = results.scalars()
+        albums = results.scalars().all()
 
-        return query_results
+        for album in albums:
+            album.format = format_for_folder(album.folder)
+
+        return albums
 
 
 async def get_month_list(offset: int = 0):
@@ -46,6 +50,9 @@ async def get_month_list(offset: int = 0):
         print(query)
 
         results = await session.execute(query)
-        query_results = results.scalars()
+        albums = results.scalars().all()
 
-        return query_results
+        for album in albums:
+            album.format = format_for_folder(album.folder)
+
+        return albums
