@@ -152,10 +152,20 @@ async def admin_edit(release_id, request: Request):
 
 
 @router.post("/admin/edit/{release_id}", include_in_schema=False)
-@template()
+@template(template_file="admin/edit-record.pt")
 async def edit_post(release_id, request: Request):
     vm = EditViewModel(release_id, request)
     await vm.load()
+
+    if not vm.login_status:
+        return fastapi.responses.RedirectResponse(
+            url="/", status_code=status.HTTP_302_FOUND
+        )
+
+    await vm.clean_musicbrainz_fields()
+    if vm.error:
+        # Show the edit page again with the problem; nothing is saved.
+        return vm.to_dict()
 
     release_id = vm.release_id
 

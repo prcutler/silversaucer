@@ -2,6 +2,7 @@ import asyncio
 import traceback
 from typing import List, Optional
 
+from sqlalchemy import func, or_
 from sqlalchemy.future import select
 from data import db_session
 from data import config
@@ -14,6 +15,7 @@ from data.genre_data import Genre
 from data.main_release_data import Main_Data
 from data.release import Release
 from data.tracklist_data import Tracklists
+from infrastructure.mb_ids import clean_date
 import sqlalchemy
 import json
 
@@ -113,6 +115,37 @@ def _original_release_date(mb_id: str, fallback: Optional[str] = None):
 
     first_date = release.get("release-group", {}).get("first-release-date")
     return first_date or release.get("date") or fallback
+
+
+# Kinds of MusicBrainz entry an ID might belong to, in the order to try them.
+_MB_ENTITY_LOOKUPS = [
+    ("release", "get_release_by_id"),
+    ("release-group", "get_release_group_by_id"),
+    ("recording", "get_recording_by_id"),
+    ("artist", "get_artist_by_id"),
+    ("work", "get_work_by_id"),
+    ("label", "get_label_by_id"),
+]
+
+
+def identify_mb_entity(mb_id: str):
+    """Find out what a MusicBrainz ID refers to.
+
+    Returns (kind, name, date), e.g. ("release-group", "EP3", "2014-03-24"),
+    or (None, None, None) if MusicBrainz has nothing with that ID. Network
+    and other non-404 errors are raised (musicbrainzngs.WebServiceError).
+    """
+    for kind, function_name in _MB_ENTITY_LOOKUPS:
+        try:
+            entity = getattr(musicbrainzngs, function_name)(mb_id)[kind]
+        except musicbrainzngs.ResponseError as e:
+            if getattr(e.cause, "code", None) == 404:
+                continue
+            raise
+        name = entity.get("title") or entity.get("name")
+        date = entity.get("date") or entity.get("first-release-date")
+        return kind, name, date
+    return None, None, None
 
 
 def _build_album(record) -> Album:
@@ -227,7 +260,7 @@ async def sync_collection() -> dict:
         need_mb = [
             album
             for release_id, album in existing.items()
-            if release_id in seen and not album.mb_id
+            if release_id in seen and not (album.mb_id or "").strip()
         ]
         print(f"Looking up {len(need_mb)} releases on MusicBrainz")
 
@@ -240,9 +273,17 @@ async def sync_collection() -> dict:
                 continue
 
             album.mb_id = mb_id
-            album.mb_release_date = mb_release_date
+            # Keep a date that was already entered (often by hand); only fill
+            # it in when there isn't one.
+            if not clean_date(album.mb_release_date):
+                album.mb_release_date = mb_release_date
             summary["mb_matched"].append(album.release_id)
-            print("MusicBrainz match", album.release_id, mb_id, mb_release_date)
+            print(
+                "MusicBrainz match",
+                album.release_id,
+                mb_id,
+                album.mb_release_date,
+            )
             # Commit each match so a long run that fails keeps its progress.
             await session.commit()
 
@@ -345,7 +386,9 @@ async def update_mb_id():
 async def missing_mb_info() -> List[Release]:
     async with db_session.create_async_session() as session:
         query = (
-            select(Album).filter(Album.mb_id == None).order_by(Album.artist_name.asc())
+            select(Album)
+            .filter(or_(Album.mb_id == None, func.trim(Album.mb_id) == ""))
+            .order_by(Album.artist_name.asc())
         )
 
         results = await session.execute(query)
@@ -465,8 +508,13 @@ async def get_mb_date():
     async with db_session.create_async_session() as session:
         query = (
             select(Album)
-            .filter(Album.mb_id != None)
-            .filter(Album.mb_release_date == None)
+            .filter(Album.mb_id != None, func.trim(Album.mb_id) != "")
+            .filter(
+                or_(
+                    Album.mb_release_date == None,
+                    func.trim(Album.mb_release_date) == "",
+                )
+            )
         )
         results = await session.execute(query)
 

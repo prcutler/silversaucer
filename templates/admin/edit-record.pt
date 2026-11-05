@@ -6,6 +6,8 @@
 
                 <br/> <br/>
 
+                <div class="alert alert-danger" tal:condition="error">${ error }</div>
+
                 <img src="${ release_data.release_image_url } " alt="Album Cover" width=400 height=400 class="center">
                 <br/><br/>
                 <ul>
