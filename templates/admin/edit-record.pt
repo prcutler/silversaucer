@@ -8,7 +8,13 @@
 
                 <div class="alert alert-danger" tal:condition="error">${ error }</div>
 
-                <img src="${ release_data.release_image_url } " alt="Album Cover" width=400 height=400 class="center">
+                <div class="alert alert-warning" tal:condition="not release_data">
+                    There's no record with Discogs release ID ${ release_id } in the database.
+                    <a href="/admin/">Back to admin</a>
+                </div>
+
+                <div tal:condition="release_data" tal:omit-tag="True">
+                <img src="${ release_data.release_image_url }" alt="Album Cover" width=400 height=400 class="center">
                 <br/><br/>
                 <ul>
                     <br/>
@@ -19,7 +25,7 @@
                                         value="${ release_data.artist_name }" placeholder="${release_data.artist_name}"/></li><br/>
                     <li>Album:  <input name="release_title" type="text" class="form-control"
                                        value="${ release_data.release_title }" /></li><br/>
-                    <li>Discogs Release Date: <input name="album_release_year" type="text" class="form-control"
+                    <li>Discogs Release Year: <input name="album_release_year" type="text" class="form-control"
                                                           value="${ release_data.album_release_year }" /></li><br/>
                     <li>Image URL: <input name="release_image_url" type="text" class="form-control"
                                                           value="${ release_data.release_image_url }" /></li><br/>
@@ -31,9 +37,11 @@
                                                      value="${ release_data.mb_release_date }" /></li>
 
                     <br />
-                    <button type="submit" class="btn btn-danger">Add MusicBrainz ID</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
                     <br />
                 </form>
+                </ul>
+                </div>
 
         </div>
         </div>

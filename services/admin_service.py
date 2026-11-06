@@ -398,110 +398,49 @@ async def missing_mb_info() -> List[Release]:
         return releases
 
 
-async def view_edit(release_id: int):
+async def view_edit(release_id: int) -> Optional[Album]:
+    """Return the album with this Discogs release ID, or None if there isn't one."""
     async with db_session.create_async_session() as session:
         query = select(Album).filter(Album.release_id == release_id)
         results = await session.execute(query)
-
-        query_results = results.scalar()
-
-        release_results = query_results
-        print("Release results: ", release_results)
-
-        # release_results.release_id = release_id
-
-        try:
-            release_url: Optional[str] = release_results.release_url
-
-        except AttributeError:
-            release_url = None
-
-        artist_id: int = release_results.artist_id
-        artist_name: Optional[str] = release_results.artist_name
-        release_title: Optional[str] = release_results.release_title
-        artist_url: Optional[str] = release_results.artist_url
-
-        try:
-            release_image_url: Optional[str] = release_results.release_image_url
-
-        except AttributeError:
-            release_image_url = None
-
-        album_release_year: Optional[str] = release_results.album_release_year
-        folder = release_results.folder
-        mb_id: Optional[str] = release_results.mb_id
-        mb_release_date = release_results.mb_release_date
-
-        album_info = Album(
-            release_url=release_url,
-            release_id=release_id,
-            artist_id=artist_id,
-            artist_name=artist_name,
-            release_title=release_title,
-            artist_url=artist_url,
-            release_image_url=release_image_url,
-            album_release_year=album_release_year,
-            folder=folder,
-            mb_id=mb_id,
-            mb_release_date=mb_release_date,
-        )
-
-        return album_info
+        return results.scalars().first()
 
 
 async def edit_release(
     release_id: int,
-    release_title: str,
-    artist_name: str,
-    release_image_url: str,
-    album_release_year: str,
-    folder: int,
-    mb_id: str,
-    mb_release_date: str,
-):
+    *,
+    artist_name: Optional[str],
+    release_title: Optional[str],
+    release_image_url: Optional[str],
+    album_release_year: Optional[str],
+    folder: Optional[int],
+    mb_id: Optional[str],
+    mb_release_date: Optional[str],
+) -> Optional[Album]:
+    """Save every editable field of an album. Values should already be
+    validated and trimmed (see EditViewModel.validate). Returns the updated
+    album, or None if there's no album with this release ID.
+
+    The fields are keyword-only so callers can't pass them in the wrong order.
+    """
     async with db_session.create_async_session() as session:
         query = select(Album).filter(Album.release_id == release_id)
         results = await session.execute(query)
+        album = results.scalars().first()
+        if album is None:
+            return None
 
-        query_results = results.scalar_one_or_none()
+        album.artist_name = artist_name
+        album.release_title = release_title
+        album.release_image_url = release_image_url
+        album.album_release_year = album_release_year
+        album.folder = folder
+        album.mb_id = mb_id
+        album.mb_release_date = mb_release_date
 
-        release_results = query_results
-        print("Release results: ", release_results)
-
-        # release_results.release_id = release_id
-        release_url: Optional[str] = release_results.release_url
-        artist_id: int = release_results.artist_id
-        artist_name: Optional[str] = artist_name
-        release_title: Optional[str] = release_title
-        artist_url: Optional[str] = release_results.artist_url
-        release_image_url: Optional[str] = release_image_url
-        album_release_year: Optional[str] = album_release_year
-        folder = folder
-        mb_id: Optional[str] = mb_id
-        mb_release_date = mb_release_date
-        print("Services Release ID: ", release_id, "MusicBrainz ID: ", mb_id)
-
-        album_info = Album(
-            release_url=release_url,
-            release_id=release_id,
-            artist_id=artist_id,
-            artist_name=artist_name,
-            release_title=release_title,
-            artist_url=artist_url,
-            release_image_url=release_image_url,
-            album_release_year=album_release_year,
-            folder=folder,
-            mb_id=mb_id,
-            mb_release_date=mb_release_date,
-        )
-
-        query_results.album_release_year = album_release_year
-        query_results.mb_id = mb_id
-        query_results.mb_release_date = mb_release_date
-
+        print("Saved edits to", release_id, "MusicBrainz ID:", mb_id)
         await session.commit()
-
-    return album_info
+        return album
 
 
 async def get_mb_date():
