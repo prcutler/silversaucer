@@ -123,6 +123,17 @@ async def update_db(request: Request, background_tasks: fastapi.BackgroundTasks)
     )
 
 
+@router.get("/admin/fix_mb")
+@template(template_file="admin/index.pt")
+async def fix_mb(request: Request, background_tasks: fastapi.BackgroundTasks):
+    return await _start_import_job(
+        request,
+        background_tasks,
+        "Fix MusicBrainz data",
+        admin_service.fix_musicbrainz_data,
+    )
+
+
 @router.get("/admin/mb_date")
 @template(template_file="admin/index.pt")
 async def mb_date(request: Request, background_tasks: fastapi.BackgroundTasks):

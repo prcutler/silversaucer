@@ -15,7 +15,7 @@ from data.genre_data import Genre
 from data.main_release_data import Main_Data
 from data.release import Release
 from data.tracklist_data import Tracklists
-from infrastructure.mb_ids import clean_date
+from infrastructure.mb_ids import clean_date, normalize_artist, normalize_title
 import sqlalchemy
 import json
 
@@ -295,6 +295,201 @@ async def sync_collection() -> dict:
         f"{len(summary['missing'])} in db but no longer in any Discogs folder"
     )
 
+    return summary
+
+
+# ---------------------------------------------------------------------------
+# "Fix MusicBrainz data": search MusicBrainz for albums the Discogs link
+# lookup couldn't match.
+# ---------------------------------------------------------------------------
+
+
+def _discogs_barcodes(release_id: int) -> List[str]:
+    """Barcodes listed on the Discogs release, digits only."""
+    try:
+        identifiers = me.release(release_id).fetch("identifiers") or []
+    except Exception as e:  # Discogs errors shouldn't stop the whole job
+        print("Discogs lookup failed for", release_id, e)
+        return []
+    codes = []
+    for identifier in identifiers:
+        if identifier.get("type") != "Barcode":
+            continue
+        digits = "".join(c for c in identifier.get("value", "") if c.isdigit())
+        if digits and digits not in codes:
+            codes.append(digits)
+    return codes
+
+
+def _group_first_date(group_id: str) -> Optional[str]:
+    group = musicbrainzngs.get_release_group_by_id(group_id)["release-group"]
+    return group.get("first-release-date") or None
+
+
+def _not_after_owned_copy(date: Optional[str], discogs_year) -> bool:
+    """The original release can't be later than the edition you own."""
+    try:
+        owned_year = int(str(discogs_year).strip())
+    except (TypeError, ValueError):
+        return True
+    if owned_year <= 0 or not date:
+        return True
+    return int(date[:4]) <= owned_year
+
+
+def _search_by_barcode(album):
+    """Exact barcode match. Returns (mb_id, date) or None.
+
+    mb_id is only set when the barcode identifies a single release; if it
+    matches several releases of one album, only the date is used.
+    """
+    for code in _discogs_barcodes(album["release_id"]):
+        results = musicbrainzngs.search_releases(barcode=code, limit=10)
+        releases = [r for r in results["release-list"] if r.get("barcode") == code]
+        if not releases:
+            continue
+
+        groups = {r["release-group"]["id"] for r in releases}
+        if len(groups) != 1:
+            print(f"  barcode {code} matches {len(groups)} different albums, skipped")
+            continue
+
+        release = releases[0]
+        same_artist = normalize_artist(release.get("artist-credit-phrase")) == normalize_artist(album["artist_name"])
+        same_title = normalize_title(release.get("title")) == normalize_title(album["release_title"])
+        if not (same_artist or same_title):
+            print(f"  barcode {code} is \"{release.get('title')}\" by {release.get('artist-credit-phrase')}, skipped")
+            continue
+
+        date = _group_first_date(groups.pop())
+        if not _not_after_owned_copy(date, album["album_release_year"]):
+            print(f"  barcode {code}: date {date} is after your copy, skipped")
+            continue
+
+        mb_id = release["id"] if len(releases) == 1 else None
+        return mb_id, date
+    return None
+
+
+def _search_by_title(album) -> Optional[str]:
+    """Artist + title search for the album's original release date.
+
+    Only accepts a single, unambiguous match: same artist, same title, and
+    not dated after the copy you own. Returns the date or None.
+    """
+    artist = normalize_artist(album["artist_name"])
+    title = normalize_title(album["release_title"])
+    if not artist or not title:
+        return None
+
+    results = musicbrainzngs.search_release_groups(
+        artist=artist, releasegroup=album["release_title"], limit=10
+    )
+    matches = [
+        g
+        for g in results["release-group-list"]
+        if int(g.get("ext:score", 0)) >= 90
+        and normalize_title(g.get("title")) == title
+        and normalize_artist(g.get("artist-credit-phrase")) == artist
+        and g.get("first-release-date")
+    ]
+    if len(matches) != 1:
+        if len(matches) > 1:
+            print(f"  {len(matches)} albums called \"{album['release_title']}\" by this artist, skipped")
+        return None
+
+    date = matches[0]["first-release-date"]
+    if not _not_after_owned_copy(date, album["album_release_year"]):
+        print(f"  title match dated {date} is after your copy, skipped")
+        return None
+    return date
+
+
+def _search_musicbrainz(album) -> dict:
+    """Blocking: try the barcode, then artist + title. Returns what was found:
+    {"mb_id": ..., "date": ..., "method": ...}; values may be None."""
+    found = {"mb_id": None, "date": None, "method": None}
+    try:
+        if not album["mb_id"]:
+            barcode_match = _search_by_barcode(album)
+            if barcode_match:
+                found["mb_id"], found["date"] = barcode_match
+                found["method"] = "barcode"
+
+        if not found["date"] and not album["mb_release_date"]:
+            date = _search_by_title(album)
+            if date:
+                found["date"] = date
+                found["method"] = found["method"] or "artist + title"
+    except musicbrainzngs.WebServiceError as e:
+        print("MusicBrainz search failed for", album["release_id"], e)
+    return found
+
+
+async def fix_musicbrainz_data() -> dict:
+    """Search MusicBrainz for every album missing an MB ID or release date.
+
+    Fills in only what's missing: a barcode match can add the MB ID, and
+    either search can add the original release date. Existing values are
+    never changed. Every match is logged so it can be spot-checked.
+    """
+    summary = {"checked": 0, "id_added": [], "date_added": [], "not_found": 0}
+
+    async with db_session.create_async_session() as session:
+        query = (
+            select(Album)
+            .filter(
+                or_(
+                    Album.mb_id == None,
+                    func.trim(Album.mb_id) == "",
+                    Album.mb_release_date == None,
+                    func.trim(Album.mb_release_date) == "",
+                )
+            )
+            .order_by(Album.artist_name)
+        )
+        albums = (await session.execute(query)).scalars().all()
+        print(f"Searching MusicBrainz for {len(albums)} albums")
+
+        for n, album in enumerate(albums, 1):
+            snapshot = {
+                "release_id": album.release_id,
+                "artist_name": album.artist_name,
+                "release_title": album.release_title,
+                "album_release_year": album.album_release_year,
+                "mb_id": (album.mb_id or "").strip() or None,
+                "mb_release_date": clean_date(album.mb_release_date),
+            }
+            found = await asyncio.to_thread(_search_musicbrainz, snapshot)
+            summary["checked"] += 1
+
+            changed = []
+            if found["mb_id"] and not snapshot["mb_id"]:
+                album.mb_id = found["mb_id"]
+                summary["id_added"].append(album.release_id)
+                changed.append(f"MB ID {found['mb_id']}")
+            if found["date"] and not snapshot["mb_release_date"]:
+                album.mb_release_date = found["date"]
+                summary["date_added"].append(album.release_id)
+                changed.append(f"date {found['date']}")
+
+            label = f"{album.artist_name} - {album.release_title} ({album.release_id})"
+            if changed:
+                print(f"Matched by {found['method']}: {label}: {', '.join(changed)}")
+                await session.commit()
+            else:
+                summary["not_found"] += 1
+                print(f"No match: {label}")
+
+            if n % 25 == 0:
+                print(f"  ...{n}/{len(albums)} searched")
+
+    print(
+        f"MusicBrainz search complete: {summary['checked']} searched, "
+        f"{len(summary['id_added'])} MB IDs added, "
+        f"{len(summary['date_added'])} dates added, "
+        f"{summary['not_found']} with no match"
+    )
     return summary
 
 

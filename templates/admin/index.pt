@@ -26,6 +26,13 @@
             <br/>
 
             <div>
+                <a class="btn btn-warning" href="/admin/fix_mb"
+                   title="Search MusicBrainz by barcode and by artist and title for albums missing a MusicBrainz ID or release date">Fix MusicBrainz data</a>
+                <br/>
+            </div>
+            <br/>
+
+            <div>
                 <a class="btn btn-danger" href="/admin/add-release">Add Release</a>
                 <br/>
             </div>
