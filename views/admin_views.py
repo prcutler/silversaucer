@@ -1,4 +1,5 @@
 import fastapi
+import fastapi_chameleon
 from fastapi_chameleon import template
 from starlette import status
 from starlette.requests import Request
@@ -122,6 +123,17 @@ async def update_db(request: Request, background_tasks: fastapi.BackgroundTasks)
     )
 
 
+@router.get("/admin/fix_mb")
+@template(template_file="admin/index.pt")
+async def fix_mb(request: Request, background_tasks: fastapi.BackgroundTasks):
+    return await _start_import_job(
+        request,
+        background_tasks,
+        "Fix MusicBrainz data",
+        admin_service.fix_musicbrainz_data,
+    )
+
+
 @router.get("/admin/mb_date")
 @template(template_file="admin/index.pt")
 async def mb_date(request: Request, background_tasks: fastapi.BackgroundTasks):
@@ -133,61 +145,62 @@ async def mb_date(request: Request, background_tasks: fastapi.BackgroundTasks):
     )
 
 
+def _record_not_found(vm: EditViewModel):
+    return fastapi_chameleon.response(
+        "admin/edit-record.pt", status_code=status.HTTP_404_NOT_FOUND, **vm.to_dict()
+    )
+
+
 @router.get("/admin/edit/{release_id}")
 @template(template_file="admin/edit-record.pt")
 async def admin_edit(release_id, request: Request):
     vm = EditViewModel(release_id, request)
-    print("admin view release_id: ", release_id)
-    await admin_service.view_edit(release_id)
-
-    await vm.load()
-
-    if vm.login_status is False:
-        response = fastapi.responses.RedirectResponse(
+    if not vm.login_status:
+        return fastapi.responses.RedirectResponse(
             url="/", status_code=status.HTTP_302_FOUND
         )
-        return response
-    else:
-        return vm.to_dict()
+
+    await vm.load()
+    if vm.release_data is None:
+        return _record_not_found(vm)
+
+    return vm.to_dict()
 
 
 @router.post("/admin/edit/{release_id}", include_in_schema=False)
 @template(template_file="admin/edit-record.pt")
 async def edit_post(release_id, request: Request):
     vm = EditViewModel(release_id, request)
-    await vm.load()
-
     if not vm.login_status:
         return fastapi.responses.RedirectResponse(
             url="/", status_code=status.HTTP_302_FOUND
         )
 
-    await vm.clean_musicbrainz_fields()
+    await vm.load()
+    if vm.release_data is None:
+        return _record_not_found(vm)
+
+    await vm.validate()
     if vm.error:
-        # Show the edit page again with the problem; nothing is saved.
+        # Show the edit page again with the problem and what was typed;
+        # nothing is saved.
+        vm.show_submitted_values()
         return vm.to_dict()
 
-    release_id = vm.release_id
-
-    print("release_id viewmodel: ", release_id, "MB_ID: ", vm.mb_id)
-
-    album = await admin_service.edit_release(
-        release_id,
-        vm.artist_name,
-        vm.release_title,
-        vm.release_image_url,
-        vm.album_release_year,
-        vm.folder,
-        vm.mb_id,
-        vm.mb_release_date,
+    await admin_service.edit_release(
+        vm.release_id,
+        artist_name=vm.artist_name,
+        release_title=vm.release_title,
+        release_image_url=vm.release_image_url,
+        album_release_year=vm.album_release_year,
+        folder=vm.folder,
+        mb_id=vm.mb_id,
+        mb_release_date=vm.mb_release_date,
     )
 
-    # Redirect to Admin homepage on post
-    response = fastapi.responses.RedirectResponse(
-        url=f"/admin/", status_code=status.HTTP_302_FOUND
+    return fastapi.responses.RedirectResponse(
+        url="/admin/", status_code=status.HTTP_302_FOUND
     )
-
-    return response
 
 
 @router.get("/admin/add-release")

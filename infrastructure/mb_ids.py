@@ -42,3 +42,22 @@ def clean_date(text: Optional[str]) -> Optional[str]:
     """Strip spaces and tabs from a date; blank becomes None."""
     text = (text or "").strip()
     return text or None
+
+
+def normalize_title(title: Optional[str]) -> str:
+    """Lower-case a title and drop punctuation, "(...)" parts and a trailing
+    " - EP", so Discogs and MusicBrainz spellings of one title compare equal.
+    "Live From The Ryman Vol. 2 " and "Live from the Ryman, Vol. 2" -> same."""
+    title = (title or "").lower().replace("&", " and ")
+    title = re.sub(r"\([^)]*\)", " ", title)
+    title = re.sub(r"\s+-\s+(ep|single)$", " ", title.strip())
+    title = re.sub(r"[^\w\s]", " ", title)
+    return " ".join(title.split())
+
+
+def normalize_artist(name: Optional[str]) -> str:
+    """Like normalize_title, plus Discogs quirks: "Momma (6)" -> "momma",
+    "Various" -> "various artists"."""
+    name = re.sub(r"\s*\(\d+\)$", "", (name or "").strip())
+    name = normalize_title(name)
+    return "various artists" if name == "various" else name

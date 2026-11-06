@@ -21,7 +21,6 @@ Dry run by default. Back up the DB, then run with --apply to write changes.
 """
 import argparse
 import difflib
-import re
 import sqlite3
 import sys
 from pathlib import Path
@@ -29,17 +28,13 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
+from infrastructure.mb_ids import normalize_title  # noqa: E402
 from services.admin_service import identify_mb_entity  # noqa: E402
 
 DEFAULT_DB = PROJECT_ROOT / "db" / "saucerdb.sqlite"
 
 
-def _normalize(title: str) -> str:
-    title = title.lower().replace("&", " and ")
-    title = re.sub(r"\([^)]*\)", " ", title)  # "(live)", "(Remastered)"
-    title = re.sub(r"\s+-\s+(ep|single)$", " ", title.strip())
-    title = re.sub(r"[^\w\s]", " ", title)  # punctuation, curly quotes
-    return " ".join(title.split())
+_normalize = normalize_title
 
 
 def same_album(album_title: str, group_title: str) -> bool:
